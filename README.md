@@ -2,47 +2,92 @@
 
 Web research/design -> GitHub -> local agent -> SSH GPU -> GitHub results -> web review.
 
-## Current operating contract
+## Current hardware envelope
 
-- Web side (this repo): research selection, mathematical derivation, experiment design, code generation.
-- Local agent: pulls an approved commit, connects to the GPU host over SSH, executes only the finite plan in this repo, collects raw outputs, and pushes a result packet back.
-- GPU host: execution only. Do not invent new research branches during a run.
-- Review boundary: after each finite batch, return a commit + result packet. New branches are selected after review.
+- 1 × NVIDIA RTX 2080 Ti
+- 22 GB reported VRAM
+- 1–7B models are in scope
+- Turing GPU: use FP16 for the Wan DiT path; do not assume native BF16
 
-## Round 001
+## Active experiment: Round 002
 
-Round 001 is intentionally hardware-agnostic. It does **not** train a model yet.
+Round 002 is the first real model experiment. It uses Wan2.1-T2V-1.3B and asks a falsifiable question:
 
-1. Inspect the actual GPU host and Python/CUDA stack.
-2. If prior GRPO/RLVR rollout logs exist, analyze reward-information efficiency with the included diagnostic.
-3. Save raw machine-readable artifacts under `artifacts/round_001/`.
-4. Commit/push the result packet.
-5. Web research then chooses the first model-specific 1–7B experiment.
+> Does the same-sized local cache approximation cause very different final damage depending on the diffusion timestep where it is injected?
 
-Why: Research Autopilot requires real resource evidence before sizing the 8-hour queue, and avoids spending GPU time before the decisive diagnostic is specified.
+The experiment keeps prompt, seed, solver, CFG and sampling budget fixed, forces cache reuse at exactly one timestep, then resumes exact computation. It measures local approximation error and terminal decoded-video error.
 
-## Local-agent start
+The mathematical and kill/continue contract is in:
 
-Read [LOCAL_AGENT.md](LOCAL_AGENT.md), then execute:
+- research/ROUND_002_WAN_CACHE_PROPAGATION.md
+- research/SOURCES_ROUND_002.md
+- research/RESOURCE_BRIEF.md
 
-```bash
-python3 scripts/inspect_host.py --output artifacts/round_001/host.json
-```
+## One-time source setup
 
-If the local agent itself is not running on the GPU host, use:
+From this repository:
 
-```bash
-GPU_HOST=user@hostname GPU_PROJECT_DIR=/path/to/CVPR \
-  bash scripts/run_remote.sh \
-  "python3 scripts/inspect_host.py --output artifacts/round_001/host.json"
-```
+~~~bash
+INSTALL_WAN_DEPS=1 DOWNLOAD_WAN_MODEL=1   bash experiments/wan_cache/setup_sources.sh
+~~~
 
-For an existing rollout JSONL:
+If the checkpoint is already present, omit DOWNLOAD_WAN_MODEL.
 
-```bash
-python3 scripts/analyze_rollouts.py \
-  --input /path/to/rollouts.jsonl \
-  --output artifacts/round_001/rollout_signal.json
-```
+Then set:
 
-See [research/ROUND_001.md](research/ROUND_001.md) for the scientific purpose and stop/go rule.
+~~~bash
+export WAN_ROOT=$PWD/external/Wan2.1
+export VBENCH_ROOT=$PWD/external/VBench
+export WAN_CKPT=$PWD/external/Wan2.1-T2V-1.3B
+~~~
+
+## Execute the 8-hour-bounded round
+
+~~~bash
+bash experiments/wan_cache/run_round_002.sh
+~~~
+
+Defaults:
+
+- 3 released VBench prompts selected deterministically from the official prompt JSON
+- Wan2.1-T2V-1.3B
+- 832×480
+- 81 frames
+- 50 sampling steps
+- CFG 6
+- shift 8
+- five single-step cache interventions
+- 7.5-hour internal wall-time boundary
+
+Override examples:
+
+~~~bash
+NUM_PROMPTS=1 MAX_WALL_HOURS=2 bash experiments/wan_cache/run_round_002.sh
+FORCE_STEPS=5,15,25,35,45 bash experiments/wan_cache/run_round_002.sh
+~~~
+
+## Result handoff
+
+Generated MP4s live under artifacts/round_002/large/ and are intentionally gitignored.
+
+Commit/push the small evidence files:
+
+- artifacts/round_002/host.json
+- artifacts/round_002/manifest.json
+- artifacts/round_002/metrics.jsonl
+- artifacts/round_002/summary.json
+- artifacts/round_002/prompt_*/reference_probe.json
+- artifacts/round_002/run.log
+- artifacts/round_002/RESULT.md
+
+The web supervisor then reads that exact result commit and applies the pre-registered KILL / CONTINUE decision before writing any propagation-aware cache method.
+
+## Repository workflow
+
+1. Web supervisor writes a pinned research design and executable code.
+2. Local agent pulls the exact commit and uses the user's existing SSH access.
+3. GPU host executes only the frozen batch.
+4. Local agent commits raw small evidence and a result packet.
+5. Web supervisor reads the exact returned commit, verifies the run, and writes the next round.
+
+Do not invent a new research branch on the GPU host during a frozen batch.
