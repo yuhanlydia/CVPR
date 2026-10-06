@@ -8,6 +8,11 @@ set -euo pipefail
 OUT=${ROUND_OUT:-artifacts/round_002}
 mkdir -p "$OUT"
 
+python3 -m py_compile \
+  experiments/wan_cache/preflight.py \
+  experiments/wan_cache/probe_cache_propagation.py \
+  experiments/wan_cache/make_result_packet.py
+
 python3 scripts/inspect_host.py --output "$OUT/host.json"
 
 python3 experiments/wan_cache/preflight.py   --wan-root "$WAN_ROOT"   --vbench-root "$VBENCH_ROOT"   --ckpt-dir "$WAN_CKPT"   --output "$OUT/preflight.json"
