@@ -11,7 +11,7 @@ import sys
 import time
 import uuid
 from pathlib import Path
-from common import digest, git, now, read_json, write_json
+from common import digest, git, now, read_json, run_plan_compat, write_json
 from window_budget import ensure_window, remaining_seconds, claim_attempt
 
 
@@ -99,7 +99,7 @@ def main():
             claim_attempt(root, window, run_id)
         except FileExistsError as error:
             raise RuntimeError("This retained window already launched its one attempt; preserve it and review the result") from error
-        result = native.run_plan(root, plan,
+        result = run_plan_compat(native, root, plan,
             authorizer=lambda scope: scope.get("run_id") == run_id and scope.get("plan_digest") == plan["plan_digest"],
             process_fds=(lock.fileno(),))
     write_json(root / "runs/latest.json", {"run_id": run_id, "status": result["status"],
