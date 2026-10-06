@@ -196,10 +196,21 @@ def main():
                         taskroot = baseline/"baselines"/name
                         cache_files += [taskroot/(name+tail) for tail in ("_qry", "_tgt", "_info.jsonl", "_pred.jsonl", "_score.json")]
                         cache_files += [taskroot/"replay.json", taskroot/"native-config.yaml", baseline/"native-samples"/(name+".jsonl")]
+                    metadata_refs = []
+                    metadata_arg = []
+                    metadata_setting = cfg.get("training_metadata_root")
+                    if metadata_setting:
+                        metadata_root = (root/metadata_setting).resolve()
+                        metadata_root.relative_to(root)
+                        metadata_files = sorted(metadata_root.glob("**/*.parquet"))
+                        if not metadata_files:
+                            raise RuntimeError(f"No local training parquet shards under {metadata_root}")
+                        metadata_refs = [ref(path) for path in metadata_files]
+                        metadata_arg = ["--train-metadata-root", metadata_setting]
                     job = {"trial_id": "prepare", "command": [sys.executable, str(root/"tools/prepare_candidate_bundle.py"),
                         "--config", str(cfg_path), "--baseline-out", relative.as_posix(),
-                        "--train-image-root", str(Path(a.train_image_root).resolve()), "--upstream", "sources/Qwen3-VL-Embedding", "--out", "out"],
-                        "cwd": ".", "input_refs": common_inputs+[ref(v) for v in cache_files], "code_refs": code_refs,
+                        "--train-image-root", str(Path(a.train_image_root).resolve()), "--upstream", "sources/Qwen3-VL-Embedding", "--out", "out"] + metadata_arg,
+                        "cwd": ".", "input_refs": common_inputs+metadata_refs+[ref(v) for v in cache_files], "code_refs": code_refs,
                         "output_paths": ["out/manifest.json"], "seed": cfg["seed"], "group": "prepare-native-feature-assets", "arm_role": "baseline"}
                     receipt = run_stage("prepare", [job], cfg["prepare_timeout_seconds"])
                     attempt = receipt["attempts"][0] if receipt["attempts"] else None
@@ -252,3 +263,4 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
