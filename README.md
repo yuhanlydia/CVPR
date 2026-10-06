@@ -2,7 +2,9 @@
 
 当前批次是 **20 个数学候选 → 筛选 12 项 → 开发原型 → 有界连续队列**。
 
-**最新职责：助手只准备 GitHub 代码和命令，用户的 local agent 执行。**
+**最新职责：助手将代码和命令更新到 main，用户的 local agent 执行。**
+local agent 使用 main；已有干净 checkout 且无活动任务时运行 git pull --ff-only origin main，
+并记录实际执行的 commit。开发原型的 GPU/科学验证状态仍按实际返回证据报告。
 长期任务继续逐步补代码；不主动连接 SSH/GPU 或运行实验，全程不使用 Docker。
 直接转发 [local agent 运行说明与完整命令](docs/LOCAL_AGENT_HANDOFF.md)。
 见 [长期代码任务](LONG_TERM_TASK.md) 和 [未完成任务清单](research-backlog.json)。

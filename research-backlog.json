@@ -4,7 +4,7 @@
   "project": "yuhanlydia/CVPR",
   "updated_on": "2026-10-06",
   "user_instruction": "助手只生成代码和命令并准备到 GitHub，由用户的 local agent 跑；不使用 Docker",
-  "continuation_branch": "review/wan-readiness-20261006",
+  "continuation_branch": "main",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
   "observed_code_commit": "49304dcb9e5bb99662b8ac39d05311260bd0e749",
   "operating_policy": "LONG_TERM_TASK.md",
@@ -72,6 +72,15 @@
       "commit": "49304dcb9e5bb99662b8ac39d05311260bd0e749",
       "url": "https://github.com/yuhanlydia/CVPR/actions/runs/37443591510",
       "passed": 17,
+      "skipped": 2,
+      "skipped_scope": "Real private native-runner process continuation; complete skill absent in CI",
+      "gpu_qualified": false
+    },
+    {
+      "kind": "CPU_CI",
+      "commit": "d966677665b83ff3170eae9d384fcd5dce63c157",
+      "url": "https://github.com/yuhanlydia/CVPR/actions/runs/37508989436",
+      "passed": 24,
       "skipped": 2,
       "skipped_scope": "Real private native-runner process continuation; complete skill absent in CI",
       "gpu_qualified": false
@@ -153,5 +162,8 @@
   ],
   "assistant_role": "CODE_AND_COMMAND_AUTHOR_ONLY",
   "execution_owner": "USER_LOCAL_AGENT",
-  "user_run_guide": "docs/LOCAL_AGENT_HANDOFF.md"
+  "user_run_guide": "docs/LOCAL_AGENT_HANDOFF.md",
+  "delivery_branch": "main",
+  "main_delivery_authorization": "2026-10-06 用户明确要求：就是修改到main",
+  "delivery_policy": "Publish scoped code and commands to main after applicable code checks; preserve scientific NOT_RUN, concurrent changes, previous attempts and user-local execution ownership."
 }

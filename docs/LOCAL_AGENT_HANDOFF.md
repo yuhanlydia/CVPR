@@ -2,7 +2,8 @@
 
 最新职责：网页助手只生成/审查代码与命令并交付 GitHub；实际安装、SSH、模型、训练特征、
 原生评测和收集由用户的 local agent 执行。全程不使用 Docker 或其他容器。
-当前入口是本仓库 PR #1 的 review/wan-readiness-20261006 分支，不能只 clone main。
+当前默认交付入口是本仓库 main；local agent 拉取 main，并记录实际执行的 commit。
+review/wan-readiness-20261006 与 PR #1 保留历史。本轮代码属于开发原型，GPU/科学验证仍待实际证据。
 
 ## 可直接转发的执行说明
 请读取本文件、LOCAL_AGENT.md、rounds/r003/PLAN.md、IDEAS.md、SOURCES.md 和
@@ -19,12 +20,13 @@ configs/candidates.json。拉取本对话给出的实际交付 commit，记录 g
 首次执行且没有旧运行记录时，新目录使用：
 
 ~~~bash
-git clone --branch review/wan-readiness-20261006 --single-branch https://github.com/yuhanlydia/CVPR.git CVPR-r003
+git clone --branch main --single-branch https://github.com/yuhanlydia/CVPR.git CVPR-r003
 cd CVPR-r003
 git rev-parse HEAD
 ~~~
 
-本对话最终交付的 SHA 是本轮实际版本；确认 clone 的 HEAD 对应它。
+本对话最终交付的 main SHA 是本轮实际版本；确认 clone 的 HEAD 对应它。
+已有干净 main 且没有活动任务时，可用 git pull --ff-only origin main 更新；记录 git rev-parse HEAD。
 已有干净 checkout 可 fetch 后选择那个 SHA；有本地修改/运行记录时先保留并核对兼容性。
 不能靠新目录或 worktree 丢弃旧累计预算与 attempt。
 

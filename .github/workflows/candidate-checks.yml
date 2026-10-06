@@ -1,7 +1,7 @@
 name: candidate-engineering
 on:
   push:
-    branches: ["review/wan-readiness-20261006"]
+    branches: ["main", "review/wan-readiness-20261006"]
   pull_request:
     paths:
       - "experiments/embedding_heads/**"

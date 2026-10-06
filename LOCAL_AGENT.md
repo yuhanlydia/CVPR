@@ -1,7 +1,9 @@
 # 最新流程：GitHub 代码 → 用户的 local agent 执行
 
 用户明确要求网页助手只生成 code 与命令，不代跑实验；由用户的 local agent 运行。
+最新代码交付到 main；拉取 main 或本对话给出的精确 main commit，记录 git rev-parse HEAD。
 先读 docs/LOCAL_AGENT_HANDOFF.md、LONG_TERM_TASK.md 和 research-backlog.json。
+已有活动任务保持它的原执行版本，完成/协调后再更新，不覆盖本地修改或旧运行记录。
 网页侧长期任务只修改/检查/交付代码和命令，不 SSH、不加载模型、不派发 GPU。
 local agent 按本对话实际交付 commit 和已有授权执行下面有限批次，不使用 Docker/其他容器。
 准备 manifest 保持真实 native attempt 布局及 producer receipt；保留原始累计时钟、
