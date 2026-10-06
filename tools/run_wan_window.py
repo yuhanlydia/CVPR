@@ -9,7 +9,7 @@ import sys
 import time
 import uuid
 from pathlib import Path
-from common import digest, git, write_json
+from common import digest, git, run_plan_compat, write_json
 from window_budget import ensure_window, remaining_seconds, claim_attempt
 from run_window import skill_root
 
@@ -98,7 +98,7 @@ def main():
     with lock_path.open("a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         claim_attempt(root, window, run_id)
-        result = native.run_plan(root, plan,
+        result = run_plan_compat(native, root, plan,
             authorizer=lambda scope: scope.get("run_id") == run_id and scope.get("plan_digest") == plan["plan_digest"],
             process_fds=(lock.fileno(),))
     # Copy only small raw evidence out of the native attempt. Do not re-score.
