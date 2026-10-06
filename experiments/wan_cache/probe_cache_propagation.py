@@ -365,7 +365,21 @@ def main():
         if args.force_steps else default_force_steps(args.sampling_steps)
     )
 
-    cfg = WAN_CONFIGS["t2v-1.3B"]
+    import copy
+    cfg = copy.deepcopy(WAN_CONFIGS["t2v-1.3B"])
+
+    # Wan2.1 ships with BF16 defaults. RTX 2080 Ti (Turing / SM 7.5) has no
+    # native BF16 tensor-core path, so keep the text encoder on CPU but force
+    # the DiT inference path to FP16. Patch from_pretrained so weights are cast
+    # before the pipeline moves the model onto CUDA.
+    cfg.param_dtype = torch.float16
+    original_from_pretrained = wan_model_module.WanModel.from_pretrained
+
+    def fp16_from_pretrained(*fp_args, **fp_kwargs):
+        fp_kwargs["torch_dtype"] = torch.float16
+        return original_from_pretrained(*fp_args, **fp_kwargs)
+
+    wan_model_module.WanModel.from_pretrained = fp16_from_pretrained
     pipeline = wan.WanT2V(
         config=cfg,
         checkpoint_dir=args.ckpt_dir,
@@ -376,6 +390,8 @@ def main():
         use_usp=False,
         t5_cpu=True,
     )
+    # Restore the classmethod immediately; the constructed model itself remains FP16.
+    wan_model_module.WanModel.from_pretrained = original_from_pretrained
     pipeline.model.forward = types.MethodType(
         make_probe_forward(wan_model_module), pipeline.model
     )
