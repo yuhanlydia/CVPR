@@ -44,6 +44,20 @@ def original_pairs(text, images):
         raise ValueError("Original training fields must contain strings")
     return [(t, im) for t, im in zip(text, images) if t or im]
 
+def load_declared_training_dataset(loader, cfg, group):
+    """Resolve the pinned release's physical split without changing its semantics."""
+    declared = cfg["training_split"]
+    try:
+        return loader(cfg["training_dataset"], group, split=declared,
+                      revision=cfg["training_revision"]), declared
+    except ValueError as error:
+        # The pinned MMEB release documents this data as `original`, while its
+        # parquet builder exposes the same rows as `train`.
+        if declared != "original" or 'Unknown split "original"' not in str(error):
+            raise
+        return loader(cfg["training_dataset"], group, split="train",
+                      revision=cfg["training_revision"]), "train"
+
 def baseline_evidence(out, cfg):
     out = Path(out).resolve()
     attempt_path = out.parent.parent/"attempt.json"
@@ -118,7 +132,7 @@ def prepare(a):
             eval_ids.add(identity(inp.get("text") or "", digest(img) if img else ""))
     from datasets import load_dataset
     inputs, candidates, images = [], [], {}
-    rows, index = collections.OrderedDict(), {}
+    rows, index, source_splits = collections.OrderedDict(), {}, {}
     def parsed(text, image):
         path = image_file(a.train_image_root, image); h = digest(path) if path else ""
         if h: images[image] = h
@@ -127,7 +141,7 @@ def prepare(a):
             raise ValueError("Actual train/test overlap; no automatic exclusions")
         return key, {"text": text.replace("<|image_1|>", "").strip(), "image": str(path) if path else None}
     for group in cfg["training_tasks"]:
-        ds = load_dataset(cfg["training_dataset"], group, split=cfg["training_split"], revision=cfg["training_revision"])
+        ds, source_splits[group] = load_declared_training_dataset(load_dataset, cfg, group)
         for row_index, raw in enumerate(ds.select(range(min(len(ds), cfg["training_rows_per_task"])))):
             if not isinstance(raw["qry"], str) or not isinstance(raw["qry_image_path"], str):
                 raise ValueError("Unsupported released training query layout")
@@ -151,6 +165,7 @@ def prepare(a):
         raise ValueError("Conflicting released positive/negative labels")
     manifest["train"] = {"dataset_id": cfg["training_dataset"], "revision": cfg["training_revision"],
         "split": cfg["training_split"], "tasks": cfg["training_tasks"], "rows": len(trainrows),
+        "source_splits": source_splits,
         "selection": "first declared training rows; never performance-selected"}
     adapt(a.upstream)  # Isolated staged checkout, not the clean source checkout.
     sys.path.insert(0, str(Path(a.upstream).resolve()))
@@ -212,3 +227,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
