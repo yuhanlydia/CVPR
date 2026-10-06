@@ -14,7 +14,7 @@ import time
 import uuid
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from common import digest, git, now, read_json, write_json
+from common import digest, git, now, read_json, run_plan_compat, write_json
 from window_budget import ensure_window, remaining_seconds
 from run_window import skill_root
 from experiments.embedding_heads.bundle import validate_manifest, all_refs, referenced, check_original_source, UPSTREAM
@@ -175,7 +175,7 @@ def main():
                         purpose="engineering", evidence_mode="developmental")
                     write_json(batch_root/(suffix+"-plan.json"), plan)
                     summary["native_run_ids"].append(plan["run_id"]); save()
-                    result = native.run_plan(root, plan,
+                    result = run_plan_compat(native, root, plan,
                         authorizer=lambda scope: scope.get("run_id") == plan["run_id"] and scope.get("plan_digest") == plan["plan_digest"],
                         process_fds=(lease.fileno(),))
                     # The native runner handles KeyboardInterrupt while killing its
