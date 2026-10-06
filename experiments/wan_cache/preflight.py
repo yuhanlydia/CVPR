@@ -57,21 +57,19 @@ def main():
     required = [
         "models_t5_umt5-xxl-enc-bf16.pth",
         "Wan2.1_VAE.pth",
+        "config.json",
+        "diffusion_pytorch_model.safetensors",
     ]
     missing = [name for name in required if not (ckpt / name).exists()]
     config_candidates = list(ckpt.glob("config*.json"))
-    weight_candidates = (
-        list(ckpt.glob("*.safetensors"))
-        + list(ckpt.glob("*.bin"))
-        + list(ckpt.glob("*.pth"))
-    )
+    dit_weights = ckpt / "diffusion_pytorch_model.safetensors"
     checks["checkpoint"] = {
         "path": str(ckpt),
         "exists": ckpt.exists(),
         "missing_required_files": missing,
         "num_config_json": len(config_candidates),
-        "num_weight_like_files": len(weight_candidates),
-        "ok": ckpt.exists() and not missing and bool(config_candidates) and bool(weight_candidates),
+        "dit_weights_bytes": dit_weights.stat().st_size if dit_weights.exists() else None,
+        "ok": ckpt.exists() and not missing and bool(config_candidates) and dit_weights.exists(),
     }
 
     cuda = torch.cuda.is_available()
