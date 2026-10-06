@@ -29,4 +29,10 @@ if [[ -n "${FORCE_STEPS:-}" ]]; then
   ARGS+=(--force-steps "$FORCE_STEPS")
 fi
 
+set +e
 python3 experiments/wan_cache/probe_cache_propagation.py "${ARGS[@]}" 2>&1 | tee "$OUT/run.log"
+STATUS=${PIPESTATUS[0]}
+set -e
+COMMIT=$(git rev-parse HEAD)
+python3 experiments/wan_cache/make_result_packet.py --round-dir "$OUT" --commit "$COMMIT" --exit-code "$STATUS"
+exit "$STATUS"
