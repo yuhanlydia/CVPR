@@ -58,6 +58,13 @@ def load_declared_training_dataset(loader, cfg, group):
         return loader(cfg["training_dataset"], group, split="train",
                       revision=cfg["training_revision"]), "train"
 
+def load_local_training_dataset(loader, root, group):
+    """Use the pinned parquet shard when the execution host is offline."""
+    files = sorted((Path(root) / group).glob("*.parquet"))
+    if not files:
+        raise FileNotFoundError(f"No local parquet shard for {group} under {root}")
+    return loader("parquet", data_files=[str(path) for path in files], split="train"), "train"
+
 def baseline_evidence(out, cfg):
     out = Path(out).resolve()
     attempt_path = out.parent.parent/"attempt.json"
@@ -151,7 +158,10 @@ def prepare(a):
                 reasons.append({"kind": "query_identity", "image": image, "identity": key})
         return reasons
     for group in cfg["training_tasks"]:
-        ds, source_splits[group] = load_declared_training_dataset(load_dataset, cfg, group)
+        if a.train_metadata_root:
+            ds, source_splits[group] = load_local_training_dataset(load_dataset, a.train_metadata_root, group)
+        else:
+            ds, source_splits[group] = load_declared_training_dataset(load_dataset, cfg, group)
         selected_rows[group], excluded_rows[group] = [], []
         for row_index, raw in enumerate(ds):
             if len(selected_rows[group]) >= cfg["training_rows_per_task"]:
@@ -249,6 +259,7 @@ def main():
     p = argparse.ArgumentParser()
     for name in ("config", "baseline-out", "train-image-root", "upstream", "out"):
         p.add_argument("--"+name, required=True)
+    p.add_argument("--train-metadata-root")
     a = p.parse_args(); started = time.monotonic(); manifest = prepare(a)
     print(json.dumps({"status": "PREPARED_DEVELOPMENTAL_ASSETS", "elapsed_seconds": time.monotonic()-started,
                       "training_rows": manifest["train"]["rows"], "scientific_verdict": "NONE"}), flush=True)
