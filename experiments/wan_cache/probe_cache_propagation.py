@@ -129,8 +129,15 @@ def make_probe_forward(wan_model_module):
         prev_residual = state["prev_residual"][branch]
 
         raw_mod_delta = None
+        teacache_rescaled_proxy = None
         if prev_modulated is not None:
             raw_mod_delta = rel_l1(modulated, prev_modulated)
+            # Published TeaCache4Wan2.1 polynomial for the 1.3B checkpoint.
+            coeff = np.asarray([
+                -5.21862437e4, 9.23041404e3, -5.28275948e2,
+                1.36987616e1, -4.99875664e-2,
+            ], dtype=np.float64)
+            teacache_rescaled_proxy = float(np.poly1d(coeff)(raw_mod_delta))
 
         base_hidden = xh
         forced = step_idx in state["force_steps"] and prev_residual is not None
@@ -165,6 +172,7 @@ def make_probe_forward(wan_model_module):
             "timestep": float(t.flatten()[0].item()),
             "forced_cache": bool(forced),
             "raw_modulated_rel_l1": raw_mod_delta,
+            "teacache_rescaled_proxy": teacache_rescaled_proxy,
             "residual_rel_l1": residual_delta,
             "local_denoiser_output_rel_l1": local_output_delta,
         })
@@ -304,6 +312,14 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         r["terminal_mse"] for r in usable
         if r.get("reference_raw_modulated_rel_l1") is not None
     ]
+    tea = [
+        r["reference_teacache_rescaled_proxy"] for r in usable
+        if r.get("reference_teacache_rescaled_proxy") is not None
+    ]
+    tea_terminal = [
+        r["terminal_mse"] for r in usable
+        if r.get("reference_teacache_rescaled_proxy") is not None
+    ]
     amplification = [
         r["terminal_mse"] / max(r["reference_local_denoiser_output_rel_l1"], 1e-12)
         for r in usable
@@ -312,7 +328,8 @@ def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "num_forced_runs": len(rows),
         "num_usable_pairs": len(usable),
         "corr_local_denoiser_error_to_terminal_mse": corr(local, terminal),
-        "corr_teacache_input_proxy_to_terminal_mse": corr(mod, mod_terminal),
+        "corr_raw_timestep_proxy_to_terminal_mse": corr(mod, mod_terminal),
+        "corr_published_teacache_rescaled_proxy_to_terminal_mse": corr(tea, tea_terminal),
         "empirical_amplification": {
             "mean": float(np.mean(amplification)) if amplification else None,
             "std": float(np.std(amplification)) if amplification else None,
@@ -453,6 +470,9 @@ def main():
                 **metrics,
                 "reference_raw_modulated_rel_l1": branch_average(
                     ref_meta["probe_logs"], step, "raw_modulated_rel_l1"
+                ),
+                "reference_teacache_rescaled_proxy": branch_average(
+                    ref_meta["probe_logs"], step, "teacache_rescaled_proxy"
                 ),
                 "reference_residual_rel_l1": branch_average(
                     ref_meta["probe_logs"], step, "residual_rel_l1"
