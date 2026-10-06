@@ -1,0 +1,153 @@
+{
+  "schema": "cvpr-long-term-planning-record-v1",
+  "note": "Planning record; not a native-runner schema or proof of executed work.",
+  "project": "yuhanlydia/CVPR",
+  "updated_on": "2026-10-06",
+  "user_instruction": "长期逐步推进，不使用 Docker",
+  "continuation_branch": "review/wan-readiness-20261006",
+  "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
+  "observed_code_commit": "49304dcb9e5bb99662b8ac39d05311260bd0e749",
+  "operating_policy": "LONG_TERM_TASK.md",
+  "cadence": {
+    "frequency": "daily",
+    "daypart": "morning",
+    "timezone": "Europe/London",
+    "timing": "flexible"
+  },
+  "no_docker": true,
+  "scope": {
+    "model_parameters": "1–7B",
+    "current_model": "Qwen/Qwen3-VL-Embedding-2B",
+    "candidate_count": 20,
+    "selected": [
+      "I02",
+      "I09",
+      "I14",
+      "I03",
+      "I17",
+      "I10",
+      "I13",
+      "I12",
+      "I16",
+      "I11",
+      "I05",
+      "I01"
+    ],
+    "parked": [
+      "I04",
+      "I06",
+      "I07",
+      "I08",
+      "I15",
+      "I18",
+      "I19",
+      "I20"
+    ],
+    "controls": [
+      "C_PROJECTED",
+      "C_KD",
+      "C_ERM",
+      "C_SINGLE",
+      "C_WHITEN",
+      "C_RBF"
+    ],
+    "configuration": "configs/candidates.json",
+    "scientific_gate": "NOT_RUN"
+  },
+  "resources": {
+    "hardware_reported": "1 × RTX 2080 Ti, 22 GB VRAM",
+    "actual_host": "NOT_CONNECTED_IN_THIS_CONVERSATION",
+    "gpu_execution": "NOT_RUN",
+    "runner_cumulative_limit_seconds": 28800,
+    "automatic_retries": 0,
+    "total_gpu_usage_seconds": null,
+    "total_gpu_usage_note": "Unknown: no actual worker receipt has been read. Retain original setup clock; automation does not reset it.",
+    "paid_compute": "NOT_AUTHORIZED",
+    "hf_output": "DO_NOT_PUBLISH"
+  },
+  "evidence": [
+    {
+      "kind": "CPU_CI",
+      "commit": "49304dcb9e5bb99662b8ac39d05311260bd0e749",
+      "url": "https://github.com/yuhanlydia/CVPR/actions/runs/37443591510",
+      "passed": 17,
+      "skipped": 2,
+      "skipped_scope": "Real private native-runner process continuation; complete skill absent in CI",
+      "gpu_qualified": false
+    }
+  ],
+  "tasks": [
+    {
+      "id": "LT01",
+      "priority": 1,
+      "state": "READY_FOR_CODE_AUDIT",
+      "purpose": "审计全局预算状态和真实证据来源，避免长期续做丢失执行语义",
+      "depends_on": [],
+      "next_action": "读取 tools/run_candidates.py、bundle.py 和 collect_candidates.py，核对 native runner 中断语义、prepared manifest producer/code receipt 和预测文件 SHA；完成必要修复",
+      "completion_evidence": "Changed-file readback, scoped CPU CI; genuine native integration remains pending until real installed runtime is available",
+      "limits": "No benchmark redesign, no private runner vendoring, no fabricated receipt"
+    },
+    {
+      "id": "LT02",
+      "priority": 2,
+      "state": "READY_FOR_DESIGN",
+      "purpose": "让未完成的既定工作在保留累计界限和失败历史时可继续",
+      "depends_on": [
+        "LT01"
+      ],
+      "next_action": "在原生运行器的真实状态与 schema 下设计版本化 carryover；仅派发未完成且依赖匹配的任务，保留旧 attempt 和同科学协议",
+      "completion_evidence": "Finite continuation inventory, actual cumulative-budget accounting, changed-file readback, genuine error-to-success native process verification where available",
+      "limits": "Current runner has no cross-window automatic resume; do not delete markers, revive expired leases or silently grant more GPU hours"
+    },
+    {
+      "id": "LT03",
+      "priority": 3,
+      "state": "BLOCKED_HOST_ACCESS",
+      "purpose": "确认实际单卡能力与官方 2B 基线资格",
+      "depends_on": [
+        "LT01"
+      ],
+      "next_action": "仅在已有授权 SSH/主机可实际访问后读取 GPU 和环境，运行冻结官方 r001 qualifier",
+      "completion_evidence": "Actual host inventory, pinned original code/model/data revisions, complete baseline/scorer replay, native attempt receipt and measured peak/time",
+      "limits": "No guessed host/credentials, no paid GPU allocation, use FP16/SDPA compatible with measured hardware"
+    },
+    {
+      "id": "LT04",
+      "priority": 4,
+      "state": "BLOCKED_SHARED_INPUT",
+      "purpose": "建立真实独立训练输入与可核查的 frozen 2B 特征",
+      "depends_on": [
+        "LT01",
+        "LT03"
+      ],
+      "next_action": "核实现有 MMEB-train 原始图像及训练/测试泄漏检查，用唯一有限 preparation 导出真实 bundle",
+      "completion_evidence": "Completed native producer receipt, exact code/input/output hashes, real input identities, peak/time",
+      "limits": "Original pinned train split; no invented labels/negative pairs/calibration intervals"
+    },
+    {
+      "id": "LT05",
+      "priority": 5,
+      "state": "BLOCKED_DEPENDENCIES",
+      "purpose": "完成已选 12 原型与 6 对照的原生开发比较",
+      "depends_on": [
+        "LT01",
+        "LT04"
+      ],
+      "next_action": "按 configs/candidates.json 的优先顺序，在原始预算下执行 ready 项；独立失败后继续其他项",
+      "completion_evidence": "All statuses/attempts/raw predictions, live official RankingMetrics replay, full candidate lists and denominators, required controls and paired exploratory uncertainty",
+      "limits": "18 finite jobs, zero auto retries; missing interval/multiple positives stay BLOCKED; deadline carryover remains incomplete"
+    },
+    {
+      "id": "LT06",
+      "priority": 6,
+      "state": "BLOCKED_RESULTS",
+      "purpose": "基于完整证据收敛下一阶段研究方向",
+      "depends_on": [
+        "LT05"
+      ],
+      "next_action": "汇总正/负/混合/无效证据及实现和原创性边界，提出有区分力的 2–5 个优先后续问题供用户审阅",
+      "completion_evidence": "Evidence-linked consolidated report with missing obligations, negative history and prospective confirmation proposal",
+      "limits": "No new scientific gate claims, automatic new directions, paper readiness or winner-only reporting"
+    }
+  ]
+}
