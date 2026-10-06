@@ -133,18 +133,39 @@ def prepare(a):
     from datasets import load_dataset
     inputs, candidates, images = [], [], {}
     rows, index, source_splits = collections.OrderedDict(), {}, {}
+    selected_rows, excluded_rows = {}, {}
     def parsed(text, image):
         path = image_file(a.train_image_root, image); h = digest(path) if path else ""
         if h: images[image] = h
         key = identity(text, h)
-        if h in eval_images or key in eval_ids:
-            raise ValueError("Actual train/test overlap; no automatic exclusions")
         return key, {"text": text.replace("<|image_1|>", "").strip(), "image": str(path) if path else None}
+    def overlap_reasons(pairs):
+        reasons = []
+        for text, image in pairs:
+            path = image_file(a.train_image_root, image)
+            image_hash = digest(path) if path else ""
+            key = identity(text, image_hash)
+            if image_hash and image_hash in eval_images:
+                reasons.append({"kind": "image_hash", "image": image, "sha256": image_hash})
+            if key in eval_ids:
+                reasons.append({"kind": "query_identity", "image": image, "identity": key})
+        return reasons
     for group in cfg["training_tasks"]:
         ds, source_splits[group] = load_declared_training_dataset(load_dataset, cfg, group)
-        for row_index, raw in enumerate(ds.select(range(min(len(ds), cfg["training_rows_per_task"])))):
+        selected_rows[group], excluded_rows[group] = [], []
+        for row_index, raw in enumerate(ds):
+            if len(selected_rows[group]) >= cfg["training_rows_per_task"]:
+                break
             if not isinstance(raw["qry"], str) or not isinstance(raw["qry_image_path"], str):
                 raise ValueError("Unsupported released training query layout")
+            pairs = [(raw["qry"], raw["qry_image_path"])]
+            for _role, tk, ik in (("positive", "pos_text", "pos_image_path"),
+                                  ("negative", "neg_text", "neg_image_path")):
+                pairs.extend(original_pairs(raw.get(tk, ""), raw.get(ik, "")))
+            reasons = overlap_reasons(pairs)
+            if reasons:
+                excluded_rows[group].append({"released_row_index": row_index, "reasons": reasons})
+                continue
             qid, inp = parsed(raw["qry"], raw["qry_image_path"]); key = (group, qid)
             if key not in rows:
                 rows[key] = {"query_id": qid, "group": group, "split": "original", "released_row_indices": [],
@@ -158,6 +179,11 @@ def prepare(a):
                         index[cid] = len(candidates); candidates.append(cand)
                     if cid not in row[role+"_candidate_ids"]:
                         row[role+"_candidate_ids"].append(cid)
+            selected_rows[group].append(row_index)
+        if len(selected_rows[group]) < cfg["training_rows_per_task"]:
+            raise ValueError(f"Insufficient leakage-free released rows for {group}: "
+                             f"selected={len(selected_rows[group])}, "
+                             f"required={cfg['training_rows_per_task']}")
     trainrows = list(rows.values())
     if len(inputs) < 2 or not candidates or any(not r["positive_candidate_ids"] for r in trainrows):
         raise ValueError("Missing original training supervision")
@@ -166,7 +192,9 @@ def prepare(a):
     manifest["train"] = {"dataset_id": cfg["training_dataset"], "revision": cfg["training_revision"],
         "split": cfg["training_split"], "tasks": cfg["training_tasks"], "rows": len(trainrows),
         "source_splits": source_splits,
-        "selection": "first declared training rows; never performance-selected"}
+        "selection": "first released rows after deterministic train/eval overlap exclusion; never performance-selected",
+        "selected_released_row_indices": selected_rows,
+        "excluded_released_rows": excluded_rows}
     adapt(a.upstream)  # Isolated staged checkout, not the clean source checkout.
     sys.path.insert(0, str(Path(a.upstream).resolve()))
     import torch
