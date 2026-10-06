@@ -99,6 +99,7 @@ def make_probe_forward(wan_model_module):
             e0 = self.time_projection(e).unflatten(1, (6, self.dim))
 
         context_lens = None
+        context = [u.to(dtype=self.text_embedding[0].weight.dtype) for u in context]
         context_h = self.text_embedding(
             torch.stack([
                 torch.cat([
