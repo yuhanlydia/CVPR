@@ -3,7 +3,7 @@
   "note": "Planning record; not a native-runner schema or proof of executed work.",
   "project": "yuhanlydia/CVPR",
   "updated_on": "2026-10-06",
-  "user_instruction": "长期逐步推进，不使用 Docker",
+  "user_instruction": "助手只生成代码和命令并准备到 GitHub，由用户的 local agent 跑；不使用 Docker",
   "continuation_branch": "review/wan-readiness-20261006",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
   "observed_code_commit": "49304dcb9e5bb99662b8ac39d05311260bd0e749",
@@ -56,14 +56,15 @@
   },
   "resources": {
     "hardware_reported": "1 × RTX 2080 Ti, 22 GB VRAM",
-    "actual_host": "NOT_CONNECTED_IN_THIS_CONVERSATION",
-    "gpu_execution": "NOT_RUN",
+    "actual_host": "USER_LOCAL_AGENT_SUPPLIES_ACTUAL_HOST",
+    "gpu_execution": "WAITING_FOR_USER_RETURNED_EVIDENCE",
     "runner_cumulative_limit_seconds": 28800,
     "automatic_retries": 0,
     "total_gpu_usage_seconds": null,
-    "total_gpu_usage_note": "Unknown: no actual worker receipt has been read. Retain original setup clock; automation does not reset it.",
+    "total_gpu_usage_note": "Unknown; actual usage is supplied by user-side receipts. Assistant generates code/commands and never resets the original clock.",
     "paid_compute": "NOT_AUTHORIZED",
-    "hf_output": "DO_NOT_PUBLISH"
+    "hf_output": "DO_NOT_PUBLISH",
+    "assistant_gpu_execution": "DO_NOT_RUN"
   },
   "evidence": [
     {
@@ -80,17 +81,17 @@
     {
       "id": "LT01",
       "priority": 1,
-      "state": "READY_FOR_CODE_AUDIT",
+      "state": "CODE_DELIVERED_NATIVE_VERIFICATION_FOR_USER",
       "purpose": "审计全局预算状态和真实证据来源，避免长期续做丢失执行语义",
       "depends_on": [],
-      "next_action": "读取 tools/run_candidates.py、bundle.py 和 collect_candidates.py，核对 native runner 中断语义、prepared manifest producer/code receipt 和预测文件 SHA；完成必要修复",
-      "completion_evidence": "Changed-file readback, scoped CPU CI; genuine native integration remains pending until real installed runtime is available",
+      "next_action": "修复已交付：deadline 状态、manifest producer/code/output 绑定和预测/native result 校验；读取对应 commit CPU CI，真实 native/GPU 验证由用户 local agent 执行",
+      "completion_evidence": "Changed-file remote readback and corresponding GitHub CPU CI; generated engineering file fixtures are not actual native execution evidence.",
       "limits": "No benchmark redesign, no private runner vendoring, no fabricated receipt"
     },
     {
       "id": "LT02",
       "priority": 2,
-      "state": "READY_FOR_DESIGN",
+      "state": "READY_FOR_CODE_DESIGN",
       "purpose": "让未完成的既定工作在保留累计界限和失败历史时可继续",
       "depends_on": [
         "LT01"
@@ -102,52 +103,55 @@
     {
       "id": "LT03",
       "priority": 3,
-      "state": "BLOCKED_HOST_ACCESS",
+      "state": "COMMANDS_DELIVERED_USER_EXECUTION",
       "purpose": "确认实际单卡能力与官方 2B 基线资格",
       "depends_on": [
         "LT01"
       ],
-      "next_action": "仅在已有授权 SSH/主机可实际访问后读取 GPU 和环境，运行冻结官方 r001 qualifier",
+      "next_action": "local agent 按 docs/LOCAL_AGENT_HANDOFF.md 核对真实主机并执行已准备的 r001 命令；助手不主动连接主机",
       "completion_evidence": "Actual host inventory, pinned original code/model/data revisions, complete baseline/scorer replay, native attempt receipt and measured peak/time",
       "limits": "No guessed host/credentials, no paid GPU allocation, use FP16/SDPA compatible with measured hardware"
     },
     {
       "id": "LT04",
       "priority": 4,
-      "state": "BLOCKED_SHARED_INPUT",
+      "state": "CODE_AND_COMMANDS_DELIVERED_USER_EXECUTION",
       "purpose": "建立真实独立训练输入与可核查的 frozen 2B 特征",
       "depends_on": [
         "LT01",
         "LT03"
       ],
-      "next_action": "核实现有 MMEB-train 原始图像及训练/测试泄漏检查，用唯一有限 preparation 导出真实 bundle",
+      "next_action": "local agent 提供原始 MMEB-train images 与实际完整基线后，用已准备的有限 preparation 生成 bundle；助手不编码或下载数据",
       "completion_evidence": "Completed native producer receipt, exact code/input/output hashes, real input identities, peak/time",
       "limits": "Original pinned train split; no invented labels/negative pairs/calibration intervals"
     },
     {
       "id": "LT05",
       "priority": 5,
-      "state": "BLOCKED_DEPENDENCIES",
+      "state": "CODE_AND_COMMANDS_DELIVERED_USER_EXECUTION",
       "purpose": "完成已选 12 原型与 6 对照的原生开发比较",
       "depends_on": [
         "LT01",
         "LT04"
       ],
-      "next_action": "按 configs/candidates.json 的优先顺序，在原始预算下执行 ready 项；独立失败后继续其他项",
+      "next_action": "local agent 运行 run_candidates.py 并收集所有证据；助手持续补代码和运行命令，不启动该批次",
       "completion_evidence": "All statuses/attempts/raw predictions, live official RankingMetrics replay, full candidate lists and denominators, required controls and paired exploratory uncertainty",
       "limits": "18 finite jobs, zero auto retries; missing interval/multiple positives stay BLOCKED; deadline carryover remains incomplete"
     },
     {
       "id": "LT06",
       "priority": 6,
-      "state": "BLOCKED_RESULTS",
+      "state": "WAITING_FOR_USER_RESULTS",
       "purpose": "基于完整证据收敛下一阶段研究方向",
       "depends_on": [
         "LT05"
       ],
-      "next_action": "汇总正/负/混合/无效证据及实现和原创性边界，提出有区分力的 2–5 个优先后续问题供用户审阅",
+      "next_action": "用户返回真实报告/receipt/原始预测后，助手核查并分析，再提出下一步代码方案",
       "completion_evidence": "Evidence-linked consolidated report with missing obligations, negative history and prospective confirmation proposal",
       "limits": "No new scientific gate claims, automatic new directions, paper readiness or winner-only reporting"
     }
-  ]
+  ],
+  "assistant_role": "CODE_AND_COMMAND_AUTHOR_ONLY",
+  "execution_owner": "USER_LOCAL_AGENT",
+  "user_run_guide": "docs/LOCAL_AGENT_HANDOFF.md"
 }

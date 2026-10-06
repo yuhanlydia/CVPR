@@ -1,5 +1,8 @@
 # 在 VS Code 的 SSH 远程终端运行
 
+当前 r003 优先使用 [LOCAL_AGENT_HANDOFF](LOCAL_AGENT_HANDOFF.md)。网页助手只交付代码与命令，
+用户的 local agent 执行；下文为 r001 原生基线入口，必须拉取包含这些入口的 review 分支。
+
 当前网页会话没有 GPU，也没有连接你的 SSH 主机。下面的命令在 GPU 机器执行。该机器需要 Linux、Python 3.11+、Git、可用 CUDA 驱动、可访问公开 GitHub/HF/PyTorch 资源，预留至少 35 GiB 磁盘和 9 GiB 可用显存。这些是启动检查门槛，真实模型峰值仍需校准。
 
 ## 1. 拉取与环境准备
@@ -7,7 +10,7 @@
 新目录：
 
 ```bash
-git clone https://github.com/yuhanlydia/CVPR.git
+git clone --branch review/wan-readiness-20261006 --single-branch https://github.com/yuhanlydia/CVPR.git
 cd CVPR
 export CUDA_VISIBLE_DEVICES=0
 bash tools/bootstrap.sh

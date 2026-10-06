@@ -2,10 +2,10 @@
 
 当前批次是 **20 个数学候选 → 筛选 12 项 → 开发原型 → 有界连续队列**。
 
-已按用户最新要求改为长期逐步推进；每天上午核对进展并完成下一项。
-**不使用 Docker**，环境使用 Python 虚拟环境和已有 SSH。
-见 [长期任务与预算规则](LONG_TERM_TASK.md) 和 [未完成任务清单](research-backlog.json)。
-当前仍没有实际接入 GPU，定时任务不代表训练服务已经启动。
+**最新职责：助手只准备 GitHub 代码和命令，用户的 local agent 执行。**
+长期任务继续逐步补代码；不主动连接 SSH/GPU 或运行实验，全程不使用 Docker。
+直接转发 [local agent 运行说明与完整命令](docs/LOCAL_AGENT_HANDOFF.md)。
+见 [长期代码任务](LONG_TERM_TASK.md) 和 [未完成任务清单](research-backlog.json)。
 
 - [20 张数学卡与筛选理由](rounds/r003/IDEAS.md)
 - [官方源码读取记录与近作边界](rounds/r003/SOURCES.md)

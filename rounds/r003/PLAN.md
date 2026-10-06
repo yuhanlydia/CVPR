@@ -1,6 +1,8 @@
 # Round 003 执行与返回
 
-用户最新要求为长期逐步推进且不使用 Docker；上层研究任务与续做待办见
+用户最新要求为助手只生成代码/命令并交付 GitHub，由用户的 local agent 运行；不使用 Docker。
+完整交付与运行命令见 [LOCAL_AGENT_HANDOFF](../../docs/LOCAL_AGENT_HANDOFF.md)。
+上层代码任务与续做待办见
 [LONG_TERM_TASK](../../LONG_TERM_TASK.md) 和 [research-backlog](../../research-backlog.json)。
 下列命令仍对应一次有限原生批次，不能靠定时重复命令延长累计时间。
 
@@ -104,3 +106,11 @@ GitHub CI 只安装 NumPy：11 个矩阵/约束/资格条件检查，以及 6 �
 
 当前单任务 ScienceQA 输出无法支持 I11 的跨组最差性能声明，也不能证明视频/RL/跨域泛化。
 对应完整科学比较仍需增补原生资格、相应任务与独立确认，本批只保留开发观察。
+
+## 本次交付的证据来源修复
+准备 manifest 必须保留实际 completed native prepare 的 attempt.json、生产脚本 SHA 和
+真实 output SHA；方法 staging 同时携带这个 producer receipt。
+全局累计 alarm 被 native runner 处理为 interrupted 后，父程序仍按真实 deadline 标注预算 carryover。
+collector 复核实际 native result/prediction SHA 和 child scorer replay SHA，
+损坏比较标为 INVALID_EVIDENCE；共享来源损坏仍返回失败/原始日志，不给它评分。
+这些是代码语义与工程文件完整性检查，真实 GPU/native 执行由 local agent 验证。

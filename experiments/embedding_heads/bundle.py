@@ -41,6 +41,37 @@ def all_refs(manifest):
         refs += [manifest["interval_calibration"]["radius_ref"], manifest["interval_calibration"]["evidence_ref"]]
     return refs
 
+def preparation_receipt(path):
+    """Bind the actual prepared manifest to its completed native producer.
+
+    Staging preserves the unique producer directory and its relative output refs.
+    A manifest outside that original layout, or with no completed receipt, fails.
+    This verifies file/code identity; it is not cryptographic provenance attestation.
+    """
+    path = Path(path).resolve()
+    attempt_dir = path.parent.parent.parent
+    receipt_path = attempt_dir/"attempt.json"
+    producer = json.loads(receipt_path.read_text(encoding="utf-8"))
+    relative = Path(producer["attempt_path"])
+    if relative.is_absolute() or ".." in relative.parts:
+        raise ValueError("Invalid preparation attempt path")
+    expected = (relative/"workspace/out/manifest.json").as_posix()
+    outputs = [r for r in producer["output_refs"] if r["path"] == expected]
+    prepare_code = Path(__file__).resolve().parents[2]/"tools/prepare_candidate_bundle.py"
+    command = producer["command"]
+    if (producer["status"] != "completed" or producer["exit_code"] != 0
+            or producer["trial_id"] != "prepare"
+            or relative.name != attempt_dir.name
+            or path.parent.name != "out" or path.parent.parent.name != "workspace"
+            or path.name != "manifest.json"
+            or len(command) < 2 or Path(command[1]).name != "prepare_candidate_bundle.py"
+            or producer["provenance"]["upstream_revision"] != UPSTREAM
+            or len(outputs) != 1 or outputs[0]["sha256"] != sha256(path)
+            or not any(r["path"] == "tools/prepare_candidate_bundle.py"
+                       and r["sha256"] == sha256(prepare_code) for r in producer["code_refs"])):
+        raise ValueError("Prepared bundle needs its completed native producer and reviewed code receipt")
+    return receipt_path
+
 def validate_manifest(path):
     path = Path(path).resolve()
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -48,6 +79,7 @@ def validate_manifest(path):
         raise ValueError("Unqualified cache schema or upstream identity")
     if value["model_id"] != "Qwen/Qwen3-VL-Embedding-2B":
         raise ValueError("This frozen batch supports only the declared 2B carrier")
+    preparation_receipt(path)
     train = value["train"]
     if train["dataset_id"] != "TIGER-Lab/MMEB-train" or train["split"] != "original":
         raise ValueError("Only declared original public training data may fit these heads")

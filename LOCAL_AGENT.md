@@ -1,11 +1,12 @@
-# 最新要求：长期推进，不使用 Docker
+# 最新流程：GitHub 代码 → 用户的 local agent 执行
 
-用户于 2026-10-06 授权本项目长期逐步推进；优先读取 LONG_TERM_TASK.md 和
-research-backlog.json，然后读取下面 r003 范围。使用原生 Python venv/已有授权 SSH；
-禁止 Docker、容器 CI 或其他容器替代。每日任务继续未完成的既定工作，保留完成记录和失败历史。
-当前原始累计 8 小时限额不被排程重置，run_candidates.py 尚无跨窗口自动续跑；
-不要用重复命令、删除 receipt/marker 或新窗口 ID 伪造续做。
-没有实际 GPU/SSH 时推进数学、原始源码审计和代码；模型执行明确 BLOCKED/NOT_RUN。
+用户明确要求网页助手只生成 code 与命令，不代跑实验；由用户的 local agent 运行。
+先读 docs/LOCAL_AGENT_HANDOFF.md、LONG_TERM_TASK.md 和 research-backlog.json。
+网页侧长期任务只修改/检查/交付代码和命令，不 SSH、不加载模型、不派发 GPU。
+local agent 按本对话实际交付 commit 和已有授权执行下面有限批次，不使用 Docker/其他容器。
+准备 manifest 保持真实 native attempt 布局及 producer receipt；保留原始累计时钟、
+已完成/失败记录和全部原生预测；将小报告与返回包送回本对话。
+跨窗口自动续跑尚未实现，不删除 marker/receipt 或复跑整批来绕过时限。
 
 # 当前任务：r003 候选与有限开发批次
 

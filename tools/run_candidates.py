@@ -178,6 +178,10 @@ def main():
                     result = native.run_plan(root, plan,
                         authorizer=lambda scope: scope.get("run_id") == plan["run_id"] and scope.get("plan_digest") == plan["plan_digest"],
                         process_fds=(lease.fileno(),))
+                    # The native runner handles KeyboardInterrupt while killing its
+                    # process group. Distinguish our expired alarm from cancellation.
+                    if time.monotonic() >= end:
+                        raise BudgetEnded("Original cumulative deadline reached during native execution")
                     return result
                 common_inputs = [ref(cfg_path), ref(host_path)]
                 if a.bundle:
@@ -205,7 +209,8 @@ def main():
                         save(); return 1
                     bundle = Path(attempt["cwd"])/"out/manifest.json"
                 manifest = validate_manifest(bundle)
-                bundle_inputs = [ref(bundle)]+[ref(referenced(bundle.parent, v)) for v in all_refs(manifest)]
+                producer = bundle.parent.parent.parent/"attempt.json"
+                bundle_inputs = [ref(bundle), ref(producer)]+[ref(referenced(bundle.parent, v)) for v in all_refs(manifest)]
                 jobs = [{"trial_id": m, "command": [sys.executable, str(root/"tools/run_method.py"),
                         "--bundle", str(bundle), "--config", str(cfg_path), "--method", m,
                         "--upstream", "sources/Qwen3-VL-Embedding", "--out", "out"],
