@@ -1,0 +1,28 @@
+accelerators:
+  - model: NVIDIA GeForce RTX 2080 Ti
+    count: 1
+    reported_vram_gb: 22
+
+planning_policy:
+  parameter_range_b: "1-7"
+  primary_models:
+    - "4B class for fast mechanism screening"
+    - "7B class for main experiments when memory allows"
+  training:
+    full_finetune_7b: false
+    lora_7b: true
+    qlora_7b: true
+    frozen_backbone_head_training: true
+  inference:
+    fp16_7b: "allowed if measured memory fits"
+    int8_7b: true
+    int4_7b: true
+
+precision:
+  preferred: fp16
+  bf16: false
+
+notes:
+  - "22 GB is the user-reported planning envelope."
+  - "The local agent must still record actual free/total VRAM before each sized run."
+  - "Do not exclude 7B models merely because they are 7B; choose adaptation and batch size to fit the measured envelope."
