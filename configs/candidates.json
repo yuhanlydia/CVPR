@@ -89,13 +89,16 @@
   "training_dataset": "TIGER-Lab/MMEB-train",
   "training_revision": "0c3f4b828d347c4e8508339f99530f6c820061fd",
   "training_split": "original",
+  "training_metadata_root": "data/train-metadata",
   "training_tasks": [
     "ScienceQA",
     "A-OKVQA"
   ],
-  "training_rows_per_task": 64,
+  "training_rows_per_task": 128,
   "evaluation_tasks": [
-    "ScienceQA"
+    "ScienceQA",
+    "ChartQA",
+    "MSCOCO_i2t"
   ],
   "projection_rank": 32,
   "seed": 42,
@@ -130,3 +133,4 @@
   "novelty": "UNRESOLVED",
   "gate_a": "NOT_RUN"
 }
+
