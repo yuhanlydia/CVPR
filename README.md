@@ -1,4 +1,32 @@
-# CVPR Research Autopilot
+# CVPR：小模型多模态研究
+
+当前批次是 **20 个数学候选 → 筛选 12 项 → 开发原型 → 有界连续队列**。
+
+- [20 张数学卡与筛选理由](rounds/r003/IDEAS.md)
+- [官方源码读取记录与近作边界](rounds/r003/SOURCES.md)
+- [运行、预算、对照和返回命令](rounds/r003/PLAN.md)
+- [冻结的 12 项及 6 个对照](configs/candidates.json)
+
+载体为冻结 Qwen3-VL-Embedding-2B，独立公开训练数据拟合小头，测试保留完整原生候选与
+官方 RankingMetrics。全部候选的自然失败/原创性/科学资格仍待实际证据；
+数学推导、代码完成、CPU 检查、GPU 实验分开报告。
+
+实际基线与原始训练图像就绪后，从工程根运行：
+
+~~~bash
+.venv/bin/python tools/run_candidates.py \
+  --baseline-out "$BASELINE_OUT" \
+  --train-image-root "$MMEB_TRAIN_IMAGES" \
+  --hours 8 --execute
+.venv/bin/python tools/collect_candidates.py
+~~~
+
+每项失败/单项超时后继续其他项，所有结果/错误留下独立记录，零自动重试。
+共享输入缺失则逐项阻塞；累计 8 小时到期、用户取消或未清理进程时停止并保留未完成清单。
+当前没有真实 GPU 结果。CPU CI 状态以对应 GitHub commit 的检查记录为准；
+完整私有 Research Autopilot 未安装的环境会明确跳过原生运行器集成检查。
+
+## 前一批基线与 Wan 资格化记录
 
 Web research/design -> GitHub -> local agent -> SSH GPU -> GitHub results -> web review.
 

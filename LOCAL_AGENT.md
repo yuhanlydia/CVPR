@@ -1,4 +1,17 @@
-# Local Agent Contract
+# 当前任务：r003 候选与有限开发批次
+
+最新用户授权是核对并实现 20 → 10–15 → code → 单项报错继续，本批固定筛选 12 项。
+先读 rounds/r003/IDEAS.md、SOURCES.md、PLAN.md 和 configs/candidates.json。
+执行 tools/run_candidates.py 的有限范围，保留全部失败/阻塞/超时/未完成项，零自动重试。
+复用原始 setup-receipt.json 时钟，不删除 marker 或 receipt 来扩大累计预算。
+使用已安装的完整 Research Autopilot，保留 GitHub 交付目标与不向 HF 发布输出的偏好。
+
+12 个小头是用户要求的开发原型，当前没有 Natural Gate 0/IPCG/Gate A PASS。
+不得把 exit 0、CPU 测试或单任务开发分数称为科学验证。测试数据不得进入拟合/参数选择。
+所有评分继续用实际官方 MMEB 数据、候选、标签和 RankingMetrics。
+
+以下 r001/r002 记录保留为历史/资格化入口；当前入口以上面 r003 为准。
+
 
 You are the execution worker for this research project.
 

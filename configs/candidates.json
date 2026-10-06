@@ -1,0 +1,132 @@
+{
+  "round": "r003",
+  "status": "developmental_prototypes_no_scientific_gate_pass",
+  "candidate_count": 20,
+  "selected_count": 12,
+  "selected": [
+    "I02",
+    "I09",
+    "I14",
+    "I03",
+    "I17",
+    "I10",
+    "I13",
+    "I12",
+    "I16",
+    "I11",
+    "I05",
+    "I01"
+  ],
+  "parked": [
+    "I04",
+    "I06",
+    "I07",
+    "I08",
+    "I15",
+    "I18",
+    "I19",
+    "I20"
+  ],
+  "controls": [
+    "C_PROJECTED",
+    "C_KD",
+    "C_ERM",
+    "C_SINGLE",
+    "C_WHITEN",
+    "C_RBF"
+  ],
+  "required_controls": {
+    "I01": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I02": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I03": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ],
+    "I05": [
+      "C_PROJECTED",
+      "C_SINGLE"
+    ],
+    "I09": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I10": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ],
+    "I11": [
+      "C_PROJECTED",
+      "C_ERM"
+    ],
+    "I12": [
+      "C_PROJECTED",
+      "C_RBF",
+      "I16"
+    ],
+    "I13": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ],
+    "I14": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I16": [
+      "C_PROJECTED",
+      "C_RBF"
+    ],
+    "I17": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ]
+  },
+  "training_dataset": "TIGER-Lab/MMEB-train",
+  "training_revision": "0c3f4b828d347c4e8508339f99530f6c820061fd",
+  "training_split": "original",
+  "training_tasks": [
+    "ScienceQA",
+    "A-OKVQA"
+  ],
+  "training_rows_per_task": 64,
+  "evaluation_tasks": [
+    "ScienceQA"
+  ],
+  "projection_rank": 32,
+  "seed": 42,
+  "window_seconds": 28800,
+  "prepare_timeout_seconds": 7200,
+  "attempt_timeout_seconds": 600,
+  "reserved_tail_seconds": 120,
+  "max_retries_per_trial": 0,
+  "max_preparation_attempts": 1,
+  "max_method_and_control_attempts": 18,
+  "bootstrap_replicates": 2000,
+  "exploratory_practical_effect": 0.01,
+  "head": {
+    "temperature": 0.1,
+    "ridge": 0.02,
+    "steps": 80,
+    "learning_rate": 0.05,
+    "components": 16,
+    "landmarks": 64,
+    "bandwidth": 1,
+    "shrinkage": 0.2,
+    "protected_group": "ScienceQA",
+    "protected_rank": 8,
+    "fisher_floor": 0.000001,
+    "irls_steps": 12,
+    "huber_delta": 1,
+    "dro_temperature": 0.2,
+    "diffusion_time": 2
+  },
+  "scientific_verdict": "NONE",
+  "natural_failure": "UNOBSERVED",
+  "novelty": "UNRESOLVED",
+  "gate_a": "NOT_RUN"
+}

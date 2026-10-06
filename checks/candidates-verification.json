@@ -1,0 +1,30 @@
+{
+  "round": "r003",
+  "candidate_cards": 20,
+  "selected_prototypes": 12,
+  "controls": 6,
+  "registered_head_attempts": 18,
+  "max_retries_per_trial": 0,
+  "source_audit": "Fixed official encoder/evaluator/models/parser/scorer inspected; blob identities in rounds/r003/SOURCES.md",
+  "original_33_cpu_checks": {
+    "scope_commit": "cf862cd7fe84aad73233d2eabcc890ce5b13b924",
+    "status": "PASSED_FOR_PREVIOUS_IMPLEMENTATION_ONLY"
+  },
+  "new_cpu_checks": {
+    "source_of_truth": "GitHub candidate-engineering check on the implementation commit",
+    "tests": "tests/test_candidate_math.py and tests/test_candidate_queue.py",
+    "benchmark_cases_used": false
+  },
+  "native_process_integration": {
+    "status": "REQUIRES_COMPLETE_INSTALLED_SKILL",
+    "github_ci": "SKIPPED_EXPLICITLY_IF_UNAVAILABLE"
+  },
+  "local_execution": {
+    "status": "ENVIRONMENT_OFFLINE_DURING_THIS_ADDITION"
+  },
+  "gpu_model_run": "NOT_RUN",
+  "native_benchmark_qualification": "NOT_RUN_FOR_NEW_HEADS",
+  "measured_2080ti_memory_runtime": "UNKNOWN",
+  "scientific_verdict": "NONE",
+  "gate_advanced": false
+}
