@@ -7,6 +7,7 @@ mkdir -p "$ROOT"
 WAN_SHA="9737cba9c1c3c4d04b33fcad41c111989865d315"
 TEACACHE_SHA="7c10efc4702c6b619f47805f7abe4a7a08085aa0"
 VBENCH_SHA="fd18b3d055cb0fc6f066ca90fe2c3c8cbb698490"
+HF_MODEL_REV="37ec512624d61f7aa208f7ea8140a131f93afc9a"
 
 clone_pin() {
   local url="$1"
@@ -32,10 +33,11 @@ if [[ "${DOWNLOAD_WAN_MODEL:-0}" == "1" ]]; then
   if ! command -v huggingface-cli >/dev/null 2>&1; then
     python3 -m pip install "huggingface_hub[cli]"
   fi
-  huggingface-cli download Wan-AI/Wan2.1-T2V-1.3B --local-dir "$MODEL_DIR"
+  huggingface-cli download Wan-AI/Wan2.1-T2V-1.3B --revision "$HF_MODEL_REV" --local-dir "$MODEL_DIR"
 fi
 
 echo "WAN_ROOT=$ROOT/Wan2.1"
 echo "TEACACHE_ROOT=$ROOT/TeaCache"
 echo "VBENCH_ROOT=$ROOT/VBench"
 echo "WAN_CKPT=$MODEL_DIR"
+echo "WAN_MODEL_REV=$HF_MODEL_REV"
