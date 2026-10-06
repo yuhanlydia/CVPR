@@ -7,7 +7,10 @@ set -euo pipefail
 
 OUT=${ROUND_OUT:-artifacts/round_002}
 mkdir -p "$OUT"
+
 python3 scripts/inspect_host.py --output "$OUT/host.json"
+
+python3 experiments/wan_cache/preflight.py   --wan-root "$WAN_ROOT"   --vbench-root "$VBENCH_ROOT"   --ckpt-dir "$WAN_CKPT"   --output "$OUT/preflight.json"
 
 ARGS=(
   --wan-root "$WAN_ROOT"
@@ -33,6 +36,8 @@ set +e
 python3 experiments/wan_cache/probe_cache_propagation.py "${ARGS[@]}" 2>&1 | tee "$OUT/run.log"
 STATUS=${PIPESTATUS[0]}
 set -e
+
 COMMIT=$(git rev-parse HEAD)
-python3 experiments/wan_cache/make_result_packet.py --round-dir "$OUT" --commit "$COMMIT" --exit-code "$STATUS"
+python3 experiments/wan_cache/make_result_packet.py   --round-dir "$OUT"   --commit "$COMMIT"   --exit-code "$STATUS"
+
 exit "$STATUS"
