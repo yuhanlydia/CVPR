@@ -1,6 +1,7 @@
 """Small provenance helpers. No scientific metric is implemented here."""
 import datetime as dt
 import hashlib
+import inspect
 import json
 import os
 import subprocess
@@ -39,3 +40,14 @@ def git(root, *args):
     return subprocess.check_output(
         ["git", "-C", str(root), *args], text=True, stderr=subprocess.DEVNULL
     ).strip()
+
+
+def run_plan_compat(native, root, plan, *, authorizer, process_fds=(), lease_factory=None):
+    """Call installed Research Autopilot runners across small API revisions."""
+    kwargs = {"authorizer": authorizer}
+    parameters = inspect.signature(native.run_plan).parameters
+    if "process_fds" in parameters:
+        kwargs["process_fds"] = tuple(process_fds)
+    if lease_factory is not None and "lease_factory" in parameters:
+        kwargs["lease_factory"] = lease_factory
+    return native.run_plan(root, plan, **kwargs)
