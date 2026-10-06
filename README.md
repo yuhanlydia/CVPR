@@ -11,6 +11,11 @@ Web research/design -> GitHub -> local agent -> SSH GPU -> GitHub results -> web
 
 ## Active experiment: Round 002
 
+Status at review of `2f4e96d`: model code and prerequisite checks are committed;
+no GPU execution or scientific result is recorded. This review branch adds
+bounded engineering qualification. CUDA loading, memory and kernel support
+remain to be checked on the user's actual host.
+
 Round 002 is the first real model experiment. It uses Wan2.1-T2V-1.3B and asks a falsifiable question:
 
 > Does the same-sized local cache approximation cause very different final damage depending on the diffusion timestep where it is injected?
@@ -28,10 +33,17 @@ The mathematical and kill/continue contract is in:
 From this repository:
 
 ~~~bash
-INSTALL_WAN_DEPS=1 DOWNLOAD_WAN_MODEL=1   bash experiments/wan_cache/setup_sources.sh
+python3 -m venv .venv-wan
+source .venv-wan/bin/activate
+INSTALL_WAN_DEPS=1 DOWNLOAD_WAN_MODEL=1 bash experiments/wan_cache/setup_sources.sh
 ~~~
 
 If the checkpoint is already present, omit DOWNLOAD_WAN_MODEL.
+
+Use this separate environment: the optional Qwen route uses NumPy 2, while the
+pinned Wan checkout requires NumPy below 2. Setup excludes FlashAttention 2,
+uses the cu126 PyTorch 2.8 wheel and retains a bounded setup clock. The real
+checkpoint bytes are checked against the pinned public HF revision before loading.
 
 Then set:
 
@@ -41,6 +53,11 @@ export VBENCH_ROOT=$PWD/external/VBench
 export WAN_CKPT=$PWD/external/Wan2.1-T2V-1.3B
 ~~~
 
+The GPU host must have the user's existing complete Research Autopilot skill.
+Set `RESEARCH_AUTOPILOT_ROOT=/absolute/path/to/research-autopilot` if it is not
+installed in `~/.agents/skills/research-autopilot` or `~/.codex/skills/research-autopilot`.
+The skill's private source is not included in this repository.
+
 ## Execute the 8-hour-bounded round
 
 ~~~bash
@@ -49,38 +66,52 @@ bash experiments/wan_cache/run_round_002.sh
 
 Defaults:
 
-- 3 released VBench prompts selected deterministically from the official prompt JSON
+- first qualification: 1 released VBench prompt selected from the official prompt JSON
 - Wan2.1-T2V-1.3B
 - 832×480
 - 81 frames
 - 50 sampling steps
 - CFG 6
 - shift 8
-- five single-step cache interventions
-- 7.5-hour internal wall-time boundary
+- one intervention at step 5; preserve the inherited 50 steps, 81 frames and resolution
+- first qualification: up to 2 hours including preflight and loading; absolute model cap 7.5 hours
+- one attempt, zero automatic retries and a GPU lock shared with the optional Qwen route
+- setup and execution retain the same original eight-hour clock
+
+FP16 refers to DiT autocast and SDPA. Native FP32 weights are retained because
+Wan's time, output and normalization operations require them. The Turing adapter
+fails if the memory-efficient SDPA kernel is unavailable; it never silently uses
+quadratic math attention. Real reference inputs check both CFG branches against
+the native forward under the same adapter before interventions.
 
 Override examples:
 
 ~~~bash
 NUM_PROMPTS=1 MAX_WALL_HOURS=2 bash experiments/wan_cache/run_round_002.sh
-FORCE_STEPS=5,15,25,35,45 bash experiments/wan_cache/run_round_002.sh
+# Only after reviewing real qualification/novelty evidence, freeze a broader window:
+NUM_PROMPTS=3 MAX_WALL_HOURS=7.5 FORCE_STEPS=5,15,24,34,44 bash experiments/wan_cache/run_round_002.sh
 ~~~
 
 ## Result handoff
 
-Generated MP4s live under artifacts/round_002/large/ and are intentionally gitignored.
+Generated MP4s stay in the isolated native attempt's `workspace/out/large/`.
 
 Commit/push the small evidence files:
 
-- artifacts/round_002/host.json
-- artifacts/round_002/manifest.json
-- artifacts/round_002/metrics.jsonl
-- artifacts/round_002/summary.json
-- artifacts/round_002/prompt_*/reference_probe.json
-- artifacts/round_002/run.log
-- artifacts/round_002/RESULT.md
+- `artifacts/round_002/RUN_ID/`: host, preflight, manifest, metrics, summary, raw reference probes and logs
+- `artifacts/round_002/RUN_ID/`: frozen plan, native receipt, attempt and RESULT.md
 
-The web supervisor then reads that exact result commit and applies the pre-registered KILL / CONTINUE decision before writing any propagation-aware cache method.
+`COMPLETE_ENGINEERING` requires the entire frozen prompt/step inventory and real
+reference parity; timeout or partial output is carryover/incomplete. Scientific
+KILL/CONTINUE remains blocked until native VBench scoring, stronger controls,
+prospective numerical decision thresholds and the closest-work audit are ready.
+
+Review evidence: [research/REVIEW_2026-10-06.md](research/REVIEW_2026-10-06.md).
+Originality blocker: [RA-CFGCache](https://arxiv.org/html/2609.36433v1).
+Treat the current question as a baseline/reproduction candidate.
+Eight conditional research cards: [rounds/r001/IDEAS.md](rounds/r001/IDEAS.md).
+The optional 2B embedding qualification route is in [docs/BASELINE_PACKAGE.md](docs/BASELINE_PACKAGE.md);
+7B remains in scope after real resource calibration. Run one route per retained window.
 
 ## Repository workflow
 

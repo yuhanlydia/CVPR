@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-10-06T08:27:35.576156+00:00",
+  "scope": "engineering and algebra only; no scientific benchmark evidence",
+  "engineering_and_algebra_checks": {
+    "passed": 33,
+    "failed": 0,
+    "skipped": 0,
+    "algebra_identities": 8,
+    "engineering_checks": 7,
+    "original_pinned_source_hashes": "matched",
+    "native_runner_cpu_lifecycle_and_timeout": "passed",
+    "rollout_log_contract_checks": 6,
+    "ssh_argument_checks": 2,
+    "wan_contract_and_staged_entrypoint_checks": 10
+  },
+  "python_compileall": "passed",
+  "bash_syntax": "passed",
+  "dependency_installation": "not_run_in_delivery_environment",
+  "gpu_model_experiments": "not_started",
+  "gpu_peak_vram": "unmeasured",
+  "gpu_task_runtime": "unmeasured",
+  "live_native_benchmark_scoring": "not_run; requires actual GPU predictions",
+  "scientific_gates_advanced": false,
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "reviewed_main_commit": "2f4e96d50b109288fe866ed8b9e2848baaa962ae",
+  "user_reported_gpu": {
+    "model": "RTX 2080 Ti",
+    "vram_gb": 22,
+    "actual_ssh_host_observed": false
+  },
+  "wan_cuda_compatibility": "prepared; not_run_on_actual_GPU",
+  "wan_scientific_verdict": "NONE; direct literature collision and native scoring pending",
+  "bash_syntax_scripts": [
+    "scripts/run_remote.sh",
+    "tools/bootstrap.sh",
+    "experiments/wan_cache/setup_sources.sh",
+    "experiments/wan_cache/run_round_002.sh"
+  ]
+}

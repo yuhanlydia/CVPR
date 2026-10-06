@@ -27,6 +27,8 @@ from typing import Any
 import numpy as np
 import torch
 import torch.cuda.amp as amp
+from runtime_compat import configure_runtime
+from probe_stats import summarize
 
 
 def rel_l1(a: torch.Tensor, b: torch.Tensor, eps: float = 1e-8) -> float:
@@ -43,12 +45,14 @@ def tensor_metrics(reference: torch.Tensor, candidate: torch.Tensor) -> dict[str
     mae = float(diff.abs().mean().item())
     data_range = 2.0  # Wan decoded tensors are saved with value_range=(-1, 1)
     psnr = float(10.0 * math.log10((data_range * data_range) / max(mse, 1e-12)))
-    if ref.ndim != 4:
-        temporal_mse = float("nan")
+    if ref.ndim != 4 or ref.shape[1] < 2 or ref.shape != cand.shape:
+        raise ValueError("Expected aligned C,T,H,W videos with at least two frames")
     else:
         ref_dt = ref[:, 1:] - ref[:, :-1]
         cand_dt = cand[:, 1:] - cand[:, :-1]
         temporal_mse = float((cand_dt - ref_dt).square().mean().item())
+    if not all(math.isfinite(v) for v in (mse, mae, psnr, temporal_mse)):
+        raise ValueError("Non-finite video error; this run is invalid")
     return {
         "terminal_mse": mse,
         "terminal_mae": mae,
@@ -57,12 +61,14 @@ def tensor_metrics(reference: torch.Tensor, candidate: torch.Tensor) -> dict[str
     }
 
 
-def configure_probe(model: torch.nn.Module, force_steps: set[int]) -> None:
+def configure_probe(model: torch.nn.Module, force_steps: set[int], guide_scale: float) -> None:
     model._cache_probe = {
         "call_idx": 0,
         "force_steps": set(int(x) for x in force_steps),
         "prev_residual": {"cond": None, "uncond": None},
         "prev_modulated": {"cond": None, "uncond": None},
+        "guide_scale": guide_scale,
+        "pending_cond_delta": None,
         "logs": [],
     }
 
@@ -72,6 +78,9 @@ def make_probe_forward(wan_model_module):
 
     def probe_forward(self, x, t, context, seq_len, clip_fea=None, y=None):
         state = self._cache_probe
+        if clip_fea is not None or y is not None:
+            raise ValueError("Round 002 is qualified only for T2V")
+        native_context = context
         device = self.patch_embedding.weight.device
         if self.freqs.device != device:
             self.freqs = self.freqs.to(device)
@@ -144,6 +153,7 @@ def make_probe_forward(wan_model_module):
         forced = step_idx in state["force_steps"] and prev_residual is not None
         residual_delta = None
         local_output_delta = None
+        guided_output_rms = None
 
         if forced:
             xh = base_hidden + prev_residual
@@ -160,11 +170,33 @@ def make_probe_forward(wan_model_module):
                 out_full = self.unpatchify(self.head(xh, e), grid_sizes)[0]
                 out_cache = self.unpatchify(self.head(cached_hidden, e), grid_sizes)[0]
                 local_output_delta = rel_l1(out_cache, out_full)
+                output_error = (out_cache.float() - out_full.float()).detach()
+                if branch == "cond":
+                    state["pending_cond_delta"] = output_error
+                else:
+                    cond_error = state["pending_cond_delta"]
+                    if cond_error is None:
+                        raise RuntimeError("Missing conditional branch in CFG pair")
+                    guided_error = output_error + state["guide_scale"] * (cond_error - output_error)
+                    guided_output_rms = float(guided_error.square().mean().sqrt().item())
+                    state["pending_cond_delta"] = None
+                    del cond_error, guided_error
+                del output_error
                 del cached_hidden, out_full, out_cache
 
             state["prev_residual"][branch] = current_residual
 
         out = self.unpatchify(self.head(xh, e), grid_sizes)
+        parity = None
+        if call_idx < 2 and not state["force_steps"]:
+            # Check both CFG branches on the actual released prompt/checkpoint.
+            # This is local compatibility parity, not a leaderboard score replay.
+            native_out = self._native_forward(x, t, native_context, seq_len)
+            parity = all(torch.allclose(a.float(), b.float(), rtol=1e-3, atol=1e-5)
+                         for a, b in zip(out, native_out)) and len(out) == len(native_out)
+            if not parity:
+                raise RuntimeError("Instrumented forward fails real-input native parity")
+            del native_out
         state["prev_modulated"][branch] = modulated.clone()
         state["logs"].append({
             "call_idx": call_idx,
@@ -176,6 +208,8 @@ def make_probe_forward(wan_model_module):
             "teacache_rescaled_proxy": teacache_rescaled_proxy,
             "residual_rel_l1": residual_delta,
             "local_denoiser_output_rel_l1": local_output_delta,
+            "guided_local_output_rms": guided_output_rms,
+            "native_forward_parity": parity,
         })
         state["call_idx"] = call_idx + 1
         return [u.float() for u in out]
@@ -251,7 +285,7 @@ def run_generation(
     force_steps: set[int],
     video_path: Path,
 ) -> tuple[torch.Tensor, dict[str, Any]]:
-    configure_probe(pipeline.model, force_steps)
+    configure_probe(pipeline.model, force_steps, guide_scale)
     if torch.cuda.is_available():
         torch.cuda.reset_peak_memory_stats()
     start = time.time()
@@ -277,71 +311,14 @@ def run_generation(
         "elapsed_seconds": elapsed,
         "peak_cuda_memory_bytes": peak,
         "probe_logs": pipeline.model._cache_probe["logs"],
+        "native_parity_checked_branches": [r["branch"] for r in pipeline.model._cache_probe["logs"]
+                                         if r.get("native_forward_parity") is True],
     }
     del video
     gc.collect()
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
     return video_cpu, meta
-
-
-def corr(xs, ys) -> dict[str, float | None]:
-    if len(xs) < 2 or len(set(xs)) < 2 or len(set(ys)) < 2:
-        return {"pearson": None, "spearman": None}
-    x = np.asarray(xs, dtype=np.float64)
-    y = np.asarray(ys, dtype=np.float64)
-    pearson = float(np.corrcoef(x, y)[0, 1])
-    xr = np.argsort(np.argsort(x)).astype(np.float64)
-    yr = np.argsort(np.argsort(y)).astype(np.float64)
-    spearman = float(np.corrcoef(xr, yr)[0, 1])
-    return {"pearson": pearson, "spearman": spearman}
-
-
-def summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
-    usable = [
-        r for r in rows
-        if r.get("terminal_mse") is not None
-        and r.get("reference_local_denoiser_output_rel_l1") not in (None, 0)
-    ]
-    local = [r["reference_local_denoiser_output_rel_l1"] for r in usable]
-    terminal = [r["terminal_mse"] for r in usable]
-    mod = [
-        r["reference_raw_modulated_rel_l1"] for r in usable
-        if r.get("reference_raw_modulated_rel_l1") is not None
-    ]
-    mod_terminal = [
-        r["terminal_mse"] for r in usable
-        if r.get("reference_raw_modulated_rel_l1") is not None
-    ]
-    tea = [
-        r["reference_teacache_rescaled_proxy"] for r in usable
-        if r.get("reference_teacache_rescaled_proxy") is not None
-    ]
-    tea_terminal = [
-        r["terminal_mse"] for r in usable
-        if r.get("reference_teacache_rescaled_proxy") is not None
-    ]
-    amplification = [
-        r["terminal_mse"] / max(r["reference_local_denoiser_output_rel_l1"], 1e-12)
-        for r in usable
-    ]
-    return {
-        "num_forced_runs": len(rows),
-        "num_usable_pairs": len(usable),
-        "corr_local_denoiser_error_to_terminal_mse": corr(local, terminal),
-        "corr_raw_timestep_proxy_to_terminal_mse": corr(mod, mod_terminal),
-        "corr_published_teacache_rescaled_proxy_to_terminal_mse": corr(tea, tea_terminal),
-        "empirical_amplification": {
-            "mean": float(np.mean(amplification)) if amplification else None,
-            "std": float(np.std(amplification)) if amplification else None,
-            "min": float(np.min(amplification)) if amplification else None,
-            "max": float(np.max(amplification)) if amplification else None,
-            "max_over_min": (
-                float(np.max(amplification) / max(np.min(amplification), 1e-12))
-                if amplification else None
-            ),
-        },
-    }
 
 
 def parse_args():
@@ -365,6 +342,20 @@ def parse_args():
 
 def main():
     args = parse_args()
+    run_start = time.monotonic()
+    budget_s = args.max_wall_hours * 3600.0
+    if args.num_prompts < 1 or args.sampling_steps < 2:
+        raise ValueError("Use at least one prompt and two sampling steps")
+    if args.width <= 0 or args.height <= 0 or args.width % 16 or args.height % 16:
+        raise ValueError("Positive dimensions must be multiples of 16")
+    if args.frame_num < 5 or (args.frame_num - 1) % 4:
+        raise ValueError("Frame count must be 4n+1, n>=1")
+    if not math.isfinite(args.max_wall_hours) or not 0 < args.max_wall_hours <= 7.5:
+        raise ValueError("This model window is bounded by at most 7.5 hours")
+    if not math.isfinite(args.guide_scale) or args.guide_scale < 0 or args.base_seed < 0:
+        raise ValueError("CFG and seed must be finite/nonnegative")
+    if not math.isfinite(args.shift) or args.shift <= 0:
+        raise ValueError("Shift must be finite/positive")
     wan_root = Path(args.wan_root).resolve()
     sys.path.insert(0, str(wan_root))
 
@@ -375,6 +366,8 @@ def main():
 
     out = Path(args.output_dir)
     out.mkdir(parents=True, exist_ok=True)
+    if any((out / name).exists() for name in ("manifest.json", "metrics.jsonl", "summary.json")):
+        raise FileExistsError("Use a fresh isolated attempt; do not merge old metrics with a new manifest")
     (out / "large").mkdir(exist_ok=True)
 
     prompts = load_vbench_subset(Path(args.vbench_json), args.num_prompts)
@@ -382,22 +375,15 @@ def main():
         [int(x) for x in args.force_steps.split(",") if x.strip()]
         if args.force_steps else default_force_steps(args.sampling_steps)
     )
+    if not force_steps or len(set(force_steps)) != len(force_steps) or any(
+            step < 1 or step >= args.sampling_steps for step in force_steps):
+        raise ValueError("Force steps must be unique and within 1..sampling_steps-1")
 
     import copy
     cfg = copy.deepcopy(WAN_CONFIGS["t2v-1.3B"])
 
-    # Wan2.1 ships with BF16 defaults. RTX 2080 Ti (Turing / SM 7.5) has no
-    # native BF16 tensor-core path, so keep the text encoder on CPU but force
-    # the DiT inference path to FP16. Patch from_pretrained so weights are cast
-    # before the pipeline moves the model onto CUDA.
+    # FP16 autocast while retaining native FP32 islands; never globally half-cast.
     cfg.param_dtype = torch.float16
-    original_from_pretrained = wan_model_module.WanModel.from_pretrained
-
-    def fp16_from_pretrained(*fp_args, **fp_kwargs):
-        fp_kwargs["torch_dtype"] = torch.float16
-        return original_from_pretrained(*fp_args, **fp_kwargs)
-
-    wan_model_module.WanModel.from_pretrained = fp16_from_pretrained
     pipeline = wan.WanT2V(
         config=cfg,
         checkpoint_dir=args.ckpt_dir,
@@ -408,14 +394,12 @@ def main():
         use_usp=False,
         t5_cpu=True,
     )
-    # Restore the classmethod immediately; the constructed model itself remains FP16.
-    wan_model_module.WanModel.from_pretrained = original_from_pretrained
+    runtime = configure_runtime(pipeline.model, wan_model_module)
+    pipeline.model._native_forward = pipeline.model.forward
     pipeline.model.forward = types.MethodType(
         make_probe_forward(wan_model_module), pipeline.model
     )
 
-    run_start = time.time()
-    budget_s = args.max_wall_hours * 3600.0
     rows: list[dict[str, Any]] = []
     manifest = {
         "wan_root": str(wan_root),
@@ -430,12 +414,15 @@ def main():
         "guide_scale": args.guide_scale,
         "base_seed": args.base_seed,
         "max_wall_hours": args.max_wall_hours,
+        "runtime": runtime,
+        "native_parity_tolerance": {"rtol": 1e-3, "atol": 1e-5, "calls": "first conditional/unconditional real reference pair"},
+        "scientific_evidence": False,
         "prompts": prompts,
     }
     (out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
 
     for item in prompts:
-        if time.time() - run_start >= budget_s:
+        if time.monotonic() - run_start >= budget_s:
             break
         idx = item["benchmark_index"]
         prompt = item["prompt"]
@@ -454,7 +441,7 @@ def main():
         )
 
         for step in force_steps:
-            if time.time() - run_start >= budget_s:
+            if time.monotonic() - run_start >= budget_s:
                 break
             variant_path = out / "large" / f"force_{step:03d}" / safe_video_name(idx)
             variant, var_meta = run_generation(
@@ -463,6 +450,10 @@ def main():
                 args.shift, args.guide_scale, {step}, variant_path,
             )
             metrics = tensor_metrics(reference, variant)
+            forced_calls = [x for x in var_meta["probe_logs"] if x["forced_cache"]]
+            if len(forced_calls) != 2 or {x["branch"] for x in forced_calls} != {"cond", "uncond"} or any(
+                    x["step_idx"] != step for x in forced_calls):
+                raise RuntimeError("Single-step intervention contract violated")
             row = {
                 "benchmark_index": idx,
                 "dimension": item["dimension"],
@@ -481,6 +472,9 @@ def main():
                 "reference_local_denoiser_output_rel_l1": branch_average(
                     ref_meta["probe_logs"], step, "local_denoiser_output_rel_l1"
                 ),
+                "reference_guided_local_output_rms": branch_average(
+                    ref_meta["probe_logs"], step, "guided_local_output_rms"
+                ),
                 "variant_elapsed_seconds": var_meta["elapsed_seconds"],
                 "variant_peak_cuda_memory_bytes": var_meta["peak_cuda_memory_bytes"],
                 "forced_calls": [
@@ -490,7 +484,7 @@ def main():
             }
             rows.append(row)
             with (out / "metrics.jsonl").open("a") as fh:
-                fh.write(json.dumps(row) + "\n")
+                fh.write(json.dumps(row, allow_nan=False) + "\n")
             del variant
             gc.collect()
 
@@ -498,11 +492,13 @@ def main():
         gc.collect()
 
     summary = summarize(rows)
-    summary["elapsed_seconds"] = time.time() - run_start
+    summary["elapsed_seconds"] = time.monotonic() - run_start
     summary["completed_prompt_indices"] = sorted({r["benchmark_index"] for r in rows})
     summary["completed_force_runs"] = len(rows)
-    summary["budget_exhausted"] = (time.time() - run_start) >= budget_s
-    (out / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
+    summary["budget_exhausted"] = (time.monotonic() - run_start) >= budget_s
+    summary["expected_force_runs"] = len(prompts) * len(force_steps)
+    summary["coverage_complete"] = len(rows) == summary["expected_force_runs"]
+    (out / "summary.json").write_text(json.dumps(summary, indent=2, allow_nan=False) + "\n")
     print(json.dumps(summary, indent=2))
 
 

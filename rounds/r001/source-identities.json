@@ -1,0 +1,114 @@
+{
+  "checked_date": "2026-10-05",
+  "read_scope": "source-inspected; GPU qualification pending",
+  "sources": [
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "pyproject.toml",
+      "blob_sha": "a73789637e017d53889d57f8cf7a2c4c5fbbcabe"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/models/qwen3_vl_embedding.py",
+      "blob_sha": "a2d4a73349c4648c5d66633eccd57e02aea1279f"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/models.py",
+      "blob_sha": "f00799a084e8772c4617d9efcbe62efd7a0d2643"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/arguments.py",
+      "blob_sha": "f4e1210f8cac293308b7609741ca1ab0dff6f4b2"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/eval_embedding.py",
+      "blob_sha": "fe25a1563d0adbf57b25b707dc0b4ead4ec0eff1"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/utils/eval_utils/metrics.py",
+      "blob_sha": "097365b58831711d0b04eef08f9d4232f6486d6c"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "scripts/evaluation/mmeb_v2/eval_embedding.sh",
+      "blob_sha": "2663123e29e5d2d915363ea6c3110925f948bf9f"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "scripts/evaluation/mmeb_v2/image_retrieval.yaml",
+      "blob_sha": "37caa63118a33c3235a3a844910ce88dabff1ffe"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "scripts/evaluation/mmeb_v2/image.yaml",
+      "blob_sha": "8a40862120f655b2ff3c1879de2017bffbcf174e"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "data/evaluation/mmeb_v2/download_data.sh",
+      "blob_sha": "4c1a257a6f7aa190c6ab847e550f1c19d1309161"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/evaluation/mmeb_v2/data/datasets/base_eval_dataset.py",
+      "blob_sha": "a6317b8511ff86b48127738c7078a0f47a04b1e1"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/evaluation/mmeb_v2/data/datasets/image_qa_dataset.py",
+      "blob_sha": "36e5e4f1976dbf02ebf114363582e4c7e97860ce"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/evaluation/mmeb_v2/data/datasets/image_t2i_eval.py",
+      "blob_sha": "73378c132ece37ab881af4033f8a403162d148bb"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/evaluation/mmeb_v2/data/collator.py",
+      "blob_sha": "eb9d0a4593a79fd948a05b4ebea54fccc0a88ac0"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/evaluation/mmeb_v2/data/datasets/__init__.py",
+      "blob_sha": "fa8296ecc5e64cd81573312f5eb2876394988325"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/evaluation/mmeb_v2/data/datasets/image_i2t_eval.py",
+      "blob_sha": "1a5f73e907c9135bd5906d98cb811232de71cfc8"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "commit": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "url": "https://github.com/QwenLM/Qwen3-VL-Embedding/blob/393e2978d27852b0d0230d6994f37f9c15bed73c/src/models/qwen3_vl_reranker.py",
+      "blob_sha": "9f30da5b75e3bca205b73ad915bf72963170f3d5"
+    },
+    {
+      "repository": "tianheyu927/PCGrad",
+      "commit": "c5fbd7c856526373828074f06875230f7f3ee79e",
+      "path": "PCGrad_tf.py",
+      "blob_sha": "6ca0b8faff31b4714ff3007269c453ee6db603a2"
+    }
+  ]
+}

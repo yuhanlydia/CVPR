@@ -9,4 +9,15 @@ checkpoints/
 *.pt
 *.pth
 *.safetensors
+artifacts/runs/*/large/
 artifacts/**/large/
+external/
+.venv-wan/
+sources/
+assets/
+runs/
+local-assets.json
+setup-receipt.json
+.research-autopilot/
+*.zip
+*.tar.gz

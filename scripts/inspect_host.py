@@ -5,7 +5,7 @@ from pathlib import Path
 
 def run(cmd):
     try:
-        p = subprocess.run(cmd, text=True, capture_output=True, check=False)
+        p = subprocess.run(cmd, text=True, capture_output=True, check=False, timeout=15)
         return {"cmd": cmd, "returncode": p.returncode, "stdout": p.stdout.strip(), "stderr": p.stderr.strip()}
     except Exception as e:
         return {"cmd": cmd, "error": repr(e)}

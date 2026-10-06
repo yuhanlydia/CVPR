@@ -8,8 +8,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import importlib.metadata
+import platform
 import subprocess
 from pathlib import Path
+from verify_checkpoint import verify_checkpoint
 
 EXPECTED = {
     "wan": "9737cba9c1c3c4d04b33fcad41c111989865d315",
@@ -20,7 +23,7 @@ EXPECTED = {
 def git_sha(path: Path) -> str | None:
     try:
         return subprocess.check_output(
-            ["git", "-C", str(path), "rev-parse", "HEAD"], text=True
+            ["git", "-C", str(path), "rev-parse", "HEAD"], text=True, timeout=15
         ).strip()
     except Exception:
         return None
@@ -71,6 +74,12 @@ def main():
         "dit_weights_bytes": dit_weights.stat().st_size if dit_weights.exists() else None,
         "ok": ckpt.exists() and not missing and bool(config_candidates) and dit_weights.exists(),
     }
+    if checks["checkpoint"]["ok"]:
+        try:
+            checks["checkpoint_content"] = verify_checkpoint(ckpt)
+        except Exception as error:
+            checks["checkpoint_content"] = {"ok": False, "error": type(error).__name__,
+                                            "detail": str(error)[:500]}
 
     cuda = torch.cuda.is_available()
     gpu = None
@@ -85,7 +94,8 @@ def main():
             "free_memory_gb": free_b / 1024**3,
             "torch_bf16_supported": bool(torch.cuda.is_bf16_supported()),
             "round002_dtype": "float16",
-            "fp16_policy_ok": True,
+            "attention_backend_qualified": False,
+            "native_forward_parity_qualified": False,
         }
     checks["cuda"] = {"available": cuda, "gpu": gpu, "ok": cuda}
 
@@ -101,6 +111,12 @@ def main():
         "status": "PASS" if ok else "BLOCKED",
         "scientific_evidence": False,
         "checks": checks,
+        "torch_version": torch.__version__,
+        "torch_cuda_version": torch.version.cuda,
+        "python_version": platform.python_version(),
+        "packages": sorted({f"{dist.metadata.get('Name', 'unknown')}=={dist.version}"
+                            for dist in importlib.metadata.distributions()}),
+        "qualification_scope": "source/assets/CUDA only; model and SDPA parity are checked on real reference inputs",
     }
 
     out = Path(args.output)
