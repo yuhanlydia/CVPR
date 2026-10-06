@@ -20,6 +20,7 @@ def main():
     host = read_json(root / "host.json")
     summary = read_json(root / "summary.json")
     manifest = read_json(root / "manifest.json")
+    preflight = read_json(root / "preflight.json")
     smi = ((host or {}).get("nvidia_smi_query") or {}).get("stdout") or "unavailable"
     status = "COMPLETE" if args.exit_code == 0 and summary else "FAILED_OR_INCOMPLETE"
     if summary and summary.get("budget_exhausted"):
@@ -36,6 +37,10 @@ def main():
         "",
         "    " + smi.replace("\n", "\n    "),
         "",
+        "## Preflight",
+        "",
+        "    " + (json.dumps(preflight, indent=2) if preflight else "preflight missing").replace("\n", "\n    "),
+        "",
         "## Frozen configuration",
         "",
         "    " + (json.dumps(manifest, indent=2) if manifest else "manifest missing").replace("\n", "\n    "),
@@ -48,6 +53,7 @@ def main():
         "",
         f"- {root / 'run.log'}",
         f"- {root / 'host.json'}",
+        f"- {root / 'preflight.json'}",
         f"- {root / 'manifest.json'}",
         f"- {root / 'metrics.jsonl'}",
         f"- {root / 'prompt_*/reference_probe.json'}",
