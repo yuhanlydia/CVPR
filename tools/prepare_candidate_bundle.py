@@ -34,6 +34,8 @@ def image_file(root, relative):
     return path
 
 def original_pairs(text, images):
+    text = "" if text is None else text
+    images = "" if images is None else images
     text = [text] if isinstance(text, str) else text
     images = [images] if isinstance(images, str) else images
     if not isinstance(text, list) or not isinstance(images, list) or len(text) != len(images):

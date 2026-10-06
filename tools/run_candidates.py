@@ -128,7 +128,7 @@ def main():
         write_json(batch_root/"summary.json", summary)
         write_json(root/"runs/latest-candidates.json", {"run_id": run_id, "summary": str(batch_root/"summary.json")})
     save()
-    print(f"Batch ledger: {batch_root/\'summary.json\'}", flush=True)
+    print("Batch ledger:", batch_root / "summary.json", flush=True)
     try:
         installed = skill_root(a.skill_root); sys.path.insert(0, str(installed/"scripts"))
         import run_experiments as native
