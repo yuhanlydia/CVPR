@@ -8,7 +8,8 @@
 local agent 按本对话实际交付 commit 和已有授权执行下面有限批次，不使用 Docker/其他容器。
 准备 manifest 保持真实 native attempt 布局及 producer receipt；保留原始累计时钟、
 已完成/失败记录和全部原生预测；将小报告与返回包送回本对话。
-跨窗口自动续跑尚未实现，不删除 marker/receipt 或复跑整批来绕过时限。
+tools/plan_candidate_carryover.py 可只读审计旧 batch 的预算、版本与尚未尝试清单。
+它不派发任务；跨窗口自动续跑尚未实现，不删除 marker/receipt 或复跑整批来绕过时限。
 
 # 当前任务：r003 候选与有限开发批次
 

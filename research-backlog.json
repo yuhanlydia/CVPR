@@ -2,11 +2,11 @@
   "schema": "cvpr-long-term-planning-record-v1",
   "note": "Planning record; not a native-runner schema or proof of executed work.",
   "project": "yuhanlydia/CVPR",
-  "updated_on": "2026-10-06",
+  "updated_on": "2026-10-07",
   "user_instruction": "助手只生成代码和命令并准备到 GitHub，由用户的 local agent 跑；不使用 Docker",
   "continuation_branch": "main",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
-  "observed_code_commit": "49304dcb9e5bb99662b8ac39d05311260bd0e749",
+  "observed_code_commit": "c3f45580a256934e3f2fbbd61006f219a6043159",
   "operating_policy": "LONG_TERM_TASK.md",
   "cadence": {
     "frequency": "daily",
@@ -84,6 +84,14 @@
       "skipped": 2,
       "skipped_scope": "Real private native-runner process continuation; complete skill absent in CI",
       "gpu_qualified": false
+    },
+    {
+      "kind": "CPU_CI",
+      "commit": "c3f45580a256934e3f2fbbd61006f219a6043159",
+      "url": "https://github.com/yuhanlydia/CVPR/actions/runs/37547890367",
+      "status": "success",
+      "scope": "Existing candidate-engineering workflow on actual latest main; no GPU or scientific qualification",
+      "gpu_qualified": false
     }
   ],
   "tasks": [
@@ -100,14 +108,19 @@
     {
       "id": "LT02",
       "priority": 2,
-      "state": "READY_FOR_CODE_DESIGN",
+      "state": "READ_ONLY_CARRYOVER_AUDIT_DELIVERED_DISPATCH_PENDING",
       "purpose": "让未完成的既定工作在保留累计界限和失败历史时可继续",
       "depends_on": [
         "LT01"
       ],
-      "next_action": "在原生运行器的真实状态与 schema 下设计版本化 carryover；仅派发未完成且依赖匹配的任务，保留旧 attempt 和同科学协议",
-      "completion_evidence": "Finite continuation inventory, actual cumulative-budget accounting, changed-file readback, genuine error-to-success native process verification where available",
-      "limits": "Current runner has no cross-window automatic resume; do not delete markers, revive expired leases or silently grant more GPU hours"
+      "next_action": "先由 local agent 用 tools/plan_candidate_carryover.py 只读核对真实旧记录；下一代码步骤是在真实原生 schema/终态/whole-device lock 下设计守卫式有限派发，仍只允许未尝试项、原始剩余预算与零重试",
+      "completion_evidence": "Read-only audit CLI and retained-file engineering checks; remote commit/readback/CPU CI establish code delivery only. Automatic cross-window dispatch and genuine native/GPU verification remain pending.",
+      "limits": "Audit never dispatches or creates/resets setup receipt/marker/attempt; expired clock, unknown activity, changed configuration/source/input/output and any prior failed/timeout/interrupted trial block reuse or retries. Guarded resume is not implemented.",
+      "delivered_files": [
+        "tools/plan_candidate_carryover.py",
+        "tests/test_candidate_carryover.py",
+        "docs/LOCAL_AGENT_HANDOFF.md"
+      ]
     },
     {
       "id": "LT03",
@@ -165,5 +178,12 @@
   "user_run_guide": "docs/LOCAL_AGENT_HANDOFF.md",
   "delivery_branch": "main",
   "main_delivery_authorization": "2026-10-06 用户明确要求：就是修改到main",
-  "delivery_policy": "Publish scoped code and commands to main after applicable code checks; preserve scientific NOT_RUN, concurrent changes, previous attempts and user-local execution ownership."
+  "delivery_policy": "Publish scoped code and commands to main after applicable code checks; preserve scientific NOT_RUN, concurrent changes, previous attempts and user-local execution ownership.",
+  "code_delivery_checks": {
+    "date": "2026-10-07",
+    "command": "python3 -m unittest discover -s tests -p 'test_candidate*.py' -v",
+    "expected_scope": "matrix algebra, queue/file integrity and read-only carryover; no benchmark run",
+    "native_integration": "2 checks remain skipped in ordinary CI without the complete private skill",
+    "runtime_note": "Local Python 3.12.14 / NumPy 2.3.5; GitHub uses Python 3.11 / pinned NumPy 2.2.6. Actual check results are tied to the new delivery commit."
+  }
 }

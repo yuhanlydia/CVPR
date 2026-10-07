@@ -44,6 +44,11 @@ bash tools/bootstrap.sh
 
 变量中的 /actual/... 必须替换为真实路径；默认目录已被正确查找到时可省略 skill 变量。
 MMEB_TRAIN_IMAGES 根下应保留原始 images/... 路径。当前程序不自动下载 47 GB 训练图片包。
+最新配置还要求 data/train-metadata/ScienceQA/*.parquet 和
+data/train-metadata/A-OKVQA/*.parquet 为 training_revision 固定版本的原始元数据，
+由 local agent 提供真实来源；缺文件会阻塞，不会用模拟数据填充。
+当前固定两项训练各 128 行，三项完整评测为 ScienceQA、ChartQA、MSCOCO_i2t；
+已有只含 ScienceQA 的旧 baseline/bundle 不满足当前配置，不能直接复用。
 bootstrap 只用 Python venv，PyTorch 官方 cu126 wheel，固定直接依赖和原始 Qwen 源码。
 已有合格环境/源码/时钟时复用；不要为了“重装”重新开始预算。
 
@@ -112,7 +117,28 @@ candidate_exit=0
 重复候选命令不会自动跨窗口续跑：当前仍需保留旧记录、明确有限 scope 的兼容续做支持。
 任何未实现功能不能靠删除 marker 或新窗口 ID 绕过。
 
-## 5. 查看与返回
+## 5. 已有记录的只读续做审计
+
+已有 r003 batch 时先读取真实 latest；需要检查历史批次时再给 --run-id 传入实际打印的 ID：
+
+~~~bash
+carryover_exit=0
+.venv/bin/python tools/plan_candidate_carryover.py || carryover_exit=$?
+~~~
+
+默认只在 stdout 输出 JSON，不创建 setup receipt、marker、attempt 或新窗口。
+也可用 --hours 2 等降低同一个原始累计上限，不能加时。
+退出码 2 表示缺记录、过期预算、未知/非终态 run、版本/文件损坏或其他阻塞；
+退出码 0 只表示本次文件审计无阻塞，不表示 native/GPU 验证通过或研究成功。
+报告保留已观察的失败/超时/中断尝试及其 locator，只把从未尝试项列为清单。
+已有来源绑定的 manifest 且兼容时列出 eligible_head_inventory；没有准备记录时明确
+ORIGINAL_PREPARATION_REQUIRED。准备已经失败不会重新批准一次尝试。
+原生 receipt 中的 elapsed seconds 与原始累计墙钟分别报告，GPU 使用秒数仍为 unknown。
+文件可在审计后变化，因此该清单仅供复核，不是活动进程检查或派发授权。
+本步没有 resume/execute 参数，守卫式续跑执行器仍待实现；不要据此重复 run_candidates.py。
+完整私有 native runner 保持用户侧依赖，本命令不复制它，也不把文件一致性当作执行真实性证明。
+
+## 6. 查看与返回
 启动输出会打印本批 summary 路径；stdout.log/stderr.log 在各原生 attempt 下。
 collector 打印实际文件名：
 - rounds/r003/returns/RUN_ID.json：所有状态与探索比较的小报告。

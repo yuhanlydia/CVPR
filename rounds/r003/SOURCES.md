@@ -28,7 +28,8 @@ blob fa0c8bf76d53b7a3549c2d3a1e8c1f4258532389。
 original 与 diverse_instruction 的区别；本批固定 original，
 revision 0c3f4b828d347c4e8508339f99530f6c820061fd。
 原始训练图像须实际存在，不因缺图生成替代数据；实际内容哈希与测试图像重叠即阻塞。
-训练配对不作为测试 benchmark，测试仍完整保留 r001 的原生 ScienceQA 任务。
+训练配对不作为测试 benchmark。当前 main 的评测任务按 configs/candidates.json 为
+ScienceQA、ChartQA、MSCOCO_i2t，均要求 r001 的实际完整原生缓存；旧单任务缓存不符合此版本。
 
 ## 最近工作与碰撞记录
 - [Qwen3-VL-Embedding 报告](https://arxiv.org/abs/2601.04720)：已读的方法背景，

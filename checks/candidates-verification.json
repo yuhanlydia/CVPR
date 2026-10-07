@@ -12,7 +12,7 @@
   },
   "new_cpu_checks": {
     "source_of_truth": "GitHub candidate-engineering check on the implementation commit",
-    "tests": "tests/test_candidate_math.py and tests/test_candidate_queue.py",
+    "tests": "tests/test_candidate_math.py, test_candidate_queue.py, test_candidate_evidence.py, test_candidate_carryover.py",
     "benchmark_cases_used": false
   },
   "native_process_integration": {
@@ -26,5 +26,14 @@
   "native_benchmark_qualification": "NOT_RUN_FOR_NEW_HEADS",
   "measured_2080ti_memory_runtime": "UNKNOWN",
   "scientific_verdict": "NONE",
-  "gate_advanced": false
+  "gate_advanced": false,
+  "carryover_audit": {
+    "implementation": "tools/plan_candidate_carryover.py",
+    "scope": "Read-only retained-file audit, unchanged original clock, zero retries, exact configuration/source/input/output bindings; no experiment execution",
+    "engineering_checks_added": 20,
+    "automatic_resume": "NOT_IMPLEMENTED",
+    "native_schema_check": "STATIC_FILE_BINDINGS_ONLY",
+    "gpu_execution": "NOT_RUN",
+    "private_runner_vendored": false
+  }
 }

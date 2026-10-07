@@ -17,9 +17,10 @@
   真实失败尚未观察，所以该问题为 developmental，不承诺新方法必要性。
 - 载体：冻结 Qwen3-VL-Embedding-2B，FP16/SDPA，单卡串行；用户报告 22 GB 2080 Ti，
   实际空闲显存/时间/内核可用性须由 host + native r001 资格化读取。
-- 训练：MMEB-train@0c3f4b8 的 original；预先固定 ScienceQA/A-OKVQA 各前 64 行。
+- 训练：MMEB-train@0c3f4b8 的 original；当前 main 配置固定 ScienceQA/A-OKVQA 各前 128 行。
   不按性能挑训练行、不从测试拟合 PCA/教师/分组/参数。
-- 评测单位：r001 已完成的官方完整 ScienceQA 查询与原始全部候选；不截尾排名、不补标签。
+- 评测单位：当前 main 配置要求 r001 已完成的官方完整 ScienceQA、ChartQA、MSCOCO_i2t
+  查询与原始全部候选；不截尾排名、不补标签。旧单任务缓存不满足此版本。
   核查原始 official parser/labels/split，live RankingMetrics 与实际持久化预测重放。
 - 端点：原生 hit@1；每条方法卡的必需对照在 configs/candidates.json。
   全维原始基线、相同 32 维恒等头、平方 KD、ERM、单正例、白化、RBF；
@@ -68,6 +69,19 @@ manifest 和其所有输入必须位于工程内，便于 native runner 按实�
 attempt 有终态 receipt，并取得与 r001/Wan 共用的 whole-device lock；原始时钟不重置。
 重复命令不会自动续跑、重试或换 seed。下一窗口/修复需要保留原记录并另行明确 scope。
 
+## 只读有限 carryover 审计（2026-10-07）
+
+~~~bash
+.venv/bin/python tools/plan_candidate_carryover.py
+~~~
+
+默认读取真实 latest batch；--run-id 只选择已有记录，--hours 只降低原始累计上限。
+不创建/修改 marker 或 receipt、不派发实验；失败/超时/中断都消耗原来的一次尝试。
+核对已保留 native plan/receipt/attempt 的文件绑定、配置/代码/输入/输出 SHA、
+旧窗口身份与 120 秒尾部；未知目录、缺终态、版本变化和已过期预算阻塞清单资格。
+即使输入损坏，也保留已观察失败的 locator，不将其重新列为未尝试。
+本步只是审计器，自动续跑和活动进程核验仍未实现；exit 0 不代表科学验证。
+
 ## “报错不停”的具体含义
 - 每项独立 subprocess、cwd、stdout/stderr、模型头、原始预测、分数、receipt。
 - 单项普通异常、OOM 非零退出、缺方法专属输入、单项 timeout：记录后继续其余项。
@@ -95,7 +109,8 @@ attempt 有终态 receipt，并取得与 r001/Wan 共用的 whole-device lock；
 本地/CI 没有 GPU 时，模型加载、原生数据/scorer 的实际运行、显存与总耗时均 NOT_RUN。
 
 ## 新增工程检查
-GitHub CI 只安装 NumPy：11 个矩阵/约束/资格条件检查，以及 6 个预算/状态记录检查。
+GitHub CI 只安装 NumPy，检查矩阵/约束、预算/状态、文件来源与只读续做清单；
+实际数量和通过范围以本次交付 commit 的 candidate-engineering 日志为准。
 2 个真实子进程续跑集成检查仅在 RESEARCH_AUTOPILOT_ROOT 指向实际完整 skill 时运行；
 没有安装则 SKIP，不能把 CI 绿色解读为这两项已通过或 GPU 已运行。
 私有 skill 不公开复制进仓库或 CI。真实训练机可运行：
@@ -104,7 +119,8 @@ GitHub CI 只安装 NumPy：11 个矩阵/约束/资格条件检查，以及 6 �
 .venv/bin/python -m unittest discover -s tests -p 'test_candidate*.py' -v
 ~~~
 
-当前单任务 ScienceQA 输出无法支持 I11 的跨组最差性能声明，也不能证明视频/RL/跨域泛化。
+旧单任务 ScienceQA 输出无法支持 I11 的跨组最差性能声明；当前多任务配置尚无已核查结果，
+也不能证明视频/RL/跨域泛化。
 对应完整科学比较仍需增补原生资格、相应任务与独立确认，本批只保留开发观察。
 
 ## 本次交付的证据来源修复

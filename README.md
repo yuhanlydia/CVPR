@@ -33,6 +33,15 @@ local agent 使用 main；已有干净 checkout 且无活动任务时运行 git 
 当前没有真实 GPU 结果。CPU CI 状态以对应 GitHub commit 的检查记录为准；
 完整私有 Research Autopilot 未安装的环境会明确跳过原生运行器集成检查。
 
+已有 r003 运行记录时，可先用只读命令核对剩余预算与尚未尝试项：
+
+~~~bash
+.venv/bin/python tools/plan_candidate_carryover.py
+~~~
+
+它保留失败/超时记录，不启动任务；自动续跑仍待实现。缺旧记录、未知进程历史、
+来源版本变化或原始预算到期会返回阻塞原因；不能通过再次启动整批来延长预算。
+
 ## 前一批基线与 Wan 资格化记录
 
 Web research/design -> GitHub -> local agent -> SSH GPU -> GitHub results -> web review.

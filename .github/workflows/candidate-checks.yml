@@ -23,7 +23,7 @@ jobs:
           python-version: "3.11"
       - run: python -m pip install numpy==2.2.6
       - name: Compile candidate code
-        run: python -m compileall -q experiments/embedding_heads tools/run_candidates.py tools/prepare_candidate_bundle.py tools/run_method.py tools/collect_candidates.py tests/test_candidate_math.py tests/test_candidate_queue.py
+        run: python -m compileall -q experiments/embedding_heads tools/run_candidates.py tools/prepare_candidate_bundle.py tools/run_method.py tools/collect_candidates.py tools/plan_candidate_carryover.py tests/test_candidate_math.py tests/test_candidate_queue.py tests/test_candidate_carryover.py
       - name: Algebra and queue contracts (not benchmark qualification)
         run: python -m unittest discover -s tests -p 'test_candidate*.py' -v
       - name: CLI entrypoints
@@ -32,3 +32,4 @@ jobs:
           python tools/prepare_candidate_bundle.py --help
           python tools/run_method.py --help
           python tools/collect_candidates.py --help
+          python tools/plan_candidate_carryover.py --help
