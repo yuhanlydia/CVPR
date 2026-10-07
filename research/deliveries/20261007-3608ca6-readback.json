@@ -1,0 +1,373 @@
+{
+  "schema": "cvpr-web-main-source-readback-v1",
+  "record_kind": "Observed repository delivery only; not a software/scientific receipt",
+  "observed_at_utc": "2026-10-07T10:23:28Z",
+  "repository": "yuhanlydia/CVPR",
+  "literal_branch": "main",
+  "readback_code_commit": "3608ca6454fa4dc93c5507c28c52dfccf508fa09",
+  "parent_commit": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
+  "git_tree": "0f938d653e458f891cc13dbd87624184af9e5287",
+  "source_role": "web_supervisor",
+  "current_author_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+  "legacy_author_binding_preserved": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+  "conditional_update": {
+    "expected_sha": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
+    "force": false,
+    "provider_success": true
+  },
+  "readback_scope": {
+    "actual_main_head_at_observation": "3608ca6454fa4dc93c5507c28c52dfccf508fa09",
+    "files_exact": 65,
+    "all_scoped_content_and_git_blobs_matched": true,
+    "unrelated_base_files_preserved": true,
+    "concurrent_manual_audit_and_decision_preserved": true
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "git_blob_sha1": "b4c07742dbcc6dfb33c00ed66201ad8a74c6e422",
+      "content_exact": true
+    },
+    {
+      "path": "LOCAL_AGENT_RUNBOOK.md",
+      "git_blob_sha1": "24206f766a035cedff26dafa359993c55521951e",
+      "content_exact": true
+    },
+    {
+      "path": "LONG_TERM_TASK.md",
+      "git_blob_sha1": "266e349ea67d885661caceabdf80de0f2eade09c",
+      "content_exact": true
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha1": "04872d463feb8f505d1c7e424c6fc953eefe1de7",
+      "content_exact": true
+    },
+    {
+      "path": "configs/autopilot-source-99d8ac0.json",
+      "git_blob_sha1": "32aea24f784dac76f026ebeb6d4f0e2156501d80",
+      "content_exact": true
+    },
+    {
+      "path": "configs/environment-native.yml",
+      "git_blob_sha1": "7ca06b465a30133b85e196da80130e1ee62e7c47",
+      "content_exact": true
+    },
+    {
+      "path": "configs/native-assets.lock.json",
+      "git_blob_sha1": "5706749318e845d58bb17a86dc919db4b5b925d6",
+      "content_exact": true
+    },
+    {
+      "path": "configs/runtime-native.pending.json",
+      "git_blob_sha1": "d2e64b995fdc40cd55c1aa088fd43c87dde4daa1",
+      "content_exact": true
+    },
+    {
+      "path": "docs/NATIVE_ASSET_RUNBOOK.md",
+      "git_blob_sha1": "ae39b487ebce03b242cc5c02778edb2c032ad6cb",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/batch.json",
+      "git_blob_sha1": "7ca241882f05373b122eed1f87b7c19c35c137c9",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/before-code-report.json",
+      "git_blob_sha1": "88e66d0f17ec223a94cd25139da4d09c8d312f0d",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/boundary-provenance.json",
+      "git_blob_sha1": "c9d3d1b84f84f6c05e67d3a5d6483cebe0f06a4a",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I01.json",
+      "git_blob_sha1": "d0eeab8b4d432d215a70905f82ba90d1643c7a36",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I02.json",
+      "git_blob_sha1": "923b235e5299a24a53cba76a56c011b72407ae67",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I03.json",
+      "git_blob_sha1": "3f25080ffeb4cdf894831c21d987ac8cc4bc1dea",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I04.json",
+      "git_blob_sha1": "f31f0f05933e973af3d1bbaeb5ea47ee6448ca1e",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I05.json",
+      "git_blob_sha1": "167383106aa2f76c5c0d858aaef1006cab6f24c6",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I06.json",
+      "git_blob_sha1": "84fbe63c3ef353fc4566a606496db33e24a6de84",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I07.json",
+      "git_blob_sha1": "debe28ac49c8331c14591780342e4a3de47e1c0c",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I08.json",
+      "git_blob_sha1": "31b4331a3dd1b2d8ea0a8abe18f7e11e14078685",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I09.json",
+      "git_blob_sha1": "a60a6b2ba2a3ca3013e24ae3390d2a4c23dbdcad",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I10.json",
+      "git_blob_sha1": "8edcf5352d03111b2ea20307922706f633ce7b83",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I11.json",
+      "git_blob_sha1": "a68c97a477f7128b02fd1c74b8e2e9fe4dd549e6",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I12.json",
+      "git_blob_sha1": "1c8842c34e5b63a5e1a2e8eb073142ae3ce1497c",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I13.json",
+      "git_blob_sha1": "449d1d2bff7e36032050b0dc2c563b3bdd23bd32",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I14.json",
+      "git_blob_sha1": "44db4371436aac004376e3b2b29ad16db78dd630",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I15.json",
+      "git_blob_sha1": "ac3279d7679b1a4fc4e88b42e258e3ebd49984c4",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I16.json",
+      "git_blob_sha1": "786c40de395e381dc785a8e56ab3662cef2c6f21",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I17.json",
+      "git_blob_sha1": "c5d3ec79e12104ff96b0885526fedc1f28f6511f",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I18.json",
+      "git_blob_sha1": "b8956f765eeb4479dd6a93f4112f7351742122de",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I19.json",
+      "git_blob_sha1": "03bdd1d1c7ca76998c09af26e54e11bdd1d72e93",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/cards/I20.json",
+      "git_blob_sha1": "f81882494bf8ea5897f589a5a51ac87216c6bcd2",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I01.json",
+      "git_blob_sha1": "e220ade1e995877d4e1907dbede5eabb4f90a700",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I02.json",
+      "git_blob_sha1": "afa8f4fd72b9eaed582d3afb746789700eaf7b6d",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I03.json",
+      "git_blob_sha1": "60501ad62ace6a2643bfb26122c783e9f368edc7",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I04.json",
+      "git_blob_sha1": "c6ac13a2c9bb145202653105529eb8fd708d5200",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I05.json",
+      "git_blob_sha1": "3198b0ddca0aa08380d1fa7305873206c6b15777",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I06.json",
+      "git_blob_sha1": "3111d4698827fc704ca2aa17132b53e426809a84",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I07.json",
+      "git_blob_sha1": "3131d376cf7b3e847c2fd451248326fa2fabfc2e",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I08.json",
+      "git_blob_sha1": "ba407a7368a887199fb4050046d4dbd0573e9c10",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I09.json",
+      "git_blob_sha1": "2c770bf092ebbf447aa4684ad3e9706e36b110e1",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I10.json",
+      "git_blob_sha1": "cce44d0db9a31fc0a61c1cf77f171cec6be4839e",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I11.json",
+      "git_blob_sha1": "1e416b13f1b0656272aa4ec70ab13c88e9af64b5",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I12.json",
+      "git_blob_sha1": "c7fefe9e37c7fb309523d0fd6c8831e4d45dc8cf",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I13.json",
+      "git_blob_sha1": "67b3a9a82f299f9854d20c7f7de6629e6a1b38b5",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I14.json",
+      "git_blob_sha1": "bcb0c3fa556c43395e5e6eb04b183d9c0dd5063a",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I15.json",
+      "git_blob_sha1": "123d4ae015bbe398501f561a61214416a616d350",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I16.json",
+      "git_blob_sha1": "f9e565b1a33dce71f6762f3cf2bdf969f3de5dc9",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I17.json",
+      "git_blob_sha1": "7a8ad193de01d94a178b5d9c019af36b66682a23",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I18.json",
+      "git_blob_sha1": "602c30dbc7ac4df9e9be51349aff2ddfd3d3ac93",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I19.json",
+      "git_blob_sha1": "66a7076868498a50f9fbf8cc704d49fb33cda83b",
+      "content_exact": true
+    },
+    {
+      "path": "evidence/r003-math-20261007/reviews/I20.json",
+      "git_blob_sha1": "3d71fb2abf9071461addb962a6905c47e0ebdae0",
+      "content_exact": true
+    },
+    {
+      "path": "requirements-assets.txt",
+      "git_blob_sha1": "758002c86bba3fe8de0949d3b9beb194cf53ae8f",
+      "content_exact": true
+    },
+    {
+      "path": "research-backlog.json",
+      "git_blob_sha1": "c8eff6a49a9a301379be3f8f7b5ea2c34fc1ff07",
+      "content_exact": true
+    },
+    {
+      "path": "research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md",
+      "git_blob_sha1": "1c80d39426b809f41312b02e2957e59401c600bf",
+      "content_exact": true
+    },
+    {
+      "path": "research/reviews/R003_REVIEW_2026-10-07.md",
+      "git_blob_sha1": "dfa0291a7c2c9957e9f50298ee958a739f8b93d6",
+      "content_exact": true
+    },
+    {
+      "path": "research/reviews/native-acquisition-source-review-20261007.json",
+      "git_blob_sha1": "c6f79ea06758f07f7c29631cf76e9b45f3dc5451",
+      "content_exact": true
+    },
+    {
+      "path": "research/reviews/r003-ranking-20261007.json",
+      "git_blob_sha1": "faf539ed0a3e231a80d96bf6bc34527f184bc868",
+      "content_exact": true
+    },
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "git_blob_sha1": "8d22a8af09a9c002cfd2fec6ca39f31e0af76019",
+      "content_exact": true
+    },
+    {
+      "path": "research/workflow-checkpoint-20261007.json",
+      "git_blob_sha1": "ed4cb4109c6facda9e43a1fd41de4afac738f40c",
+      "content_exact": true
+    },
+    {
+      "path": "rounds/r003/WEB_HANDOFF.md",
+      "git_blob_sha1": "61fff297f5449be2660848ec5c7d9d17f3256ce5",
+      "content_exact": true
+    },
+    {
+      "path": "tools/acquire_native_assets.py",
+      "git_blob_sha1": "e2729693bef7f0ea29de4936f902a2771f0875f3",
+      "content_exact": true
+    },
+    {
+      "path": "tools/prepare_assets.py",
+      "git_blob_sha1": "4dcc9a73b7ec5da8ad7f96672deb3d3b7e5d4423",
+      "content_exact": true
+    },
+    {
+      "path": "tools/qualify.py",
+      "git_blob_sha1": "74e3ae5a880d7f684b6241b62340cec12cc9112f",
+      "content_exact": true
+    },
+    {
+      "path": "tools/setup_native_env.sh",
+      "git_blob_sha1": "1579b15a11eaa55496a2589bd85fd2aacfd0e420",
+      "content_exact": true
+    }
+  ],
+  "source_authoring_status": "generated_unexecuted",
+  "web_project_code_or_tests_executed": false,
+  "web_model_benchmark_or_gpu_executed": false,
+  "existing_read_only_controller_check": {
+    "report": "evidence/r003-math-20261007/before-code-report.json",
+    "exit_code": 2,
+    "conditional_math_verified": 15,
+    "pool_target": 20,
+    "math_pool_verified": false,
+    "selection_verified": false,
+    "selected_methods": 0,
+    "code_verified": 0,
+    "design_verified": 0,
+    "results_verified": 0,
+    "verdict_verified": 0
+  },
+  "local_acceptance": "PENDING",
+  "full_research_authoring_completion": "PENDING_SCIENTIFIC_PREREQUISITES_AND_FIVE_CONSTRUCTIONS",
+  "current_guide": "LOCAL_AGENT_RUNBOOK.md",
+  "ordered_maintenance_commands": "docs/NATIVE_ASSET_RUNBOOK.md",
+  "note": "This record describes the already observed code commit. Its own later persistence commit is resolved from GitHub, never prefilled."
+}
