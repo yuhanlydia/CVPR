@@ -1,0 +1,4 @@
+# generated_unexecuted; Local resolver/software acceptance pending.
+# Used by the immutable native acquisition/Parquet metadata path.
+huggingface-hub==0.36.0
+pyarrow==22.0.0

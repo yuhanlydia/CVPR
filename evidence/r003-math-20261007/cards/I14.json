@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I14",
+  "title": "Huber soft-teacher margin regression",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Fixed train pair design X, teacher margin t, residual r_i=x_i^T w-t_i, Huber delta>0 and anchored ridge.",
+  "assumptions": [
+    "Teacher labels/margins are fixed before fitting; delta and iteration cap selected without test.",
+    "Bounded influence concerns residuals at fixed x, not robustness to high-leverage x.",
+    "Finite IRLS cannot be called the exact minimizer without actual convergence/residual evidence."
+  ],
+  "operations": [
+    {
+      "id": "D05",
+      "input": "Convex Huber residual loss",
+      "condition": "delta>0, finite design",
+      "condition_status": "conditional",
+      "output": "Bound sample gradient with psi_delta(r)."
+    },
+    {
+      "id": "F05",
+      "input": "Weighted quadratic residual subproblem",
+      "condition": "weights computed from current nonzero residual or continuous limit at zero",
+      "condition_status": "conditional",
+      "output": "IRLS weights=min(1,delta/|r|)."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "gradient",
+      "statement": "rho_delta'(r)=clip(r,-delta,delta), so ||grad rho_delta|| <=delta||x||.",
+      "justification": "Differentiate the two Huber branches; at their join the derivatives agree."
+    },
+    {
+      "id": "weights",
+      "statement": "w_i=psi(r_i)/r_i=min(1,delta/|r_i|), with weight 1 at zero.",
+      "justification": "A stationary weighted least-squares equation matches the Huber first-order equation when weights are evaluated at that stationary residual."
+    },
+    {
+      "id": "limitations",
+      "statement": "If ||x|| is unbounded, delta||x|| is unbounded; extreme correct teacher margins can be important hard examples.",
+      "justification": "The bound isolates residual influence and supplies two separate failure explanations rather than a universal robust-learning claim."
+    }
+  ],
+  "method_expression": "At most the declared finite IRLS steps solving the same anchored ridge subproblem; record actual Huber objective, residual/weight diagnostics and solver accuracy at each Local iteration, not a fictitious convergence certificate.",
+  "distinguishing_prediction": "Benefit requires harmful extreme teacher residuals rather than useful hard labels; saturation counts and native subgroup errors should distinguish the two.",
+  "falsifier": "Optimized CE KD or simple clipping matches the benefit, or Huber suppresses correct semantic extremes and harms native outcomes.",
+  "closest_alternative": "Known Huber regression, robust KD, optimized CE/listwise KD and simple target clipping; squared KD alone is not the strongest simple explanation.",
+  "decisive_comparison": "Same student, teacher, information, data and total fitting cost; predeclare clipping/Huber diagnostics and full three-task results.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy I14 performs capped 12-step IRLS on teacher margins; no convergence or matched CE-KD qualification exists.",
+  "review_limit": "Convex influence and IRLS fixed-point identity reviewed, no empirical robustness or originality verdict.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

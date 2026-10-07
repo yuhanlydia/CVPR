@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I19",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I19.json",
+    "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "pending",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Partitioned exact dot scores define an upper bound and an exact kth threshold.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "C04: Residual dot has magnitude at most ||q_B||||c_B||. Condition: All remaining blocks accounted for H06: Pruned tail candidates still need certified relative order, so top-k safety is insufficient. Condition: Native complete-ranking requirement",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Cauchy-Schwarz makes strict UB<tau safe for top-k only; it says nothing sufficient about all pruned tail orders.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Exact arithmetic bound; floating-point error requires conservative outward slack. Strict UB<tau only certifies exclusion from top-k; ties must be retained. The native protocol requires complete candidate rankings, including the tail. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "pending",
+      "rationale": "The complete native-ranking algorithm is missing. A certified top-k bound is not a compliant output construction.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Saving is possible only where required output allows certified unfinished residuals; full-ranking cost can eliminate the benefit. Falsification: The returned native tail is invented/truncated, or exact complete-ranking/index/memory costs remove net savings.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Known exact top-k pruning is the closest object, but full-ranking semantics must be derived before transferring its efficiency claim. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I19.json",
+          "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

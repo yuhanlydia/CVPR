@@ -5,7 +5,13 @@ the [current Web handoff](rounds/r003/WEB_HANDOFF.md), and
 [the skill upgrade audit](research/AUTOPILOT_UPGRADE_2026-10-07.md) at the actual pinned
 commit before setup, acceptance, repair or new method development.
 [Acquisition and source installation](LOCAL_AGENT_RUNBOOK.md#下载与完整-skill-安装)
-is the current source-maintenance entry; full model/data download cards are pending.
+is the source-maintenance entry. Read the current
+[complete retained-input download/acceptance cards](docs/NATIVE_ASSET_RUNBOOK.md#download-datasets-and-models),
+[twenty-card review](research/reviews/R003_REVIEW_2026-10-07.md) and
+[latest author delta](research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md).
+The old source lock remains for active bindings; use configs/autopilot-source-99d8ac0.json
+for newly accepted current-author installation. New acquisition/loader source is
+generated_unexecuted; full top-15/scientific prerequisites are still pending.
 
 The Web role is `web_supervisor`: inspect primary papers, actual code and native
 benchmark protocols; perform mathematical review; generate code/commands; publish
@@ -31,4 +37,3 @@ Keep active Local jobs at their pinned source/skill/protocol revision.
 Do not overwrite concurrent main changes, force-push, reset cumulative budgets,
 delete attempts/markers, retry unknown live jobs or upload private skill contents,
 model weights, restricted images or large caches to this repository.
-

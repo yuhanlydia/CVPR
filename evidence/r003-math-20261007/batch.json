@@ -1,0 +1,234 @@
+{
+  "kind": "method-verification-batch",
+  "version": "1.0.0",
+  "batch_id": "r003-math-review-20261007",
+  "pool_target": 20,
+  "selection_target": 15,
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "candidates": [
+    {
+      "candidate_id": "I01",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I01.json",
+        "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I01.json",
+        "sha256": "2fec0b80bcdfa2d6189c1012b84b9d2bbcedba561e583328f9e215c6d17885ee"
+      }
+    },
+    {
+      "candidate_id": "I02",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I02.json",
+        "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I02.json",
+        "sha256": "9d91186b47d1ae23e723271862a4cc7f1a282a42c613c59715862d1edc7f0a71"
+      }
+    },
+    {
+      "candidate_id": "I03",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I03.json",
+        "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I03.json",
+        "sha256": "9a9a1fd623d6a7fd190a9416e9fb313cc497920df2d4c401afa503c35e15a240"
+      }
+    },
+    {
+      "candidate_id": "I04",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I04.json",
+        "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I04.json",
+        "sha256": "2fd2b3bd561f192db2733105b629a182cd9bed0c31f596643f0867bbb68502bb"
+      }
+    },
+    {
+      "candidate_id": "I05",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I05.json",
+        "sha256": "a3ba6526def527a74d21adae990d8f9d141c5c3117fbfc7775b8d5c8589c1df3"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I05.json",
+        "sha256": "89e4248dd3d77e117fcf66f8d16e8cf3eefaea806970188970ee63769852f10a"
+      }
+    },
+    {
+      "candidate_id": "I06",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I06.json",
+        "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I06.json",
+        "sha256": "1333a5dc3359ce304d25adfb45e85dfe4596be2358cf10100c016f2b70a61f25"
+      }
+    },
+    {
+      "candidate_id": "I07",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I07.json",
+        "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I07.json",
+        "sha256": "5fa2c3f5eb6d645bb309ae71203a2ac7f994fcc1dafea8860cc0275f89473cf4"
+      }
+    },
+    {
+      "candidate_id": "I08",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I08.json",
+        "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I08.json",
+        "sha256": "fb907ba8a17f6f7f85061ddbee2a9c47684b91498b55e8ab99a204f0b1da9085"
+      }
+    },
+    {
+      "candidate_id": "I09",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I09.json",
+        "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I09.json",
+        "sha256": "a397a435a18122315e21ca622a37defab67226f04f5c6cb79726952016dd2f76"
+      }
+    },
+    {
+      "candidate_id": "I10",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I10.json",
+        "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I10.json",
+        "sha256": "dfaa96fe994d89641553c74e942d509d4986b949c0f3b80c3054e21d5fda8220"
+      }
+    },
+    {
+      "candidate_id": "I11",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I11.json",
+        "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I11.json",
+        "sha256": "8f8570912a585475435364a32e975633990389f50cb0599096e656147e3a93d2"
+      }
+    },
+    {
+      "candidate_id": "I12",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I12.json",
+        "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I12.json",
+        "sha256": "d825134c6eb4eaca14e64dc069722986c36708cd000cdecefaf49bba73f86807"
+      }
+    },
+    {
+      "candidate_id": "I13",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I13.json",
+        "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I13.json",
+        "sha256": "f6d2e7a6c27a0a97a02408760bf37f76722188e31bac636df3fd041c24aa8ae7"
+      }
+    },
+    {
+      "candidate_id": "I14",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I14.json",
+        "sha256": "e9d675871a1c1358597c76d464bf6ab5f9f9bee36706840fdb53a56b04eec8fa"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I14.json",
+        "sha256": "81e62910dda775975fc4317877f4124f7aa88972c73bff556becb24efb2381ae"
+      }
+    },
+    {
+      "candidate_id": "I15",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I15.json",
+        "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I15.json",
+        "sha256": "9b38c9610fcde7a0b33d93532a58d4e9de8d63f0b4df635cee3029e3610c4b53"
+      }
+    },
+    {
+      "candidate_id": "I16",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I16.json",
+        "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I16.json",
+        "sha256": "94bad0bc069e185d1acb8943e8fd432b94ae7890038354a9ff2f1c83635787cb"
+      }
+    },
+    {
+      "candidate_id": "I17",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I17.json",
+        "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I17.json",
+        "sha256": "3dc5768b9c3e8e95e257554e551a141cfc850ee11040e62815c5f8a466f50ce9"
+      }
+    },
+    {
+      "candidate_id": "I18",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I18.json",
+        "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I18.json",
+        "sha256": "127a234292503eab6fb8a037db1c38ce88c596ff8c40720fa6c1105bc4627e58"
+      }
+    },
+    {
+      "candidate_id": "I19",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I19.json",
+        "sha256": "b57a94c069c418f65b0a7b0940e81fd3e54e82e120beca4fffe86ca2d4b575b2"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I19.json",
+        "sha256": "e6ae3073f23db904639215c769741f66f705d08ff697d2be6c4979332bcacf35"
+      }
+    },
+    {
+      "candidate_id": "I20",
+      "math_card_ref": {
+        "path": "evidence/r003-math-20261007/cards/I20.json",
+        "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+      },
+      "math_review_ref": {
+        "path": "evidence/r003-math-20261007/reviews/I20.json",
+        "sha256": "2e9a52784b3d8bcd2edefae8313df5028cc6378610488326cffa1f977fb19fb7"
+      }
+    }
+  ],
+  "selection_status": "PENDING",
+  "why_no_selection_ref": "Five constructions remain pending; the current 20/15 contract rejects an incomplete pool. Full native/source collision and Parent/Natural Gate0/IPCG are also unresolved.",
+  "historical_selected_12": "Retained only in configs/candidates.json; not relabeled as verified top-15."
+}

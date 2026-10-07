@@ -6,83 +6,221 @@
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/SKILL.md"
+        "path": "skills/research-autopilot/SKILL.md",
+        "git_blob_sha": "8f256723f6eb6168cb5bf1a6156c7832ec3a9f73",
+        "read_scope": "complete current entry"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/workflow-harness.md"
+        "path": "skills/research-autopilot/references/workflow-harness.md",
+        "git_blob_sha": "90d0d506717c61bde01ebba7f2d3f79baa1de81b",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/method-verification.md"
+        "path": "skills/research-autopilot/references/method-verification.md",
+        "git_blob_sha": "952e9798d835c01ba85ec326821beb6ca7f53651",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/math-analysis.md"
+        "path": "skills/research-autopilot/references/math-analysis.md",
+        "git_blob_sha": "a0f9ef92fc6610d78960195a5dabfe5357412abf",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/local-code-handoff.md"
+        "path": "skills/research-autopilot/references/math-handoff.md",
+        "git_blob_sha": "6468a5d3f71ed2194a0b7453dcf5168dcf57dc76",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/repository-round-trips.md"
+        "path": "skills/research-autopilot/references/math-operation-graph.md",
+        "git_blob_sha": "2f73400f2060c666a428ec4527f65331747c33ae",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/host-adapters.md"
+        "path": "skills/research-autopilot/references/importance-preserving-gate.md",
+        "git_blob_sha": "f949b289b2f140dc1ae09c3ab7bfbc1578d9bf56",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       },
       {
         "repository": "Yunbo-max/Research_Autopilot",
         "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
-        "path": "skills/research-autopilot/references/web-background-work.md"
+        "path": "skills/research-autopilot/references/contribution-value-gates.md",
+        "git_blob_sha": "30a145bd73bc382d6bbaa66d7fe9c343f275f24e",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/research-quality-bar.md",
+        "git_blob_sha": "69870a68299dfd15c5f276d02bd13400a7e26217",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/collision-audit.md",
+        "git_blob_sha": "4f8a4c9902be5861ac616345dcd51e3dbe8759df",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/local-code-handoff.md",
+        "git_blob_sha": "604640a316f24b8d0d9fe9eefa035edc04a37481",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/repository-round-trips.md",
+        "git_blob_sha": "a081998da34c93dfd2c19c7938760747503c9bc3",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/local-execution-harness.md",
+        "git_blob_sha": "5df76c99b209ddd14e05d463c03095550bcfa67c",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/gpu-host-runtime.md",
+        "git_blob_sha": "6ee810ae9054e4d82e4d9d41493cd3400eb98753",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/web-background-work.md",
+        "git_blob_sha": "45b29818534d992eea12e41274616c1bafb4d81a",
+        "read_scope": "complete current added contract"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+        "path": "skills/research-autopilot/references/rolling-research-batches.md",
+        "git_blob_sha": "2dd1731a92326e249b6aa0bbda9334429e44ec4e",
+        "read_scope": "Current content or unchanged prior read with current-tree byte identity and applicable delta review"
       }
     ],
     "execution_role": "web_supervisor",
     "role_source": "2026-10-07 user correction: 你是web gpt不是local的；完成code；赶快",
     "web_github_delivery_branch": "main",
-    "delivery_parent_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
-    "work_phase": "manual-math-and-source-audit",
+    "delivery_parent_commit": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
+    "work_phase": "retained-card-source-review-and-native-acquisition-maintenance",
     "project_id": "yuhanlydia/CVPR",
     "route_id": null,
     "canonical_ledger_ref": "research-backlog.json",
     "current_goal_ref": "LONG_TERM_TASK.md",
-    "user_message_effect": "Status inquiry; original Web code-authoring goal and Local execution ownership retained",
-    "current_node": null,
-    "requested_action": "Report actual progress and persist I01–I20 mathematical/source review within prior main authorization",
+    "user_message_effect": "Continue authorized Web code/main delivery without running new code/tests/models; preserve actual scientific prerequisites and all execution history.",
+    "current_node": "H03 / mathematical review; E01 maintenance; repository delivery",
+    "requested_action": "Deliver substantive 20-card review/evidence boundary and immutable acquisition/native-loader maintenance milestone",
     "generated_artifact_refs": [
-      "configs/autopilot-source.json",
-      "tools/check_autopilot_source.py",
       "AGENTS.md",
       "LOCAL_AGENT_RUNBOOK.md",
+      "LONG_TERM_TASK.md",
+      "README.md",
+      "configs/autopilot-source-99d8ac0.json",
+      "configs/environment-native.yml",
+      "configs/native-assets.lock.json",
+      "configs/runtime-native.pending.json",
+      "docs/NATIVE_ASSET_RUNBOOK.md",
+      "evidence/r003-math-20261007/batch.json",
+      "evidence/r003-math-20261007/before-code-report.json",
+      "evidence/r003-math-20261007/boundary-provenance.json",
+      "evidence/r003-math-20261007/cards/I01.json",
+      "evidence/r003-math-20261007/cards/I02.json",
+      "evidence/r003-math-20261007/cards/I03.json",
+      "evidence/r003-math-20261007/cards/I04.json",
+      "evidence/r003-math-20261007/cards/I05.json",
+      "evidence/r003-math-20261007/cards/I06.json",
+      "evidence/r003-math-20261007/cards/I07.json",
+      "evidence/r003-math-20261007/cards/I08.json",
+      "evidence/r003-math-20261007/cards/I09.json",
+      "evidence/r003-math-20261007/cards/I10.json",
+      "evidence/r003-math-20261007/cards/I11.json",
+      "evidence/r003-math-20261007/cards/I12.json",
+      "evidence/r003-math-20261007/cards/I13.json",
+      "evidence/r003-math-20261007/cards/I14.json",
+      "evidence/r003-math-20261007/cards/I15.json",
+      "evidence/r003-math-20261007/cards/I16.json",
+      "evidence/r003-math-20261007/cards/I17.json",
+      "evidence/r003-math-20261007/cards/I18.json",
+      "evidence/r003-math-20261007/cards/I19.json",
+      "evidence/r003-math-20261007/cards/I20.json",
+      "evidence/r003-math-20261007/reviews/I01.json",
+      "evidence/r003-math-20261007/reviews/I02.json",
+      "evidence/r003-math-20261007/reviews/I03.json",
+      "evidence/r003-math-20261007/reviews/I04.json",
+      "evidence/r003-math-20261007/reviews/I05.json",
+      "evidence/r003-math-20261007/reviews/I06.json",
+      "evidence/r003-math-20261007/reviews/I07.json",
+      "evidence/r003-math-20261007/reviews/I08.json",
+      "evidence/r003-math-20261007/reviews/I09.json",
+      "evidence/r003-math-20261007/reviews/I10.json",
+      "evidence/r003-math-20261007/reviews/I11.json",
+      "evidence/r003-math-20261007/reviews/I12.json",
+      "evidence/r003-math-20261007/reviews/I13.json",
+      "evidence/r003-math-20261007/reviews/I14.json",
+      "evidence/r003-math-20261007/reviews/I15.json",
+      "evidence/r003-math-20261007/reviews/I16.json",
+      "evidence/r003-math-20261007/reviews/I17.json",
+      "evidence/r003-math-20261007/reviews/I18.json",
+      "evidence/r003-math-20261007/reviews/I19.json",
+      "evidence/r003-math-20261007/reviews/I20.json",
+      "requirements-assets.txt",
+      "research-backlog.json",
+      "research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md",
+      "research/reviews/R003_REVIEW_2026-10-07.md",
+      "research/reviews/native-acquisition-source-review-20261007.json",
+      "research/reviews/r003-ranking-20261007.json",
+      "research/reviews/r003-source-review-20261007.json",
+      "research/workflow-checkpoint-20261007.json",
       "rounds/r003/WEB_HANDOFF.md",
-      "research/AUTOPILOT_UPGRADE_2026-10-07.md",
-      "research/MATH_SOURCE_AUDIT_2026-10-07.md"
+      "tools/acquire_native_assets.py",
+      "tools/prepare_assets.py",
+      "tools/qualify.py",
+      "tools/setup_native_env.sh"
     ],
-    "readiness": "pending",
-    "earliest_unclosed_prerequisite": "Current semantic review of full mathematical pool and complete ranking/top-15 selection",
+    "readiness": "scientific_candidate_generation_blocked_local_maintenance_acceptance_pending",
+    "earliest_unclosed_prerequisite": "Five pending constructions plus current joint paper/author-code/native evidence; verified 20-card pool/top15, Parent/Natural Gate0/IPCG absent",
     "missing_requirements": [
-      "Current math/selection packet",
-      "Natural failure/Parent/Gate0/IPCG evidence",
-      "Complete G01 and all asset acquisition cards",
-      "Actual Local code/native/harness acceptance",
-      "Real model results/E04/independent confirmation"
+      "Complete I07/I08/I17/I19/I20 method construction/native semantics",
+      "Full joined source/native originality/parent review; Natural Gate0/IPCG",
+      "Verified 20-card pool and real full ranking/top15 selection packet",
+      "New selected methods/strong controls/complete G01",
+      "Actual Local software/input/native/outer harness acceptance and source/env/path/resource records",
+      "Full native results/E04/prospective independent confirmation"
     ],
     "local_acceptance_pending": [
-      "Source installation and node bindings",
-      "New helper software acceptance",
-      "Actual runtime and commands"
+      "Complete latest source installation/node binding with old active binding preserved",
+      "Compile/software semantics for generated acquisition/offline/native-Conda bytes",
+      "All immutable files and original image/schema extraction",
+      "Actual offline parser/native denominator/candidate/scorer qualification on all three tasks",
+      "Real single-harness native plans, host resources and remaining budgets"
     ],
-    "next_legal_action": "Resolve I03 objective/scorer mismatch and I07/I08/I20 operational constructions; create actual per-card semantic evidence packet, primary-source comparison and complete ranking. Manual audit is not verified selection.",
+    "next_legal_action": "Reuse completed cards/reviews and source captures; finish the five constructions and recorded joint evidence gaps. Local independently restores actual host/paths/budgets and accepts maintenance inputs/code. Do not fabricate selection or dispatch candidate methods.",
     "continuation_refs": [
       "rounds/r003/WEB_HANDOFF.md",
-      "research/AUTOPILOT_UPGRADE_2026-10-07.md"
+      "research/reviews/R003_REVIEW_2026-10-07.md",
+      "evidence/r003-math-20261007/batch.json",
+      "evidence/r003-math-20261007/before-code-report.json",
+      "research/reviews/r003-ranking-20261007.json",
+      "docs/NATIVE_ASSET_RUNBOOK.md",
+      "research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md"
     ],
     "scientific_execution_this_turn": "NONE",
     "manual_audit_scope": {
@@ -115,6 +253,221 @@
     },
     "source_revision_observed": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
     "installed_source_lock_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
-    "background_activation": "UNVERIFIED"
+    "background_activation": "UNVERIFIED",
+    "previous_checkpoint_history": [
+      {
+        "skill_source_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "loaded_module_refs": [
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/SKILL.md"
+          },
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/references/workflow-harness.md"
+          },
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/references/method-verification.md"
+          },
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/references/local-code-handoff.md"
+          },
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/references/repository-round-trips.md"
+          },
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/references/local-execution-harness.md"
+          },
+          {
+            "repository": "Yunbo-max/Research_Autopilot",
+            "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "path": "skills/research-autopilot/references/local-installation-and-logging.md"
+          }
+        ],
+        "delivery_parent_commit": "b029f39e0bf325705f8e9b2a035346adc00726bb",
+        "work_phase": "skill-source-maintenance-and-scheduled-continuation",
+        "requested_action": "Immediate one-off Web code-completion task and main-delivered operating-policy correction",
+        "preserved": true
+      },
+      {
+        "source_commit": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
+        "checkpoint": {
+          "policy_version": "1.2.0",
+          "skill_source_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+          "loaded_module_refs": [
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/SKILL.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/workflow-harness.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/method-verification.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/math-analysis.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/local-code-handoff.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/repository-round-trips.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/host-adapters.md"
+            },
+            {
+              "repository": "Yunbo-max/Research_Autopilot",
+              "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+              "path": "skills/research-autopilot/references/web-background-work.md"
+            }
+          ],
+          "execution_role": "web_supervisor",
+          "role_source": "2026-10-07 user correction: 你是web gpt不是local的；完成code；赶快",
+          "web_github_delivery_branch": "main",
+          "delivery_parent_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+          "work_phase": "manual-math-and-source-audit",
+          "project_id": "yuhanlydia/CVPR",
+          "route_id": null,
+          "canonical_ledger_ref": "research-backlog.json",
+          "current_goal_ref": "LONG_TERM_TASK.md",
+          "user_message_effect": "Status inquiry; original Web code-authoring goal and Local execution ownership retained",
+          "current_node": null,
+          "requested_action": "Report actual progress and persist I01–I20 mathematical/source review within prior main authorization",
+          "generated_artifact_refs": [
+            "configs/autopilot-source.json",
+            "tools/check_autopilot_source.py",
+            "AGENTS.md",
+            "LOCAL_AGENT_RUNBOOK.md",
+            "rounds/r003/WEB_HANDOFF.md",
+            "research/AUTOPILOT_UPGRADE_2026-10-07.md",
+            "research/MATH_SOURCE_AUDIT_2026-10-07.md"
+          ],
+          "readiness": "pending",
+          "earliest_unclosed_prerequisite": "Current semantic review of full mathematical pool and complete ranking/top-15 selection",
+          "missing_requirements": [
+            "Current math/selection packet",
+            "Natural failure/Parent/Gate0/IPCG evidence",
+            "Complete G01 and all asset acquisition cards",
+            "Actual Local code/native/harness acceptance",
+            "Real model results/E04/independent confirmation"
+          ],
+          "local_acceptance_pending": [
+            "Source installation and node bindings",
+            "New helper software acceptance",
+            "Actual runtime and commands"
+          ],
+          "next_legal_action": "Resolve I03 objective/scorer mismatch and I07/I08/I20 operational constructions; create actual per-card semantic evidence packet, primary-source comparison and complete ranking. Manual audit is not verified selection.",
+          "continuation_refs": [
+            "rounds/r003/WEB_HANDOFF.md",
+            "research/AUTOPILOT_UPGRADE_2026-10-07.md"
+          ],
+          "scientific_execution_this_turn": "NONE",
+          "manual_audit_scope": {
+            "observation_date": "2026-10-07",
+            "source_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+            "report": "research/MATH_SOURCE_AUDIT_2026-10-07.md",
+            "scope": "Manual per-card algebra/construction review of I01–I20 and source comparison of 12 historical prototypes; no validator, software or model execution",
+            "historical_cards_inspected": 20,
+            "historical_candidate_implementations": 12,
+            "shared_controls": 6,
+            "current_verified_pool_status": "PENDING_REAL_PACKET_AND_REVIEW",
+            "current_verified_top15_status": "PENDING",
+            "findings": [
+              "I03 distance objective versus dot-product scoring mismatch",
+              "I09 logistic objective versus squared-KD control confound",
+              "I17 Wiener restoration versus ranking-risk gap",
+              "I07/I08/I20 lack complete operational constructions"
+            ],
+            "one_off_task": {
+              "id": "6ac60d3d01408191b9ad00b7d503c49a",
+              "is_enabled": true,
+              "last_run_time": null,
+              "next_run_time": null,
+              "status": "NO_EXECUTION_OR_COMPLETION_RECEIPT_EXPOSED"
+            },
+            "hosted_long_running_authoring": "ACTIVATION_UNVERIFIED; automation arrangement is not hosted-task liveness",
+            "latest_observed_skill_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+            "installed_source_lock_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+            "generated_code_executed": false
+          },
+          "source_revision_observed": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+          "installed_source_lock_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+          "background_activation": "UNVERIFIED"
+        },
+        "preserved": true
+      }
+    ],
+    "actual_controller_check": {
+      "report": "evidence/r003-math-20261007/before-code-report.json",
+      "provenance": "evidence/r003-math-20261007/boundary-provenance.json",
+      "exit_code": 2,
+      "math_verified": 15,
+      "candidates": 20,
+      "pool_deficit": 5,
+      "selected": 0,
+      "math_pool_verified": false,
+      "selection_verified": false,
+      "code_verified": 0,
+      "design_verified": 0,
+      "results_verified": 0,
+      "verdict_verified": 0,
+      "scope": "Read-only existing author evidence checker; not generated software execution or proof."
+    },
+    "actual_milestone": {
+      "math_cards_with_individual_review": 20,
+      "primary_source_capture": "research/reviews/r003-source-review-20261007.json",
+      "corrections": [
+        "I03 distance/bilinear mismatch",
+        "I05 known inside-log SupCon and stronger outside-log control",
+        "I16 exact unit-RBF rank equivalence",
+        "I17 missing LMMSE-to-retrieval bridge"
+      ],
+      "locked_inputs": "configs/native-assets.lock.json",
+      "acquisition_code_review": "research/reviews/native-acquisition-source-review-20261007.json",
+      "software_status": "generated_unexecuted",
+      "native_results": "NOT_RUN"
+    },
+    "time_policy": {
+      "current_authoring": "Completion-driven Web, no inherited Local/report clock; no new periodic task",
+      "historical_execution": "Original 28800 cumulative seconds /18 trials/zero retries preserved; actual consumption unknown",
+      "future_local_policy": "Soft reports/up to24h only where actual remaining authorization/resources permit; no automatic increase or active watchdog migration",
+      "cross_window_dispatch": "NOT_IMPLEMENTED"
+    },
+    "host_activation_evidence": "No hosted task status/locator API receipt claimed; repository milestone persistence only.",
+    "concurrent_progress_retained": {
+      "commit": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
+      "report": "research/MATH_SOURCE_AUDIT_2026-10-07.md",
+      "changed_paths": [
+        "research-backlog.json",
+        "research/workflow-checkpoint-20261007.json",
+        "rounds/r003/WEB_HANDOFF.md"
+      ],
+      "source_and_historical_method_code_unchanged": true
+    }
   }
 }

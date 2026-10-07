@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I20",
+  "title": "Mixed reuse perturbations without a qualified cache planner",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Terminal generator output F(eta_i,eta_j) for two explicit reuse perturbations; local Jacobians and mixed Hessian around zero.",
+  "assumptions": [
+    "A smooth local expansion must remain valid on actual sampled trajectories.",
+    "Probe randomness is coupled and fixed for comparisons; all extra forward/probe evaluations count.",
+    "No accepted second-order cache planner or full native quality/resource frontier currently exists."
+  ],
+  "operations": [
+    {
+      "id": "C05",
+      "input": "Two-input local terminal perturbation",
+      "condition": "F has bounded appropriate third derivatives in the visited neighborhood",
+      "condition_status": "conditional",
+      "output": "Include mixed Hessian, not only propagated single errors."
+    },
+    {
+      "id": "C04",
+      "input": "Observed single/pair probes",
+      "condition": "Identical trajectory/randomness and complete probe cost",
+      "condition_status": "conditional",
+      "output": "Separate pair interaction from additive single effects."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "expansion",
+      "statement": "F(eta_i,eta_j)-F(0,0)=J_i eta_i+J_j eta_j+1/2 H_ii[eta_i,eta_i]+H_ij[eta_i,eta_j]+1/2 H_jj[eta_j,eta_j]+O(||eta||^3).",
+      "justification": "The multivariate Taylor formula includes both self and cross second-order terms."
+    },
+    {
+      "id": "contrast",
+      "statement": "F(eta_i,eta_j)-F(eta_i,0)-F(0,eta_j)+F(0,0)=H_ij[eta_i,eta_j]+O(||eta||^3).",
+      "justification": "Subtract shared zero/single probes; this isolates a local mixed effect under coupled randomness."
+    },
+    {
+      "id": "cost",
+      "statement": "For s candidate positions, all single and pair probes can require O(s^2) generator evaluations before amortization.",
+      "justification": "A nonzero mixed effect alone gives no positive net runtime/quality frontier, and probe allocation needs a complete construction."
+    }
+  ],
+  "method_expression": "PARTIAL: a coupled mixed-effect diagnostic; an accepted finite probe schedule, cache-policy optimization, residual validity and amortized full native output are absent.",
+  "distinguishing_prediction": "Mixed effects must be large enough and sufficiently stable across actual repeated reuse to justify the complete cost; this cannot be inferred from one mathematical cross term.",
+  "falsifier": "Linear propagation or simple caching matches the full frontier, or pair-probe costs exceed savings and/or degrade motion/quality.",
+  "closest_alternative": "RA-CFGCache, known cache error propagation and paired perturbation diagnostics; existing overlap retained without declaring blinded novelty.",
+  "decisive_comparison": "Complete original generator/video benchmark and quality-resource comparison with probe/amortization costs; no new Wan/model/data launch is authorized by this card.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Historically parked, no I20 planner/source qualification; existing RA-CFGCache collision and adverse evidence retained.",
+  "review_limit": "Local Taylor/contrast reviewed; complete method_expression and originality/source audit remain pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

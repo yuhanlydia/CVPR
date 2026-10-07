@@ -1,5 +1,27 @@
 # Local Codex：当前入口
 
+## 本轮交付（2026-10-07）
+
+已新增[逐卡数学/源码审查](research/reviews/R003_REVIEW_2026-10-07.md)、
+[实际20项 batch](evidence/r003-math-20261007/batch.json)和
+[完整20项审查优先级排序](research/reviews/r003-ranking-20261007.json)。
+15项条件性形式构造经人工审查，I07/I08/I17/I19/I20的方法构造仍 pending；
+实际只读 before-code 检查退出2，未通过全池/前15选择，全部 code/design/results/verdict 为 false。
+该排序不是 verified selection；Parent/Natural Gate0/IPCG、联合来源/native证据、G01仍待补齐。
+
+[Download datasets and models](docs/NATIVE_ASSET_RUNBOOK.md#download-datasets-and-models) 是本轮
+完整保留输入的获取/校验/抽取入口：[不可变文件锁](configs/native-assets.lock.json)包含模型全部18文件、
+三项完整test shards、eval ZIP及两项train shards/ZIP。新源码
+tools/acquire_native_assets.py、tools/setup_native_env.sh 与 prepare_assets.py/qualify.py 的锁定离线分支
+均为 **generated_unexecuted**。详见同页的顺序命令、真实 loader 路径、日志、故障和接受条件。
+下载完成不等于软件/原生/science接受；新强对照和未来top15额外资源没有冒称已覆盖。
+
+作者 main 在本轮更新到99d8ac079682e91f61ab59bfd3e760eccb8b5726；
+[适用性差异审查](research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md)与
+[当前完整四skill身份锁](configs/autopilot-source-99d8ac0.json)已新增。
+旧1b4b8029来源锁、审查证据与活动执行保持不变。
+Web未运行任何新代码/tests/模型；Local先恢复真实host/path/剩余预算，接受这次精确main源码。
+
 本次交付是最新版 skill 的核对与长期任务续做入口，状态为
 **generated_unexecuted / 科学准入待补**。网页侧没有运行新代码、测试或模型。
 读取 [Web handoff](rounds/r003/WEB_HANDOFF.md)、
@@ -52,14 +74,14 @@ RESEARCH_AUTOPILOT_ROOT 必须是实际 research-autopilot 目录，三个依赖
 随后在 Local 的实际 skill 源码上执行其 research_nodes.py check；
 这也是来源/绑定检查，不是模型或科学验证。
 
-模型与数据的完整下载卡尚未补齐，属于长期任务 LT_NATIVE_HANDOFF：
+下方为前次交付的待补记录；本轮已补上述保留输入下载卡，未来top15/强对照额外资源与完整G01仍属LT_NATIVE_HANDOFF：
 Qwen/Qwen3-VL-Embedding-2B 的完整权重/processor；
 ziyjiang/MMEB_Test_Instruct 的 ScienceQA、ChartQA、MSCOCO_i2t 原生 test；
 TIGER-Lab/MMEB-eval 原始 images.zip；
 TIGER-Lab/MMEB-train @ 0c3f4b828d347c4e8508339f99530f6c820061fd 的
 ScienceQA、A-OKVQA 原始元数据与所需训练图片。
 强基线、控制、scorer 的额外输入也必须进入下载清单。
-在 immutable revisions、文件覆盖、加载路径和资源记录补齐前，本入口不称为可派发实验方案。
+保留输入的immutable revision/文件/获取路径现已补齐，Local实际资源和接受、额外比较输入与G01仍缺，因此不是可派发的新科学方案。
 
 ## 接受、运行与返回
 
@@ -86,4 +108,3 @@ harness 命令、输出/日志、故障指向、E04、独立确认与结果包�
 
 已有真实返回包按原始执行版本保留。返回实际 source/skill SHA、测试范围、
 全部结果与失败、官方 replay/E04 记录和未完成项；只返回最高分不满足审查。
-

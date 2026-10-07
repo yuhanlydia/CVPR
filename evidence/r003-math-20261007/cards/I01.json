@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I01",
+  "title": "Calibrated interval ranking",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Fixed teacher logits t_hat(q,c), simultaneous relevance intervals [t_hat-u,t_hat+u], and bilinear student w with training-only x=vec(q(c_pos-c_neg)^T)/T.",
+  "assumptions": [
+    "Calibration establishes simultaneous interval coverage for all compared candidates, in the same teacher-logit units.",
+    "Calibration is independent of fitting/evaluation/confirmation; repeated deterministic logits alone are not a confidence interval.",
+    "lambda>0 and candidate pairs come only from released supervision."
+  ],
+  "operations": [
+    {
+      "id": "C04",
+      "input": "A teacher margin with two bounded error terms",
+      "condition": "Both error intervals hold jointly",
+      "condition_status": "conditional",
+      "output": "inf(t_pos-t_neg)=t_hat_pos-t_hat_neg-u_pos-u_neg."
+    },
+    {
+      "id": "D01",
+      "input": "Positive worst-case margin and convex student constraints",
+      "condition": "Fix intervals before fitting",
+      "condition_status": "conditional",
+      "output": "Penalize only certified positive margins with convex hinge and anchored ridge."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "interval_margin",
+      "statement": "m=t_hat_pos-t_hat_neg-u_pos-u_neg.",
+      "justification": "Minimizing the difference over the rectangular joint interval takes the lower positive endpoint and upper negative endpoint."
+    },
+    {
+      "id": "certified_constraint",
+      "statement": "m>0 implies positive teacher ordering only on the joint-coverage event.",
+      "justification": "Subtracting the two intervals preserves units; marginal calibration alone does not establish joint coverage."
+    },
+    {
+      "id": "student_update",
+      "statement": "L(w)=mean_[m>0] max(0,m-x^T w)+lambda||w-w0||^2/2; use its bounded-step subgradient.",
+      "justification": "The subgradient is -mean[x 1{x^T w<m}]+lambda(w-w0); optimization convergence is not a rank guarantee."
+    }
+  ],
+  "method_expression": "Fit the certified-margin hinge with fixed training-only intervals and anchored ridge; block when no calibrated intervals or no eligible margins exist.",
+  "distinguishing_prediction": "When simultaneous teacher-error bounds are valid, erroneous certified teacher ordering occurs only outside the declared coverage event; declining pair coverage trades supervision volume for conditional ordering reliability.",
+  "falsifier": "Invalid coverage or no certified pairs defeats the premise. A matched point/logit KD solution with the same information and fitting cost removes the need for this intervention.",
+  "closest_alternative": "Calibrated selective prediction/robust ranking and Qwen listwise distillation; C_KD is squared pairwise fitting and is not the complete strongest KD alternative.",
+  "decisive_comparison": "On the published tasks retain all candidate rankings; compare interval vs point-supervised fitting under identical teacher/data/PCA and report genuine independent calibration coverage separately.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy fit(I01) uses the hinge but prepare_candidate_bundle sets interval_calibration=None. No executable independent interval producer or coverage evidence exists.",
+  "review_limit": "Conditional identities reviewed; calibration, close-work functional audit, Parent/Gate0/IPCG remain pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

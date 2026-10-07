@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I12",
+  "title": "Finite-graph diffusion eigenfunction extrapolation",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Positive symmetric training-anchor kernel K, degree D=diag(K1), reversible P=D^-1K and S=D^-1/2 K D^-1/2; nonstationary eigenpairs (lambda,u).",
+  "assumptions": [
+    "All degrees are positive; retain only stable positive nonzero eigenvalues and remove the stationary direction.",
+    "Anchors/statistics/coordinates come only from train; no test graph or label selection.",
+    "Finite graph coordinates do not imply continuum semantic consistency; dot-product scoring is not automatically diffusion distance."
+  ],
+  "operations": [
+    {
+      "id": "A06",
+      "input": "Symmetric and Markov eigenproblems",
+      "condition": "D positive",
+      "condition_status": "conditional",
+      "output": "phi=D^-1/2u and P phi=lambda phi."
+    },
+    {
+      "id": "F01",
+      "input": "A new-point normalized kernel row",
+      "condition": "lambda nonzero and training graph fixed",
+      "condition_status": "conditional",
+      "output": "phi(x)=sum_j p(x,j)phi_j/lambda."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "conjugation",
+      "statement": "D^-1K D^-1/2u=D^-1/2 S u=lambda D^-1/2u.",
+      "justification": "Direct multiplication identifies the reversible-chain eigenfunction rather than calling u itself a Markov eigenfunction."
+    },
+    {
+      "id": "extension",
+      "statement": "lambda^t phi(x)=sum_j p(x,j)phi_j lambda^(t-1).",
+      "justification": "The eigen-equation supplies the 1/lambda factor. This justifies the legacy time-minus-one weight."
+    },
+    {
+      "id": "scoring",
+      "statement": "Dot products of the extended coordinates omit the per-point squared norms in negative squared diffusion-coordinate distance.",
+      "justification": "Expanding -||z(x)-z(y)||^2 gives 2 z(x)z(y)-||z(x)||^2-||z(y)||^2; stationary weighting also matters for diffusion distance."
+    }
+  ],
+  "method_expression": "Build a fixed training graph and output its extended coordinates for every native query/candidate; declare coordinate dot-product scoring as the actual method, without naming it a diffusion-distance ranking.",
+  "distinguishing_prediction": "Coordinate extrapolation changes rankings only when finite graph neighborhoods carry stable useful structure; near-zero lambda and domain shift create an identifiable failure boundary.",
+  "falsifier": "Matched exact dot/RBF/Nystrom or the corresponding actual diffusion-distance scorer explains equal benefit; graph perturbations destabilize ranking.",
+  "closest_alternative": "Finite diffusion maps and Nystrom extension; density-dependent continuum results require assumptions absent here.",
+  "decisive_comparison": "Same anchors/width/output dimension and complete native rankings, including graph fit, extension, serialization and scorer costs; compare score semantics explicitly.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy map uses phi*lambda^(t-1) and train-only anchors correctly; its scoring is a feature dot product, not the spectral diffusion distance.",
+  "review_limit": "Finite algebra/declared scoring reviewed; continuum theorem, superiority and originality not established.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

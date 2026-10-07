@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I03",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I03.json",
+    "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "The PSD generalized eigensystem solves a distance-ratio objective, not a bilinear score objective.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "A05: C=A^-1/2 B A^-1/2 is symmetric PSD. Condition: A invertible by rho I D01: Top eigenvectors of C maximize tr(V^T B V). Condition: Optimize the specified distance contrast",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Whiten A and solve Bv=eta Av under v^TAv=1; expanding negative Mahalanobis distance yields 2qMc-cMc-qMq.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "rho>0; moments use only released fitting positives and explicit negatives. Generalized eigenvectors are A-orthonormal, V^T A V=I_k. Scientific score is negative Mahalanobis squared distance; bilinear similarity is a separate construction. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "A corrected distance construction is explicit. The legacy bilinear scorer omits candidate norms and is not certified by this derivation.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Any discrepancy between raw bilinear and distance rankings is driven by candidate metric-norm variation; the corrected distance need not improve hit@1. Falsification: Equal norm-corrected and bilinear rankings remove the mismatch for that scope. White covariance or supervised metric baselines matching the quality/cost defeat a new-method claim.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Same-dimensional whitening and supervised metric learning can explain the geometry; no collision/novelty verdict is made. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I03.json",
+          "sha256": "e6b36fa81d40a5bd05cb8116531601fee94693726432b658d7deb6f99bef1914"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

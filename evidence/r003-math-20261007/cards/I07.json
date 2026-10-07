@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I07",
+  "title": "Nondegenerate GRPO groups",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "IID Bernoulli rewards with probability p for G>=2 rollouts, policy score h=grad log pi, action-independent baseline b.",
+  "assumptions": [
+    "IID Bernoulli is only a diagnostic model; actual correlated graded/native rewards need their own estimator law.",
+    "Policy support and square-integrable scores justify E[h]=0.",
+    "Selection/rejection of all-equal groups changes the sampling measure."
+  ],
+  "operations": [
+    {
+      "id": "B05",
+      "input": "Count all-equal Bernoulli groups",
+      "condition": "IID reward draws at fixed policy",
+      "condition_status": "conditional",
+      "output": "Probability of a mixed group is 1-p^G-(1-p)^G."
+    },
+    {
+      "id": "E03",
+      "input": "Score baseline variance",
+      "condition": "b is action-independent and E||h||^2>0",
+      "condition_status": "conditional",
+      "output": "Minimize E[(R-b)^2||h||^2] over b."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "mixed_probability",
+      "statement": "P(mixed)=1-p^G-(1-p)^G.",
+      "justification": "All-zero and all-one outcomes are disjoint under IID Bernoulli."
+    },
+    {
+      "id": "baseline",
+      "statement": "b*=E[R||h||^2]/E[||h||^2]; E[(R-b)h]=E[Rh].",
+      "justification": "Differentiate the scalar second moment; the score zero-mean identity removes b."
+    },
+    {
+      "id": "selection_gap",
+      "statement": "A mixed-group rejection sampler conditions on reward; the original policy-gradient expectation is not automatically preserved.",
+      "justification": "No derived importance correction, support proof or group-normalized estimator currently connects this calculation to a complete GRPO update."
+    }
+  ],
+  "method_expression": "Incomplete: valid group-efficiency diagnostics do not specify a corrected cost-accounted GRPO sampling/update algorithm.",
+  "distinguishing_prediction": "Only the IID nondegenerate-group frequency law is established; a method benefit per generated token remains a lead.",
+  "falsifier": "Biased group selection, reward correlations or extra rollouts erasing estimator efficiency refute the proposed rationale.",
+  "closest_alternative": "GRPO/DAPO/UniME-R1 native estimators, ordinary no-rejection GRPO and valid action-independent baseline controls.",
+  "decisive_comparison": "Requires primary full algorithm and published reward benchmark; no generated dispatch matrix or invented native reward cases.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "No fit(I07), rollout producer, qualified reward or current executable estimator.",
+  "review_limit": "Pending consequential complete estimator construction; no math-ready method claim.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

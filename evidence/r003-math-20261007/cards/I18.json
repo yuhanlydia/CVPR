@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I18",
+  "title": "Greedy train-pool D-optimal information selection",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Legal fixed training pool of design rows x_i, ridge lambda>0, H_S=lambda I+sum_{i in S}x_i x_i^T and fixed selection count k.",
+  "assumptions": [
+    "Rows/selection criterion are training-only; no test labels or hidden annotator access.",
+    "Information interpretation requires a linear fixed-noise model; leverage may favor harmful outliers.",
+    "Historical first-128 row policy cannot be changed as part of a source-maintenance patch."
+  ],
+  "operations": [
+    {
+      "id": "F06",
+      "input": "SPD information matrix plus rank-one row",
+      "condition": "lambda>0",
+      "condition_status": "conditional",
+      "output": "Single-row logdet gain=log(1+x^T H^-1x)."
+    },
+    {
+      "id": "H03",
+      "input": "Information optimum versus downstream ranking",
+      "condition": "Finite train pool and declared count",
+      "condition_status": "conditional",
+      "output": "Information coverage is not a guaranteed native accuracy gain."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "lemma",
+      "statement": "det(H+xx^T)=det(H)(1+x^T H^-1x).",
+      "justification": "Matrix determinant lemma with invertible H gives the exact gain."
+    },
+    {
+      "id": "greedy",
+      "statement": "At each of k finite steps choose remaining maximal gain, retain ties/indices and update H.",
+      "justification": "This is an explicit greedy construction. It is not a claim of the global cardinality-constrained optimum."
+    },
+    {
+      "id": "risk",
+      "statement": "If a high-norm mislabeled row dominates x^T H^-1x, its information gain can be high while task risk worsens.",
+      "justification": "Selection depends on design geometry alone; the semantic supervision assumption supplies a distinct falsifier."
+    }
+  ],
+  "method_expression": "Conditional finite greedy training-index selector with immutable released-row IDs, tie policy and complete selection cost; do not dispatch or replace the existing row selection without a new accepted design.",
+  "distinguishing_prediction": "Learning-curve benefit must hold at the same legal row count and include selection cost; geometric coverage and actual label quality can separate.",
+  "falsifier": "Random/source-stratified selection matches performance, or leverage concentrates harmful outliers and costs more than it saves.",
+  "closest_alternative": "Known D-optimal design, leverage and coreset selection; no new selector theorem is claimed.",
+  "decisive_comparison": "Only an authorized new training-selection design, with same original pool/count and complete native scores, can test it; current scope remains fixed.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Historically parked, no I18 implementation; fixed r003 first-128 train policy is retained.",
+  "review_limit": "Determinant/greedy expression reviewed; task expansion and empirical selection premise remain pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I05",
+  "title": "Multiple-positive aggregate contrastive loss",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Released positive set P subset of allowed labeled candidate set A; scores s_j=q^T M c_j; T>0; positive-only and allowed softmax distributions.",
+  "assumptions": [
+    "Every positive is released/known; unknown relevance is not a negative label.",
+    "A has at least one valid positive; a nontrivial new comparison needs genuine multiple positives.",
+    "Candidate identities and labels stay unchanged in the native test scorer."
+  ],
+  "operations": [
+    {
+      "id": "B02",
+      "input": "L=logsumexp_A(s/T)-logsumexp_P(s/T)",
+      "condition": "Both finite partition sums are nonempty",
+      "condition_status": "conditional",
+      "output": "Differentiate to obtain allowed mass minus positive-conditioned mass."
+    },
+    {
+      "id": "H06",
+      "input": "Claim that all known positives are equally pulled",
+      "condition": "More than one unequal positive logit",
+      "condition_status": "conditional",
+      "output": "The aggregate inside-log loss can favor an easy positive instead of equally supervising every positive."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "gradient",
+      "statement": "dL/ds_j=(p_A(j)-p_P(j))/T, with p_P=0 outside P.",
+      "justification": "Derivative of each log partition under the same fixed labels."
+    },
+    {
+      "id": "single_positive",
+      "statement": "If |P|=1 the loss reduces to the same single-positive softmax objective.",
+      "justification": "The positive log partition becomes s_pos/T."
+    },
+    {
+      "id": "supcon_delta",
+      "statement": "Outside-log supervision has dL_out/ds_j=(p_A(j)-1{j in P}/|P|)/T.",
+      "justification": "Averaging log probabilities yields uniform target mass; it differs from p_P for unequal positive scores. The inside-log objective already appears in SupCon Eq.3, up to a label-count constant."
+    }
+  ],
+  "method_expression": "Fit bilinear M with the aggregate positive log partition on only released allowed candidates; block absent real multi-positive supervision.",
+  "distinguishing_prediction": "The aggregate loss weights each positive in proportion to its current positive-only softmax; easy positives can dominate, unlike uniform-target SupCon.",
+  "falsifier": "No released multi-positive rows collapses the distinction. Uniform-target SupCon performing as well or better at identical information/cost defeats the proposed necessity.",
+  "closest_alternative": "SupCon inside-log Eq.3 is a direct objective match; author SupConLoss.forward implements outside-log Eq.2. A single-positive control alone is inadequate.",
+  "decisive_comparison": "On unchanged native tasks compare aggregate, outside-log and single-positive while giving each arm the same known label information; C_SINGLE masks other positive targets but keeps them in allowed, so it also changes the treatment of known positives.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy fit(I05) gradient matches aggregate loss. Multi-positive guard checks the selected actual rows. No full multi-positive acquisition/merge proof or matched outside-log control exists.",
+  "review_limit": "Conditional derivative reviewed; direct known-objective overlap retained, novelty adjudication pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I04",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I04.json",
+    "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Action a in [0,1], positive conditional cost and expected gain define an expected resource constraint.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "D01: Pointwise Lagrangian minimization thresholds Delta-lambda c. Condition: A convex randomized policy class and integrable costs D03: Calibrate lambda on development costs with endpoints and tie randomization. Condition: As lambda grows selected cost is nonincreasing",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Lagrangian minimization is pointwise: choose a=1 above Delta-lambda c=0, zero below, with ties used to meet an active expectation budget.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Development-estimated Delta and c are fixed before evaluation; test labels cannot route queries. Costs include gating, reranker inference and complete output reconstruction. Randomization on threshold ties may be necessary for an exact expected budget. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The gain/cost policy is conditional on train/dev calibration; it is not a hard runtime-budget controller and no native gain producer exists.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Heterogeneous predictable native gains should permit better expected quality at equal all-in cost than random routing; the same threshold law is standard allocation. Falsification: No out-of-distribution calibration or no benefit after gating/ranking costs refutes necessity.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Random/fixed-cost reranking and known adaptive rerankers are mandatory alternatives; threshold algebra alone is not a new method. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I04.json",
+          "sha256": "6ebae7c1ecf734d7b89c15d35ac0a3b63f636486d44c63c41adf8b07faaa48ef"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I20",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I20.json",
+    "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "pending",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Two explicit local terminal perturbations define Jacobians, self Hessians and a mixed Hessian.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "C05: Include mixed Hessian, not only propagated single errors. Condition: F has bounded appropriate third derivatives in the visited neighborhood C04: Separate pair interaction from additive single effects. Condition: Identical trajectory/randomness and complete probe cost",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Multivariate Taylor includes self and mixed terms; coupled single/pair contrast isolates the local mixed term and retains O(||eta||^3).",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "A smooth local expansion must remain valid on actual sampled trajectories. Probe randomness is coupled and fixed for comparisons; all extra forward/probe evaluations count. No accepted second-order cache planner or full native quality/resource frontier currently exists. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "pending",
+      "rationale": "No finite accepted probe/caching planner or amortized native quality/resource contract exists; O(s^2) probes can negate all savings.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Mixed effects must be large enough and sufficiently stable across actual repeated reuse to justify the complete cost; this cannot be inferred from one mathematical cross term. Falsification: Linear propagation or simple caching matches the full frontier, or pair-probe costs exceed savings and/or degrade motion/quality.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "RA-CFGCache and linear propagation remain relevant; second-order diagnostic algebra alone does not establish a distinct, practical cache policy. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I20.json",
+          "sha256": "4a2987f2e188a301d99ca8c313a865a8fd746205ecb6a1a96392dbc37808a40e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

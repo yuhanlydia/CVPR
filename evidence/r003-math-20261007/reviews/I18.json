@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I18",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I18.json",
+    "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "SPD train-pool information H and finite cardinality k define a geometric selection objective.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "F06: Single-row logdet gain=log(1+x^T H^-1x). Condition: lambda>0 H03: Information coverage is not a guaranteed native accuracy gain. Condition: Finite train pool and declared count",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "The determinant lemma gives the exact log(1+x H^-1x) increment; finite greedy selection is not the global optimum.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Rows/selection criterion are training-only; no test labels or hidden annotator access. Information interpretation requires a linear fixed-noise model; leverage may favor harmful outliers. Historical first-128 row policy cannot be changed as part of a source-maintenance patch. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "A train-index selector is explicit but parked: historical first-128 policy is retained, and a new accepted native design is required to change it.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Learning-curve benefit must hold at the same legal row count and include selection cost; geometric coverage and actual label quality can separate. Falsification: Random/source-stratified selection matches performance, or leverage concentrates harmful outliers and costs more than it saves.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Known D-optimal/coreset and random/source-stratified selection isolate whether geometry helps task risk; high-leverage bad labels are a falsifier. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I18.json",
+          "sha256": "1b1b0f345dc05c8567f3e4aa42fac277d1e19481e5e2d257c3611f5a1bd004f2"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

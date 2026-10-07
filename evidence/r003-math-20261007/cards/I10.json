@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I10",
+  "title": "Regularized paired-view CCA",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Centered paired training covariance Q,C and cross-covariance S; Q+rho I,C+rho I SPD; a^T(Q+rho I)a=b^T(C+rho I)b=1.",
+  "assumptions": [
+    "Only released fitting positive pairs determine means/covariances.",
+    "Centering and ridge are frozen at evaluation; no test fitting.",
+    "Regularized correlation maximization is not a semantic relevance guarantee."
+  ],
+  "operations": [
+    {
+      "id": "A05",
+      "input": "Paired-view covariances",
+      "condition": "rho>0 ensures invertibility",
+      "condition_status": "conditional",
+      "output": "Whiten both sides with A_q,A_c."
+    },
+    {
+      "id": "D01",
+      "input": "Bilinear correlation under unit constraints",
+      "condition": "Whitened coordinates u,v",
+      "condition_status": "conditional",
+      "output": "Top singular pairs of A_q S A_c solve the correlation problem."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "whiten",
+      "statement": "u=(Q+rho I)^1/2 a, v=(C+rho I)^1/2 b transform constraints to unit lengths.",
+      "justification": "Invertible change of coordinates preserves the specified regularized feasible set."
+    },
+    {
+      "id": "svd",
+      "statement": "max u^T A_q S A_c v is its largest singular value; k orthonormal pairs use top-k SVD.",
+      "justification": "Standard singular-value variational characterization, applied after both whitenings."
+    },
+    {
+      "id": "score",
+      "statement": "z_q=(q-mq)A_q U_k, z_c=(c-mc)A_c V_k; rank by z_q z_c^T.",
+      "justification": "Legacy two-view scoring uses the transformed dot product without per-point renormalization. A shared signal assumption is additional, not implied by the SVD."
+    }
+  ],
+  "method_expression": "Fit paired two-view mean/covariance transforms and top-k cross-SVD on training positives, then apply fixed maps to every evaluation input.",
+  "distinguishing_prediction": "Only training cross-correlated directions are emphasized; uncorrelated but useful complementary semantics can be discarded.",
+  "falsifier": "Whitening or Procrustes with the same information/rank reaches the same native outcome, or domain-shifted correlations harm retrieval.",
+  "closest_alternative": "Classical regularized CCA, orthogonal Procrustes and same-rank unconstrained two-view least squares; no new CCA theorem or algorithm.",
+  "decisive_comparison": "Full native image tasks with same training/PCA/rank and matched white/Procrustes controls; native labels/candidate lists untouched.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy fit(I10) uses centered train positives and a whitened cross-SVD; no matched Procrustes control or new Local software evidence.",
+  "review_limit": "Linear algebra reviewed conditionally; closest modern functional audit and natural task value pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

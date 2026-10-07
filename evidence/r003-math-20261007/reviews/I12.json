@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I12",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I12.json",
+    "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Positive training graph degrees define a reversible chain and nonzero spectral coordinates.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "A06: phi=D^-1/2u and P phi=lambda phi. Condition: D positive F01: phi(x)=sum_j p(x,j)phi_j/lambda. Condition: lambda nonzero and training graph fixed",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Conjugation gives phi=D^-1/2u and the new-point eigen-equation gives 1/lambda; time coordinates explain lambda^(t-1).",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "All degrees are positive; retain only stable positive nonzero eigenvalues and remove the stationary direction. Anchors/statistics/coordinates come only from train; no test graph or label selection. Finite graph coordinates do not imply continuum semantic consistency; dot-product scoring is not automatically diffusion distance. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "Fixed graph extension with declared coordinate dot scoring is explicit. It must not be mislabeled diffusion-distance ranking or a new continuum theorem.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Coordinate extrapolation changes rankings only when finite graph neighborhoods carry stable useful structure; near-zero lambda and domain shift create an identifiable failure boundary. Falsification: Matched exact dot/RBF/Nystrom or the corresponding actual diffusion-distance scorer explains equal benefit; graph perturbations destabilize ranking.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Known diffusion maps and matched Nystrom/RBF are direct explanations; score norms/stationary weights are an additional semantic control. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I12.json",
+          "sha256": "9af7bedafd3a64afc2a588d44fb2c1526a40d1260de0d9bac466cfa51cdd2543"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

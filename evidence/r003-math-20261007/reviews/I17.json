@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I17",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I17.json",
+    "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "pending",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "The additive independent-noise model describes raw paired coordinates, whereas legacy input is nonlinearly normalized.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "B05: E(q-c)^2/2=n and E(qc)=v. Condition: All stated independence and equal-variance conditions hold H02: The optimal denoising coefficient cannot be transferred as an optimal retrieval score without a ranking model. Condition: The two objectives differ",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Moment and scalar LMMSE identities are valid before normalization. r q denoising does not derive a pair-ranking metric.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Noises are independent of signal and each other, and moment identities precede nonlinear unit normalization. v,n are nonnegative population variances; clipped sample estimates are not proven optimal. The LMMSE predictor zhat=r q does not itself derive a diagonal pair-ranking metric. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "pending",
+      "rationale": "A retrieval decision rule/risk is not derived; two-sided denoising yields r^2 qc while legacy scoring uses r qc. The construction check stays pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Actual paired raw-feature moments and post-normalization distortions must support the noise interpretation; useful complementary semantics in q-c would falsify it. Falsification: Independent-noise assumptions fail, or a legal denoiser/diagonal metric explains equal outcomes without the proposed ranking interpretation.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Wiener/LMMSE and diagonal metrics are relevant alternatives, but semantic noise assumptions and a fair ranking comparison remain unresolved. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I17.json",
+          "sha256": "1993e6e16e4296527c4e6067cfbdde7488e652345b3fbeace673bf0dde549ec1"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

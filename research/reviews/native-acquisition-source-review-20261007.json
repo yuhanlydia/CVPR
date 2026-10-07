@@ -1,0 +1,104 @@
+{
+  "schema": "cvpr-native-maintenance-source-review-v1",
+  "status": "generated_unexecuted",
+  "reviewer": "web_supervisor/source-inspection-only",
+  "observed_on": "2026-10-07",
+  "code_refs": [
+    {
+      "path": "tools/acquire_native_assets.py",
+      "sha256": "08f768a010189b9d4a47566170362df97c366207da06790af63ba657f88838ab"
+    },
+    {
+      "path": "tools/prepare_assets.py",
+      "sha256": "4527874318746b951942f3cca0c350a5e4e1047a06f69d1703cf2477d390e3fa"
+    },
+    {
+      "path": "tools/qualify.py",
+      "sha256": "9d49d1e8e9c15286b5609f476eb4abccbd894598c479704a0738f3096a583313"
+    },
+    {
+      "path": "tools/setup_native_env.sh",
+      "sha256": "05c3733c369dcc3e080d91856027dba0e9eb41f6a5964147f1d830006ec8247d"
+    },
+    {
+      "path": "configs/native-assets.lock.json",
+      "sha256": "7fc9ba205b99462c8bcfa6ee5cb5adbb3edaecd76efab697771668886e58f92c"
+    },
+    {
+      "path": "configs/environment-native.yml",
+      "sha256": "6dfc70446c32e7f813262d224d8388f0fc60a00dce5591893e68f32afcd79d76"
+    },
+    {
+      "path": "requirements-assets.txt",
+      "sha256": "c054e300c9ac32e776e24dccd0108ddc510ac987f3ce00c00c9ad7e80d55265f"
+    },
+    {
+      "path": "docs/NATIVE_ASSET_RUNBOOK.md",
+      "sha256": "c21d4fa0eb5a0c583d0e23b36796d0c92baee632b666a00f43359abe9ddc76ef"
+    }
+  ],
+  "source_interfaces": [
+    {
+      "repository": "huggingface/huggingface_hub",
+      "revision": "v0.36.0",
+      "path": "src/huggingface_hub/file_download.py",
+      "scope": "hf_hub_download repo_type/revision/local_dir and supported transport resume; lines840-960 read",
+      "git_blob": "2cea2da453f8ce5cbb8f3810faeb0d69cf42eba5"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "revision": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/data/datasets/image_qa_dataset.py",
+      "git_blob": "36e5e4f1976dbf02ebf114363582e4c7e97860ce"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "revision": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/data/datasets/image_i2t_eval.py",
+      "git_blob": "1a5f73e907c9135bd5906d98cb811232de71cfc8"
+    }
+  ],
+  "manual_review": [
+    {
+      "property": "Immutable input identity",
+      "source": "load_lock/verify_file/download loop",
+      "finding": "Literal full revisions/paths/sizes and LFS SHA256 or actual non-LFS Git blob SHA1; all 29 required files, including processor, enumerated. Existing mismatches retained.",
+      "local_acceptance": "PENDING"
+    },
+    {
+      "property": "Finite failure continuation",
+      "source": "main deadline/download/verify/split extraction",
+      "finding": "No project retry loop; independent files/groups/splits continue after ordinary errors within remaining time; timeout stops. SDK blocking requires actual outer deadline, not a claimed inner network cancellation.",
+      "local_acceptance": "PENDING"
+    },
+    {
+      "property": "Original native extraction",
+      "source": "required_images/extract_images",
+      "finding": "Every locked physical row scanned; actual published query image fields and unchanged target text order. Exact structural path matching, duplicate/symlink/traversal checks and archive CRC/output digest. No benchmark score is produced.",
+      "local_acceptance": "PENDING"
+    },
+    {
+      "property": "Official parser binding",
+      "source": "prepare_locked/qualify.pinned_dataset",
+      "finding": "Rechecks actual lock/extraction/code/image identities and complete model inventory; source-pinned three-task parser load signature binds exact locked physical test paths, not a glob/latest download. Unchanged official labels/full candidates/scorer checks retained.",
+      "local_acceptance": "PENDING"
+    },
+    {
+      "property": "Native environment and no second driver",
+      "source": "setup_native_env.sh/runbook",
+      "finding": "Foreground native Conda installation with actual prefix/unique receipts; no model/GPU probe, retry clock or new dispatch driver. Old default paths are preserved for historical execution; new source bytes require child acceptance.",
+      "local_acceptance": "PENDING"
+    }
+  ],
+  "software_tests": "NOT_RUN",
+  "code_verified": false,
+  "design_verified": false,
+  "scientific_verdict": "NONE",
+  "limits": [
+    "Actual ZIP/member/Parquet content not read on Web; real input/schema/mapping acceptance remains Local.",
+    "Actual remote paths, resources, active plans and remaining budgets unavailable.",
+    "Static inspection does not establish parsing/import execution, network completion, model compatibility or scorer parity.",
+    "This maintenance artifact does not satisfy the absent current 20-card qualified pool/top15, Parent/Natural Gate0/IPCG or complete G01."
+  ],
+  "pending_checks": "docs/NATIVE_ASSET_RUNBOOK.md"
+}

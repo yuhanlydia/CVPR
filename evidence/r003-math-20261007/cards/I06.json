@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I06",
+  "title": "Capacity-constrained partial transport",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Nonnegative masses a,b; fixed m in (0,min(sum a,sum b)); finite costs C; epsilon>0; Pi>=0 with row<=a, col<=b, sum Pi=m.",
+  "assumptions": [
+    "Remove zero-capacity rows/columns and preserve the published token/event support.",
+    "Strictly feasible positive transport exists for the chosen fixed total mass.",
+    "Partial transport needs actual token/frame costs and a published native localization endpoint, absent from the current pooled-image carrier."
+  ],
+  "operations": [
+    {
+      "id": "D01",
+      "input": "Convex entropy-regularized transport with capacity inequalities",
+      "condition": "Slater on positive support and fixed m",
+      "condition_status": "conditional",
+      "output": "Nonnegative capacity multipliers and free total-mass multiplier characterize the unique optimum."
+    },
+    {
+      "id": "D02",
+      "input": "Stationarity C+epsilon log Pi+alpha+beta+nu=0",
+      "condition": "Interior positive support",
+      "condition_status": "conditional",
+      "output": "Pi_ij=exp(-(C_ij+alpha_i+beta_j+nu)/epsilon)."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "mass",
+      "statement": "Fixing m prevents the zero-transport degeneration; feasibility needs m<=min(sum a,sum b).",
+      "justification": "Sum each capacity inequality and compare with the required total."
+    },
+    {
+      "id": "kkt",
+      "statement": "alpha_i,beta_j>=0; alpha_i((Pi1)_i-a_i)=0; beta_j((Pi^T1)_j-b_j)=0.",
+      "justification": "Complementary slackness is essential; equal-marginal Sinkhorn solves a different primal."
+    },
+    {
+      "id": "coordinate_rule",
+      "statement": "Let S_i=sum_j exp(-(C_ij+beta_j+nu)/eps). alpha_i=eps max(0,log(S_i/a_i)); beta has the analogous rule; nu=eps log(sum_ij exp(-(C_ij+alpha_i+beta_j)/eps)/m).",
+      "justification": "Each formula exactly optimizes its convex dual coordinate/block holding the others fixed; residuals and finite-tolerance termination must be retained."
+    }
+  ],
+  "method_expression": "Cyclic dual block minimization of alpha, beta, nu with explicit fixed m, finite iteration budget and primal mass/capacity/KKT residuals; no implementation generated.",
+  "distinguishing_prediction": "When real events are unmatched, capacity slack permits omitted mass without forcing a full correspondence; benefit requires event cost semantics and native temporal relevance.",
+  "falsifier": "Full transport under identical costs/frame budget already suffices or selected mass merely deletes hard events; absent event labels is a measurement blocker.",
+  "closest_alternative": "Existing entropic partial/unbalanced OT; a finite-mass capacity construction is not novel by itself.",
+  "decisive_comparison": "Only a prelim published-video localization contrast is justified; current three image benchmarks cannot measure the central event hypothesis and are not substituted.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "No token/frame exporter, partial-OT source, official video localization scorer or actual cost qualification in r003.",
+  "review_limit": "Conditional KKT/construction reviewed; source/task feasibility remains pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

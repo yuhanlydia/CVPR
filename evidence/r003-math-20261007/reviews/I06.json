@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I06",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I06.json",
+    "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Partial transport fixes positive transported mass with inequality capacities and a positive entropy temperature.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "D01: Nonnegative capacity multipliers and free total-mass multiplier characterize the unique optimum. Condition: Slater on positive support and fixed m D02: Pi_ij=exp(-(C_ij+alpha_i+beta_j+nu)/epsilon). Condition: Interior positive support",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "KKT multipliers alpha,beta are nonnegative; Gibbs pi includes the total-mass multiplier nu; residual/multiplier checks preserve the inequality constraints.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Remove zero-capacity rows/columns and preserve the published token/event support. Strictly feasible positive transport exists for the chosen fixed total mass. Partial transport needs actual token/frame costs and a published native localization endpoint, absent from the current pooled-image carrier. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The finite dual-block construction is explicit but is conditional on feasible masses and solver residuals. Full video event inputs/scorer are not qualified.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "When real events are unmatched, capacity slack permits omitted mass without forcing a full correspondence; benefit requires event cost semantics and native temporal relevance. Falsification: Full transport under identical costs/frame budget already suffices or selected mass merely deletes hard events; absent event labels is a measurement blocker.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Balanced OT and known partial/unbalanced transport must be compared with identical token/frame information, not a generic image retrieval substitute. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I06.json",
+          "sha256": "e109ab95da756880f5f61202f3f069db38a57bfdef8fcd62c089c9d3f43fcbcc"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I10",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I10.json",
+    "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Centered paired training covariance with ridge defines two-sided regularized canonical correlations.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "A05: Whiten both sides with A_q,A_c. Condition: rho>0 ensures invertibility D01: Top singular pairs of A_q S A_c solve the correlation problem. Condition: Whitened coordinates u,v",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Whiten each covariance and apply SVD to the cross covariance; map the left/right singular directions back to their sides.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Only released fitting positive pairs determine means/covariances. Centering and ridge are frozen at evaluation; no test fitting. Regularized correlation maximization is not a semantic relevance guarantee. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "Train-only centered two-view maps are explicit. Pair quality/domain shift remain assumptions, not empirical discoveries.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Only training cross-correlated directions are emphasized; uncorrelated but useful complementary semantics can be discarded. Falsification: Whitening or Procrustes with the same information/rank reaches the same native outcome, or domain-shifted correlations harm retrieval.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "CCA is known; same-dimensional Procrustes and independent whitening isolate whether cross covariance matters. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I10.json",
+          "sha256": "ae4b93bf9667f8b1115c46b2fe2a65f70795cc5637c2e3d3f5d0f538993e817d"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I15",
+  "title": "Entropic unpaired transport and barycentric alignment",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Training distributions a,b of positive masses, cost C, entropic OT pi with exact marginals; target y_i=sum_j pi_ij c_j/a_i.",
+  "assumptions": [
+    "Transport uses train-only features; release labels are not intentionally discarded to create an artificial unpaired problem.",
+    "Regularized OT is strictly convex for positive compatible masses, but semantic correspondences may be unidentifiable.",
+    "A geometric cost needs actual cross-modal comparability and stable class proportions."
+  ],
+  "operations": [
+    {
+      "id": "D02",
+      "input": "Entropic transport problem",
+      "condition": "Positive masses with equal total and eps>0",
+      "condition_status": "conditional",
+      "output": "pi=diag(u)exp(-C/eps)diag(v) with fitted marginals."
+    },
+    {
+      "id": "H02",
+      "input": "Unpaired observations",
+      "condition": "Class symmetries preserve available statistics",
+      "condition_status": "conditional",
+      "output": "Transport fit alone cannot identify semantic class correspondences."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "stationarity",
+      "statement": "C_ij+eps log pi_ij+alpha_i+beta_j=0 gives Gibbs factors; row/column sums determine u,v.",
+      "justification": "Differentiate the entropy objective and include both marginal multipliers."
+    },
+    {
+      "id": "barycenter",
+      "statement": "y_i=sum_j pi_ij c_j/a_i, W=(Q^T Q+rho I)^-1Q^T Y for ridge rho>0.",
+      "justification": "The row marginal a_i normalizes the conditional barycenter; normal equations produce a finite train-only alignment."
+    },
+    {
+      "id": "ambiguity",
+      "statement": "If equal-mass semantic clusters and their geometry admit a permutation, unpaired observations/cost can remain invariant under relabeling.",
+      "justification": "This constructs an identifiability boundary; optimization correctness cannot repair missing semantic information."
+    }
+  ],
+  "method_expression": "Fit a train-only entropic coupling with marginal residuals, form barycenters and solve the explicit ridge alignment; declare it a conditional unpaired alignment construction until a genuine unpaired native problem is established.",
+  "distinguishing_prediction": "Benefits require independently justified geometric identifiability; class proportion or symmetry shifts should expose failures before any claim of general semantic alignment.",
+  "falsifier": "Paired Procrustes or simpler nearest-neighbor alignment uses legal available information and matches the result; semantic permutations make correspondence ambiguous.",
+  "closest_alternative": "Entropic OT/Sinkhorn, barycentric mapping and ridge/Procrustes alignment; no new transport mechanism is established.",
+  "decisive_comparison": "Only a genuinely unpaired authorized task can test this; equal legal information and complete native output/control costs must be fixed before dispatch.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Parked historically: no I15 implementation, no qualified unpaired task. Retain parked status rather than removing paired labels.",
+  "review_limit": "Conditional construction reviewed; actual task need, source collision audit and scientific premise pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

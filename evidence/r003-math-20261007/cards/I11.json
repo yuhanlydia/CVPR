@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I11",
+  "title": "Entropically smoothed worst-training-group risk",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Training-source groups g=1..G with means L_g(w), G>=2, fixed gamma>0; F(w)=gamma log sum_g exp(L_g(w)/gamma).",
+  "assumptions": [
+    "Groups are declared by training provenance, not test outcomes; each has positive sample count.",
+    "All group losses use the same units and fixed gamma. Smooth worst-training-group loss is not worst-test-task generalization.",
+    "Finite gradient descent with ridge is an approximate optimization, not Sagawa's persistent online group adversary."
+  ],
+  "operations": [
+    {
+      "id": "C02",
+      "input": "Finite vector of group losses",
+      "condition": "gamma>0 and simplex weights",
+      "condition_status": "conditional",
+      "output": "F=max_a sum a_g L_g+gamma H(a)."
+    },
+    {
+      "id": "B02",
+      "input": "Entropic group optimum",
+      "condition": "All groups nonempty",
+      "condition_status": "conditional",
+      "output": "a_g=softmax(L_g/gamma), gradient=sum a_g grad L_g."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "dual",
+      "statement": "Stationarity of sum a_g L_g-gamma sum a_g log a_g gives a_g=exp(L_g/gamma)/Z.",
+      "justification": "Normalization follows the simplex multiplier; strict entropy concavity gives the unique optimum."
+    },
+    {
+      "id": "bounds",
+      "statement": "max L_g <= F <= max L_g+gamma log G.",
+      "justification": "Factor out exp(max L/gamma); remaining positive sum is in [1,G]."
+    },
+    {
+      "id": "gradient",
+      "statement": "grad F=sum a_g grad L_g, with group means dividing by n_g.",
+      "justification": "Differentiate log partition, including the dependence of L_g on w; this is not an arbitrary detached adaptive weighting."
+    }
+  ],
+  "method_expression": "Use the explicit F plus the same anchored ridge as ERM, preserve all per-group training losses and full native task outputs; audit finite solver cost. Do not substitute this objective for the author group-DRO online update.",
+  "distinguishing_prediction": "Benefits, if any, should track changes in observed group loss dispersion and transfer to predeclared test tasks; small gamma increases emphasis on the current hard training group.",
+  "falsifier": "Matched ERM or the author online group-DRO achieves equal or better full-task tradeoff; lowering training F alone cannot establish transfer.",
+  "closest_alternative": "Sagawa et al. group DRO and ordinary ERM. The entropic static dual and persistent online adversary are distinct algorithms, neither is new.",
+  "decisive_comparison": "Compare same data/head/regularization/iterations and total group statistics cost; predeclare average and worst native task outcomes, preserve both adverse and favorable results.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy I11 correctly implements memoryless softmax group-loss weighting on ScienceQA/A-OKVQA; its groups are not the three evaluation-task groups.",
+  "review_limit": "Conditional finite-dimensional conjugate/gradient reviewed; joint native evidence, parent failure and originality remain pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

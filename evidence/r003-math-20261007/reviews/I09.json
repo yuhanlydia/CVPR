@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I09",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I09.json",
+    "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Fixed Bernoulli teacher probabilities, sample design and anchored ridge define the same local CE problem.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "B02: g=X^T(p0-pT)/n and H=X^T D X/n. Condition: pT fixed independently of the fitted student F06: Eliminate the feature-space inverse using a sample-space solve. Condition: lambda>0 makes the system invertible",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Logistic g,H and the sample-space dual normal system agree; the conservative third-derivative remainder is mean |x delta|^3/24.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Teacher/student margins have the same temperature units and fixed training-only pairs. A single quadratic approximation is local; the teacher is the same full-dimensional 2B model, not a new reranker. Curvature flooring/damping changes the exact Hessian in saturation. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The one-step solve is explicit with positive damping, but floors and large steps weaken the exact-curvature interpretation; residual/trust-region acceptance is still needed.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Benefits depend on actual directional curvature and small enough margin changes; saturation/floor activation identifies a boundary where the exact Hessian explanation weakens. Falsification: Ordinary optimized pair/listwise KD at equal complete compute wins, or large-step true loss increases without a justified trust region.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Ordinary optimized CE/listwise KD is stronger than legacy squared KD. Same full-dimensional 2B teacher is not a new reranker. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I09.json",
+          "sha256": "b9900489bf149a0d49bfc41c01303c937d9fb43d0478623f9b28d6427ba4b3c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

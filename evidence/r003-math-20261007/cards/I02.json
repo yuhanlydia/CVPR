@@ -1,0 +1,72 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I02",
+  "title": "Protected query subspace",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Bilinear score q^T(I+Delta)c; orthonormal training-only basis R of protected queries; P=I-RR^T.",
+  "assumptions": [
+    "R^T R=I and P is fixed from fitting data.",
+    "Protection means raw bilinear logits, not renormalized embeddings or whole-task accuracy.",
+    "Candidate inputs, pooling and score temperature do not change."
+  ],
+  "operations": [
+    {
+      "id": "D01",
+      "input": "Linear constraint R^T Delta=0",
+      "condition": "R is an orthonormal basis",
+      "condition_status": "conditional",
+      "output": "Every feasible update is Delta=P Z."
+    },
+    {
+      "id": "C04",
+      "input": "Bilinear score perturbation",
+      "condition": "Use the same fixed raw score on both arms",
+      "condition_status": "conditional",
+      "output": "Only q_perp contributes and controls drift."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "projection",
+      "statement": "P^2=P and R^T P=0; R^T Delta=0 iff Delta=P Delta.",
+      "justification": "Multiply by RR^T and decompose any matrix into subspace and complement rows."
+    },
+    {
+      "id": "invariance",
+      "statement": "For q in span(R), q^T Delta c=0.",
+      "justification": "q=R a makes q^T Delta=a^T R^T Delta zero without needing c to be protected."
+    },
+    {
+      "id": "drift_bound",
+      "statement": "|q^T Delta c| <= ||P q||_2 ||Delta||_2 ||c||_2.",
+      "justification": "Cauchy-Schwarz and the induced operator norm on the complement."
+    },
+    {
+      "id": "constrained_fit",
+      "statement": "Use x_P=vec((Pq)(c_pos-c_neg)^T)/T, ridge solve for Z and return I+PZ.",
+      "justification": "The parametrization enforces the linear constraint; same ridge objective has a unique solution at lambda>0."
+    }
+  ],
+  "method_expression": "Fit Delta=PZ with fixed R/P; emit raw bilinear logits without a second normalization.",
+  "distinguishing_prediction": "At equal update norm, raw score drift is zero on protected span and bounded proportionally to query distance from that span. This does not assert whole-group preservation.",
+  "falsifier": "Nonzero protected-span score drift refutes the implementation. No better drift/quality tradeoff than an unconstrained ridge/trust-region control defeats necessity.",
+  "closest_alternative": "PCGrad projects task gradients only on conflict; fixed subspace-constrained least squares imposes exact score invariants. Neither comparison establishes originality.",
+  "decisive_comparison": "Use native queries and original candidates with fixed R; compare same-teacher unconstrained, norm-matched ridge and PCGrad, accounting for the choice of protected rank using only development data.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy fit(I02) applies P on rows after a dual ridge solve; features returns q@(I+Delta), matching the raw score. No software/numeric receipt for new review.",
+  "review_limit": "Projection and bound reviewed; protected rank=8 is a historical choice, not evidence of a meaningful protected task.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

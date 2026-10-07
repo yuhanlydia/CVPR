@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I11",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I11.json",
+    "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Group losses are source-declared training means and gamma>0 defines a static entropic maximum.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "C02: F=max_a sum a_g L_g+gamma H(a). Condition: gamma>0 and simplex weights B02: a_g=softmax(L_g/gamma), gradient=sum a_g grad L_g. Condition: All groups nonempty",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "The normalized Gibbs optimum and max-to-max+gamma log G bounds follow the finite simplex entropy dual; differentiation includes loss dependence.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Groups are declared by training provenance, not test outcomes; each has positive sample count. All group losses use the same units and fixed gamma. Smooth worst-training-group loss is not worst-test-task generalization. Finite gradient descent with ridge is an approximate optimization, not Sagawa's persistent online group adversary. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "Explicit smooth-max gradient with finite iterations is a valid conditional construction. It is not the author persistent online adversary.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Benefits, if any, should track changes in observed group loss dispersion and transfer to predeclared test tasks; small gamma increases emphasis on the current hard training group. Falsification: Matched ERM or the author online group-DRO achieves equal or better full-task tradeoff; lowering training F alone cannot establish transfer.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "The source-inspected Sagawa objective/update and ERM are distinct mandatory alternatives; training-source worst risk is not native worst-task generalization. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I11.json",
+          "sha256": "7e8203e2f72bef49049e97f94eee6dec6e3296a07bb70d9b13fd3cfd09ac4091"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

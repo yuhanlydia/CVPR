@@ -1,3 +1,48 @@
+# r003 当前 Web 交付：20卡审查与不可变原生输入
+
+科学/源码审查基于f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce；交付整合parent为
+340ea51bf7a33ff7f657308cef9e02a5ddfe981d，其并发人工审查/decision完整保留。
+本文件不预填自身未来commit；实际交付由GitHub条件更新及精确回读确定。
+
+本轮实物为 **generated_unexecuted**：
+- [20卡与人工语义审查](../../research/reviews/R003_REVIEW_2026-10-07.md)，每卡保留假设、实质推导、构造/缺口、预测、证伪、简单替代及原源码审计；
+- [当前20项batch](../../evidence/r003-math-20261007/batch.json)、
+  [实际before-code报告](../../evidence/r003-math-20261007/before-code-report.json)：
+  15/20条件形式构造，5项pending，exit2，零selected，全池/selection未通过；
+- [完整20项审查优先级排序](../../research/reviews/r003-ranking-20261007.json)：
+  first15是review tranche，不是verified top15；
+- [不可变模型/数据文件锁](../../configs/native-assets.lock.json)与
+  [Download datasets and models](../../docs/NATIVE_ASSET_RUNBOOK.md#download-datasets-and-models)：
+  全部模型18文件、3项完整test shards、原始eval ZIP、2项train shards/ZIP及官方hash；
+- tools/acquire_native_assets.py、tools/setup_native_env.sh、requirements-assets.txt、
+  configs/environment-native.yml；prepare_assets.py/qualify.py新增锁定离线loader分支；
+- [当前作者升级审查](../../research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md)与
+  [99d8ac0完整四skill来源锁](../../configs/autopilot-source-99d8ac0.json)。
+  旧1b4b8029锁/实际审查/活动任务不替换。
+
+先读[AGENTS](../../AGENTS.md)、[Local runbook](../../LOCAL_AGENT_RUNBOOK.md)、
+[详细获取/顺序命令/日志/故障/接受条件](../../docs/NATIVE_ASSET_RUNBOOK.md)与
+[实际backlog](../../research-backlog.json)。
+Local恢复已有SSH/实际远端路径、Conda、活动任务与原始剩余预算后，
+使用单一已接受remote run_harness执行源码/软件/输入/原生资格化。
+Web未执行生成代码、软件tests、模型或benchmark，也未检查用户SSH/GPU。
+
+I03距离与双线性分数不等价，I16精确RBF不改变单位点积排序，
+I17 MMSE不能直接推出旧检索权重；历史程序保留，未被认证或改写成新方法。
+I07/I08/I17/I19/I20关键构造仍pending；实际论文/作者源码/native联合证据和
+Parent/Natural Gate0/IPCG、完整G01、前15选择、新强对照及Local接受均未关闭。
+禁止把15条形式审查、下载资产数或旧CI记录当成科学选择/方法效果。
+没有完整科学先决条件时，新候选代码/G01保持阻塞；本次获取接口属独立维护。
+
+训练/test、完整ScienceQA/ChartQA/MSCOCO_i2t、所有原始候选/标签/分母/官方scorer保留。
+不降低为smoke、不推断原生分母、不给未知GPU成本造数字。
+原始18项/零重试/累计时钟与全部旧attempt/marker/失败保持不变。
+未完成的outer harness接受与跨窗守卫派发不声称已有。
+
+## 前次交付记录（保留）
+
+以下是前次来源维护/handoff记录，当前入口和状态以上述内容为准。
+
 # r003 Web handoff：最新版 skill 与 scheduled 长期目标
 
 日期：2026-10-07。来源 main parent：

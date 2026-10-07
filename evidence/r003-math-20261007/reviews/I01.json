@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I01",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I01.json",
+    "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "The interval object is jointly bounded relevance in teacher score units, not repeated deterministic model outputs.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "C04: inf(t_pos-t_neg)=t_hat_pos-t_hat_neg-u_pos-u_neg. Condition: Both error intervals hold jointly D01: Penalize only certified positive margins with convex hinge and anchored ridge. Condition: Fix intervals before fitting",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Subtract both uncertainty widths to obtain the worst-case pair margin; coverage must be simultaneous over the compared candidates.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Calibration establishes simultaneous interval coverage for all compared candidates, in the same teacher-logit units. Calibration is independent of fitting/evaluation/confirmation; repeated deterministic logits alone are not a confidence interval. lambda>0 and candidate pairs come only from released supervision. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The hinge construction acts only on pairs whose lower margin is positive. A missing independent interval producer blocks empirical use.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "When simultaneous teacher-error bounds are valid, erroneous certified teacher ordering occurs only outside the declared coverage event; declining pair coverage trades supervision volume for conditional ordering reliability. Falsification: Invalid coverage or no certified pairs defeats the premise. A matched point/logit KD solution with the same information and fitting cost removes the need for this intervention.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Point-value KD may explain the same result; interval coverage and certified-pair fraction distinguish the claimed mechanism. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I01.json",
+          "sha256": "98b74e2a084469fb2d28483f8640e08974ef4cf89c50e1d4bef0215ccf1697db"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

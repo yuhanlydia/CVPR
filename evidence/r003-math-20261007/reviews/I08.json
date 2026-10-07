@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I08",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I08.json",
+    "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "pending",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "The object is a local trajectory error with Jacobian products, including cross-step and cross-frequency terms.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "C05: e_{t+1}=J_t e_t+delta_t+O(||e_t||^2). Condition: Differentiability and bounded second derivatives locally C04: e_T approximately sum_t product_(s>t) J_s delta_t. Condition: Keep order and all cross terms",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Linear error propagation follows the local recursion; projecting frequency bands does not annihilate arbitrary cross terms.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "F_t is differentiable in a specified trajectory neighborhood; local remainder is controlled. A Fourier projector alone does not commute with spatial/temporal Jacobians. Native motion/quality are not measured by latent terminal norm alone. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "pending",
+      "rationale": "No frequency-dependent controller that suppresses error while preserving original motion is constructed. Smoothing is not an adequate method definition.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "A future valid intervention would need a frequency-dependent error/cost law that a budget-matched smoothing baseline does not explain. Falsification: Reduced latent error with degraded official motion/quality or ordinary smoothing matching the effect defeats the explanation.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Video smoothing, distillation and caching can explain apparent error reductions; the motion-quality boundary is still undefined. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I08.json",
+          "sha256": "85d62cc80ffd0c8c652eaa25c5b630b8c7cbd0050ab45c407f3c0893fedce2e5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

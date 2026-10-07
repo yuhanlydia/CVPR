@@ -1,5 +1,7 @@
 """One native-runner-owned acquisition/calibration/baseline job.
 
+New immutable-local loader branch: generated_unexecuted; Local acceptance pending.
+
 Native rows/candidates/labels and scorer are retained. Calibration produces costs,
 not benchmark performance. Full native task results are developmental qualification.
 No research method, training sweep or confirmation is dispatched here.
@@ -33,7 +35,13 @@ def main():
     p.add_argument("--out", required=True)
     p.add_argument("--seconds", type=float, required=True)
     p.add_argument("--image-root")
+    p.add_argument("--asset-lock")
+    p.add_argument("--asset-root")
+    p.add_argument("--asset-receipt")
     a = p.parse_args()
+    locked = (a.asset_lock, a.asset_root, a.asset_receipt)
+    if any(locked) and (not all(locked) or a.image_root):
+        p.error("Use all three --asset-* arguments without --image-root")
     cfg, out = read_json(a.config), Path(a.out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     started, deadline = time.monotonic(), time.monotonic() + a.seconds
@@ -57,6 +65,11 @@ def main():
                "--config", a.config, "--out", str(out / "assets")]
         if a.image_root:
             cmd += ["--image-root", a.image_root]
+        if a.asset_lock:
+            cmd += ["--asset-lock", a.asset_lock, "--asset-root", a.asset_root,
+                    "--asset-receipt", a.asset_receipt, "--seconds", str(min(
+                        cfg["acquisition_timeout_seconds"],
+                        max(1, deadline - time.monotonic() - cfg["reserved_tail_seconds"])))]
         subprocess.run(cmd, check=True, timeout=min(cfg["acquisition_timeout_seconds"],
                                                    max(1, deadline - time.monotonic() - cfg["reserved_tail_seconds"])))
         assets = read_json(out / "assets/assets.json")
@@ -76,6 +89,19 @@ def main():
         def pinned_dataset(path, *args, **kwargs):
             if path != assets["metadata_id"]:
                 raise ValueError(f"Undeclared benchmark repository: {path}")
+            if assets.get("metadata_path"):
+                if len(args) != 1 or kwargs != {"split": "test"}:
+                    raise ValueError("Original native parser load signature changed")
+                name = args[0]
+                if name not in cfg["core_tasks"] + cfg["reserve_tasks"]:
+                    raise ValueError("Undeclared native task")
+                from acquire_native_assets import under
+                shards = [under(assets["metadata_path"], relative)
+                          for relative in assets["metadata_task_files"][name]]
+                if not shards:
+                    raise FileNotFoundError("Missing locked physical test shards: " + name)
+                return original_dataset_load("parquet", data_files={"test": [
+                    str(path) for path in shards]}, split="test")
             kwargs["revision"] = assets["metadata_revision"]
             return original_dataset_load(path, *args, **kwargs)
         datasets.load_dataset = pinned_dataset

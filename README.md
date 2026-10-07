@@ -9,8 +9,13 @@
 先读 [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md)、
 [当前 Web handoff](rounds/r003/WEB_HANDOFF.md) 和 [AGENTS.md](AGENTS.md)。
 [源码获取与完整skill安装](LOCAL_AGENT_RUNBOOK.md#下载与完整-skill-安装)
-固定到1b4b8029b399d8a1d1607b481ea2d1a22d632233；
-全部模型/数据下载卡与完整新实验handoff仍待补齐。
+旧1b4b8029绑定保留；[最新99d8ac0适用性审查](research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md)
+与完整新来源锁已新增。
+[Download datasets and models](docs/NATIVE_ASSET_RUNBOOK.md#download-datasets-and-models)
+给出保留输入的不可变文件清单、实际下载/校验/抽取源码、Conda与离线原生接口命令。
+[20卡逐项审查](research/reviews/R003_REVIEW_2026-10-07.md)已补15项条件构造与5项pending，
+[完整审查优先级排序](research/reviews/r003-ranking-20261007.json)不是verified top15；
+科学前提、完整G01/额外强对照和Local接受仍待补齐。
 新增文件为**generated_unexecuted**，Web未执行新代码、tests或模型。
 
 [Web代码完成目标](LONG_TERM_TASK.md) 与 [续做清单](research-backlog.json)

@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I04",
+  "title": "Budgeted adaptive reranking",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Expected native loss reduction Delta(q) from a qualified reranker; positive cost c(q); a(q) in [0,1], E[a c]<=B.",
+  "assumptions": [
+    "Development-estimated Delta and c are fixed before evaluation; test labels cannot route queries.",
+    "Costs include gating, reranker inference and complete output reconstruction.",
+    "Randomization on threshold ties may be necessary for an exact expected budget."
+  ],
+  "operations": [
+    {
+      "id": "D01",
+      "input": "Linear expected loss and cost constraint",
+      "condition": "A convex randomized policy class and integrable costs",
+      "condition_status": "conditional",
+      "output": "Pointwise Lagrangian minimization thresholds Delta-lambda c."
+    },
+    {
+      "id": "D03",
+      "input": "Expected cost of threshold policy",
+      "condition": "As lambda grows selected cost is nonincreasing",
+      "condition_status": "conditional",
+      "output": "Calibrate lambda on development costs with endpoints and tie randomization."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "threshold",
+      "statement": "Min_a E[L_base-a Delta]+lambda(E[a c]-B) picks a=1 if Delta>lambda c, a=0 if lower.",
+      "justification": "The coefficient of a is lambda c-Delta; equality permits any a in [0,1]."
+    },
+    {
+      "id": "budget",
+      "statement": "Use lambda>=0, complementary slackness; an inactive budget chooses all positive-benefit queries.",
+      "justification": "A fixed deterministic threshold need not hit a tied finite-sample budget; randomized tie mass closes that gap."
+    },
+    {
+      "id": "finite_budget",
+      "statement": "A hard realized per-run budget is not guaranteed by an expectation-only constraint.",
+      "justification": "Random query counts/costs add a separate stopping/resource admission obligation."
+    }
+  ],
+  "method_expression": "Estimate routing gain and total cost on legal development data; apply threshold with tie logic. No qualified gain/cost estimator or original output-restoration interface is currently supplied.",
+  "distinguishing_prediction": "Heterogeneous predictable native gains should permit better expected quality at equal all-in cost than random routing; the same threshold law is standard allocation.",
+  "falsifier": "No out-of-distribution calibration or no benefit after gating/ranking costs refutes necessity.",
+  "closest_alternative": "Fixed reranking, uncertainty/gain routing and Qwen/UniME reranker pipelines; recent adaptive-query full algorithm/cost audit is pending.",
+  "decisive_comparison": "An abstract matched-cost contrast on existing native tasks, not a dispatch plan; native complete rankings and hard budget need implementation before admission.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "No fit(I04); no real qualified reranker gain/cost cache. Current image pipeline uses an embedding model only.",
+  "review_limit": "Conditional optimization reviewed; operational routing/coverage and consequential frontier absent.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

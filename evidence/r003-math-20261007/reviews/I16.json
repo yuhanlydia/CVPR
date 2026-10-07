@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I16",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I16.json",
+    "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Unit-vector RBF and a regularized positive landmark matrix define the exact kernel and its approximation separately.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "F01: z(x)=k(x,L)W^-1/2. Condition: W SPD H06: Exact RBF and dot product induce identical mathematical rankings. Condition: Fixed sigma>0",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "The inverse-root factor identity is exact; unit norm makes exact RBF strictly monotone in dot; a 2epsilon margin controls pairwise approximation order.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Both vectors must be unit normalized for the exact rank-equivalence statement. Landmarks and hyperparameters fixed on train; output unnormalized feature maps. Approximation can alter ranking, but that does not imply exact RBF supplies a new semantic nonlinear ranking. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The known Nystrom map is explicit, but the original nonlinear-quality explanation is withdrawn. A correction is not evidence of empirical success.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "If Nystrom improves a native ranking, the change must be caused by approximation/regularization (or numerical ties), not exact RBF expressivity on unit inputs. Falsification: The claimed nonlinear gain is asserted despite equal exact rankings, or actual approximation/cost is worse than a simple linear reduced representation.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Exact RBF cannot supply new mathematical ranks here; any change must arise from approximation/regularization or numerical ties. This limits the hypothesis without a blinded project KILL. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I16.json",
+          "sha256": "515de446c46b3852cf364a4145407f9f578fc010b91c595110f8088bb69b0e05"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

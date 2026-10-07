@@ -7,7 +7,14 @@
 Web在该次任务内持续完成已授权代码与完整运行命令，实际实验交给用户Local agent。
 保留持久进度与实际交付状态；未完成的工作不能写成已完成，不用周期提醒代替代码交付。
 
-来源：Yunbo-max/Research_Autopilot @ 1b4b8029b399d8a1d1607b481ea2d1a22d632233。
+本轮已保存20卡人工条件数学/源码审查、真实before-code阻塞报告、全20项审查优先级排序，
+以及保留原生输入的完整下载锁/获取校验抽取源码/Conda与离线loader命令。
+15项有条件形式构造，5项构造与全池/前15、Parent/Natural Gate0/IPCG、完整G01仍pending。
+见[实际审查](research/reviews/R003_REVIEW_2026-10-07.md)与[下载/接受卡](docs/NATIVE_ASSET_RUNBOOK.md)。
+
+当前作者来源：Yunbo-max/Research_Autopilot @99d8ac079682e91f61ab59bfd3e760eccb8b5726，
+[更新适用性](research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md)及
+[新完整锁](configs/autopilot-source-99d8ac0.json)已保存；旧1b4b8029b399d8a1d1607b481ea2d1a22d632233锁保留，活动任务不迁移。
 每轮先读取作者最新源码与 CVPR 的实际 main，核对适用变更；保留旧版与活动任务的版本。
 见 [升级审查](research/AUTOPILOT_UPGRADE_2026-10-07.md)、
 [来源锁定](configs/autopilot-source.json) 与 [当前 Web handoff](rounds/r003/WEB_HANDOFF.md)。
@@ -31,7 +38,7 @@ Web角色为web_supervisor，只分析、生成与源码审查、向literal main
 Local控制会话位于用户电脑，以已有SSH操作GPU主机；所有可执行项目任务由一个
 run_harness owner运行，优先既有原生Conda。旧venv/inner runner是待审查复用的历史资产。
 全程禁止Docker、docker compose、Podman、Singularity、Apptainer和其他容器。
-当前完整实验runbook、模型/数据获取卡、G01与outer harness资格仍待补齐。
+保留r003模型/数据获取卡及实际维护代码已补；未来top15额外输入、完整G01与outer harness实际接受仍pending。
 
 保留原生完整ScienceQA、ChartQA、MSCOCO_i2t比较，不缩减候选/标签/分母或改评分器。
 保留所有失败、不利、缺对照与未完成记录；单项失败继续独立就绪项，依赖故障阻塞后代。

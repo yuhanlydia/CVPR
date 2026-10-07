@@ -1,0 +1,33 @@
+{
+  "status": "observed_controller_evidence_check",
+  "execution_role": "web_supervisor",
+  "skill_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+  "command": [
+    "python3",
+    "/workspace/scratch/75f78995bba7/Research_Autopilot_pinned_1b4b8029/skills/research-autopilot/scripts/verify_methods.py",
+    "--root",
+    "/workspace/scratch/75f78995bba7/cvpr-review-20261007",
+    "--batch",
+    "evidence/r003-math-20261007/batch.json",
+    "--candidate",
+    "I02",
+    "--before",
+    "code"
+  ],
+  "actual_author_script": "scripts/verify_methods.py",
+  "exit_code": 2,
+  "report": "evidence/r003-math-20261007/before-code-report.json",
+  "scope": "Read-only existing skill contract checker only. No generated project code, software test, model, SSH/GPU or benchmark was executed.",
+  "interpretation": "15 conditional math constructions, five pending; all code/design/result/verdict flags false; full 20 pool and top-15 selection not ready. This is not mathematical proof, independent review or scientific authorization.",
+  "checked_between_utc": [
+    "2026-10-07T09:45:04Z",
+    "2026-10-07T09:48:01Z"
+  ],
+  "host_path_scope": "Actual Web controller evidence-check paths only; never remote execution paths.",
+  "current_author_source_applicability": {
+    "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+    "script_git_blob_unchanged": "f2c452faaf27dd508d5f29c1a94d02558677a8ba",
+    "review": "research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md",
+    "rerun": "Not repeated because script/schema and applicable mathematical/gate contracts did not change."
+  }
+}

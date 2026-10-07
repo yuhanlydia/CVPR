@@ -1,0 +1,72 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I09",
+  "title": "One-step curvature-aware pair distillation",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Fixed teacher Bernoulli probabilities pT=sigmoid(t), student m=Xw, anchored regularization lambda||w-w0||^2/2 with lambda>0.",
+  "assumptions": [
+    "Teacher/student margins have the same temperature units and fixed training-only pairs.",
+    "A single quadratic approximation is local; the teacher is the same full-dimensional 2B model, not a new reranker.",
+    "Curvature flooring/damping changes the exact Hessian in saturation."
+  ],
+  "operations": [
+    {
+      "id": "B02",
+      "input": "Bernoulli cross-entropy soft targets",
+      "condition": "pT fixed independently of the fitted student",
+      "condition_status": "conditional",
+      "output": "g=X^T(p0-pT)/n and H=X^T D X/n."
+    },
+    {
+      "id": "F06",
+      "input": "Ridge-damped local system",
+      "condition": "lambda>0 makes the system invertible",
+      "condition_status": "conditional",
+      "output": "Eliminate the feature-space inverse using a sample-space solve."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "derivatives",
+      "statement": "L(w)=mean(log(1+exp(Xw))-pT Xw); D_i=p0_i(1-p0_i).",
+      "justification": "First and second derivatives of the logistic log partition under a fixed teacher."
+    },
+    {
+      "id": "step",
+      "statement": "delta=-(X^T D X/n+lambda I)^-1 X^T(p0-pT)/n.",
+      "justification": "At expansion w0 the anchored-ridge gradient is zero; the quadratic stationary point gives the step."
+    },
+    {
+      "id": "dual",
+      "statement": "With A=sqrt(D)X, b=(pT-p0)/sqrt(D), delta=A^T(AA^T+n lambda I)^-1 b.",
+      "justification": "Multiply the normal system to verify Woodbury-style elimination without allocating the d^2 by d^2 Hessian."
+    },
+    {
+      "id": "remainder",
+      "statement": "For bounded margin change, the loss Taylor remainder is at most mean(|x_i^T delta|^3)/24 using |ell'''|<=1/4.",
+      "justification": "A conservative logistic third-derivative bound controls a local, not global, approximation; D floors replace this exact quadratic with a surrogate."
+    }
+  ],
+  "method_expression": "One ridge-damped sample-space solve with before/after true soft-target CE, maximum margin step and solver residual retained; no global Newton/convergence claim.",
+  "distinguishing_prediction": "Benefits depend on actual directional curvature and small enough margin changes; saturation/floor activation identifies a boundary where the exact Hessian explanation weakens.",
+  "falsifier": "Ordinary optimized pair/listwise KD at equal complete compute wins, or large-step true loss increases without a justified trust region.",
+  "closest_alternative": "Damped Newton/natural preconditioning and Qwen listwise distillation. Historical C_KD squared-margin fitting is not the matched CE optimization baseline.",
+  "decisive_comparison": "Complete native rankings, same projected student/teacher/data, matched solver/KD information and total fit costs; this is a preliminary contrast until G01 exists.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy fit(I09) uses the correct dual solve with a Fisher floor, but only records CE before/after and maximum logit step; no true residual/trust-region or stronger CE control.",
+  "review_limit": "Exact derivative/dual identity and local limitation reviewed; efficacy/originality not established.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

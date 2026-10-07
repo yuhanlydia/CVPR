@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I13",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I13.json",
+    "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Train covariance is PSD with mu>0; fixed alpha and ridge define the actual transform.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "A05: Shrink toward isotropy before inverse-root whitening. Condition: C PSD and mu>0 D05: lambda_min(C_alpha)>=(alpha mu+rho). Condition: alpha>0,rho>0",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Shared identity terms yield exact eigenvalue and inverse-root amplification bounds; neither gives an accuracy theorem.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Covariance is centered on training inputs; evaluate with the same fixed means/maps. The shared diagonal shift bounds inverse amplification; it need not improve downstream ranking. Fixed alpha=.2 is not an estimated Ledoit-Wolf or OAS optimum. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "A finite fixed-alpha inverse-root map is explicit; legacy floor/ridge must be matched in every whitening comparison.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Unstable small empirical eigenvalues cause less amplification under shrinkage; any useful benefit must survive comparison with ordinary ridge and fitted covariance shrinkage. Falsification: Same-ridge whitening, diagonal scaling, OAS or Ledoit-Wolf gives the same or better native tradeoff, or shrinkage removes informative rare directions.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Ridge whitening, OAS and Ledoit-Wolf are known alternatives; fixed .2 does not claim their estimation optimum. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I13.json",
+          "sha256": "13faaed0eeb944aa493601ff28b5ac625ba6edf18cc3bece86c313b94e19b1c5"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

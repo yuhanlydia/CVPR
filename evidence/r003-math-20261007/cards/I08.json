@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I08",
+  "title": "Frequency-sensitive video solver error",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Perturbed numerical trajectory x_{t+1}=F_t(x_t)+delta_t and terminal error e_T; derivative J_t=DF_t.",
+  "assumptions": [
+    "F_t is differentiable in a specified trajectory neighborhood; local remainder is controlled.",
+    "A Fourier projector alone does not commute with spatial/temporal Jacobians.",
+    "Native motion/quality are not measured by latent terminal norm alone."
+  ],
+  "operations": [
+    {
+      "id": "C05",
+      "input": "Small local state and solver errors",
+      "condition": "Differentiability and bounded second derivatives locally",
+      "condition_status": "conditional",
+      "output": "e_{t+1}=J_t e_t+delta_t+O(||e_t||^2)."
+    },
+    {
+      "id": "C04",
+      "input": "Compose linearized errors to the terminal state",
+      "condition": "Keep order and all cross terms",
+      "condition_status": "conditional",
+      "output": "e_T approximately sum_t product_(s>t) J_s delta_t."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "propagation",
+      "statement": "Repeated substitution yields the ordered Jacobian products on each local perturbation.",
+      "justification": "Products need not commute and cumulative remainder can grow outside the local regime."
+    },
+    {
+      "id": "frequency_cross",
+      "statement": "||sum_t P_freq J_chain delta_t||^2 includes all pairwise inner products.",
+      "justification": "Orthogonal Fourier bands do not make propagated errors across times independent."
+    },
+    {
+      "id": "construction_gap",
+      "statement": "No derived filter/controller currently optimizes amplification while preserving actual native motion under fixed solver cost.",
+      "justification": "Suppressing high-frequency components can remove meaningful motion; an error equation is not an algorithm."
+    }
+  ],
+  "method_expression": "Incomplete: error decomposition retained; no candidate-specific update or bounded frequency controller justified.",
+  "distinguishing_prediction": "A future valid intervention would need a frequency-dependent error/cost law that a budget-matched smoothing baseline does not explain.",
+  "falsifier": "Reduced latent error with degraded official motion/quality or ordinary smoothing matching the effect defeats the explanation.",
+  "closest_alternative": "Wan, native diffusion/flow solvers, video distillation and smoothing; current closest-work code/protocol qualification not complete.",
+  "decisive_comparison": "Native video quality/motion benchmarks required. The current image tasks do not test this claim; no synthetic videos or scorer introduced.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "No fit(I08); no actual solver/motion-source construction.",
+  "review_limit": "Pending complete construction and controlled remainder/native frontier; diagnostic law alone not candidate ready.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

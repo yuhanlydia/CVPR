@@ -1,0 +1,159 @@
+{
+  "schema": "cvpr-source-review-capture-v1",
+  "status": "source_inspected_not_executed",
+  "observed_on": "2026-10-07",
+  "cvpr_main_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+  "skill_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+  "role": "web_supervisor",
+  "review_independence": "Single-agent source/mathematical review. No blinded collision adjudication.",
+  "primary_sources": [
+    {
+      "id": "QWEN_REPORT",
+      "url": "https://arxiv.org/html/2601.04720v2",
+      "scope": "Section 5.1, retrieval/classification losses, distillation Eq.3, MRL/QAT subsection",
+      "findings": "Listwise reranker distillation and learned prefix compression are existing mechanisms. Pairwise same-model teacher prototypes and PCA alone are not equivalent reproductions or novel alternatives."
+    },
+    {
+      "id": "SUPCON",
+      "url": "https://arxiv.org/html/2004.11362v5",
+      "scope": "Section 3.2.2 Eqs.2-4 and gradient appendix",
+      "findings": "I05 log positive-sum matches the inside-log family up to a label-count constant, not the outside-log SupCon objective. The latter uniformly supervises all positives and is an indispensable alternative."
+    },
+    {
+      "id": "GROUP_DRO",
+      "url": "https://arxiv.org/pdf/1911.08731",
+      "scope": "Sections 3-5, Algorithm 1; convex convergence assumptions",
+      "findings": "A worst-group objective and exponentiated group updates exist. I11 uses an entropically smoothed maximum with memoryless softmax group weights; it is not a reproduction of the online adversary."
+    },
+    {
+      "id": "DIFFUSION",
+      "url": "https://arxiv.org/pdf/math/0503445",
+      "scope": "Sections 2-4, symmetric/Markov conjugation and density-dependent continuum limits",
+      "findings": "Finite graph similarity and eigenvector conjugation are existing. I12 extrapolation follows the finite eigen-equation; no new continuum consistency claim is established."
+    },
+    {
+      "id": "UNIME2",
+      "url": "https://arxiv.org/html/2510.13515v2",
+      "scope": "Universal embedding loss Eqs.2-4 and inference pipeline",
+      "findings": "Soft semantic supervision and reranking already exist. The displayed symmetric KL expression should not be inherited as Jensen-Shannon; method-specific novelty remains unresolved."
+    }
+  ],
+  "actual_code": [
+    {
+      "repository": "yuhanlydia/CVPR",
+      "revision": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "path": "experiments/embedding_heads/heads.py",
+      "blob": "2b7af94886eba8e9aae2ee23a41ba1f03fbe3a40"
+    },
+    {
+      "repository": "yuhanlydia/CVPR",
+      "revision": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "path": "experiments/embedding_heads/bundle.py",
+      "blob": "255eb5aedf30e1e55765ce912e6bfcbc39e15984"
+    },
+    {
+      "repository": "yuhanlydia/CVPR",
+      "revision": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "path": "tools/prepare_candidate_bundle.py",
+      "blob": "dd994f883f8944e6656d80b50b6087b24dd382dc"
+    },
+    {
+      "repository": "yuhanlydia/CVPR",
+      "revision": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "path": "tools/qualify.py",
+      "blob": "fba69b91b547dd03d982d62f4747e84de8b4ef24"
+    },
+    {
+      "repository": "yuhanlydia/CVPR",
+      "revision": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "path": "tools/source_adapter.py",
+      "blob": "1f07c3d151d3838fde59be274971773542f1579a"
+    },
+    {
+      "repository": "yuhanlydia/CVPR",
+      "revision": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "path": "configs/candidates.json",
+      "blob": "5b9252efa454a4ecac35dddbd66440dacaa97a64"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "revision": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/data/datasets/image_qa_dataset.py",
+      "blob": "36e5e4f1976dbf02ebf114363582e4c7e97860ce",
+      "scope": "data_prepare/target[0] label; load_image_qa_dataset/test"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "revision": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/data/datasets/image_i2t_eval.py",
+      "blob": "1a5f73e907c9135bd5906d98cb811232de71cfc8",
+      "scope": "released local candidates and first target label"
+    },
+    {
+      "repository": "QwenLM/Qwen3-VL-Embedding",
+      "revision": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+      "path": "src/evaluation/mmeb_v2/utils/eval_utils/metrics.py",
+      "blob": "097365b58831711d0b04eef08f9d4232f6486d6c",
+      "scope": "RankingMetrics.evaluate; unchanged scorer/aggregation"
+    },
+    {
+      "repository": "HobbitLong/SupContrast",
+      "revision": "66a8fe53880d6a1084b2e4e0db0a019024d6d41a",
+      "path": "losses.py",
+      "blob": "3a11ca74a2c3e000f869e6514787a108397415de",
+      "scope": "SupConLoss.forward, mean_log_prob_pos"
+    },
+    {
+      "repository": "kohpangwei/group_DRO",
+      "revision": "cbbc1c5b06844e46b87e264326b56056d2a437d1",
+      "path": "loss.py",
+      "blob": "8587039953e92991f64c0b834fb527d4425ba256",
+      "scope": "LossComputer.compute_robust_loss, compute_group_avg"
+    },
+    {
+      "repository": "tianheyu927/PCGrad",
+      "revision": "c5fbd7c856526373828074f06875230f7f3ee79e",
+      "path": "PCGrad_tf.py",
+      "blob": "6ca0b8faff31b4714ff3007269c453ee6db603a2",
+      "scope": "proj_grad, conflict-dependent gradient projection vs I02 fixed query subspace"
+    }
+  ],
+  "native_contract": {
+    "upstream_revision": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+    "configuration": "scripts/evaluation/mmeb_v2/image.yaml",
+    "tasks": [
+      "ScienceQA",
+      "ChartQA",
+      "MSCOCO_i2t"
+    ],
+    "evaluation_split": "test",
+    "eval_type": "local",
+    "scorer": "RankingMetrics",
+    "primary_metric": "hit@1",
+    "coverage": "All released rows, labels and complete per-query candidate rankings; no sampled replacement.",
+    "observed_run": "NONE",
+    "denominators": "Resolved from immutable released datasets by Local; no invented observed counts."
+  },
+  "literature_gaps": {
+    "I01": "No calibrated simultaneous teacher relevance intervals or full robust-KD collision search.",
+    "I03": "Metric-learning author implementation/full-text match not completed; bilinear score mismatch established algebraically.",
+    "I04": "Native gain/cost development calibration and recent adaptive-reranking algorithms pending.",
+    "I06": "Published partial transport/video localization joint review pending; current three image tasks cannot measure event matching.",
+    "I07": "Full GRPO/DAPO/UniME-R1 estimator/author-code/native reward comparison pending.",
+    "I08": "An actual frequency-dependent construction, native video protocol and qualified quality/resource frontier absent.",
+    "I10": "Original CCA/full modern multimodal alignment collision coverage pending; SVD identity independently derived.",
+    "I13": "Full Ledoit-Wolf/OAS comparison pending; fixed shrinkage is neither estimator.",
+    "I14": "Huber robust-KD functional coverage pending; bounded-gradient identity independently derived.",
+    "I15": "Semantic identifiability of unpaired alignment and actual task need absent.",
+    "I16": "Full Nyström collision audit pending; rank-equivalence defeats the current exact-RBF quality explanation.",
+    "I17": "Wiener/MMSE comparison and actual independent noise assumption checks pending.",
+    "I18": "Existing D-optimal/coreset full-text and native selection learning-curve comparison pending.",
+    "I19": "Full-ranking native output requirement prevents the proposed top-k stopping handoff.",
+    "I20": "RA-CFGCache/Wan/VBench prior records retained; no completed second-order construction or joint probe budget."
+  },
+  "natural_failure_evidence": "NOT_RETURNED",
+  "parent_problem": "NOT_FROZEN",
+  "natural_gate_0": "PENDING",
+  "ipcg": "PENDING",
+  "scope_limit": "The retained capture is a source-review note with exact locators/identities, not a published paper reproduction or empirical result."
+}

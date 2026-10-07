@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I16",
+  "title": "Regularized Nystrom features and exact-RBF rank equivalence",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Unit query/candidate x,y, k(x,y)=exp(-||x-y||^2/(2 sigma^2)), sigma>0; train landmarks L and W=K_LL+rho I, rho>0.",
+  "assumptions": [
+    "Both vectors must be unit normalized for the exact rank-equivalence statement.",
+    "Landmarks and hyperparameters fixed on train; output unnormalized feature maps.",
+    "Approximation can alter ranking, but that does not imply exact RBF supplies a new semantic nonlinear ranking."
+  ],
+  "operations": [
+    {
+      "id": "F01",
+      "input": "Kernel matrix and landmarks",
+      "condition": "W SPD",
+      "condition_status": "conditional",
+      "output": "z(x)=k(x,L)W^-1/2."
+    },
+    {
+      "id": "H06",
+      "input": "Unit-vector exact RBF scoring",
+      "condition": "Fixed sigma>0",
+      "condition_status": "conditional",
+      "output": "Exact RBF and dot product induce identical mathematical rankings."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "factor",
+      "statement": "z(x)z(y)^T=k(x,L)(K_LL+rho I)^-1k(L,y).",
+      "justification": "Multiply the symmetric inverse-root factors; this is regularized Nystrom, not the unregularized Moore-Penrose formula."
+    },
+    {
+      "id": "monotone",
+      "statement": "||x-y||^2=2-2x^T y, so k=exp((x^T y-1)/sigma^2) is strictly increasing in x^T y.",
+      "justification": "Exact norm expansion and positivity of the exponential derivative prove ranking equivalence, apart from finite-precision ties."
+    },
+    {
+      "id": "margin",
+      "statement": "If |khat-k|<=epsilon for a query's candidates and k(x,c1)-k(x,c2)>2epsilon, their order is preserved.",
+      "justification": "Subtract the two approximation errors; no spectral bound alone certifies every small-margin native pair."
+    }
+  ],
+  "method_expression": "Retain the existing regularized Nystrom feature construction only as a known low-rank/regularization tradeoff, output all candidate scores and compare to exact linear/RBF ties explicitly. Withdraw the original exact-RBF nonlinear-quality explanation.",
+  "distinguishing_prediction": "If Nystrom improves a native ranking, the change must be caused by approximation/regularization (or numerical ties), not exact RBF expressivity on unit inputs.",
+  "falsifier": "The claimed nonlinear gain is asserted despite equal exact rankings, or actual approximation/cost is worse than a simple linear reduced representation.",
+  "closest_alternative": "Known Nystrom and ridge kernel features; exact RBF is a monotone transform of the unit dot score here.",
+  "decisive_comparison": "Same unit features, landmarks/rank, all native candidates and total fit/transform/scoring costs; preserve tie policy. This is a correction/control need, not a new scientific direction.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy I16 uses the regularized factorization; C_RBF and C_PROJECTED must be rank-equivalent mathematically on the same unit features.",
+  "review_limit": "Factor/rank identities reviewed; original quality explanation refuted under its own assumptions, efficacy and novelty pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

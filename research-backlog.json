@@ -6,7 +6,7 @@
   "user_instruction": "Web GPT尽快完成已授权研究代码与命令并交付main；不按每天上午8点推进，实际运行交给用户local agent，全程不用Docker",
   "continuation_branch": "main",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
-  "observed_code_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+  "observed_code_commit": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
   "operating_policy": "LONG_TERM_TASK.md",
   "cadence": {
     "kind": "one_off_web_code_completion",
@@ -69,7 +69,7 @@
       "I05",
       "I01"
     ],
-    "current_selection_status": "HISTORICAL_12_NOT_VERIFIED_TOP15",
+    "current_selection_status": "20_CARD_SEMANTIC_REVIEW_15_CONDITIONAL_FORMAL_5_PENDING_NO_VERIFIED_SELECTION",
     "new_discovery_target": 20,
     "top_selection_target": 15
   },
@@ -117,36 +117,49 @@
     {
       "id": "LT_SKILL_SYNC",
       "priority": 0,
-      "state": "SOURCE_AUDIT_COMPLETE_CODE_GENERATED_LOCAL_ACCEPTANCE_PENDING",
+      "state": "CURRENT_99D8AC0_SOURCE_DELTA_AND_COMPLETE_LOCK_DELIVERED_LOCAL_ACCEPTANCE_PENDING",
       "purpose": "核对作者最新完整skill与Local安装身份",
       "depends_on": [],
-      "next_action": "交付source lock/checker/审查入口，Local核对四个完整目录与node bindings",
-      "limits": "No private-source vendoring, Web tests or model runs; preserve active pinned versions"
+      "next_action": "Local核对实际完整四目录、当前新锁与旧活动版本；不迁移旧任务。",
+      "limits": "No private-source vendoring, Web tests or model runs; preserve active pinned versions",
+      "delivered_refs": [
+        "configs/autopilot-source-99d8ac0.json",
+        "research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md"
+      ]
     },
     {
       "id": "LT_CARD_REVIEW",
       "priority": 1,
-      "state": "MANUAL_FIRST_PASS_DELIVERED_FULL_SEMANTIC_PACKET_PENDING",
+      "state": "20_RETAINED_CARDS_MANUALLY_REVIEWED_15_CONDITIONAL_FORMAL_5_CONSTRUCTION_PENDING",
       "purpose": "逐项审查I01–I20数学、来源、自然问题与可证伪机制",
       "depends_on": [
         "LT_SKILL_SYNC"
       ],
-      "next_action": "Resolve I03 objective/scorer mismatch and I07/I08/I20 operational constructions; create actual per-card semantic evidence packet, primary-source comparison and complete ranking. Manual audit is not verified selection.",
+      "next_action": "复用实际20卡/reviews；完成I07/I08/I17/I19/I20关键构造及各卡已记录的论文/作者源码/native联合缺口，获取真实Parent/Natural证据；不得重复已完成推导或造通过。",
       "limits": "No generic pass flags, retrospective proof, padding or handcrafted evaluation",
       "delivered_files": [
         "research/MATH_SOURCE_AUDIT_2026-10-07.md"
+      ],
+      "delivered_refs": [
+        "research/reviews/R003_REVIEW_2026-10-07.md",
+        "research/reviews/r003-source-review-20261007.json",
+        "evidence/r003-math-20261007/batch.json"
       ]
     },
     {
       "id": "LT_RANK15",
       "priority": 2,
-      "state": "PENDING_REVIEWED_POOL_AND_COMPLETE_RANKING",
+      "state": "COMPLETE_REVIEW_PRIORITY_RANKING_DELIVERED_VERIFIED_POOL_SELECTION_PENDING",
       "purpose": "全池排序和前15选择",
       "depends_on": [
         "LT_CARD_REVIEW"
       ],
-      "next_action": "建立实际math pool/ranking/selection packet；不足保留缺口；当前verify_methods code boundary做只读证据检查",
-      "limits": "No fake method-batch; Gate0/IPCG/native/scientific obligations remain separate"
+      "next_action": "当前真实before-code exit2、全池缺5且selected为空；修复最早数学/联合证据前提后做真正selection packet/review，不把review_prefix_15冒称选择。",
+      "limits": "No fake method-batch; Gate0/IPCG/native/scientific obligations remain separate",
+      "delivered_refs": [
+        "research/reviews/r003-ranking-20261007.json",
+        "evidence/r003-math-20261007/before-code-report.json"
+      ]
     },
     {
       "id": "LT_IMPLEMENT15",
@@ -162,13 +175,22 @@
     {
       "id": "LT_NATIVE_HANDOFF",
       "priority": 4,
-      "state": "PENDING_COMPLETE_DOWNLOADS_G01_AND_HARNESS_ACCEPTANCE",
+      "state": "RETAINED_INPUT_LOCK_AND_ACQUISITION_LOADER_CODE_DELIVERED_G01_STRONG_CONTROLS_HARNESS_PENDING",
       "purpose": "完整多benchmark设计、全部输入与原生运行命令",
       "depends_on": [
         "LT_RANK15"
       ],
-      "next_action": "补齐每个model/data/baseline/scorer immutable revision、全部文件、获取/抽取/loader/访问/容量/校验卡；完整G01与native Conda/outer harness实用runbook由Local接受",
-      "limits": "No Docker, placeholder plans, guessed SSH paths, missing denominator or reduced coverage"
+      "next_action": "Local接受生成的Conda/获取/校验/抽取/离线parser入口；科学链成立后补未来top15全部强对照/输入/完整G01及实际outer/native plans。",
+      "limits": "No Docker, placeholder plans, guessed SSH paths, missing denominator or reduced coverage",
+      "delivered_refs": [
+        "configs/native-assets.lock.json",
+        "docs/NATIVE_ASSET_RUNBOOK.md",
+        "tools/acquire_native_assets.py",
+        "tools/setup_native_env.sh",
+        "tools/prepare_assets.py",
+        "tools/qualify.py"
+      ],
+      "maintenance_dependency_note": "保留输入与接口维护可独立进行；新增候选科学design/dispatch仍依赖LT_RANK15及Parent/Gate0/IPCG。"
     },
     {
       "id": "LT_CURRENT_ACCEPTANCE",
@@ -275,16 +297,17 @@
   "code_delivery_checks": {
     "date": "2026-10-07",
     "status": "generated_unexecuted",
-    "web_execution": "NONE",
-    "inspection": "Latest source/current-main/handoff review; all 298 upstream blob identities checked",
+    "web_execution": "NO_GENERATED_PROJECT_CODE_TEST_MODEL_GPU_OR_BENCHMARK",
+    "inspection": "Manual source/math review and immutable HF metadata/source-interface review; complete new four-skill lock has 294 actual Git blobs, old 292-entry lock unchanged.",
     "local_acceptance": "PENDING",
-    "native_integration": "PENDING; no new test/GPU receipt"
+    "native_integration": "PENDING",
+    "controller_evidence_check": "Existing unchanged author verify_methods.py, before code I02, exit 2; not software tests/proof/scientific readiness."
   },
   "latest_skill": {
     "repository": "Yunbo-max/Research_Autopilot",
-    "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
-    "lock": "configs/autopilot-source.json",
-    "audit": "research/AUTOPILOT_UPGRADE_2026-10-07.md"
+    "revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+    "lock": "configs/autopilot-source-99d8ac0.json",
+    "audit": "research/AUTOPILOT_DELTA_2026-10-07_99d8ac0.md"
   },
   "long_goal": "Reviewed mathematical pool (~20), full ranking/top-15 selection, substantive real-model code and complete native G01, Local acceptance/execution and evidence-based convergence",
   "current_workflow_checkpoint": "research/workflow-checkpoint-20261007.json",
@@ -327,5 +350,58 @@
     "latest_observed_skill_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
     "installed_source_lock_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
     "generated_code_executed": false
+  },
+  "latest_skill_history": [
+    {
+      "repository": "Yunbo-max/Research_Autopilot",
+      "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+      "lock": "configs/autopilot-source.json",
+      "audit": "research/AUTOPILOT_UPGRADE_2026-10-07.md",
+      "preserved_binding": true
+    }
+  ],
+  "actual_progress_20261007": {
+    "scope": "Retained card/source audit plus native acquisition maintenance",
+    "math_cards_reviewed": 20,
+    "conditional_formal_reviews_verified": 15,
+    "construction_pending": [
+      "I07",
+      "I08",
+      "I17",
+      "I19",
+      "I20"
+    ],
+    "math_pool_verified": false,
+    "selection_verified": false,
+    "selected_ids": [],
+    "originality": "UNRESOLVED",
+    "parent_gate0_ipcg": "PENDING",
+    "math_review": "research/reviews/R003_REVIEW_2026-10-07.md",
+    "batch": "evidence/r003-math-20261007/batch.json",
+    "boundary_report": "evidence/r003-math-20261007/before-code-report.json",
+    "ranking": "research/reviews/r003-ranking-20261007.json",
+    "ranking_scope": "Complete review-priority list, not verified selection",
+    "assets_lock": "configs/native-assets.lock.json",
+    "acquisition_runbook": "docs/NATIVE_ASSET_RUNBOOK.md",
+    "asset_groups": 4,
+    "locked_files": 29,
+    "code_generated_unexecuted": [
+      "tools/acquire_native_assets.py",
+      "tools/setup_native_env.sh",
+      "tools/prepare_assets.py",
+      "tools/qualify.py"
+    ],
+    "raw_input_bytes": 12444298336,
+    "downloads_performed": false,
+    "new_method_code_generated": false,
+    "software_tests_run": false,
+    "benchmark_run": false,
+    "remaining_scientific_work": "Five constructions, full joined source/native evidence, parent/natural gates and independent originality, verified pool/top15, complete methods/strong controls/G01, Local acceptance/E04/results."
+  },
+  "concurrent_progress_retained": {
+    "commit": "340ea51bf7a33ff7f657308cef9e02a5ddfe981d",
+    "report": "research/MATH_SOURCE_AUDIT_2026-10-07.md",
+    "decision": "research/decisions/20261007-math-source-audit.json",
+    "scope": "Manual first pass retained; newer explicit cards/reviews/report do not erase it."
   }
 }

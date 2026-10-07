@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I15",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I15.json",
+    "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "Positive matched total masses define entropic unpaired OT and row-normalized barycenters.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "D02: pi=diag(u)exp(-C/eps)diag(v) with fitted marginals. Condition: Positive masses with equal total and eps>0 H02: Transport fit alone cannot identify semantic class correspondences. Condition: Class symmetries preserve available statistics",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Gibbs factors follow marginal multipliers; normal equations yield the ridge map; semantic permutation gives an identifiability boundary.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "Transport uses train-only features; release labels are not intentionally discarded to create an artificial unpaired problem. Regularized OT is strictly convex for positive compatible masses, but semantic correspondences may be unidentifiable. A geometric cost needs actual cross-modal comparability and stable class proportions. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The conditional coupling-to-ridge construction is explicit. A genuine unpaired task is still absent and legal pairing must not be removed to make one.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Benefits require independently justified geometric identifiability; class proportion or symmetry shifts should expose failures before any claim of general semantic alignment. Falsification: Paired Procrustes or simpler nearest-neighbor alignment uses legal available information and matches the result; semantic permutations make correspondence ambiguous.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "Sinkhorn barycentric mapping and paired Procrustes are known alternatives; there is no new semantic-identifiability theorem. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I15.json",
+          "sha256": "38709bdcafadec171e67e3d1d8e3a261db0b0b43c0dbab27b3f83607e0412f66"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

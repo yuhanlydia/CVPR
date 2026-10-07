@@ -1,0 +1,39 @@
+{
+  "schema": "cvpr-native-runtime-planning-record-v1",
+  "status": "generated_unexecuted",
+  "role": "web_supervisor",
+  "project": "yuhanlydia/CVPR",
+  "runtime": "native_conda",
+  "containers_allowed": false,
+  "controller_host": "User Local agent computer; actual delivery root pending restoration",
+  "ssh_alias": null,
+  "remote_project_root": null,
+  "remote_runtime_root": null,
+  "conda_prefix": null,
+  "python_interpreter": null,
+  "gpu": {
+    "user_reported_count": 1,
+    "user_reported_model": "RTX 2080 Ti",
+    "user_reported_vram_gb": 22,
+    "actual_uuid": null,
+    "actual_capacity_mib": null,
+    "driver": null,
+    "cuda_compatibility": "PENDING_LOCAL_ACCEPTANCE",
+    "sharing": "exclusive_until_qualified"
+  },
+  "environment_spec": "configs/environment-native.yml",
+  "direct_requirements": [
+    "requirements.txt",
+    "requirements-assets.txt"
+  ],
+  "setup": "tools/setup_native_env.sh",
+  "actual_conda_explicit_ref": null,
+  "actual_pip_freeze_ref": null,
+  "outer_harness_plan_ref": null,
+  "native_plan_refs": [],
+  "author_runtime_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+  "historical_active_binding": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+  "resource_measurements": "NOT_RUN",
+  "budget_rule": "Restore original actual cumulative receipts; existing 28800-second/18-trial/zero-retry records are not reset or enlarged by this artifact.",
+  "next_action": "Local restore real paths/activity/resources and accept frozen CPU maintenance/native qualification plans under the single remote harness; no speculative method dispatch."
+}

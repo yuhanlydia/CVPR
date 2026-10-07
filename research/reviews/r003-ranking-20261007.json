@@ -1,0 +1,290 @@
+{
+  "schema": "cvpr-review-priority-ranking-v1",
+  "status": "generated_unexecuted",
+  "batch_id": "r003-math-review-20261007",
+  "ranking_kind": "Complete review-priority ordering; provisional readiness/value comparison, NOT a method-selection packet.",
+  "pool_target": 20,
+  "selection_target": 15,
+  "selected_ids": [],
+  "review_prefix_15": [
+    "I02",
+    "I09",
+    "I14",
+    "I05",
+    "I11",
+    "I03",
+    "I13",
+    "I10",
+    "I16",
+    "I12",
+    "I01",
+    "I04",
+    "I18",
+    "I06",
+    "I15"
+  ],
+  "prefix_scope": "Names the next review-priority tranche only; confers no code/design/dispatch selection.",
+  "selection_verified": false,
+  "math_pool_verified": false,
+  "why_pending": "Five incomplete constructions and unresolved parent/natural failure, joint source/native audit and originality. No authenticated/independent scientific selection exists.",
+  "ordering_rule": "Readiness on existing retained native image interface, then consequential formal constraint or diagnostic, known alternatives, discriminating failure condition, and actual missing dependencies. No invented accuracy/compute score.",
+  "ranking": [
+    {
+      "rank": 1,
+      "candidate_id": "I02",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Retention of useful perception under updates is consequential if natural failure is returned.",
+        "mathematical_consequence": "Exact raw-score invariant and residual query bound constrain behavior.",
+        "closest_work_delta": "Fixed semantic-subspace projection differs from dynamic PCGrad but novelty is unproven.",
+        "distinguishing_prediction": "Drift versus protected-span residual separates the mechanism.",
+        "feasibility_and_cost": "Retained image source/interface; actual protected-span coverage and complete cost unknown."
+      }
+    },
+    {
+      "rank": 2,
+      "candidate_id": "I09",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Low-cost compression could matter for 1-7B deployment, subject to real failure.",
+        "mathematical_consequence": "Exact logistic dual solve and cubic local remainder delimit one-step usefulness.",
+        "closest_work_delta": "Newton and Qwen distillation are known; stronger optimized CE control absent.",
+        "distinguishing_prediction": "Curvature/saturation/margin-step boundary is identifiable.",
+        "feasibility_and_cost": "Historical solver/source exist; actual full-size cost and calibration unknown."
+      }
+    },
+    {
+      "rank": 3,
+      "candidate_id": "I14",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Harmful teacher extremes could alter ranking, but no natural harm evidence exists.",
+        "mathematical_consequence": "Huber caps residual influence but cannot protect against large input norm.",
+        "closest_work_delta": "Known robust KD and clipping may suffice; CE KD control absent.",
+        "distinguishing_prediction": "Useful extreme labels versus teacher errors separate outcomes.",
+        "feasibility_and_cost": "Existing finite IRLS prototype; full fit/score budget unmeasured."
+      }
+    },
+    {
+      "rank": 4,
+      "candidate_id": "I05",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Released multiple positives can prevent false-negative repulsion if actually present.",
+        "mathematical_consequence": "Inside-log and outside-log gradients impose different positive weighting.",
+        "closest_work_delta": "SupCon inside-log collision established; no novel multi-positive loss claim.",
+        "distinguishing_prediction": "Positive multiplicity/weight concentration are discriminating.",
+        "feasibility_and_cost": "Actual selected rows may all have one positive; author interface/source read."
+      }
+    },
+    {
+      "rank": 5,
+      "candidate_id": "I11",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Task retention under distribution shift matters conditionally.",
+        "mathematical_consequence": "Smooth worst-training-group objective and exact finite entropy dual.",
+        "closest_work_delta": "Known group DRO/ERM; author online update differs from memoryless smoothing.",
+        "distinguishing_prediction": "Training-group hardening must transfer to declared native tasks.",
+        "feasibility_and_cost": "Retained source groups exist, no qualified robust-task comparison yet."
+      }
+    },
+    {
+      "rank": 6,
+      "candidate_id": "I03",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Metric alignment can affect native semantic margins.",
+        "mathematical_consequence": "Distance eigensystem is not equivalent to legacy bilinear ranking.",
+        "closest_work_delta": "Known metric learning; full closest implementation still unread.",
+        "distinguishing_prediction": "Candidate metric norms expose the actual score mismatch.",
+        "feasibility_and_cost": "Requires corrected child semantics after selection; do not rewrite historical result."
+      }
+    },
+    {
+      "rank": 7,
+      "candidate_id": "I13",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Small-data compression conditioning may cause loss of retained capability.",
+        "mathematical_consequence": "Inverse-root spectral amplification bound, not an accuracy guarantee.",
+        "closest_work_delta": "Fixed shrinkage is known and not OAS/Ledoit-Wolf.",
+        "distinguishing_prediction": "Empirical small-eigenvalue instability versus informative tails.",
+        "feasibility_and_cost": "Existing transform/control, stronger shrinkage controls and native evidence pending."
+      }
+    },
+    {
+      "rank": 8,
+      "candidate_id": "I10",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Cross-modal alignment could improve shared semantics.",
+        "mathematical_consequence": "Whitened cross-covariance SVD gives explicit paired maps.",
+        "closest_work_delta": "CCA is known; no consequential new construction delta demonstrated.",
+        "distinguishing_prediction": "Correlated direction advantage versus independent whitening/Procrustes.",
+        "feasibility_and_cost": "Train pairing/source retained; rank and complete cost must be qualified."
+      }
+    },
+    {
+      "rank": 9,
+      "candidate_id": "I16",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Compression/cost frontier can matter; exact RBF quality explanation fails.",
+        "mathematical_consequence": "Exact monotone rank equivalence and Nystrom factor/margin identity.",
+        "closest_work_delta": "Known regularized Nystrom; exact RBF ranks identical on units.",
+        "distinguishing_prediction": "Only approximation/regularization/ties can explain score changes.",
+        "feasibility_and_cost": "Retained source is usable diagnostically; no efficiency qualification."
+      }
+    },
+    {
+      "rank": 10,
+      "candidate_id": "I12",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Stable semantic neighborhoods could matter if natural error evidence exists.",
+        "mathematical_consequence": "Finite reversible graph extension is derived; dot score is not diffusion distance.",
+        "closest_work_delta": "Diffusion maps/Nystrom are known, continuum novelty absent.",
+        "distinguishing_prediction": "Domain/anchor perturbation and nonzero eigenvalue boundaries.",
+        "feasibility_and_cost": "Existing training anchors; extra fit/extension/scoring cost unknown."
+      }
+    },
+    {
+      "rank": 11,
+      "candidate_id": "I01",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Avoiding erroneous teacher transfer could be important.",
+        "mathematical_consequence": "Joint interval lower margin gives conditional robust pair constraints.",
+        "closest_work_delta": "Known robust/point KD; full collision and calibrated intervals missing.",
+        "distinguishing_prediction": "Certified-pair fraction and simultaneous coverage differ from confidence labels.",
+        "feasibility_and_cost": "Shared image task interface, but actual interval producer absent."
+      }
+    },
+    {
+      "rank": 12,
+      "candidate_id": "I04",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Native routing could improve real resource tradeoffs.",
+        "mathematical_consequence": "Expected-budget threshold includes dual/tie conditions, not hard timeout.",
+        "closest_work_delta": "Adaptive reranking threshold is known; no frozen delta.",
+        "distinguishing_prediction": "Predicted gain and total routing/reranker cost must generalize.",
+        "feasibility_and_cost": "No approved development gain/cost producer or qualified reranker."
+      }
+    },
+    {
+      "rank": 13,
+      "candidate_id": "I18",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Legal training-label efficiency matters under an authorized row budget.",
+        "mathematical_consequence": "Exact logdet increment and finite greedy construction.",
+        "closest_work_delta": "Known D-optimal/coreset selection.",
+        "distinguishing_prediction": "Coverage gain must beat random/stratified sampling and bad leverage.",
+        "feasibility_and_cost": "Parked; do not change fixed historical train rows or expand comparisons now."
+      }
+    },
+    {
+      "rank": 14,
+      "candidate_id": "I06",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Unmatched video events are consequential only with an actual parent task.",
+        "mathematical_consequence": "Feasible partial-OT mass/inequality KKT changes full-OT constraints.",
+        "closest_work_delta": "Known partial transport; author/native localization review pending.",
+        "distinguishing_prediction": "Unmatched-event mass and marginals distinguish from full transport.",
+        "feasibility_and_cost": "Current three image tasks cannot test it; frame/scorer/native resource scope absent."
+      }
+    },
+    {
+      "rank": 15,
+      "candidate_id": "I15",
+      "math_review": "conditional-formal-construction-reviewed",
+      "rationale": {
+        "problem_value": "Unpaired semantic alignment needs a genuine task, not removed labels.",
+        "mathematical_consequence": "Explicit barycentric ridge map with semantic permutation boundary.",
+        "closest_work_delta": "Known entropic OT and Procrustes; no identifiability advance.",
+        "distinguishing_prediction": "Class symmetries/proportion shift test the limitation.",
+        "feasibility_and_cost": "Parked, actual legal pairing exists; no authorized unpaired task."
+      }
+    },
+    {
+      "rank": 16,
+      "candidate_id": "I17",
+      "math_review": "pending",
+      "rationale": {
+        "problem_value": "Noise-based retention would matter if differences are noise rather than semantics.",
+        "mathematical_consequence": "Moments/LMMSE do not yet imply diag(r) ranking; normalization gap remains.",
+        "closest_work_delta": "Wiener and diagonal metrics are known; retrieval rule unresolved.",
+        "distinguishing_prediction": "r versus r^2 and complementary semantics expose the missing bridge.",
+        "feasibility_and_cost": "Pending construction; legacy normalized heuristic cannot be certified."
+      }
+    },
+    {
+      "rank": 17,
+      "candidate_id": "I19",
+      "math_review": "pending",
+      "rationale": {
+        "problem_value": "Exact retrieval efficiency is useful only with compliant complete output.",
+        "mathematical_consequence": "Valid top-k bound gives no complete-tail ordering.",
+        "closest_work_delta": "Known branch-and-bound exact top-k.",
+        "distinguishing_prediction": "Full-ranking requirement and residual work can eliminate savings.",
+        "feasibility_and_cost": "Pending full-output construction; do not replace native rankings."
+      }
+    },
+    {
+      "rank": 18,
+      "candidate_id": "I07",
+      "math_review": "pending",
+      "rationale": {
+        "problem_value": "Generating more useful learning signal per full token cost could matter.",
+        "mathematical_consequence": "IID mixed probability and baseline identity omit selected-law gradient.",
+        "closest_work_delta": "GRPO/DAPO estimator comparison not completed.",
+        "distinguishing_prediction": "Bias/support and generation overhead are decisive.",
+        "feasibility_and_cost": "Pending unbiased construction and actual native reward/training interfaces."
+      }
+    },
+    {
+      "rank": 19,
+      "candidate_id": "I20",
+      "math_review": "pending",
+      "rationale": {
+        "problem_value": "Repeated reuse interactions could matter for generation quality.",
+        "mathematical_consequence": "Local mixed Taylor term/contrast is not a cache planner.",
+        "closest_work_delta": "RA-CFGCache overlap unresolved; no blinded independent conclusion.",
+        "distinguishing_prediction": "Interaction size/stability versus quadratic probe amortization.",
+        "feasibility_and_cost": "Pending planner, generator/native video frontier and resources."
+      }
+    },
+    {
+      "rank": 20,
+      "candidate_id": "I08",
+      "math_review": "pending",
+      "rationale": {
+        "problem_value": "Motion-preserving generation error control could be important.",
+        "mathematical_consequence": "Linear propagation retains cross terms but no valid frequency controller.",
+        "closest_work_delta": "Smoothing/distillation/caching can explain apparent benefit.",
+        "distinguishing_prediction": "Native motion degradation must be separated from terminal error reduction.",
+        "feasibility_and_cost": "Pending construction/full video interfaces; no new model/download/compute expansion."
+      }
+    }
+  ],
+  "historical_selection_12": [
+    "I02",
+    "I09",
+    "I14",
+    "I03",
+    "I17",
+    "I10",
+    "I13",
+    "I12",
+    "I16",
+    "I11",
+    "I05",
+    "I01"
+  ],
+  "review_independence": "Single-agent provisional; not a blinded collision or top-15 selection review.",
+  "empirical_results": "NOT_RUN",
+  "next_required": "Complete the five constructions or obtain an explicit scoped user decision; investigate each recorded joint source/native gap. Do not reduce pool_target to 15 or fill missing cards with names."
+}

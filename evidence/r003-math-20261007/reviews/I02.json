@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I02",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I02.json",
+    "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "verified",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "R is an orthonormal protected query basis; Delta acts on query rows of a raw bilinear score.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "D01: Every feasible update is Delta=P Z. Condition: R is an orthonormal basis C04: Only q_perp contributes and controls drift. Condition: Use the same fixed raw score on both arms",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "R^T Delta=0 iff Delta=(I-RR^T)Z; q^T Delta c vanishes on the span, and the residual Cauchy-Schwarz bound retains ||Pq||.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "R^T R=I and P is fixed from fitting data. Protection means raw bilinear logits, not renormalized embeddings or whole-task accuracy. Candidate inputs, pooling and score temperature do not change. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "verified",
+      "rationale": "The projected-gradient construction preserves the constraint only with fixed R and no incompatible score renormalization; rank-eight training span is a limited surrogate.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "At equal update norm, raw score drift is zero on protected span and bounded proportionally to query distance from that span. This does not assert whole-group preservation. Falsification: Nonzero protected-span score drift refutes the implementation. No better drift/quality tradeoff than an unconstrained ridge/trust-region control defeats necessity.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "PCGrad changes directions using current conflicting gradients; a fixed query-space constraint preserves a different quantity. Unconstrained matched KD is also required. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I02.json",
+          "sha256": "125882d23c9a20784ae50bd8fb7a239b6f3d8551525cf8f7bf79f045f2ee0359"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

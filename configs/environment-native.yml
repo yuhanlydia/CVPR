@@ -1,0 +1,8 @@
+# generated_unexecuted: native Conda bootstrap, not a solved/transitive lock.
+# Local must record conda list --explicit and pip freeze at the accepted prefix.
+name: cvpr-native-r003
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip

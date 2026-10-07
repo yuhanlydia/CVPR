@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I17",
+  "title": "Reliability moments with an unresolved retrieval decision rule",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Paired raw scalar coordinates q=z+eps_q,c=z+eps_c with independent zero-mean noises of equal variance n and signal variance v; E z=0.",
+  "assumptions": [
+    "Noises are independent of signal and each other, and moment identities precede nonlinear unit normalization.",
+    "v,n are nonnegative population variances; clipped sample estimates are not proven optimal.",
+    "The LMMSE predictor zhat=r q does not itself derive a diagonal pair-ranking metric."
+  ],
+  "operations": [
+    {
+      "id": "B05",
+      "input": "Shared additive-noise model",
+      "condition": "All stated independence and equal-variance conditions hold",
+      "condition_status": "conditional",
+      "output": "E(q-c)^2/2=n and E(qc)=v."
+    },
+    {
+      "id": "H02",
+      "input": "A single-observation MMSE objective versus pair ranking",
+      "condition": "The two objectives differ",
+      "condition_status": "conditional",
+      "output": "The optimal denoising coefficient cannot be transferred as an optimal retrieval score without a ranking model."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "moments",
+      "statement": "E(q-c)^2=E(eps_q-eps_c)^2=2n and E(qc)=E z^2=v.",
+      "justification": "Expand and retain cross terms until independence and zero means remove them."
+    },
+    {
+      "id": "lmmse",
+      "statement": "argmin_a E(z-aq)^2 satisfies a=Cov(z,q)/Var(q)=v/(v+n).",
+      "justification": "Differentiate the scalar quadratic when v+n>0; this is a prediction objective for z from one observation."
+    },
+    {
+      "id": "gap",
+      "statement": "Two-sided independent denoising would yield (r q)(r c)=r^2 qc, whereas the legacy score uses r qc.",
+      "justification": "The algebra exhibits the absent decision-rule bridge. Neither expression is declared Bayes-optimal retrieval without a candidate generative/label model."
+    }
+  ],
+  "method_expression": "PARTIAL: population moments and scalar denoiser only. A complete ranking construction tied to labels/decision risk is not derived; the legacy diag(r) head remains an unqualified heuristic.",
+  "distinguishing_prediction": "Actual paired raw-feature moments and post-normalization distortions must support the noise interpretation; useful complementary semantics in q-c would falsify it.",
+  "falsifier": "Independent-noise assumptions fail, or a legal denoiser/diagonal metric explains equal outcomes without the proposed ranking interpretation.",
+  "closest_alternative": "Wiener/LMMSE shrinkage and ordinary diagonal metrics; formal denoising equivalence does not justify the legacy ranking metric.",
+  "decisive_comparison": "Before any new experiment derive the decision rule and compare same legal train information, normalization and full native rankings against both simple diagonal controls.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy I17 clips E(qc) and uses diag(r) after unit-normalized PCA features. The assumed additive independent-noise distribution is not preserved automatically.",
+  "review_limit": "Moment and LMMSE identities reviewed; method_expression pending because retrieval-risk construction and normalization bridge are absent.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I19",
+  "title": "Dot-product upper bounds without complete-ranking stopping",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Split q=(q_A,q_B), c=(c_A,c_B); current exact top-k threshold tau and UB=q_A c_A+||q_B||||c_B||.",
+  "assumptions": [
+    "Exact arithmetic bound; floating-point error requires conservative outward slack.",
+    "Strict UB<tau only certifies exclusion from top-k; ties must be retained.",
+    "The native protocol requires complete candidate rankings, including the tail."
+  ],
+  "operations": [
+    {
+      "id": "C04",
+      "input": "Partitioned native dot score",
+      "condition": "All remaining blocks accounted for",
+      "condition_status": "conditional",
+      "output": "Residual dot has magnitude at most ||q_B||||c_B||."
+    },
+    {
+      "id": "H06",
+      "input": "Top-k safe pruning transferred to full output",
+      "condition": "Native complete-ranking requirement",
+      "condition_status": "conditional",
+      "output": "Pruned tail candidates still need certified relative order, so top-k safety is insufficient."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "bound",
+      "statement": "q c=q_A c_A+q_B c_B <= q_A c_A+||q_B||||c_B||.",
+      "justification": "Cauchy-Schwarz, with equality only for aligned residuals."
+    },
+    {
+      "id": "topk",
+      "statement": "If UB<tau where tau is an exact kth-best score, the candidate cannot enter top-k.",
+      "justification": "At least k exact scores exceed UB; equality cannot safely resolve ties."
+    },
+    {
+      "id": "tail",
+      "statement": "Two candidates both below tau can reverse their relative order through the unknown residual terms while retaining their bounds.",
+      "justification": "The top-k condition contains no information sufficient to order the full tail. Filling a truncated ranking would change native output."
+    }
+  ],
+  "method_expression": "PARTIAL: a valid top-k rejection bound; no complete native ranking algorithm with accounted residual work and cost is derived.",
+  "distinguishing_prediction": "Saving is possible only where required output allows certified unfinished residuals; full-ranking cost can eliminate the benefit.",
+  "falsifier": "The returned native tail is invented/truncated, or exact complete-ranking/index/memory costs remove net savings.",
+  "closest_alternative": "Known exact branch-and-bound/top-k search and early dot-product termination, not an automatic full-ranking algorithm.",
+  "decisive_comparison": "Derive and measure full-ranking correctness/cost before dispatch; all released candidates and native tie behavior must be retained.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Historically parked and no complete-ranking implementation. Existing full native scorer contract remains binding.",
+  "review_limit": "Bound reviewed; native-output method_expression remains pending.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

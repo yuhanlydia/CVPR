@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I13",
+  "title": "Fixed covariance shrinkage before whitening",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "Empirical train-only PSD covariance C, mu=tr(C)/d>0, alpha in (0,1], ridge rho>0; C_alpha=(1-alpha)C+alpha mu I+rho I.",
+  "assumptions": [
+    "Covariance is centered on training inputs; evaluate with the same fixed means/maps.",
+    "The shared diagonal shift bounds inverse amplification; it need not improve downstream ranking.",
+    "Fixed alpha=.2 is not an estimated Ledoit-Wolf or OAS optimum."
+  ],
+  "operations": [
+    {
+      "id": "A05",
+      "input": "Centered train covariance",
+      "condition": "C PSD and mu>0",
+      "condition_status": "conditional",
+      "output": "Shrink toward isotropy before inverse-root whitening."
+    },
+    {
+      "id": "D05",
+      "input": "Covariance spectrum",
+      "condition": "alpha>0,rho>0",
+      "condition_status": "conditional",
+      "output": "lambda_min(C_alpha)>=(alpha mu+rho)."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "spectrum",
+      "statement": "lambda_j(C_alpha)=(1-alpha)lambda_j(C)+alpha mu+rho.",
+      "justification": "Identity commutes with C, so the common eigenbasis gives an exact spectral formula."
+    },
+    {
+      "id": "bound",
+      "statement": "||C_alpha^-1/2||_2 <= (alpha mu+rho)^-1/2.",
+      "justification": "C eigenvalues are nonnegative; the minimum sets the inverse-root operator norm."
+    },
+    {
+      "id": "condition",
+      "statement": "kappa(C_alpha)=((1-alpha)lambda_max+alpha mu+rho)/((1-alpha)lambda_min+alpha mu+rho).",
+      "justification": "Increasing the diagonal shift controls anisotropy but changes useful directions; this is an amplification statement, not a retrieval excess-risk theorem."
+    }
+  ],
+  "method_expression": "Compute train-only means and fixed-alpha covariance inverse root with recorded actual eigenvalue floor; transform both sides and output complete dot-product rankings. Match the existing ridge in every control.",
+  "distinguishing_prediction": "Unstable small empirical eigenvalues cause less amplification under shrinkage; any useful benefit must survive comparison with ordinary ridge and fitted covariance shrinkage.",
+  "falsifier": "Same-ridge whitening, diagonal scaling, OAS or Ledoit-Wolf gives the same or better native tradeoff, or shrinkage removes informative rare directions.",
+  "closest_alternative": "Ridge whitening, Ledoit-Wolf and OAS. Fixed alpha changes the metric but contributes no new covariance estimator theorem.",
+  "decisive_comparison": "Same train data/PCA/means/ridge and native candidates; retain spectral diagnostics plus full per-task outcomes and complete costs.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy invsqrt also floors eigenvalues; because C_alpha already includes ridge its floor is redundant in exact arithmetic. C_WHITEN is already regularized.",
+  "review_limit": "Amplification identity reviewed; optimal-estimator and accuracy claims withheld.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}

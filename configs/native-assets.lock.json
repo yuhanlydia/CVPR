@@ -1,0 +1,230 @@
+{
+  "schema": "cvpr-native-asset-lock-v1",
+  "status": "generated_unexecuted",
+  "observed_on": "2026-10-07",
+  "scope": "All inputs of the retained r003 12+6 prototypes and full three-task native baseline; new top-15/stronger method resources not certified.",
+  "sdk_version": "0.36.0",
+  "source_version": "393e2978d27852b0d0230d6994f37f9c15bed73c",
+  "assets": [
+    {
+      "asset_id": "model",
+      "repo_id": "Qwen/Qwen3-VL-Embedding-2B",
+      "repo_type": "model",
+      "revision": "9f2f7e710d6d81056aa5c0a4f04764fec6bb7bda",
+      "private": false,
+      "gated": false,
+      "files": [
+        {
+          "path": ".gitattributes",
+          "size": 1570,
+          "git_blob_sha1": "52373fe24473b1aa44333d318f578ae6bf04b49b",
+          "sha256": null
+        },
+        {
+          "path": "1_Pooling/config.json",
+          "size": 96,
+          "git_blob_sha1": "4a43bdd1fde87716f74fb5e1c7324b933288b93b",
+          "sha256": null
+        },
+        {
+          "path": "README.md",
+          "size": 24249,
+          "git_blob_sha1": "85aa7367947398b90add631415cf8e7b12a86cff",
+          "sha256": null
+        },
+        {
+          "path": "added_tokens.json",
+          "size": 707,
+          "git_blob_sha1": "b54f9135e44c1e81047e8d05cb027af8bc039eed",
+          "sha256": null
+        },
+        {
+          "path": "chat_template.jinja",
+          "size": 5519,
+          "git_blob_sha1": "a0b161f8af53a32ce7e659103babce500990a863",
+          "sha256": null
+        },
+        {
+          "path": "config.json",
+          "size": 1570,
+          "git_blob_sha1": "e426469143f8255335f039fa32c959584558d1cc",
+          "sha256": null
+        },
+        {
+          "path": "config_sentence_transformers.json",
+          "size": 238,
+          "git_blob_sha1": "45201cb7fdb6b2546b0887a0f4f29d01df334ca4",
+          "sha256": null
+        },
+        {
+          "path": "merges.txt",
+          "size": 1671853,
+          "git_blob_sha1": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7",
+          "sha256": null
+        },
+        {
+          "path": "model.safetensors",
+          "size": 4255140312,
+          "git_blob_sha1": "c30edbc42ae8efaaef4ccccbaa139b10036a2228",
+          "sha256": "c73fa9caeddeb3ff831d46c085a7a5708343248ca777e90f2d486964464509c1"
+        },
+        {
+          "path": "modules.json",
+          "size": 429,
+          "git_blob_sha1": "0de5a64717df8bf17171bd792d02296e76b83c06",
+          "sha256": null
+        },
+        {
+          "path": "preprocessor_config.json",
+          "size": 783,
+          "git_blob_sha1": "0dfe4c69669474dcbc3a9cb2880759b51c888973",
+          "sha256": null
+        },
+        {
+          "path": "scripts/qwen3_vl_embedding.py",
+          "size": 13258,
+          "git_blob_sha1": "36d45865735be96a1278a21c132ff640e2ae68ca",
+          "sha256": null
+        },
+        {
+          "path": "sentence_bert_config.json",
+          "size": 770,
+          "git_blob_sha1": "17ab6283e805090588f5c045177996d0140ac267",
+          "sha256": null
+        },
+        {
+          "path": "special_tokens_map.json",
+          "size": 613,
+          "git_blob_sha1": "ac23c0aaa2434523c494330aeb79c58395378103",
+          "sha256": null
+        },
+        {
+          "path": "tokenizer.json",
+          "size": 11423705,
+          "git_blob_sha1": "18a4abbf4a408dc534006a455544dcc195f356d2",
+          "sha256": "def76fb086971c7867b829c23a26261e38d9d74e02139253b38aeb9df8b4b50a"
+        },
+        {
+          "path": "tokenizer_config.json",
+          "size": 5404,
+          "git_blob_sha1": "1d4fba2de0e94e8f97e08927cfb7d084160c2880",
+          "sha256": null
+        },
+        {
+          "path": "video_preprocessor_config.json",
+          "size": 817,
+          "git_blob_sha1": "e32b1d90356f74457edbfca27aa1e121dab7cdc7",
+          "sha256": null
+        },
+        {
+          "path": "vocab.json",
+          "size": 2776833,
+          "git_blob_sha1": "4783fe10ac3adce15ac8f358ef5462739852c569",
+          "sha256": null
+        }
+      ],
+      "download_bytes": 4271068726
+    },
+    {
+      "asset_id": "test",
+      "repo_id": "ziyjiang/MMEB_Test_Instruct",
+      "repo_type": "dataset",
+      "revision": "bb7e445a62555136b6fa83f17f02f0cc9d5b8962",
+      "private": false,
+      "gated": false,
+      "files": [
+        {
+          "path": "ChartQA/test-00000-of-00001.parquet",
+          "size": 1429715,
+          "git_blob_sha1": "8bf0b3af7bb986ec0f60bb5c6316d5ff5f4d5f91",
+          "sha256": "d256b11d0f5bb4cbf66d790da4b35833e50e4a601736904cf38f193a0c0e8df1"
+        },
+        {
+          "path": "MSCOCO_i2t/test-00000-of-00001.parquet",
+          "size": 1784631,
+          "git_blob_sha1": "d77097b483cd1048de009c57046b1836f22677c5",
+          "sha256": "64cc54a9d444ba9ca1c85780ae4e786af8f1c94d211b0f29878817246d7fa6f2"
+        },
+        {
+          "path": "README.md",
+          "size": 17124,
+          "git_blob_sha1": "d4afa75caff51c7b1da7cf48f07f2ed2e4c2361e",
+          "sha256": null
+        },
+        {
+          "path": "ScienceQA/test-00000-of-00001.parquet",
+          "size": 957624,
+          "git_blob_sha1": "99892abd183874847a8a824ba9cce0d3978b0815",
+          "sha256": "bbec57fd0b078b67f06998ca7e94890ae0c12d4d083b1493cb29f9f8a1d02556"
+        }
+      ],
+      "download_bytes": 4189094
+    },
+    {
+      "asset_id": "eval-images",
+      "repo_id": "TIGER-Lab/MMEB-eval",
+      "repo_type": "dataset",
+      "revision": "2f069730be515ea60778413777816b53e2d2a697",
+      "private": false,
+      "gated": false,
+      "files": [
+        {
+          "path": "images.zip",
+          "size": 7128863486,
+          "git_blob_sha1": "0f3a908c448e163aed1d39db6848eb3437ec6202",
+          "sha256": "4c00d11e58457b2285c695d378e7fdc080d810986a645c32395ea8cdfb2f2d4e"
+        }
+      ],
+      "download_bytes": 7128863486
+    },
+    {
+      "asset_id": "train",
+      "repo_id": "TIGER-Lab/MMEB-train",
+      "repo_type": "dataset",
+      "revision": "0c3f4b828d347c4e8508339f99530f6c820061fd",
+      "private": false,
+      "gated": false,
+      "files": [
+        {
+          "path": "A-OKVQA/train-00000-of-00001.parquet",
+          "size": 1004866,
+          "git_blob_sha1": "c607f9214156848784db320a5035cbf82dcd90e1",
+          "sha256": "ee6401b5a0d7c9b4bdbe220f5617afeb03007ded542e4735e4a9910b5044bbde"
+        },
+        {
+          "path": "README.md",
+          "size": 12736,
+          "git_blob_sha1": "8b4edb83e269d8440bd8ec7b22b03a0b0638a76b",
+          "sha256": null
+        },
+        {
+          "path": "ScienceQA/train-00000-of-00001.parquet",
+          "size": 273139,
+          "git_blob_sha1": "9ac940b218d0f23161e6964cff3609acfc8909c2",
+          "sha256": "dd92651aa9a0ae0854ba89cfdce4e6417a654fc3ed9239e25db37839b7b8d597"
+        },
+        {
+          "path": "images_zip/A-OKVQA.zip",
+          "size": 934477770,
+          "git_blob_sha1": "58fdf0a88de8fd24bfd2108706cdea3fce88a671",
+          "sha256": "575403298152de9025d3c10bcdb8bb4261a2b3e704088daa86d2d804cea0f01c"
+        },
+        {
+          "path": "images_zip/ScienceQA.zip",
+          "size": 104407771,
+          "git_blob_sha1": "425764482edb42c75ed2b3aa442b742de783519b",
+          "sha256": "8ba0fe7ed5f16d99a2e9c59c753c357d67b1bc244bd9c951aedb271e83aa2ace"
+        },
+        {
+          "path": "unzip_file.py",
+          "size": 748,
+          "git_blob_sha1": "58430ca02cd41c38cdd4c54d320df02a0f5ec44a",
+          "sha256": null
+        }
+      ],
+      "download_bytes": 1040177030
+    }
+  ],
+  "acquisition_executed": false,
+  "scientific_acceptance": "PENDING"
+}

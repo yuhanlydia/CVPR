@@ -1,0 +1,118 @@
+{
+  "kind": "method-review",
+  "version": "1.0.0",
+  "subject_id": "I07",
+  "scope": "math",
+  "artifact_ref": {
+    "path": "evidence/r003-math-20261007/cards/I07.json",
+    "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+  },
+  "reviewer": "web_supervisor/manual-source-and-algebra-review",
+  "reviewed_at": "2026-10-07T09:45:04Z",
+  "outcome": "pending",
+  "checks": {
+    "formal_object": {
+      "status": "verified",
+      "rationale": "IID Bernoulli group rewards and action-independent score baselines define two limited estimator facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "operations_and_conditions": {
+      "status": "verified",
+      "rationale": "B05: Probability of a mixed group is 1-p^G-(1-p)^G. Condition: IID reward draws at fixed policy E03: Minimize E[(R-b)^2||h||^2] over b. Condition: b is action-independent and E||h||^2>0",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "derivation": {
+      "status": "verified",
+      "rationale": "Mixed probability and weighted variance-optimal baseline are correct under the stated law; rejecting nonmixed groups changes that law.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "assumptions": {
+      "status": "verified",
+      "rationale": "IID Bernoulli is only a diagnostic model; actual correlated graded/native rewards need their own estimator law. Policy support and square-integrable scores justify E[h]=0. Selection/rejection of all-equal groups changes the sampling measure. These are conditional premises, not observed benchmark facts.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "method_expression": {
+      "status": "pending",
+      "rationale": "An unbiased support-preserving gradient update after adaptive group rejection is absent. The two identities do not yet specify a complete training method.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "prediction_and_falsifier": {
+      "status": "verified",
+      "rationale": "Only the IID nondegenerate-group frequency law is established; a method benefit per generated token remains a lead. Falsification: Biased group selection, reward correlations or extra rollouts erasing estimator efficiency refute the proposed rationale.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    },
+    "closest_alternative": {
+      "status": "verified",
+      "rationale": "GRPO/DAPO are actual alternatives, but their full estimator/author-code/reward comparison remains unresolved. This check only reviews the stated mathematical comparison; exhaustive full-text/author-code/native collision and originality decisions remain pending.",
+      "evidence_refs": [
+        {
+          "path": "evidence/r003-math-20261007/cards/I07.json",
+          "sha256": "e5178794316a03f5f515cec64fdab359a51d450e3bbbc1b6052774522a68317e"
+        },
+        {
+          "path": "research/reviews/r003-source-review-20261007.json",
+          "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+        }
+      ]
+    }
+  },
+  "review_independence": "Single-agent self-review; not a blinded/independent novelty or empirical review.",
+  "claim_scope": "Conditional formal construction only. No code/test/design/result/native-parent qualification.",
+  "empirical_status": "NOT_RUN",
+  "scientific_premises": "PENDING",
+  "originality": "UNRESOLVED"
+}

@@ -1,0 +1,67 @@
+{
+  "kind": "math-card",
+  "version": "1.0.0",
+  "candidate_id": "I03",
+  "title": "Generalized spectral distance",
+  "role": "web_supervisor",
+  "status": "generated_unexecuted",
+  "historical_parent": {
+    "path": "rounds/r003/IDEAS.md",
+    "cvpr_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce"
+  },
+  "formal_object": "A=E[(q-c_pos)(q-c_pos)^T]+rho I SPD; B=E[(q-c_neg)(q-c_neg)^T] PSD; k-dimensional metric M=VV^T.",
+  "assumptions": [
+    "rho>0; moments use only released fitting positives and explicit negatives.",
+    "Generalized eigenvectors are A-orthonormal, V^T A V=I_k.",
+    "Scientific score is negative Mahalanobis squared distance; bilinear similarity is a separate construction."
+  ],
+  "operations": [
+    {
+      "id": "A05",
+      "input": "SPD A and PSD B",
+      "condition": "A invertible by rho I",
+      "condition_status": "conditional",
+      "output": "C=A^-1/2 B A^-1/2 is symmetric PSD."
+    },
+    {
+      "id": "D01",
+      "input": "Rayleigh trace with V^T A V=I_k",
+      "condition": "Optimize the specified distance contrast",
+      "condition_status": "conditional",
+      "output": "Top eigenvectors of C maximize tr(V^T B V)."
+    }
+  ],
+  "derivation_steps": [
+    {
+      "id": "stationarity",
+      "statement": "Bv=eta A v and V=A^-1/2 U_top.",
+      "justification": "Lagrange differentiation plus whitening converts the generalized problem to symmetric eigenvectors."
+    },
+    {
+      "id": "distance_score",
+      "statement": "-(q-c)^T M(q-c)=2 q^T M c-c^T M c-q^T M q.",
+      "justification": "Expand the quadratic; only the query term is constant across candidates."
+    },
+    {
+      "id": "score_mismatch",
+      "statement": "Ranking by q^T M c is generally different unless c^T M c is constant over that query's candidate list.",
+      "justification": "M is low-rank anisotropic; original unit Euclidean norms do not imply equal M norms. This is an algebraic boundary, not a measured benchmark outcome."
+    }
+  ],
+  "method_expression": "Construct V from the generalized spectrum and rank all released candidates by negative metric distance if implementing this child derivation.",
+  "distinguishing_prediction": "Any discrepancy between raw bilinear and distance rankings is driven by candidate metric-norm variation; the corrected distance need not improve hit@1.",
+  "falsifier": "Equal norm-corrected and bilinear rankings remove the mismatch for that scope. White covariance or supervised metric baselines matching the quality/cost defeat a new-method claim.",
+  "closest_alternative": "Existing supervised Mahalanobis/LDA metric learning and whitening; full primary functional comparison still missing.",
+  "decisive_comparison": "Native-only comparison between distance, legacy bilinear and same-rank whitening with identical training/PCA; a score change needs a reviewed child protocol.",
+  "source_refs": [
+    {
+      "path": "research/reviews/r003-source-review-20261007.json",
+      "sha256": "3703ba16676d3ef20f080de707aa22662638f9a183e04894ffae4c83cca8276d"
+    }
+  ],
+  "legacy_code_audit": "Legacy fit(I03) creates M correctly for the spectral optimization but run_method/features uses bilinear qMc and omits candidate norm. Historical code is retained and not certified against this revised distance card.",
+  "review_limit": "Central derivation audited, actual code discrepancy retained; no automatic result repair or retroactive certification.",
+  "empirical_status": "NOT_RUN",
+  "originality": "UNRESOLVED",
+  "parent_gate_ipcg": "PENDING"
+}
