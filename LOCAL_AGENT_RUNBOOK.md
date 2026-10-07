@@ -1,3 +1,10 @@
+# 当前部署恢复入口
+
+若GPU主机缺run_harness.py或GitHub断连，先读[r004部署恢复](rounds/r004/DEPLOYMENT_RECOVERY.md)。
+控制电脑可通过已有SSH传送保留本地提交的Git bundle和完整固定skill源码；
+r004来源核对须显式--lock configs/autopilot-source-a8343ae.json。
+未知pool/owner/累计预算保持pending，不新建pool重置用量。
+
 # 当前入口：r004扩展代码
 
 先读[当前扩展Local交接](rounds/r004/LOCAL_EXTENSION_HANDOFF.md)和[逐臂三任务完整度矩阵](rounds/r004/EXTENSION_COVERAGE.json)。
