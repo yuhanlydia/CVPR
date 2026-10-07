@@ -1,3 +1,9 @@
+# 当前缓存阻塞修复
+
+旧prepare缓存遇到源码哈希不匹配时，先读[单个EOF空行兼容修复](rounds/r004/PREPARE_CACHE_COMPATIBILITY.md)。
+仅允许明确current/legacy SHA对；保留原receipt/cache，Local真实验收仍pending。
+旧18次方法额度不重置，新实验仍需独立有限授权。
+
 # 当前部署恢复入口
 
 若GPU主机缺run_harness.py或GitHub断连，先读[r004部署恢复](rounds/r004/DEPLOYMENT_RECOVERY.md)。

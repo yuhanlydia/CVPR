@@ -41,6 +41,47 @@ def all_refs(manifest):
         refs += [manifest["interval_calibration"]["radius_ref"], manifest["interval_calibration"]["evidence_ref"]]
     return refs
 
+# Narrow reviewed source-equivalence exception. Never strip arbitrary whitespace.
+# Current 16089-byte prepare script vs the same bytes minus one terminal LF.
+PREPARE_EOF_LF_COMPATIBILITY = {
+    "policy": "cvpr.prepare-source.single-terminal-blank-line.v1",
+    "reviewed_current_sha256": "ea6c615a51ee1e0f900146553c0c4372625cebe5360dd1e51e55a6b09c43443d",
+    "reviewed_legacy_sha256": "94b2d4466cfc1c5f753d528aaa1a2c933d94c6f560a39e0cd0be97ec71b00928",
+}
+
+
+def _preparation_code_binding(producer):
+    prepare_code = Path(__file__).resolve().parents[2] / "tools/prepare_candidate_bundle.py"
+    data = prepare_code.read_bytes()
+    current = hashlib.sha256(data).hexdigest()
+    refs = [r for r in producer["code_refs"] if r["path"] == "tools/prepare_candidate_bundle.py"]
+    if len(refs) != 1:
+        raise ValueError("Preparation needs exactly one original prepare source ref")
+    recorded = refs[0]["sha256"]
+    mode = "EXACT_SOURCE_BYTES"
+    policy = None
+    if recorded != current:
+        rule = PREPARE_EOF_LF_COMPATIBILITY
+        # Both variants already end a Python source line; only an empty EOF line changes.
+        if not (current == rule["reviewed_current_sha256"]
+                and recorded == rule["reviewed_legacy_sha256"]
+                and data.endswith(b"\n\n")
+                and hashlib.sha256(data[:-1]).hexdigest() == recorded):
+            raise ValueError("PREPARE_SOURCE_INCOMPATIBLE: recorded=" + recorded +
+                             " current=" + current + "; no reviewed equivalence")
+        mode = "REVIEWED_SINGLE_EOF_BLANK_LINE"
+        policy = rule["policy"]
+    return {"mode": mode, "policy": policy, "recorded_producer_prepare_sha256": recorded,
+            "current_prepare_sha256": current, "original_receipt_modified": False,
+            "scope": "prepare source equivalence only; not cache integrity/native qualification",
+            "scientific_verdict": "NONE"}
+
+
+def preparation_code_binding(path):
+    receipt = preparation_receipt(path)  # retains completed-producer/layout/output checks
+    producer = json.loads(receipt.read_text(encoding="utf-8"))
+    return dict(_preparation_code_binding(producer), producer_receipt_sha256=sha256(receipt))
+
 def preparation_receipt(path):
     """Bind the actual prepared manifest to its completed native producer.
 
@@ -57,7 +98,6 @@ def preparation_receipt(path):
         raise ValueError("Invalid preparation attempt path")
     expected = (relative/"workspace/out/manifest.json").as_posix()
     outputs = [r for r in producer["output_refs"] if r["path"] == expected]
-    prepare_code = Path(__file__).resolve().parents[2]/"tools/prepare_candidate_bundle.py"
     command = producer["command"]
     if (producer["status"] != "completed" or producer["exit_code"] != 0
             or producer["trial_id"] != "prepare"
@@ -66,10 +106,9 @@ def preparation_receipt(path):
             or path.name != "manifest.json"
             or len(command) < 2 or Path(command[1]).name != "prepare_candidate_bundle.py"
             or producer["provenance"]["upstream_revision"] != UPSTREAM
-            or len(outputs) != 1 or outputs[0]["sha256"] != sha256(path)
-            or not any(r["path"] == "tools/prepare_candidate_bundle.py"
-                       and r["sha256"] == sha256(prepare_code) for r in producer["code_refs"])):
+            or len(outputs) != 1 or outputs[0]["sha256"] != sha256(path)):
         raise ValueError("Prepared bundle needs its completed native producer and reviewed code receipt")
+    _preparation_code_binding(producer)
     return receipt_path
 
 def validate_manifest(path):

@@ -13,7 +13,7 @@ from experiments.embedding_heads.audit_extensions import preflight_extension
 from experiments.embedding_heads.heads import Blocked
 from experiments.embedding_heads.bundle import (
     validate_manifest, load_training, all_refs, referenced, preparation_receipt,
-    check_original_source, UPSTREAM, jsonl)
+    check_original_source, UPSTREAM, jsonl, preparation_code_binding)
 
 
 def main():
@@ -84,6 +84,7 @@ def main():
     packet = {"schema": "cvpr.audit-job-cards.v1", "status": "DRAFT_JOB_CARDS_ONLY",
               "dispatch_ready": False, "execution_started": False, "scientific_verdict": "NONE",
               "upstream_revision": UPSTREAM, "skill_revision": config["skill_revision"],
+              "preparation_code_binding": preparation_code_binding(bundle),
               "bundle": bundle.relative_to(root).as_posix(), "config_sha256": digest(config_path),
               "extension_config_sha256": digest(args.extension_config) if args.extension_config else None,
               "cards": cards, "blocked": blocked,

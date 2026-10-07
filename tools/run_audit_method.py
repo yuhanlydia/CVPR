@@ -18,7 +18,7 @@ from experiments.embedding_heads.audit_controls import fit_audit, audit_features
 from experiments.embedding_heads.audit_inventory import load_inventory
 from experiments.embedding_heads.audit_extensions import fit_extension
 from experiments.embedding_heads.bundle import (
-    validate_manifest, load_training, load_projection, check_original_source, sha256, jsonl, referenced)
+    validate_manifest, load_training, load_projection, check_original_source, sha256, jsonl, referenced, preparation_code_binding)
 from common import now, read_json, write_json
 from run_method import evaluate
 
@@ -58,6 +58,7 @@ def main():
     try:
         check_original_source(args.upstream)
         manifest = validate_manifest(args.bundle)
+        result["preparation_code_binding"] = preparation_code_binding(args.bundle)
         if (manifest["train"]["revision"] != config["training_revision"] or
                 manifest["train"]["tasks"] != config["training_tasks"] or
                 [t["task"] for t in manifest["evaluation"]] != config["evaluation_tasks"] or
