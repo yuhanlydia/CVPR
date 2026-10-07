@@ -13,8 +13,9 @@
 全部模型/数据下载卡与完整新实验handoff仍待补齐。
 新增文件为**generated_unexecuted**，Web未执行新代码、tests或模型。
 
-[scheduled长期目标](LONG_TERM_TASK.md) 与 [续做清单](research-backlog.json)
-每天伦敦时间上午约8点逐轮推进，向**main**交付代码和命令，由用户local agent接受/执行。
+[Web代码完成目标](LONG_TERM_TASK.md) 与 [续做清单](research-backlog.json)
+由Web GPT尽快完成代码与完整运行命令并交付**main**，用户local agent负责接受/执行。
+旧每日8点任务已停用，当前为一次性代码完成任务。
 全程不用Docker。活动Local任务保持原版本、原始记录和累计预算。
 
 - [历史20张数学卡](rounds/r003/IDEAS.md)、[来源](rounds/r003/SOURCES.md)、[原计划](rounds/r003/PLAN.md)

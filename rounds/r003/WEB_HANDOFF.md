@@ -31,3 +31,9 @@ Local 软件/native scorer qualification 与 E04/确认。
 长期定时任务继续向 main 交付数学、代码和命令；Local 执行实际实验。
 保留所有旧尝试、失败、版本和累计限制；当前自动跨窗口派发仍未实现。
 
+
+## 用户纠正（2026-10-07）
+
+Web GPT负责赶快完成代码，Local负责真实执行；不按每天上午8点推进。
+旧每日任务已停用，当前为一次性尽快启动的Web代码完成任务，实际provider身份见
+[任务记录](../../research/scheduled-long-goal.json)。此状态只确认安排，不宣称代码已经完整或任务已执行。

@@ -1,12 +1,12 @@
 {
   "schema": "cvpr-scheduled-goal-record-v1",
-  "automation_id": "6ac52f3f3b9881919334157e3df989d7",
-  "title": "推进 CVPR 长期研究",
+  "automation_id": "6ac60d3d01408191b9ad00b7d503c49a",
+  "title": "完成 CVPR 代码",
   "is_enabled": true,
-  "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Europe/London:20261007T080000\nRRULE:FREQ=DAILY\nEND:VEVENT",
-  "timing_mode": "flexible_schedule",
+  "schedule": "BEGIN:VEVENT\nDTSTART:20261007T091433Z\nEND:VEVENT",
+  "timing_mode": "exact_schedule",
   "timezone": "Europe/London",
-  "provider_updated_at": "2026-10-07T09:03:08.290711+00:00",
+  "provider_updated_at": "2026-10-07T09:13:33.552247+00:00",
   "provider_next_run_time": null,
   "goal_ref": "LONG_TERM_TASK.md",
   "backlog_ref": "research-backlog.json",
@@ -14,5 +14,9 @@
   "execution_role": "web_supervisor",
   "execution_owner": "USER_LOCAL_AGENT",
   "delivery_branch": "main",
-  "note": "Provider confirmed update of existing task; scheduled triggers are distinct from continuous execution and scientific readiness."
+  "recurrence": "NONE",
+  "superseded_automation_id": "6ac52f3f3b9881919334157e3df989d7",
+  "superseded_automation_is_enabled": false,
+  "user_correction": "No daily 8am arrangement. Web GPT completes code promptly; Local runs it.",
+  "note": "Provider confirmed an enabled exact one-off task; old task is paused. Scheduled start is not evidence that code is already complete or execution has started."
 }

@@ -3,16 +3,18 @@
   "note": "Planning record; not a native-runner schema or proof of executed work.",
   "project": "yuhanlydia/CVPR",
   "updated_on": "2026-10-07",
-  "user_instruction": "助手只生成代码和命令并准备到 GitHub，由用户的 local agent 跑；不使用 Docker",
+  "user_instruction": "Web GPT尽快完成已授权研究代码与命令并交付main；不按每天上午8点推进，实际运行交给用户local agent，全程不用Docker",
   "continuation_branch": "main",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
   "observed_code_commit": "43c972104a7e022d5356bd73dc1612fd895865c4",
   "operating_policy": "LONG_TERM_TASK.md",
   "cadence": {
-    "frequency": "daily",
-    "daypart": "morning",
+    "kind": "one_off_web_code_completion",
+    "frequency": "one_time",
     "timezone": "Europe/London",
-    "timing": "flexible"
+    "timing": "exact_schedule",
+    "automation_id": "6ac60d3d01408191b9ad00b7d503c49a",
+    "schedule": "BEGIN:VEVENT\nDTSTART:20261007T091433Z\nEND:VEVENT"
   },
   "no_docker": true,
   "scope": {
@@ -283,5 +285,16 @@
   },
   "long_goal": "Reviewed mathematical pool (~20), full ranking/top-15 selection, substantive real-model code and complete native G01, Local acceptance/execution and evidence-based convergence",
   "current_workflow_checkpoint": "research/workflow-checkpoint-20261007.json",
-  "scheduled_task_ref": "research/scheduled-long-goal.json"
+  "scheduled_task_ref": "research/scheduled-long-goal.json",
+  "cadence_history": [
+    {
+      "frequency": "daily",
+      "daypart": "morning",
+      "timezone": "Europe/London",
+      "timing": "flexible",
+      "status": "SUPERSEDED_BY_USER_CORRECTION_2026-10-07",
+      "automation_id": "6ac52f3f3b9881919334157e3df989d7",
+      "is_enabled": false
+    }
+  ]
 }
