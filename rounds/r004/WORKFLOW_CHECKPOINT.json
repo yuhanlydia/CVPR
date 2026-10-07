@@ -1,0 +1,46 @@
+{
+  "schema": "cvpr.workflow-checkpoint.v1",
+  "role": "web_supervisor",
+  "origin": "M",
+  "scope": "existing implementation audit/repair/convergence/known controls",
+  "request": "inspect latest and propose more experiments with latest skill",
+  "project_revision_inspected": "47fd9dc40cec8615d0f204eb3e91668acdb6e148",
+  "skill_revision": "a8343aeb4f51303e2eb651081d4fe51c24c5ed3f",
+  "completed": [
+    "latest project/debug/result evidence inspection",
+    "latest skill/source identity/delta audit",
+    "eight conditional consequential math cards",
+    "25 extra comparator constructions",
+    "43-arm full three-native-task design draft",
+    "Local semantic acceptance/scoring/jobcards/live replay collector source",
+    "README/AGENTS/Local guide/round handoff navigation"
+  ],
+  "execution": {
+    "web_project_code": false,
+    "web_tests": false,
+    "web_gpu": false,
+    "local_acceptance": false,
+    "experiments": false
+  },
+  "method_discovery": {
+    "historical_cards": 20,
+    "historical_implemented": 12,
+    "verified_top15": false,
+    "changed": "not reopened for M audit",
+    "new_original_methods": 0,
+    "pending_old_prerequisites_preserved": true
+  },
+  "g01": {
+    "design": "complete Web draft",
+    "local_native_resource_admission": "pending",
+    "dispatch_ready": false
+  },
+  "next": [
+    "publish literal main with expected-parent update and exact readback",
+    "Local exact-source acceptance and compatible native cache/host/budget/protocol qualification",
+    "admitted complete native comparisons with actual receipts",
+    "E04 and separately frozen fresh confirmation for future claims"
+  ],
+  "gate_advanced": false,
+  "scientific_verdict": "NONE"
+}

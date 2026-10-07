@@ -1,5 +1,21 @@
 # CVPR project instructions
 
+## 当前增量：r004现有方法审计（2026-10-07）
+
+先读[当前r004 Web handoff](rounds/r004/WEB_HANDOFF.md)、
+[8组完整实验设计](rounds/r004/EXPERIMENT_DESIGN.md)、
+[数学卡](rounds/r004/MATH_CARDS.md)和
+[a8343ae来源核对](research/AUTOPILOT_DELTA_2026-10-07_a8343ae.md)。
+新任务固定作者a8343aeb4f51303e2eb651081d4fe51c24c5ed3f，完整297文件身份锁为
+configs/autopilot-source-a8343ae.json；旧来源/活动任务不迁移。
+25个新对照加18个历史记录组成43条登记，常规42条预计可评分、I01校准条件保留。
+这是M路线审计/修复/收敛/已知控制，不是新方法发现或已通过top15/原创性。
+新源码与命令全部generated_unexecuted；Local在已有SSH/Conda和单一remote run_harness
+接受真实源码/cache/native/G01/资源后执行。jobcards不是native/outer dispatch plan。
+不修改旧18次/累计硬界/marker，不给126个group job自动授予新预算。
+以下r003记录与新发现的科学前提继续保留。
+
+
 Read [LONG_TERM_TASK.md](LONG_TERM_TASK.md), [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md),
 the [current Web handoff](rounds/r003/WEB_HANDOFF.md), and
 [the skill upgrade audit](research/AUTOPILOT_UPGRADE_2026-10-07.md) at the actual pinned

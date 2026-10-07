@@ -1,5 +1,21 @@
 # Local Codex：当前入口
 
+## 当前r004：完整审计与控制交付
+
+先读[r004 Web handoff](rounds/r004/WEB_HANDOFF.md)和
+[8组实验设计](rounds/r004/EXPERIMENT_DESIGN.md)；
+新source lock为configs/autopilot-source-a8343ae.json，
+作者固定a8343aeb4f51303e2eb651081d4fe51c24c5ed3f，四目录297文件，旧活动绑定不替换。
+保留全部12原型+6控制，增加25个有明确对照问题的配置；I01仍缺独立校准。
+Local工具：qualify_audit_controls.py、prepare_audit_job_cards.py、
+run_audit_method.py、collect_audit_controls.py；实际argv、输出、输入卡/故障在r004 handoff。
+缓存兼容时为0 GPU CPU任务，无新模型/数据；重建缓存属于真实1 GPU准备和预算接受。
+配置dispatch_ready=false。Web没有执行新代码/tests或模型；未知host、累计budget、
+native per-group protocol/G01接受不预填。旧18次/硬时钟不重置。
+当前为M审计/修复/已知控制；不将旧发现池追认为verified top15，也不为审计凑新20张卡。
+下方前次审查、来源与运行记录保留；新增任务以r004的精确交付commit/入口为准。
+
+
 ## 本轮交付（2026-10-07）
 
 已新增[逐卡数学/源码审查](research/reviews/R003_REVIEW_2026-10-07.md)、

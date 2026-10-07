@@ -13,7 +13,7 @@ from experiments.embedding_heads.bundle import (validate_manifest, load_training
     project, referenced, jsonl, check_original_source, sha256, SCORER_PATH)
 from common import now, read_json, write_json
 
-def evaluate(task, head, bundle_path, manifest, projection, upstream, out):
+def evaluate(task, head, bundle_path, manifest, projection, upstream, out, *, feature_builder=None):
     import torch
     sys.path.insert(0, str(Path(upstream).resolve()))
     from src.evaluation.mmeb_v2.models import MMEBEmbeddingModel
@@ -35,9 +35,14 @@ def evaluate(task, head, bundle_path, manifest, projection, upstream, out):
         raise ValueError("Native feature coverage changed")
     if not np.isfinite(fullq).all() or not np.isfinite(fullc).all():
         raise ValueError("Nonfinite actual evaluation features")
-    q, c = project(fullq, projection), project(fullc, projection)
+    if feature_builder is None:
+        q, c = project(fullq, projection), project(fullc, projection)
+        if head["kind"] not in {"rbf", "distance"}:
+            q, c = features(head, q, "q"), features(head, c, "c")
+    else:
+        q = feature_builder(fullq, "q")
+        c = feature_builder(fullc, "c")
     if head["kind"] not in {"rbf", "distance"}:
-        q, c = features(head, q, "q"), features(head, c, "c")
         if q.ndim != 2 or c.ndim != 2 or q.shape[1] != c.shape[1]:
             raise ValueError("Transformed query/candidate dimensions disagree")
         if not np.isfinite(q).all() or not np.isfinite(c).all():

@@ -1,0 +1,916 @@
+{
+  "schema": "cvpr.existing-method-audit.v1",
+  "round": "r004",
+  "status": "generated_unexecuted",
+  "route": "M_existing_method_audit",
+  "dispatch_ready": false,
+  "source_project_revision": "47fd9dc40cec8615d0f204eb3e91668acdb6e148",
+  "skill_repository": "Yunbo-max/Research_Autopilot",
+  "skill_revision": "a8343aeb4f51303e2eb651081d4fe51c24c5ed3f",
+  "training_revision": "0c3f4b828d347c4e8508339f99530f6c820061fd",
+  "training_tasks": [
+    "ScienceQA",
+    "A-OKVQA"
+  ],
+  "evaluation_tasks": [
+    "ScienceQA",
+    "ChartQA",
+    "MSCOCO_i2t"
+  ],
+  "training_rows_per_task": 512,
+  "projection_rank": 32,
+  "seed": 42,
+  "head": {
+    "temperature": 0.1,
+    "ridge": 0.02,
+    "steps": 80,
+    "learning_rate": 0.05,
+    "components": 16,
+    "landmarks": 64,
+    "bandwidth": 1,
+    "shrinkage": 0.2,
+    "protected_group": "ScienceQA",
+    "protected_rank": 8,
+    "fisher_floor": 0.000001,
+    "irls_steps": 12,
+    "huber_delta": 1,
+    "dro_temperature": 0.2,
+    "diffusion_time": 2
+  },
+  "optimizer": {
+    "maxiter": 200,
+    "maxfun": 400,
+    "maxcor": 10,
+    "maxls": 20,
+    "gtol": 1e-7,
+    "ftol": 1e-12
+  },
+  "armijo": {
+    "c1": 0.0001,
+    "max_backtracks": 16
+  },
+  "arms": [
+    {
+      "id": "C_PROJECTED",
+      "kind": "reuse",
+      "source_method": "C_PROJECTED",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "C_KD",
+      "kind": "reuse",
+      "source_method": "C_KD",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "C_ERM",
+      "kind": "reuse",
+      "source_method": "C_ERM",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "C_SINGLE",
+      "kind": "reuse",
+      "source_method": "C_SINGLE",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "C_WHITEN",
+      "kind": "reuse",
+      "source_method": "C_WHITEN",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "C_RBF",
+      "kind": "reuse",
+      "source_method": "C_RBF",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I02",
+      "kind": "reuse",
+      "source_method": "I02",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I09",
+      "kind": "reuse",
+      "source_method": "I09",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I14",
+      "kind": "reuse",
+      "source_method": "I14",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I03",
+      "kind": "reuse",
+      "source_method": "I03",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I17",
+      "kind": "reuse",
+      "source_method": "I17",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I10",
+      "kind": "reuse",
+      "source_method": "I10",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I13",
+      "kind": "reuse",
+      "source_method": "I13",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I12",
+      "kind": "reuse",
+      "source_method": "I12",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I16",
+      "kind": "reuse",
+      "source_method": "I16",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I11",
+      "kind": "reuse",
+      "source_method": "I11",
+      "family": "REPLAY",
+      "conditional": null
+    },
+    {
+      "id": "I05",
+      "kind": "reuse",
+      "source_method": "I05",
+      "family": "REPLAY",
+      "conditional": "released_real_multi_positive_rows"
+    },
+    {
+      "id": "I01",
+      "kind": "reuse",
+      "source_method": "I01",
+      "family": "REPLAY",
+      "conditional": "independent_interval_calibration"
+    },
+    {
+      "id": "A_MRL64",
+      "kind": "prefix",
+      "family": "E01",
+      "dimension": 64
+    },
+    {
+      "id": "A_MRL128",
+      "kind": "prefix",
+      "family": "E01",
+      "dimension": 128
+    },
+    {
+      "id": "A_MRL256",
+      "kind": "prefix",
+      "family": "E01",
+      "dimension": 256
+    },
+    {
+      "id": "A_MRL512",
+      "kind": "prefix",
+      "family": "E01",
+      "dimension": 512
+    },
+    {
+      "id": "A_MRL1024",
+      "kind": "prefix",
+      "family": "E01",
+      "dimension": 1024
+    },
+    {
+      "id": "A_MRL2048",
+      "kind": "prefix",
+      "family": "E01",
+      "dimension": 2048
+    },
+    {
+      "id": "A_I03_DOT",
+      "kind": "legacy_dot",
+      "family": "E02",
+      "source_method": "I03"
+    },
+    {
+      "id": "A_I10_RAW",
+      "kind": "raw_two_view",
+      "family": "E03",
+      "source_method": "I10"
+    },
+    {
+      "id": "A_I13_RAW",
+      "kind": "raw_two_view",
+      "family": "E03",
+      "source_method": "I13"
+    },
+    {
+      "id": "A_WHITEN_RAW",
+      "kind": "raw_two_view",
+      "family": "E03",
+      "source_method": "C_WHITEN"
+    },
+    {
+      "id": "A_PCA16",
+      "kind": "pca_rank",
+      "family": "E03",
+      "dimension": 16
+    },
+    {
+      "id": "A_CE_LBFGS",
+      "kind": "ce_lbfgs",
+      "family": "E04"
+    },
+    {
+      "id": "A_I09_ARMIJO",
+      "kind": "newton_armijo",
+      "family": "E04",
+      "source_method": "I09"
+    },
+    {
+      "id": "A_I09_HALF",
+      "kind": "newton_scaled",
+      "family": "E04",
+      "source_method": "I09",
+      "step": 0.5
+    },
+    {
+      "id": "A_SHRINK005",
+      "kind": "reuse",
+      "family": "E05",
+      "source_method": "I13",
+      "parameter_overrides": {
+        "shrinkage": 0.05
+      }
+    },
+    {
+      "id": "A_SHRINK050",
+      "kind": "reuse",
+      "family": "E05",
+      "source_method": "I13",
+      "parameter_overrides": {
+        "shrinkage": 0.5
+      }
+    },
+    {
+      "id": "A_SHRINK080",
+      "kind": "reuse",
+      "family": "E05",
+      "source_method": "I13",
+      "parameter_overrides": {
+        "shrinkage": 0.8
+      }
+    },
+    {
+      "id": "A_MP_IN_LBFGS",
+      "kind": "mp_inside",
+      "family": "E06",
+      "conditional": "released_real_multi_positive_rows"
+    },
+    {
+      "id": "A_MP_OUT_LBFGS",
+      "kind": "mp_outside",
+      "family": "E06",
+      "conditional": "released_real_multi_positive_rows"
+    },
+    {
+      "id": "A_SINGLE_CLEAN_LBFGS",
+      "kind": "single_clean",
+      "family": "E06",
+      "conditional": "released_real_multi_positive_rows"
+    },
+    {
+      "id": "A_I12_COS",
+      "kind": "normalized_map",
+      "family": "E07",
+      "source_method": "I12"
+    },
+    {
+      "id": "A_I12_DIST",
+      "kind": "distance_map",
+      "family": "E07",
+      "source_method": "I12"
+    },
+    {
+      "id": "A_I16_COS",
+      "kind": "normalized_map",
+      "family": "E07",
+      "source_method": "I16"
+    },
+    {
+      "id": "A_ERM_LBFGS",
+      "kind": "erm_lbfgs",
+      "family": "E08"
+    },
+    {
+      "id": "A_DRO_LBFGS",
+      "kind": "dro_lbfgs",
+      "family": "E08"
+    }
+  ],
+  "primary_contrasts": [
+    {
+      "id": "original_vs_pca",
+      "family": "E01",
+      "weights": {
+        "A_MRL2048": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "i03_distance_vs_dot",
+      "family": "E02",
+      "weights": {
+        "I03": 1,
+        "A_I03_DOT": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "cca_cos_vs_raw",
+      "family": "E03",
+      "weights": {
+        "I10": 1,
+        "A_I10_RAW": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "shrink_norm_interaction",
+      "family": "E03",
+      "weights": {
+        "I13": 1,
+        "C_WHITEN": -1,
+        "A_I13_RAW": -1,
+        "A_WHITEN_RAW": 1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "ce_optimized_vs_one_step",
+      "family": "E04",
+      "weights": {
+        "A_CE_LBFGS": 1,
+        "I09": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "armijo_vs_one_step",
+      "family": "E04",
+      "weights": {
+        "A_I09_ARMIJO": 1,
+        "I09": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "shrink02_vs_white0",
+      "family": "E05",
+      "weights": {
+        "I13": 1,
+        "C_WHITEN": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "multi_outside_vs_inside",
+      "family": "E06",
+      "weights": {
+        "A_MP_OUT_LBFGS": 1,
+        "A_MP_IN_LBFGS": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "multi_inside_vs_clean_single",
+      "family": "E06",
+      "weights": {
+        "A_MP_IN_LBFGS": 1,
+        "A_SINGLE_CLEAN_LBFGS": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "diffusion_distance_vs_dot",
+      "family": "E07",
+      "weights": {
+        "A_I12_DIST": 1,
+        "I12": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "nystrom_cos_vs_dot",
+      "family": "E07",
+      "weights": {
+        "A_I16_COS": 1,
+        "I16": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "dro_optimized_vs_erm",
+      "family": "E08",
+      "weights": {
+        "A_DRO_LBFGS": 1,
+        "A_ERM_LBFGS": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    }
+  ],
+  "required_controls": {
+    "I01": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I02": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I03": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ],
+    "I05": [
+      "C_PROJECTED",
+      "C_SINGLE"
+    ],
+    "I09": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I10": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ],
+    "I11": [
+      "C_PROJECTED",
+      "C_ERM"
+    ],
+    "I12": [
+      "C_PROJECTED",
+      "C_RBF",
+      "I16"
+    ],
+    "I13": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ],
+    "I14": [
+      "C_PROJECTED",
+      "C_KD"
+    ],
+    "I16": [
+      "C_PROJECTED",
+      "C_RBF"
+    ],
+    "I17": [
+      "C_PROJECTED",
+      "C_WHITEN"
+    ]
+  },
+  "analysis": {
+    "metric": "hit@1",
+    "native_per_case_function": "RankingMetrics.hit_at_k",
+    "bootstrap_replicates": 2000,
+    "seed": 42,
+    "confidence": 0.95,
+    "independence": "query resampling only if actual native sample identity/dependence audit supports exchangeable queries; otherwise no CI",
+    "multiplicity": "12 contrasts x 3 tasks: descriptive 95% intervals, no winner-significance or confirmatory pass; no test-selected alpha",
+    "practical_delta": 0.01,
+    "precision": "n=1000 per-task developmental native split; differences of 1pp may remain inconclusive; never certify precision from count alone"
+  },
+  "bounds": {
+    "automatic_retries": 0,
+    "automatic_execution": false,
+    "additional_authorized_attempts": null,
+    "remaining_cumulative_seconds": null,
+    "max_local_cycle_seconds": 86400,
+    "soft_report_seconds": 28800,
+    "per_arm_seconds": null,
+    "cpu_cores": null,
+    "ram_mib": null
+  },
+  "science": {
+    "verdict": "NONE",
+    "gate_advanced": false,
+    "parent": "PENDING",
+    "natural_gate0": "PENDING",
+    "ipcg": "PENDING",
+    "new_method_selection": "NOT_VERIFIED",
+    "g01": "LOCAL_QUALIFICATION_PENDING",
+    "fresh_confirmation": "REQUIRED_FOR_FUTURE_CLAIMS"
+  },
+  "secondary_contrasts": [
+    {
+      "id": "I01_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I01": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I01_vs_C_KD",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I01": 1,
+        "C_KD": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I01_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I01": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I02_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I02": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I02_vs_C_KD",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I02": 1,
+        "C_KD": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I02_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I02": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I03_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I03": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I03_vs_C_WHITEN",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I03": 1,
+        "C_WHITEN": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I03_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I03": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I05_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I05": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I05_vs_C_SINGLE",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I05": 1,
+        "C_SINGLE": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I05_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I05": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I09_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I09": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I09_vs_C_KD",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I09": 1,
+        "C_KD": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I09_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I09": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I10_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I10": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I10_vs_C_WHITEN",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I10": 1,
+        "C_WHITEN": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I10_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I10": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I11_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I11": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I11_vs_C_ERM",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I11": 1,
+        "C_ERM": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I11_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I11": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I12_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I12": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I12_vs_C_RBF",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I12": 1,
+        "C_RBF": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I12_vs_I16",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I12": 1,
+        "I16": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I12_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I12": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I13_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I13": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I13_vs_C_WHITEN",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I13": 1,
+        "C_WHITEN": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I13_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I13": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I14_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I14": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I14_vs_C_KD",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I14": 1,
+        "C_KD": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I14_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I14": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I16_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I16": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I16_vs_C_RBF",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I16": 1,
+        "C_RBF": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I16_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I16": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I17_vs_C_PROJECTED",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I17": 1,
+        "C_PROJECTED": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I17_vs_C_WHITEN",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I17": 1,
+        "C_WHITEN": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    },
+    {
+      "id": "I17_vs_A_MRL2048",
+      "family": "HISTORICAL_REPLAY",
+      "weights": {
+        "I17": 1,
+        "A_MRL2048": -1
+      },
+      "scope": "exploratory_developmental",
+      "scientific_verdict": "NONE"
+    }
+  ]
+}

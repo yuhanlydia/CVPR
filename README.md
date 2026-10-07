@@ -1,5 +1,14 @@
 # CVPR：小模型多模态研究
 
+最新增量：[r004的8组实验](rounds/r004/EXPERIMENT_DESIGN.md)覆盖所有历史原型，
+新增25个对照配置和Local接受/收集代码；43条登记中42条预计可计算，I01仍条件阻塞。
+[运行交付](rounds/r004/WEB_HANDOFF.md)、[数学推导](rounds/r004/MATH_CARDS.md)、
+[配置](configs/audit_controls_20261007.json)已补齐。
+本轮使用作者最新[a8343ae](research/AUTOPILOT_DELTA_2026-10-07_a8343ae.md)，
+全部新增文件为generated_unexecuted，未运行项目/tests/模型，科学/资源接受仍待Local。
+现有方法审计不人为重开20→15；下方前次发现流程和历史状态保留。
+
+
 最新长期目标：按 [最新版 Research Autopilot](research/AUTOPILOT_UPGRADE_2026-10-07.md)
 完成约20数学候选逐项审查、全池排序选前15，再落实方法代码与完整原生实验设计。
 目前保留20张历史卡、12个开发原型及6个对照；当前前15选择与科学准入尚未完成。
