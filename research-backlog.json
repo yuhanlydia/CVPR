@@ -6,7 +6,7 @@
   "user_instruction": "Web GPT尽快完成已授权研究代码与命令并交付main；不按每天上午8点推进，实际运行交给用户local agent，全程不用Docker",
   "continuation_branch": "main",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
-  "observed_code_commit": "43c972104a7e022d5356bd73dc1612fd895865c4",
+  "observed_code_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
   "operating_policy": "LONG_TERM_TASK.md",
   "cadence": {
     "kind": "one_off_web_code_completion",
@@ -126,13 +126,16 @@
     {
       "id": "LT_CARD_REVIEW",
       "priority": 1,
-      "state": "PENDING_CURRENT_SEMANTIC_REVIEW",
+      "state": "MANUAL_FIRST_PASS_DELIVERED_FULL_SEMANTIC_PACKET_PENDING",
       "purpose": "逐项审查I01–I20数学、来源、自然问题与可证伪机制",
       "depends_on": [
         "LT_SKILL_SYNC"
       ],
-      "next_action": "按最新math/method/importance/collision contracts复用并核验每卡假设、推导、构造、预测、简单替代及原生任务；记录真实语义reviews",
-      "limits": "No generic pass flags, retrospective proof, padding or handcrafted evaluation"
+      "next_action": "Resolve I03 objective/scorer mismatch and I07/I08/I20 operational constructions; create actual per-card semantic evidence packet, primary-source comparison and complete ranking. Manual audit is not verified selection.",
+      "limits": "No generic pass flags, retrospective proof, padding or handcrafted evaluation",
+      "delivered_files": [
+        "research/MATH_SOURCE_AUDIT_2026-10-07.md"
+      ]
     },
     {
       "id": "LT_RANK15",
@@ -296,5 +299,33 @@
       "automation_id": "6ac52f3f3b9881919334157e3df989d7",
       "is_enabled": false
     }
-  ]
+  ],
+  "progress_audit": {
+    "observation_date": "2026-10-07",
+    "source_commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+    "report": "research/MATH_SOURCE_AUDIT_2026-10-07.md",
+    "scope": "Manual per-card algebra/construction review of I01–I20 and source comparison of 12 historical prototypes; no validator, software or model execution",
+    "historical_cards_inspected": 20,
+    "historical_candidate_implementations": 12,
+    "shared_controls": 6,
+    "current_verified_pool_status": "PENDING_REAL_PACKET_AND_REVIEW",
+    "current_verified_top15_status": "PENDING",
+    "findings": [
+      "I03 distance objective versus dot-product scoring mismatch",
+      "I09 logistic objective versus squared-KD control confound",
+      "I17 Wiener restoration versus ranking-risk gap",
+      "I07/I08/I20 lack complete operational constructions"
+    ],
+    "one_off_task": {
+      "id": "6ac60d3d01408191b9ad00b7d503c49a",
+      "is_enabled": true,
+      "last_run_time": null,
+      "next_run_time": null,
+      "status": "NO_EXECUTION_OR_COMPLETION_RECEIPT_EXPOSED"
+    },
+    "hosted_long_running_authoring": "ACTIVATION_UNVERIFIED; automation arrangement is not hosted-task liveness",
+    "latest_observed_skill_revision": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+    "installed_source_lock_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+    "generated_code_executed": false
+  }
 }

@@ -1,0 +1,38 @@
+{
+  "decision": "Retain original Web completion goal; deliver manual I01–I20 audit without certifying current pool/selection or background activity.",
+  "rationale": "Current main contains historical prototypes only. Source inspection exposes a metric-to-score mismatch and two comparison/interpretation gaps; provider peek exposes no one-off execution receipt.",
+  "evidence_refs": [
+    {
+      "repository": "yuhanlydia/CVPR",
+      "commit": "f2388ba8e3c4056fd4b19cfa3081aa1cbe7aebce",
+      "paths": [
+        "rounds/r003/IDEAS.md",
+        "experiments/embedding_heads/heads.py",
+        "tools/run_method.py",
+        "configs/candidates.json"
+      ]
+    },
+    {
+      "repository": "Yunbo-max/Research_Autopilot",
+      "commit": "99d8ac079682e91f61ab59bfd3e760eccb8b5726",
+      "path": "skills/research-autopilot/references/web-background-work.md"
+    }
+  ],
+  "alternatives": [
+    "Retrospectively claim 15 verified methods: rejected because no pool/selection packet",
+    "Assume enabled automation means active background author: rejected because no execution locator/receipt",
+    "Overwrite old method scorer silently: rejected because result-affecting scope needs explicit construction/version binding"
+  ],
+  "project_id": "yuhanlydia/CVPR",
+  "route_id": null,
+  "current_node": null,
+  "next_node": null,
+  "assigned_role": "web_supervisor",
+  "resource_limits": {
+    "docker": false,
+    "project_code_execution": "NONE",
+    "local_budget_seconds": 28800,
+    "budget_expanded": false
+  },
+  "next_discriminating_action": "Resolve I03 objective/scorer mismatch and I07/I08/I20 operational constructions; create actual per-card semantic evidence packet, primary-source comparison and complete ranking. Manual audit is not verified selection."
+}
