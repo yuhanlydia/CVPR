@@ -1,0 +1,79 @@
+{
+  "schema": "cvpr.web-source-review.v1",
+  "status": "generated_unexecuted",
+  "reviewer": "Web assistant; source and mathematical inspection only",
+  "independent_review": false,
+  "skill_revision": "a8343aeb4f51303e2eb651081d4fe51c24c5ed3f",
+  "project_parent": "5d96050e35ae62c36976c45dc9cb843db6cee177",
+  "route": "M",
+  "checked": [
+    {
+      "question": "Does first-pair sampling confound the CE comparison?",
+      "derivation": "E09 all-pair weights 1/(n*|P_i|*|N_i|) sum to 1; streaming gradient equals weighted BCE derivative. Query mass is 1/n regardless of cardinality.",
+      "source": "audit_extensions.py:extension_objective",
+      "local_check": "non-identity finite differences on real inputs; negative native-ID order check",
+      "status": "source_consistent_runtime_pending"
+    },
+    {
+      "question": "Does mixed CE count regularization twice?",
+      "derivation": "CE is affine in t, so t_alpha gives convex combination of data terms; one lambda/2 anchor remains. Hessian retains lower bound lambda I.",
+      "source": "audit_extensions.py:extension_objective",
+      "local_check": "alpha0/1 objective/gradient endpoints and three interior gradients",
+      "status": "source_consistent_runtime_pending"
+    },
+    {
+      "question": "Do source/sample arms leak excluded candidate statistics?",
+      "derivation": "Selecting rows then taking the union of their allowed columns preserves every selected positive/negative and removes unselected-only candidates. PCA remains full-parent; therefore only head isolation.",
+      "source": "audit_extensions.py:subset_training",
+      "local_check": "native-ID masks and teacher remapping; nested unique-query selections",
+      "status": "source_consistent_runtime_pending"
+    },
+    {
+      "question": "Is weighted whitening a PSD construction with the parent center?",
+      "derivation": "Both moment matrices are sums of nonnegative weighted outer products. Positive candidate masses sum to 1 when every native row has a positive; adding lambda I makes the transform defined.",
+      "source": "audit_extensions.py:whitening_head",
+      "local_check": "independent weighted-stack identity and inverse-square-root residual",
+      "status": "source_consistent_runtime_pending"
+    },
+    {
+      "question": "Does I02 protect the entire source group?",
+      "derivation": "R orthogonal and delta=P*Delta gives R^T*delta=0. Only queries in span(R) have unchanged bilinear score; general source queries have unprotected residual components.",
+      "source": "audit_extensions.py:protected_head",
+      "local_check": "orthogonality/constraint residual, actual source rank and captured query energy",
+      "status": "source_consistent_runtime_pending"
+    },
+    {
+      "question": "Is registry coverage equivalent to experiment completion?",
+      "derivation": "No. Inventory has 72 records, but actual native/failed/missing/conditional state is collected for all three tasks; 48 primary+124 secondary contrasts imply 516 developmental endpoints, not authorized jobs.",
+      "source": "audit_inventory.py; tools/collect_audit_controls.py; EXTENSION_COVERAGE.json",
+      "local_check": "actual code/input/output receipts, live official replay, all planned CI and same-fit identities",
+      "status": "source_consistent_runtime_pending"
+    }
+  ],
+  "repairs_in_review": [
+    "Removed unnecessary pair_data design matrix from negative selection",
+    "Bound native candidate IDs to label masks and remapped training candidate pools",
+    "Explicit old/new configuration identity with unchanged base blob",
+    "Reject nonfinite scorer values and inconsistent cross-task fit identities",
+    "Retain invalid attempt identity gaps rather than aborting unrelated records",
+    "Avoid resident full-ranking strings for all arms; retain actual raw files and compare ordered ranking SHA256",
+    "Cache audited native unit provenance per task"
+  ],
+  "not_performed": [
+    "compile/import/tests",
+    "model/data download",
+    "project experiment execution",
+    "actual host/resource admission",
+    "scientific/native acceptance",
+    "independent confirmation"
+  ],
+  "pending": [
+    "Local software and semantic acceptance at delivered SHA",
+    "native per-task scientific contracts and complete G01 review",
+    "actual remaining original cumulative budget",
+    "all three-task results and uncertainty/E04",
+    "independent confirmation for any scientific claim"
+  ],
+  "scientific_verdict": "NONE",
+  "gate_advanced": false
+}

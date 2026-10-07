@@ -6,12 +6,13 @@ Run as a bounded zero-GPU remote harness collection job at the execution revisio
 import argparse
 import collections
 import hashlib
+import json
 import sys
 from pathlib import Path
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common import read_json, write_json, digest
-from experiments.embedding_heads.audit_controls import registry
+from experiments.embedding_heads.audit_inventory import load_inventory
 from experiments.embedding_heads.bundle import (
     validate_manifest, referenced, jsonl, check_original_source)
 
@@ -67,23 +68,27 @@ def main():
         parser.add_argument("--" + name, required=True)
     parser.add_argument("--receipt", action="append", required=True,
                         help="Actual native run receipt JSON; repeat across retained windows")
+    parser.add_argument("--extension-config", help="Optional versioned 29-arm extension")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
-    config = read_json(args.config)
-    arms = registry(config)
+    config, arms = load_inventory(args.config, args.extension_config)
     manifest = validate_manifest(args.bundle)
     check_original_source(args.upstream)
     sys.path.insert(0, str(Path(args.upstream).resolve()))
     from src.evaluation.mmeb_v2.utils.eval_utils.metrics import RankingMetrics
     baseline_metric = RankingMetrics(["hit"])
     config_hash = digest(args.config)
+    extension_hash = digest(args.extension_config) if args.extension_config else None
+    bundle_hash = digest(args.bundle)
     tasks = {t["task"]: t for t in manifest["evaluation"]}
     expected = {(arm, task): {"method": arm, "task": task, "status": "PENDING"}
                 for arm in arms for task in tasks}
     hits, predictions, parameter_hashes, retained, errors = {}, {}, {}, [], []
-    required_code = ["tools/run_audit_method.py", "tools/run_method.py",
+    required_code = ["tools/run_audit_method.py", "tools/run_method.py", "tools/common.py",
                      "experiments/embedding_heads/audit_controls.py",
-                     "experiments/embedding_heads/heads.py", "experiments/embedding_heads/bundle.py"]
+                     "experiments/embedding_heads/heads.py", "experiments/embedding_heads/bundle.py",
+                     "experiments/embedding_heads/audit_inventory.py",
+                     "experiments/embedding_heads/audit_extensions.py"]
     seen = set()
     for receipt_path in args.receipt:
         receipt_path = Path(receipt_path).resolve()
@@ -107,10 +112,14 @@ def main():
             record.update(native_status=attempt["status"], exit_code=attempt["exit_code"],
                           attempt_path=attempt["attempt_path"], seconds=attempt["seconds"])
             actual_dir = (root / attempt["attempt_path"]).resolve()
-            actual_dir.relative_to(root)
-            actual = read_json(actual_dir / "attempt.json")
-            if actual != attempt:
-                raise ValueError("Native receipt/attempt record mismatch; retain and reconcile")
+            try:
+                actual_dir.relative_to(root)
+                actual = read_json(actual_dir / "attempt.json")
+                if actual != attempt:
+                    raise ValueError("Native receipt/attempt record mismatch; retain and reconcile")
+            except Exception as error:
+                record.update(status="INVALID_EVIDENCE", error_type=type(error).__name__, error=str(error))
+                continue
             def checked(filename):
                 path = actual_dir / "workspace/out" / filename
                 refs = [r for r in actual["output_refs"] if r["path"] == path.relative_to(root).as_posix()]
@@ -129,9 +138,17 @@ def main():
                     continue
                 if child["status"] != "DEVELOPMENTAL_SCORED" or child["audit_config_sha256"] != config_hash:
                     raise ValueError("Actual design/status differs from pinned audit")
+                if child.get("extension_config_sha256") != extension_hash:
+                    raise ValueError("Extension design identity differs; use its pinned execution collector")
+                if child.get("bundle_manifest_sha256") != bundle_hash:
+                    raise ValueError("Actual bundle identity differs")
+                if extension_hash and not any(r["sha256"] == extension_hash for r in actual["input_refs"]):
+                    raise ValueError("Native attempt lacks extension input binding")
                 refs = {(r["path"], r["sha256"]) for r in actual["code_refs"]}
                 if not all((name, digest(root / name)) in refs for name in required_code):
                     raise ValueError("Collector must use the exact execution source revision")
+                if not any(r["sha256"] == bundle_hash for r in actual["input_refs"]):
+                    raise ValueError("Native attempt lacks exact manifest binding")
                 if not any(r["sha256"] == config_hash for r in actual["input_refs"]):
                     raise ValueError("Native attempt lacks audit config input binding")
                 checked("head.npz"); checked("head.json")
@@ -141,7 +158,9 @@ def main():
                     raise ValueError("Native scorer coverage differs")
                 pred_path = checked(key[1] + "_pred.jsonl")
                 score_path = checked(key[1] + "_score.json")
-                checked(key[1] + "_replay.json")
+                persisted_replay = read_json(checked(key[1] + "_replay.json"))
+                if persisted_replay != replay[0]:
+                    raise ValueError("Persisted replay/result record mismatch")
                 if digest(pred_path) != replay[0]["prediction_sha256"] or digest(score_path) != replay[0]["score_sha256"]:
                     raise ValueError("Replay output digest changed")
                 rows = jsonl(pred_path)
@@ -154,14 +173,29 @@ def main():
                         raise ValueError("Native candidate/label contract changed")
                 official = RankingMetrics(task["metrics"]).evaluate(rows)
                 score = read_json(score_path)
-                if any(abs(float(score[k]) - float(v)) > 1e-12 for k, v in official.items()):
+                if any(not np.isfinite(float(score[k])) or not np.isfinite(float(v)) or
+                       abs(float(score[k]) - float(v)) > 1e-12 for k, v in official.items()):
                     raise ValueError("Actual live official scorer replay differs")
                 hits[key] = np.array([baseline_metric.hit_at_k(r["prediction"], r["label"], 1) for r in rows])
-                predictions[key] = rows
-                parameter_hashes[key] = child["parameter_sha256"]
+                # Keep only top1 and per-row ranking digests; raw full rankings stay in retained files.
+                predictions[key] = {
+                    "top1": [r["prediction"][0] for r in rows],
+                    "ranking_sha256": [hashlib.sha256(json.dumps(r["prediction"], ensure_ascii=False,
+                        separators=(",", ":")).encode()).hexdigest() for r in rows]}
+                diagnostic = child.get("diagnostics", {})
+                parameter_hashes[key] = (child["parameter_sha256"],
+                    diagnostic.get("training_identity_sha256"), diagnostic.get("pair_selection_sha256"),
+                    diagnostic.get("training_selection_sha256"))
                 record["status"] = "DEVELOPMENTAL_SCORED_LIVE_REPLAYED"
             except Exception as error:
                 record.update(status="INVALID_EVIDENCE", error_type=type(error).__name__, error=str(error))
+    # Audit actual unit provenance once per native task, not once per contrast.
+    unit_cache = {}
+    for name, task in tasks.items():
+        try:
+            unit_cache[name] = image_units(Path(args.bundle).parent, manifest, task)
+        except Exception as error:
+            unit_cache[name] = str(error)
     comparisons = []
     all_contrasts = [dict(c, analysis_level="primary") for c in config["primary_contrasts"]]
     all_contrasts += [dict(c, analysis_level="secondary") for c in config["secondary_contrasts"]]
@@ -177,7 +211,10 @@ def main():
                 difference = sum(weight * hits[(arm, name)] for arm, weight in contrast["weights"].items())
                 item.update(status="EXPLORATORY_POINT_ESTIMATE", paired_delta_hit_at_1=float(difference.mean()))
                 try:
-                    units, refs = image_units(Path(args.bundle).parent, manifest, task)
+                    unit_entry = unit_cache[name]
+                    if isinstance(unit_entry, str):
+                        raise ValueError(unit_entry)
+                    units, refs = unit_entry
                     item.update(bootstrap(difference, units, config["analysis"]["bootstrap_replicates"],
                                           config["analysis"]["seed"]), unit_provenance_refs=refs)
                     item["status"] = "EXPLORATORY_CONDITIONAL_INTERVAL"
@@ -187,9 +224,20 @@ def main():
                     positive = next(a for a, w in contrast["weights"].items() if w == 1)
                     negative = next(a for a, w in contrast["weights"].items() if w == -1)
                     a, b = predictions[(positive, name)], predictions[(negative, name)]
-                    item["different_top1_rows"] = sum(x["prediction"][0] != y["prediction"][0] for x, y in zip(a, b))
-                    item["different_full_rankings"] = sum(x["prediction"] != y["prediction"] for x, y in zip(a, b))
+                    item["different_top1_rows"] = sum(x != y for x, y in zip(a["top1"], b["top1"]))
+                    item["different_full_rankings_by_sha256"] = sum(x != y for x, y in zip(a["ranking_sha256"], b["ranking_sha256"]))
+                    item["ranking_comparison_rule"] = "SHA256 of ordered full native IDs per row; raw rankings retained"
             comparisons.append(item)
+    # Comparisons with mismatched deterministic fits remain invalid rather than winning by a different fit.
+    inconsistent = set()
+    for arm in arms:
+        values = [parameter_hashes[(arm, name)] for name in tasks if (arm, name) in parameter_hashes]
+        if len(set(values)) > 1:
+            inconsistent.add(arm)
+    for item in comparisons:
+        if set(item["weights"]) & inconsistent:
+            item["status"] = "INVALID_INCONSISTENT_FIT"
+            item["scientific_verdict"] = "NONE"
     coverage = []
     for arm in arms:
         keys = [(arm, name) for name in tasks]
@@ -200,14 +248,29 @@ def main():
                                                  len(values) == len(tasks) and len(set(values)) == 1,
                          "optimizer_convergence": [expected[k].get("result", {}).get("diagnostics", {}).get(
                              "convergence_qualified") for k in keys]})
+    optimizer_kinds = {"ce_lbfgs", "erm_lbfgs", "dro_lbfgs", "mp_inside", "mp_outside", "single_clean",
+                       "query_balanced_all_pairs", "teacher_hard_negative", "uniform_native_negative", "teacher_label_mixture"}
+    optimizer_required = [a["id"] for a in arms.values() if a["kind"] in optimizer_kinds or a.get("parent") == "A_CE_LBFGS"]
+    unqualified_optimizer_arms = [a for a in optimizer_required if not all(
+        expected[(a, name)].get("result", {}).get("diagnostics", {}).get("convergence_qualified") is True for name in tasks)]
     report = {"schema": "cvpr.audit-return.v1", "status": "DEVELOPMENTAL_AUDIT_SNAPSHOT",
               "arms": list(expected.values()), "coverage": coverage, "comparisons": comparisons,
               "retained_output_refs": retained, "errors": errors, "config_sha256": config_hash,
               "scientific_verdict": "NONE", "gate_advanced": False,
-              "all_failures_retained": True, "all_43_records_included": True,
+              "all_failures_retained": True, "all_registered_records_included": True,
+              "registered_records": len(arms), "required_group_jobs": len(expected),
+              "extension_config_sha256": extension_hash, "bundle_manifest_sha256": bundle_hash,
               "primary_contrasts": len(config["primary_contrasts"]),
               "primary_task_endpoints": 3 * len(config["primary_contrasts"]),
               "secondary_contrasts": len(config["secondary_contrasts"]),
+              "experiment_completeness": {
+                  "all_native_jobs_replayed": len(hits) == len(expected),
+                  "all_planned_comparisons_have_intervals": all(c["status"] == "EXPLORATORY_CONDITIONAL_INTERVAL" for c in comparisons),
+                  "fit_consistency": not inconsistent,
+                  "all_required_optimizers_qualified": not unqualified_optimizer_arms,
+                  "unqualified_optimizer_arms": unqualified_optimizer_arms,
+                  "missing_or_failed_jobs": len(expected) - len(hits),
+                  "interpretation": "development coverage only; not gates or confirmation"},
               "confirmation": "not performed; inspected development outputs cannot confirm chosen winners"}
     write_json(args.out, report)
     print("Audit snapshot:", args.out)

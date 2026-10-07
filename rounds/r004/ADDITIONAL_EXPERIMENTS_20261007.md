@@ -4,7 +4,9 @@
 
 2026-10-07检查：CVPR main仍为12a9252feaac60e69e39087b9d994f99a0162243；
 Research Autopilot作者main仍为a8343aeb4f51303e2eb651081d4fe51c24c5ed3f。
-上次交付之后没有新结果。此文件是proposed_unimplemented，所有执行/科学门均pending。
+本次重新设计代码前main为5d96050e35ae62c36976c45dc9cb843db6cee177。
+最新作者skill再次读回仍是上述a8343ae；没有新增运行结果。
+本次29配置已生成源码，状态generated_unexecuted，所有真实执行/科学门均pending。
 使用已核对的最新skill规则：每项数学分析、M路线现有方法审计、完整原生比较、
 真实资源和剩余预算、Web/Local边界。没有重新凑20→15原创候选。
 
@@ -12,7 +14,7 @@ Research Autopilot作者main仍为a8343aeb4f51303e2eb651081d4fe51c24c5ed3f。
 （11原型+6控制），I01阻塞，另外8卡parked。I09/I13是较明显开发信号，
 不意味着其他全部被证实失败；修复后的三任务结果仍缺失。
 已有E01–E08、25新增配置及原18条全部保留；此处另提6个问题、29配置。
-若未来实现并合并，两批共72条登记（含I01），不是72个原创idea，更不是72次已授权尝试。
+本次通过显式extension-config连接两批，共72条登记（含I01），不是72个原创idea，更不是72次已授权尝试。
 
 ## 数学共同定义与公平边界
 
@@ -159,6 +161,10 @@ all-pairs CPU成本O(pair_count*d²*iterations)，流式内存仍含原teacher/m
 单来源/样本量改变会改变候选统计与fit成本，须实测peak RAM/时间。
 Web只写分析与源，不运行项目/测试/模型，不下载数据；Local沿原Conda/SSH，无Docker。
 
-当前43-arm registry不能接受B_*，新JSON是设计登记，不是可执行配置。
-精确实现缺口、Local验收和交付见LOCAL_EXTENSION_HANDOFF.md。
+原43-arm registry及配置字节保持原样；新增audit_inventory加载可选extension配置，
+验证parent config blob并接通29个B_*的训练构造、runner、job卡和collector。
+旧proposed JSON保留历史；实际新配置为configs/audit_extensions_20261007.json。
+完整代码映射、Local验收/命令和仍未执行的资格见LOCAL_EXTENSION_HANDOFF.md；
+逐臂三任务覆盖见EXTENSION_COVERAGE.json。48 primary/124 secondary contrasts
+共516开发端点已预登记；所有gate/运行证据仍pending。
 不改变Parent/Natural Gate0/IPCG/Gate A状态，不承诺论文贡献。

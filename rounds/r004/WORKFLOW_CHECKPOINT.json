@@ -3,8 +3,8 @@
   "role": "web_supervisor",
   "origin": "M",
   "scope": "existing implementation audit/repair/convergence/known controls",
-  "request": "inspect latest and propose more experiments with latest skill",
-  "project_revision_inspected": "47fd9dc40cec8615d0f204eb3e91668acdb6e148",
+  "request": "认真重新设计code并确认完整实验覆盖",
+  "project_revision_inspected": "5d96050e35ae62c36976c45dc9cb843db6cee177",
   "skill_revision": "a8343aeb4f51303e2eb651081d4fe51c24c5ed3f",
   "completed": [
     "latest project/debug/result evidence inspection",
@@ -13,7 +13,11 @@
     "25 extra comparator constructions",
     "43-arm full three-native-task design draft",
     "Local semantic acceptance/scoring/jobcards/live replay collector source",
-    "README/AGENTS/Local guide/round handoff navigation"
+    "README/AGENTS/Local guide/round handoff navigation",
+    "29 extension constructions and native training identity/remap source",
+    "72-arm explicit optional inventory and complete 3-task source coverage",
+    "Local extension semantic acceptance, jobcards, result/replay/CI and coverage source",
+    "48 primary and 124 secondary contrasts; 516 developmental task endpoints"
   ],
   "execution": {
     "web_project_code": false,
@@ -31,9 +35,15 @@
     "pending_old_prerequisites_preserved": true
   },
   "g01": {
-    "design": "complete Web draft",
-    "local_native_resource_admission": "pending",
-    "dispatch_ready": false
+    "status": "generated_unexecuted",
+    "coverage_matrix": "rounds/r004/EXTENSION_COVERAGE.json",
+    "registered_arms": 72,
+    "native_tasks": 3,
+    "primary_contrasts": 48,
+    "secondary_contrasts": 124,
+    "planned_task_endpoints": 516,
+    "ready": false,
+    "host_budget_unknown": true
   },
   "next": [
     "publish literal main with expected-parent update and exact readback",

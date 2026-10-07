@@ -8,16 +8,19 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from common import digest, read_json, write_json
-from experiments.embedding_heads.audit_controls import registry
+from experiments.embedding_heads.audit_inventory import load_inventory
+from experiments.embedding_heads.audit_extensions import preflight_extension
+from experiments.embedding_heads.heads import Blocked
 from experiments.embedding_heads.bundle import (
     validate_manifest, load_training, all_refs, referenced, preparation_receipt,
-    check_original_source, UPSTREAM)
+    check_original_source, UPSTREAM, jsonl)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("bundle", "config", "upstream", "python", "out"):
         parser.add_argument("--" + name, required=True)
+    parser.add_argument("--extension-config", help="Optional versioned 29-arm extension")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     config_path = Path(args.config).resolve()
@@ -29,8 +32,7 @@ def main():
     for path in (config_path, bundle, upstream):
         path.relative_to(root)
     check_original_source(upstream)
-    config = read_json(config_path)
-    arms = registry(config)
+    config, arms = load_inventory(config_path, args.extension_config)
     manifest = validate_manifest(bundle)
     training = load_training(bundle, manifest, config["head"]["temperature"])
     if ([t["task"] for t in manifest["evaluation"]] != config["evaluation_tasks"] or
@@ -41,6 +43,9 @@ def main():
         return {"path": path.relative_to(root).as_posix(), "sha256": digest(path)}
     inputs = [ref(config_path), ref(bundle), ref(preparation_receipt(bundle))]
     inputs += [ref(referenced(bundle.parent, item)) for item in all_refs(manifest)]
+    if args.extension_config:
+        inputs.append(ref(args.extension_config))
+    rows = jsonl(referenced(bundle.parent, manifest["train"]["rows_ref"]))
     code = sorted((root / "tools").glob("*.py"))
     code += sorted((root / "experiments/embedding_heads").glob("*.py"))
     code += sorted(p for p in upstream.rglob("*") if p.is_file() and ".git" not in p.parts
@@ -49,6 +54,11 @@ def main():
     cards, blocked = [], []
     for arm in arms.values():
         reason = None
+        if arm["id"].startswith("B_"):
+            try:
+                preflight_extension(arm, training, rows, manifest["train"]["candidate_ids"])
+            except Blocked as error:
+                reason = str(error)
         if arm["id"] == "I01" and training.radius is None:
             reason = "INDEPENDENT_INTERVAL_CALIBRATION_NOT_AVAILABLE"
         elif arm.get("conditional") == "released_real_multi_positive_rows" and not (
@@ -68,11 +78,14 @@ def main():
                    "output_paths": ["out/result.json", "out/head.json", "out/head.npz"] +
                        ["out/" + name + suffix for suffix in ("_pred.jsonl", "_score.json", "_replay.json")],
                    "seed": config["seed"], "group": name, "arm_role": arm["id"]}
+            if args.extension_config:
+                job["command"] += ["--extension-config", Path(args.extension_config).resolve().relative_to(root).as_posix()]
             cards.append({"arm": arm["id"], "task": name, "family": arm["family"], "native_job": job})
     packet = {"schema": "cvpr.audit-job-cards.v1", "status": "DRAFT_JOB_CARDS_ONLY",
               "dispatch_ready": False, "execution_started": False, "scientific_verdict": "NONE",
               "upstream_revision": UPSTREAM, "skill_revision": config["skill_revision"],
               "bundle": bundle.relative_to(root).as_posix(), "config_sha256": digest(config_path),
+              "extension_config_sha256": digest(args.extension_config) if args.extension_config else None,
               "cards": cards, "blocked": blocked,
               "total_arms_registered": len(arms), "planned_group_jobs": len(cards),
               "cpu_only_scoring": True, "fit_repeated_per_task": True,

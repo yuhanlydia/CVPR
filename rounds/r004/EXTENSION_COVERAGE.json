@@ -1,0 +1,2468 @@
+{
+  "schema": "cvpr.audit-coverage.v1",
+  "status": "generated_unexecuted",
+  "dispatch_ready": false,
+  "project_source": "5d96050e35ae62c36976c45dc9cb843db6cee177",
+  "skill_source": "a8343aeb4f51303e2eb651081d4fe51c24c5ed3f",
+  "base_config": "configs/audit_controls_20261007.json",
+  "extension_config": "configs/audit_extensions_20261007.json",
+  "counts": {
+    "registered": 72,
+    "primary_contrasts": 48,
+    "primary_task_endpoints": 144,
+    "secondary_contrasts": 124,
+    "secondary_task_endpoints": 372,
+    "maximum_registered_group_jobs": 216,
+    "budget_authorized_jobs": null
+  },
+  "training": {
+    "revision": "0c3f4b828d347c4e8508339f99530f6c820061fd",
+    "tasks": [
+      "ScienceQA",
+      "A-OKVQA"
+    ],
+    "rows_rule": "unchanged parent bundle except E11/E12 explicitly head-only native subsets",
+    "identity": "native group/query_id and candidate_ids, released labels/masks and producer",
+    "test_selection": false
+  },
+  "tasks": [
+    {
+      "task": "ScienceQA",
+      "split": "original native test",
+      "denominator": "actual qualified manifest; never inferred from historic 1000",
+      "candidate_policy": "full original candidate universe per native row",
+      "scorer": "QwenLM/Qwen3-VL-Embedding@393e2978d27852b0d0230d6994f37f9c15bed73c:RankingMetrics",
+      "metrics": "all native declared metrics; paired hit@1 primary",
+      "loader": "tools/run_method.py:evaluate",
+      "runtime_entry": "tools/run_audit_method.py",
+      "qualification": "actual per-task native child contract and live replay pending",
+      "outputs": [
+        "out/result.json",
+        "out/head.json",
+        "out/head.npz",
+        "out/ScienceQA_pred.jsonl",
+        "out/ScienceQA_score.json",
+        "out/ScienceQA_replay.json"
+      ]
+    },
+    {
+      "task": "ChartQA",
+      "split": "original native test",
+      "denominator": "actual qualified manifest; never inferred from historic 1000",
+      "candidate_policy": "full original candidate universe per native row",
+      "scorer": "QwenLM/Qwen3-VL-Embedding@393e2978d27852b0d0230d6994f37f9c15bed73c:RankingMetrics",
+      "metrics": "all native declared metrics; paired hit@1 primary",
+      "loader": "tools/run_method.py:evaluate",
+      "runtime_entry": "tools/run_audit_method.py",
+      "qualification": "actual per-task native child contract and live replay pending",
+      "outputs": [
+        "out/result.json",
+        "out/head.json",
+        "out/head.npz",
+        "out/ChartQA_pred.jsonl",
+        "out/ChartQA_score.json",
+        "out/ChartQA_replay.json"
+      ]
+    },
+    {
+      "task": "MSCOCO_i2t",
+      "split": "original native test",
+      "denominator": "actual qualified manifest; never inferred from historic 1000",
+      "candidate_policy": "full original candidate universe per native row",
+      "scorer": "QwenLM/Qwen3-VL-Embedding@393e2978d27852b0d0230d6994f37f9c15bed73c:RankingMetrics",
+      "metrics": "all native declared metrics; paired hit@1 primary",
+      "loader": "tools/run_method.py:evaluate",
+      "runtime_entry": "tools/run_audit_method.py",
+      "qualification": "actual per-task native child contract and live replay pending",
+      "outputs": [
+        "out/result.json",
+        "out/head.json",
+        "out/head.npz",
+        "out/MSCOCO_i2t_pred.jsonl",
+        "out/MSCOCO_i2t_score.json",
+        "out/MSCOCO_i2t_replay.json"
+      ]
+    }
+  ],
+  "arms": [
+    {
+      "id": "C_PROJECTED",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "C_PROJECTED",
+        "kind": "reuse",
+        "source_method": "C_PROJECTED",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "original_vs_pca",
+        "I01_vs_C_PROJECTED",
+        "I02_vs_C_PROJECTED",
+        "I03_vs_C_PROJECTED",
+        "I05_vs_C_PROJECTED",
+        "I09_vs_C_PROJECTED",
+        "I10_vs_C_PROJECTED",
+        "I11_vs_C_PROJECTED",
+        "I12_vs_C_PROJECTED",
+        "I13_vs_C_PROJECTED",
+        "I14_vs_C_PROJECTED",
+        "I16_vs_C_PROJECTED",
+        "I17_vs_C_PROJECTED",
+        "B_PAIR_ALL_vs_C_PROJECTED",
+        "B_PAIR_TEACHER_HARD_vs_C_PROJECTED",
+        "B_PAIR_RANDOM_42_vs_C_PROJECTED",
+        "B_PAIR_RANDOM_104729_vs_C_PROJECTED",
+        "B_PAIR_RANDOM_314159_vs_C_PROJECTED",
+        "B_MIX_025_vs_C_PROJECTED",
+        "B_MIX_05_vs_C_PROJECTED",
+        "B_MIX_075_vs_C_PROJECTED",
+        "B_SOURCE_I09_ScienceQA_vs_C_PROJECTED",
+        "B_SOURCE_I09_AOKVQA_vs_C_PROJECTED",
+        "B_SOURCE_I13_ScienceQA_vs_C_PROJECTED",
+        "B_SOURCE_I13_AOKVQA_vs_C_PROJECTED",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_C_PROJECTED",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_C_PROJECTED",
+        "B_N_I09_64_vs_C_PROJECTED",
+        "B_N_I09_128_vs_C_PROJECTED",
+        "B_N_I09_256_vs_C_PROJECTED",
+        "B_N_I13_64_vs_C_PROJECTED",
+        "B_N_I13_128_vs_C_PROJECTED",
+        "B_N_I13_256_vs_C_PROJECTED",
+        "B_N_A_CE_LBFGS_64_vs_C_PROJECTED",
+        "B_N_A_CE_LBFGS_128_vs_C_PROJECTED",
+        "B_N_A_CE_LBFGS_256_vs_C_PROJECTED",
+        "B_WHITE_BALANCED_vs_C_PROJECTED",
+        "B_WHITE_POSITIVE_vs_C_PROJECTED",
+        "B_PROTECT_2_vs_C_PROJECTED",
+        "B_PROTECT_4_vs_C_PROJECTED",
+        "B_PROTECT_16_vs_C_PROJECTED",
+        "B_PROTECT_RANDOM8_vs_C_PROJECTED"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "C_KD",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "C_KD",
+        "kind": "reuse",
+        "source_method": "C_KD",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "B_PROTECT_2_vs_C_KD",
+        "B_PROTECT_4_vs_C_KD",
+        "B_PROTECT_16_vs_C_KD",
+        "B_PROTECT_RANDOM8_vs_C_KD",
+        "I01_vs_C_KD",
+        "I02_vs_C_KD",
+        "I09_vs_C_KD",
+        "I14_vs_C_KD"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "C_ERM",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "C_ERM",
+        "kind": "reuse",
+        "source_method": "C_ERM",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "I11_vs_C_ERM"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "C_SINGLE",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "C_SINGLE",
+        "kind": "reuse",
+        "source_method": "C_SINGLE",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "I05_vs_C_SINGLE"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "C_WHITEN",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "C_WHITEN",
+        "kind": "reuse",
+        "source_method": "C_WHITEN",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "shrink_norm_interaction",
+        "shrink02_vs_white0",
+        "I03_vs_C_WHITEN",
+        "I10_vs_C_WHITEN",
+        "I13_vs_C_WHITEN",
+        "I17_vs_C_WHITEN",
+        "B_PAIR_ALL_vs_C_WHITEN",
+        "B_PAIR_TEACHER_HARD_vs_C_WHITEN",
+        "B_PAIR_RANDOM_42_vs_C_WHITEN",
+        "B_PAIR_RANDOM_104729_vs_C_WHITEN",
+        "B_PAIR_RANDOM_314159_vs_C_WHITEN",
+        "B_MIX_025_vs_C_WHITEN",
+        "B_MIX_05_vs_C_WHITEN",
+        "B_MIX_075_vs_C_WHITEN",
+        "B_SOURCE_I09_ScienceQA_vs_C_WHITEN",
+        "B_SOURCE_I09_AOKVQA_vs_C_WHITEN",
+        "B_SOURCE_I13_ScienceQA_vs_C_WHITEN",
+        "B_SOURCE_I13_AOKVQA_vs_C_WHITEN",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_C_WHITEN",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_C_WHITEN",
+        "B_N_I09_64_vs_C_WHITEN",
+        "B_N_I09_128_vs_C_WHITEN",
+        "B_N_I09_256_vs_C_WHITEN",
+        "B_N_I13_64_vs_C_WHITEN",
+        "B_N_I13_128_vs_C_WHITEN",
+        "B_N_I13_256_vs_C_WHITEN",
+        "B_N_A_CE_LBFGS_64_vs_C_WHITEN",
+        "B_N_A_CE_LBFGS_128_vs_C_WHITEN",
+        "B_N_A_CE_LBFGS_256_vs_C_WHITEN",
+        "B_WHITE_BALANCED_vs_C_WHITEN",
+        "B_WHITE_POSITIVE_vs_C_WHITEN",
+        "B_PROTECT_2_vs_C_WHITEN",
+        "B_PROTECT_4_vs_C_WHITEN",
+        "B_PROTECT_16_vs_C_WHITEN",
+        "B_PROTECT_RANDOM8_vs_C_WHITEN"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "C_RBF",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "C_RBF",
+        "kind": "reuse",
+        "source_method": "C_RBF",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "I12_vs_C_RBF",
+        "I16_vs_C_RBF"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I02",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I02",
+        "kind": "reuse",
+        "source_method": "I02",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "B_PROTECT_2_vs_I02",
+        "B_PROTECT_4_vs_I02",
+        "B_PROTECT_16_vs_I02",
+        "B_PROTECT_RANDOM8_vs_I02",
+        "I02_vs_C_PROJECTED",
+        "I02_vs_C_KD",
+        "I02_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I09",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I09",
+        "kind": "reuse",
+        "source_method": "I09",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "ce_optimized_vs_one_step",
+        "armijo_vs_one_step",
+        "B_SOURCE_I09_ScienceQA_vs_I09",
+        "B_SOURCE_I09_AOKVQA_vs_I09",
+        "B_N_I09_64_vs_I09",
+        "B_N_I09_128_vs_I09",
+        "B_N_I09_256_vs_I09",
+        "I09_vs_C_PROJECTED",
+        "I09_vs_C_KD",
+        "I09_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I14",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I14",
+        "kind": "reuse",
+        "source_method": "I14",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "I14_vs_C_PROJECTED",
+        "I14_vs_C_KD",
+        "I14_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I03",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I03",
+        "kind": "reuse",
+        "source_method": "I03",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "i03_distance_vs_dot",
+        "I03_vs_C_PROJECTED",
+        "I03_vs_C_WHITEN",
+        "I03_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I17",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I17",
+        "kind": "reuse",
+        "source_method": "I17",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "I17_vs_C_PROJECTED",
+        "I17_vs_C_WHITEN",
+        "I17_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I10",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I10",
+        "kind": "reuse",
+        "source_method": "I10",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "cca_cos_vs_raw",
+        "I10_vs_C_PROJECTED",
+        "I10_vs_C_WHITEN",
+        "I10_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I13",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I13",
+        "kind": "reuse",
+        "source_method": "I13",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "shrink_norm_interaction",
+        "shrink02_vs_white0",
+        "B_SOURCE_I13_ScienceQA_vs_I13",
+        "B_SOURCE_I13_AOKVQA_vs_I13",
+        "B_N_I13_64_vs_I13",
+        "B_N_I13_128_vs_I13",
+        "B_N_I13_256_vs_I13",
+        "B_WHITE_BALANCED_vs_I13",
+        "B_WHITE_POSITIVE_vs_I13",
+        "I13_vs_C_PROJECTED",
+        "I13_vs_C_WHITEN",
+        "I13_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I12",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I12",
+        "kind": "reuse",
+        "source_method": "I12",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "diffusion_distance_vs_dot",
+        "I12_vs_C_PROJECTED",
+        "I12_vs_C_RBF",
+        "I12_vs_I16",
+        "I12_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I16",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I16",
+        "kind": "reuse",
+        "source_method": "I16",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "nystrom_cos_vs_dot",
+        "I12_vs_I16",
+        "I16_vs_C_PROJECTED",
+        "I16_vs_C_RBF",
+        "I16_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I11",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I11",
+        "kind": "reuse",
+        "source_method": "I11",
+        "family": "REPLAY",
+        "conditional": null
+      },
+      "planned_contrasts": [
+        "I11_vs_C_PROJECTED",
+        "I11_vs_C_ERM",
+        "I11_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I05",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I05",
+        "kind": "reuse",
+        "source_method": "I05",
+        "family": "REPLAY",
+        "conditional": "released_real_multi_positive_rows"
+      },
+      "planned_contrasts": [
+        "I05_vs_C_PROJECTED",
+        "I05_vs_C_SINGLE",
+        "I05_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "I01",
+      "kind": "reuse",
+      "family": "REPLAY",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "I01",
+        "kind": "reuse",
+        "source_method": "I01",
+        "family": "REPLAY",
+        "conditional": "independent_interval_calibration"
+      },
+      "planned_contrasts": [
+        "I01_vs_C_PROJECTED",
+        "I01_vs_C_KD",
+        "I01_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MRL64",
+      "kind": "prefix",
+      "family": "E01",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MRL64",
+        "kind": "prefix",
+        "family": "E01",
+        "dimension": 64
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MRL128",
+      "kind": "prefix",
+      "family": "E01",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MRL128",
+        "kind": "prefix",
+        "family": "E01",
+        "dimension": 128
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MRL256",
+      "kind": "prefix",
+      "family": "E01",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MRL256",
+        "kind": "prefix",
+        "family": "E01",
+        "dimension": 256
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MRL512",
+      "kind": "prefix",
+      "family": "E01",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MRL512",
+        "kind": "prefix",
+        "family": "E01",
+        "dimension": 512
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MRL1024",
+      "kind": "prefix",
+      "family": "E01",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MRL1024",
+        "kind": "prefix",
+        "family": "E01",
+        "dimension": 1024
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MRL2048",
+      "kind": "prefix",
+      "family": "E01",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MRL2048",
+        "kind": "prefix",
+        "family": "E01",
+        "dimension": 2048
+      },
+      "planned_contrasts": [
+        "original_vs_pca",
+        "I01_vs_A_MRL2048",
+        "I02_vs_A_MRL2048",
+        "I03_vs_A_MRL2048",
+        "I05_vs_A_MRL2048",
+        "I09_vs_A_MRL2048",
+        "I10_vs_A_MRL2048",
+        "I11_vs_A_MRL2048",
+        "I12_vs_A_MRL2048",
+        "I13_vs_A_MRL2048",
+        "I14_vs_A_MRL2048",
+        "I16_vs_A_MRL2048",
+        "I17_vs_A_MRL2048",
+        "B_PAIR_ALL_vs_A_MRL2048",
+        "B_PAIR_TEACHER_HARD_vs_A_MRL2048",
+        "B_PAIR_RANDOM_42_vs_A_MRL2048",
+        "B_PAIR_RANDOM_104729_vs_A_MRL2048",
+        "B_PAIR_RANDOM_314159_vs_A_MRL2048",
+        "B_MIX_025_vs_A_MRL2048",
+        "B_MIX_05_vs_A_MRL2048",
+        "B_MIX_075_vs_A_MRL2048",
+        "B_SOURCE_I09_ScienceQA_vs_A_MRL2048",
+        "B_SOURCE_I09_AOKVQA_vs_A_MRL2048",
+        "B_SOURCE_I13_ScienceQA_vs_A_MRL2048",
+        "B_SOURCE_I13_AOKVQA_vs_A_MRL2048",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_A_MRL2048",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_A_MRL2048",
+        "B_N_I09_64_vs_A_MRL2048",
+        "B_N_I09_128_vs_A_MRL2048",
+        "B_N_I09_256_vs_A_MRL2048",
+        "B_N_I13_64_vs_A_MRL2048",
+        "B_N_I13_128_vs_A_MRL2048",
+        "B_N_I13_256_vs_A_MRL2048",
+        "B_N_A_CE_LBFGS_64_vs_A_MRL2048",
+        "B_N_A_CE_LBFGS_128_vs_A_MRL2048",
+        "B_N_A_CE_LBFGS_256_vs_A_MRL2048",
+        "B_WHITE_BALANCED_vs_A_MRL2048",
+        "B_WHITE_POSITIVE_vs_A_MRL2048",
+        "B_PROTECT_2_vs_A_MRL2048",
+        "B_PROTECT_4_vs_A_MRL2048",
+        "B_PROTECT_16_vs_A_MRL2048",
+        "B_PROTECT_RANDOM8_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I03_DOT",
+      "kind": "legacy_dot",
+      "family": "E02",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I03_DOT",
+        "kind": "legacy_dot",
+        "family": "E02",
+        "source_method": "I03"
+      },
+      "planned_contrasts": [
+        "i03_distance_vs_dot"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I10_RAW",
+      "kind": "raw_two_view",
+      "family": "E03",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I10_RAW",
+        "kind": "raw_two_view",
+        "family": "E03",
+        "source_method": "I10"
+      },
+      "planned_contrasts": [
+        "cca_cos_vs_raw"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I13_RAW",
+      "kind": "raw_two_view",
+      "family": "E03",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I13_RAW",
+        "kind": "raw_two_view",
+        "family": "E03",
+        "source_method": "I13"
+      },
+      "planned_contrasts": [
+        "shrink_norm_interaction"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_WHITEN_RAW",
+      "kind": "raw_two_view",
+      "family": "E03",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_WHITEN_RAW",
+        "kind": "raw_two_view",
+        "family": "E03",
+        "source_method": "C_WHITEN"
+      },
+      "planned_contrasts": [
+        "shrink_norm_interaction"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_PCA16",
+      "kind": "pca_rank",
+      "family": "E03",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_PCA16",
+        "kind": "pca_rank",
+        "family": "E03",
+        "dimension": 16
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_CE_LBFGS",
+      "kind": "ce_lbfgs",
+      "family": "E04",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_CE_LBFGS",
+        "kind": "ce_lbfgs",
+        "family": "E04"
+      },
+      "planned_contrasts": [
+        "ce_optimized_vs_one_step",
+        "B_PAIR_ALL_vs_A_CE_LBFGS",
+        "B_PAIR_TEACHER_HARD_vs_A_CE_LBFGS",
+        "B_PAIR_RANDOM_42_vs_A_CE_LBFGS",
+        "B_PAIR_RANDOM_104729_vs_A_CE_LBFGS",
+        "B_PAIR_RANDOM_314159_vs_A_CE_LBFGS",
+        "B_MIX_025_vs_A_CE_LBFGS",
+        "B_MIX_05_vs_A_CE_LBFGS",
+        "B_MIX_075_vs_A_CE_LBFGS",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_A_CE_LBFGS",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_A_CE_LBFGS",
+        "B_N_A_CE_LBFGS_64_vs_A_CE_LBFGS",
+        "B_N_A_CE_LBFGS_128_vs_A_CE_LBFGS",
+        "B_N_A_CE_LBFGS_256_vs_A_CE_LBFGS"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I09_ARMIJO",
+      "kind": "newton_armijo",
+      "family": "E04",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I09_ARMIJO",
+        "kind": "newton_armijo",
+        "family": "E04",
+        "source_method": "I09"
+      },
+      "planned_contrasts": [
+        "armijo_vs_one_step"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I09_HALF",
+      "kind": "newton_scaled",
+      "family": "E04",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I09_HALF",
+        "kind": "newton_scaled",
+        "family": "E04",
+        "source_method": "I09",
+        "step": 0.5
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_SHRINK005",
+      "kind": "reuse",
+      "family": "E05",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_SHRINK005",
+        "kind": "reuse",
+        "family": "E05",
+        "source_method": "I13",
+        "parameter_overrides": {
+          "shrinkage": 0.05
+        }
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_SHRINK050",
+      "kind": "reuse",
+      "family": "E05",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_SHRINK050",
+        "kind": "reuse",
+        "family": "E05",
+        "source_method": "I13",
+        "parameter_overrides": {
+          "shrinkage": 0.5
+        }
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_SHRINK080",
+      "kind": "reuse",
+      "family": "E05",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_SHRINK080",
+        "kind": "reuse",
+        "family": "E05",
+        "source_method": "I13",
+        "parameter_overrides": {
+          "shrinkage": 0.8
+        }
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MP_IN_LBFGS",
+      "kind": "mp_inside",
+      "family": "E06",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MP_IN_LBFGS",
+        "kind": "mp_inside",
+        "family": "E06",
+        "conditional": "released_real_multi_positive_rows"
+      },
+      "planned_contrasts": [
+        "multi_outside_vs_inside",
+        "multi_inside_vs_clean_single"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_MP_OUT_LBFGS",
+      "kind": "mp_outside",
+      "family": "E06",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_MP_OUT_LBFGS",
+        "kind": "mp_outside",
+        "family": "E06",
+        "conditional": "released_real_multi_positive_rows"
+      },
+      "planned_contrasts": [
+        "multi_outside_vs_inside"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_SINGLE_CLEAN_LBFGS",
+      "kind": "single_clean",
+      "family": "E06",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_SINGLE_CLEAN_LBFGS",
+        "kind": "single_clean",
+        "family": "E06",
+        "conditional": "released_real_multi_positive_rows"
+      },
+      "planned_contrasts": [
+        "multi_inside_vs_clean_single"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I12_COS",
+      "kind": "normalized_map",
+      "family": "E07",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I12_COS",
+        "kind": "normalized_map",
+        "family": "E07",
+        "source_method": "I12"
+      },
+      "planned_contrasts": [],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I12_DIST",
+      "kind": "distance_map",
+      "family": "E07",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I12_DIST",
+        "kind": "distance_map",
+        "family": "E07",
+        "source_method": "I12"
+      },
+      "planned_contrasts": [
+        "diffusion_distance_vs_dot"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_I16_COS",
+      "kind": "normalized_map",
+      "family": "E07",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_I16_COS",
+        "kind": "normalized_map",
+        "family": "E07",
+        "source_method": "I16"
+      },
+      "planned_contrasts": [
+        "nystrom_cos_vs_dot"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_ERM_LBFGS",
+      "kind": "erm_lbfgs",
+      "family": "E08",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_ERM_LBFGS",
+        "kind": "erm_lbfgs",
+        "family": "E08"
+      },
+      "planned_contrasts": [
+        "dro_optimized_vs_erm",
+        "B_MIX_025_vs_A_ERM_LBFGS",
+        "B_MIX_05_vs_A_ERM_LBFGS",
+        "B_MIX_075_vs_A_ERM_LBFGS"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "A_DRO_LBFGS",
+      "kind": "dro_lbfgs",
+      "family": "E08",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "A_DRO_LBFGS",
+        "kind": "dro_lbfgs",
+        "family": "E08"
+      },
+      "planned_contrasts": [
+        "dro_optimized_vs_erm"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PAIR_ALL",
+      "kind": "query_balanced_all_pairs",
+      "family": "E09",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PAIR_ALL",
+        "kind": "query_balanced_all_pairs",
+        "family": "E09",
+        "pair_chunk_size": 256
+      },
+      "planned_contrasts": [
+        "B_PAIR_ALL_vs_A_CE_LBFGS",
+        "B_PAIR_ALL_vs_C_PROJECTED",
+        "B_PAIR_ALL_vs_C_WHITEN",
+        "B_PAIR_ALL_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PAIR_TEACHER_HARD",
+      "kind": "teacher_hard_negative",
+      "family": "E09",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PAIR_TEACHER_HARD",
+        "kind": "teacher_hard_negative",
+        "family": "E09"
+      },
+      "planned_contrasts": [
+        "B_PAIR_TEACHER_HARD_vs_A_CE_LBFGS",
+        "B_PAIR_TEACHER_HARD_vs_C_PROJECTED",
+        "B_PAIR_TEACHER_HARD_vs_C_WHITEN",
+        "B_PAIR_TEACHER_HARD_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PAIR_RANDOM_42",
+      "kind": "uniform_native_negative",
+      "family": "E09",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PAIR_RANDOM_42",
+        "kind": "uniform_native_negative",
+        "seed": 42,
+        "family": "E09"
+      },
+      "planned_contrasts": [
+        "B_PAIR_RANDOM_42_vs_A_CE_LBFGS",
+        "B_PAIR_RANDOM_42_vs_C_PROJECTED",
+        "B_PAIR_RANDOM_42_vs_C_WHITEN",
+        "B_PAIR_RANDOM_42_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PAIR_RANDOM_104729",
+      "kind": "uniform_native_negative",
+      "family": "E09",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PAIR_RANDOM_104729",
+        "kind": "uniform_native_negative",
+        "seed": 104729,
+        "family": "E09"
+      },
+      "planned_contrasts": [
+        "B_PAIR_RANDOM_104729_vs_A_CE_LBFGS",
+        "B_PAIR_RANDOM_104729_vs_C_PROJECTED",
+        "B_PAIR_RANDOM_104729_vs_C_WHITEN",
+        "B_PAIR_RANDOM_104729_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PAIR_RANDOM_314159",
+      "kind": "uniform_native_negative",
+      "family": "E09",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PAIR_RANDOM_314159",
+        "kind": "uniform_native_negative",
+        "seed": 314159,
+        "family": "E09"
+      },
+      "planned_contrasts": [
+        "B_PAIR_RANDOM_314159_vs_A_CE_LBFGS",
+        "B_PAIR_RANDOM_314159_vs_C_PROJECTED",
+        "B_PAIR_RANDOM_314159_vs_C_WHITEN",
+        "B_PAIR_RANDOM_314159_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_MIX_025",
+      "kind": "teacher_label_mixture",
+      "family": "E10",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_MIX_025",
+        "kind": "teacher_label_mixture",
+        "alpha": 0.25,
+        "family": "E10"
+      },
+      "planned_contrasts": [
+        "B_MIX_025_vs_A_CE_LBFGS",
+        "B_MIX_025_vs_A_ERM_LBFGS",
+        "B_MIX_025_vs_C_PROJECTED",
+        "B_MIX_025_vs_C_WHITEN",
+        "B_MIX_025_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_MIX_05",
+      "kind": "teacher_label_mixture",
+      "family": "E10",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_MIX_05",
+        "kind": "teacher_label_mixture",
+        "alpha": 0.5,
+        "family": "E10"
+      },
+      "planned_contrasts": [
+        "B_MIX_05_vs_A_CE_LBFGS",
+        "B_MIX_05_vs_A_ERM_LBFGS",
+        "B_MIX_05_vs_C_PROJECTED",
+        "B_MIX_05_vs_C_WHITEN",
+        "B_MIX_05_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_MIX_075",
+      "kind": "teacher_label_mixture",
+      "family": "E10",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_MIX_075",
+        "kind": "teacher_label_mixture",
+        "alpha": 0.75,
+        "family": "E10"
+      },
+      "planned_contrasts": [
+        "B_MIX_075_vs_A_CE_LBFGS",
+        "B_MIX_075_vs_A_ERM_LBFGS",
+        "B_MIX_075_vs_C_PROJECTED",
+        "B_MIX_075_vs_C_WHITEN",
+        "B_MIX_075_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_SOURCE_I09_ScienceQA",
+      "kind": "source_restricted_head",
+      "family": "E11",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_SOURCE_I09_ScienceQA",
+        "kind": "source_restricted_head",
+        "parent": "I09",
+        "group": "ScienceQA",
+        "family": "E11"
+      },
+      "planned_contrasts": [
+        "B_SOURCE_I09_ScienceQA_vs_I09",
+        "B_SOURCE_I09_ScienceQA_vs_C_PROJECTED",
+        "B_SOURCE_I09_ScienceQA_vs_C_WHITEN",
+        "B_SOURCE_I09_ScienceQA_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_SOURCE_I09_AOKVQA",
+      "kind": "source_restricted_head",
+      "family": "E11",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_SOURCE_I09_AOKVQA",
+        "kind": "source_restricted_head",
+        "parent": "I09",
+        "group": "A-OKVQA",
+        "family": "E11"
+      },
+      "planned_contrasts": [
+        "B_SOURCE_I09_AOKVQA_vs_I09",
+        "B_SOURCE_I09_AOKVQA_vs_C_PROJECTED",
+        "B_SOURCE_I09_AOKVQA_vs_C_WHITEN",
+        "B_SOURCE_I09_AOKVQA_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_SOURCE_I13_ScienceQA",
+      "kind": "source_restricted_head",
+      "family": "E11",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_SOURCE_I13_ScienceQA",
+        "kind": "source_restricted_head",
+        "parent": "I13",
+        "group": "ScienceQA",
+        "family": "E11"
+      },
+      "planned_contrasts": [
+        "B_SOURCE_I13_ScienceQA_vs_I13",
+        "B_SOURCE_I13_ScienceQA_vs_C_PROJECTED",
+        "B_SOURCE_I13_ScienceQA_vs_C_WHITEN",
+        "B_SOURCE_I13_ScienceQA_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_SOURCE_I13_AOKVQA",
+      "kind": "source_restricted_head",
+      "family": "E11",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_SOURCE_I13_AOKVQA",
+        "kind": "source_restricted_head",
+        "parent": "I13",
+        "group": "A-OKVQA",
+        "family": "E11"
+      },
+      "planned_contrasts": [
+        "B_SOURCE_I13_AOKVQA_vs_I13",
+        "B_SOURCE_I13_AOKVQA_vs_C_PROJECTED",
+        "B_SOURCE_I13_AOKVQA_vs_C_WHITEN",
+        "B_SOURCE_I13_AOKVQA_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_SOURCE_A_CE_LBFGS_ScienceQA",
+      "kind": "source_restricted_head",
+      "family": "E11",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_SOURCE_A_CE_LBFGS_ScienceQA",
+        "kind": "source_restricted_head",
+        "parent": "A_CE_LBFGS",
+        "group": "ScienceQA",
+        "family": "E11"
+      },
+      "planned_contrasts": [
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_A_CE_LBFGS",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_C_PROJECTED",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_C_WHITEN",
+        "B_SOURCE_A_CE_LBFGS_ScienceQA_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_SOURCE_A_CE_LBFGS_AOKVQA",
+      "kind": "source_restricted_head",
+      "family": "E11",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_SOURCE_A_CE_LBFGS_AOKVQA",
+        "kind": "source_restricted_head",
+        "parent": "A_CE_LBFGS",
+        "group": "A-OKVQA",
+        "family": "E11"
+      },
+      "planned_contrasts": [
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_A_CE_LBFGS",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_C_PROJECTED",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_C_WHITEN",
+        "B_SOURCE_A_CE_LBFGS_AOKVQA_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_I09_64",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_I09_64",
+        "kind": "nested_head_subset",
+        "parent": "I09",
+        "unique_queries_per_group": 64,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_I09_64_vs_I09",
+        "B_N_I09_64_vs_C_PROJECTED",
+        "B_N_I09_64_vs_C_WHITEN",
+        "B_N_I09_64_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_I09_128",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_I09_128",
+        "kind": "nested_head_subset",
+        "parent": "I09",
+        "unique_queries_per_group": 128,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_I09_128_vs_I09",
+        "B_N_I09_128_vs_C_PROJECTED",
+        "B_N_I09_128_vs_C_WHITEN",
+        "B_N_I09_128_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_I09_256",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_I09_256",
+        "kind": "nested_head_subset",
+        "parent": "I09",
+        "unique_queries_per_group": 256,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_I09_256_vs_I09",
+        "B_N_I09_256_vs_C_PROJECTED",
+        "B_N_I09_256_vs_C_WHITEN",
+        "B_N_I09_256_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_I13_64",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_I13_64",
+        "kind": "nested_head_subset",
+        "parent": "I13",
+        "unique_queries_per_group": 64,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_I13_64_vs_I13",
+        "B_N_I13_64_vs_C_PROJECTED",
+        "B_N_I13_64_vs_C_WHITEN",
+        "B_N_I13_64_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_I13_128",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_I13_128",
+        "kind": "nested_head_subset",
+        "parent": "I13",
+        "unique_queries_per_group": 128,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_I13_128_vs_I13",
+        "B_N_I13_128_vs_C_PROJECTED",
+        "B_N_I13_128_vs_C_WHITEN",
+        "B_N_I13_128_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_I13_256",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_I13_256",
+        "kind": "nested_head_subset",
+        "parent": "I13",
+        "unique_queries_per_group": 256,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_I13_256_vs_I13",
+        "B_N_I13_256_vs_C_PROJECTED",
+        "B_N_I13_256_vs_C_WHITEN",
+        "B_N_I13_256_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_A_CE_LBFGS_64",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_A_CE_LBFGS_64",
+        "kind": "nested_head_subset",
+        "parent": "A_CE_LBFGS",
+        "unique_queries_per_group": 64,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_A_CE_LBFGS_64_vs_A_CE_LBFGS",
+        "B_N_A_CE_LBFGS_64_vs_C_PROJECTED",
+        "B_N_A_CE_LBFGS_64_vs_C_WHITEN",
+        "B_N_A_CE_LBFGS_64_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_A_CE_LBFGS_128",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_A_CE_LBFGS_128",
+        "kind": "nested_head_subset",
+        "parent": "A_CE_LBFGS",
+        "unique_queries_per_group": 128,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_A_CE_LBFGS_128_vs_A_CE_LBFGS",
+        "B_N_A_CE_LBFGS_128_vs_C_PROJECTED",
+        "B_N_A_CE_LBFGS_128_vs_C_WHITEN",
+        "B_N_A_CE_LBFGS_128_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_N_A_CE_LBFGS_256",
+      "kind": "nested_head_subset",
+      "family": "E12",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_N_A_CE_LBFGS_256",
+        "kind": "nested_head_subset",
+        "parent": "A_CE_LBFGS",
+        "unique_queries_per_group": 256,
+        "seed": 42,
+        "family": "E12"
+      },
+      "planned_contrasts": [
+        "B_N_A_CE_LBFGS_256_vs_A_CE_LBFGS",
+        "B_N_A_CE_LBFGS_256_vs_C_PROJECTED",
+        "B_N_A_CE_LBFGS_256_vs_C_WHITEN",
+        "B_N_A_CE_LBFGS_256_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_WHITE_BALANCED",
+      "kind": "balanced_query_candidate_second_moment",
+      "family": "E13",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_WHITE_BALANCED",
+        "kind": "balanced_query_candidate_second_moment",
+        "family": "E13"
+      },
+      "planned_contrasts": [
+        "B_WHITE_BALANCED_vs_I13",
+        "B_WHITE_BALANCED_vs_C_PROJECTED",
+        "B_WHITE_BALANCED_vs_C_WHITEN",
+        "B_WHITE_BALANCED_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_WHITE_POSITIVE",
+      "kind": "positive_weighted_second_moment",
+      "family": "E13",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_WHITE_POSITIVE",
+        "kind": "positive_weighted_second_moment",
+        "family": "E13"
+      },
+      "planned_contrasts": [
+        "B_WHITE_POSITIVE_vs_I13",
+        "B_WHITE_POSITIVE_vs_C_PROJECTED",
+        "B_WHITE_POSITIVE_vs_C_WHITEN",
+        "B_WHITE_POSITIVE_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PROTECT_2",
+      "kind": "source_svd_protection",
+      "family": "E14",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PROTECT_2",
+        "kind": "source_svd_protection",
+        "protected_rank": 2,
+        "family": "E14"
+      },
+      "planned_contrasts": [
+        "B_PROTECT_2_vs_I02",
+        "B_PROTECT_2_vs_C_KD",
+        "B_PROTECT_2_vs_C_PROJECTED",
+        "B_PROTECT_2_vs_C_WHITEN",
+        "B_PROTECT_2_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PROTECT_4",
+      "kind": "source_svd_protection",
+      "family": "E14",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PROTECT_4",
+        "kind": "source_svd_protection",
+        "protected_rank": 4,
+        "family": "E14"
+      },
+      "planned_contrasts": [
+        "B_PROTECT_4_vs_I02",
+        "B_PROTECT_4_vs_C_KD",
+        "B_PROTECT_4_vs_C_PROJECTED",
+        "B_PROTECT_4_vs_C_WHITEN",
+        "B_PROTECT_4_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PROTECT_16",
+      "kind": "source_svd_protection",
+      "family": "E14",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PROTECT_16",
+        "kind": "source_svd_protection",
+        "protected_rank": 16,
+        "family": "E14"
+      },
+      "planned_contrasts": [
+        "B_PROTECT_16_vs_I02",
+        "B_PROTECT_16_vs_C_KD",
+        "B_PROTECT_16_vs_C_PROJECTED",
+        "B_PROTECT_16_vs_C_WHITEN",
+        "B_PROTECT_16_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    },
+    {
+      "id": "B_PROTECT_RANDOM8",
+      "kind": "random_orthogonal_protection",
+      "family": "E14",
+      "native_tasks": [
+        "ScienceQA",
+        "ChartQA",
+        "MSCOCO_i2t"
+      ],
+      "effective_parameters": {
+        "id": "B_PROTECT_RANDOM8",
+        "kind": "random_orthogonal_protection",
+        "protected_rank": 8,
+        "seed": 42,
+        "family": "E14"
+      },
+      "planned_contrasts": [
+        "B_PROTECT_RANDOM8_vs_I02",
+        "B_PROTECT_RANDOM8_vs_C_KD",
+        "B_PROTECT_RANDOM8_vs_C_PROJECTED",
+        "B_PROTECT_RANDOM8_vs_C_WHITEN",
+        "B_PROTECT_RANDOM8_vs_A_MRL2048"
+      ],
+      "strong_comparators": [
+        "C_PROJECTED",
+        "C_WHITEN",
+        "A_MRL2048"
+      ],
+      "execution_status": "PENDING",
+      "software_status": "PENDING",
+      "native_status": "PENDING",
+      "verification_status": "PENDING"
+    }
+  ],
+  "analysis": {
+    "replicates": 2000,
+    "unit": "actual image SHA clusters/exact text input; conditional fixed corpus",
+    "multiplicity": "descriptive; no confirmatory winner selection",
+    "missing_identity": "CI_PENDING",
+    "fit_consistency": "parameter, pair-selection and training/subset identity match all three tasks",
+    "confirmed_claims": []
+  },
+  "resources": {
+    "gpu_cached_heads": 0,
+    "cache_rebuild_gpu": 1,
+    "peak_ram": null,
+    "fit_time": null,
+    "scoring_time": null,
+    "remaining_attempts": null,
+    "remaining_wall_seconds": null,
+    "old_limits_preserved": true,
+    "automatic_launch": false
+  },
+  "frozen_shared_parameters": {
+    "head": {
+      "temperature": 0.1,
+      "ridge": 0.02,
+      "steps": 80,
+      "learning_rate": 0.05,
+      "components": 16,
+      "landmarks": 64,
+      "bandwidth": 1,
+      "shrinkage": 0.2,
+      "protected_group": "ScienceQA",
+      "protected_rank": 8,
+      "fisher_floor": 0.000001,
+      "irls_steps": 12,
+      "huber_delta": 1,
+      "dro_temperature": 0.2,
+      "diffusion_time": 2
+    },
+    "optimizer": {
+      "maxiter": 200,
+      "maxfun": 400,
+      "maxcor": 10,
+      "maxls": 20,
+      "gtol": 1e-7,
+      "ftol": 1e-12
+    },
+    "armijo": {
+      "c1": 0.0001,
+      "max_backtracks": 16
+    },
+    "seed": 42,
+    "projection_rank": 32
+  },
+  "code_status": "source generated; no software execution or native qualification"
+}

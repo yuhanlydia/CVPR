@@ -8,14 +8,17 @@ import hashlib
 import json
 import sys
 import time
+import resource
 import traceback
 from pathlib import Path
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from experiments.embedding_heads.heads import Blocked
-from experiments.embedding_heads.audit_controls import registry, fit_audit, audit_features
+from experiments.embedding_heads.audit_controls import fit_audit, audit_features
+from experiments.embedding_heads.audit_inventory import load_inventory
+from experiments.embedding_heads.audit_extensions import fit_extension
 from experiments.embedding_heads.bundle import (
-    validate_manifest, load_training, load_projection, check_original_source, sha256)
+    validate_manifest, load_training, load_projection, check_original_source, sha256, jsonl, referenced)
 from common import now, read_json, write_json
 from run_method import evaluate
 
@@ -35,9 +38,9 @@ def main():
     for name in ("bundle", "config", "method", "upstream", "out"):
         parser.add_argument("--" + name, required=True)
     parser.add_argument("--task", choices=("ScienceQA", "ChartQA", "MSCOCO_i2t"))
+    parser.add_argument("--extension-config", help="Optional versioned 29-arm extension; acceptance pending")
     args = parser.parse_args()
-    config = read_json(args.config)
-    arms = registry(config)
+    config, arms = load_inventory(args.config, args.extension_config)
     if args.method not in arms:
         raise ValueError("Arm outside the frozen audit inventory")
     out = Path(args.out).resolve()
@@ -47,6 +50,9 @@ def main():
               "started_at": now(), "tasks": [], "scientific_verdict": "NONE", "gate_advanced": False,
               "fit_uses_test_labels": False, "audit_config_sha256": sha256(args.config),
               "source_status": config["status"], "scope": "existing-method developmental audit"}
+    result["extension_config_sha256"] = sha256(args.extension_config) if args.extension_config else None
+    result["bundle_manifest_sha256"] = sha256(args.bundle)
+    usage_start = resource.getrusage(resource.RUSAGE_SELF)
     write_json(out / "result.json", result)
     code = 0
     try:
@@ -59,7 +65,11 @@ def main():
             raise ValueError("Original train/task/projection identity changed")
         training = load_training(args.bundle, manifest, config["head"]["temperature"])
         fit_started = time.monotonic()
-        head = fit_audit(arms[args.method], training, config)
+        if args.method.startswith("B_"):
+            rows = jsonl(referenced(Path(args.bundle).parent, manifest["train"]["rows_ref"]))
+            head = fit_extension(arms[args.method], training, config, rows, manifest["train"]["candidate_ids"])
+        else:
+            head = fit_audit(arms[args.method], training, config)
         result.update(setup_seconds=fit_started - started, fit_seconds=time.monotonic() - fit_started,
                       diagnostics=head["diagnostics"], head_kind=head["kind"],
                       parameter_sha256=parameter_digest(head), model_revision=manifest["model_revision"])
@@ -88,7 +98,13 @@ def main():
         code = 1
         traceback.print_exc()
     finally:
-        result.update(finished_at=now(), elapsed_seconds=time.monotonic() - started)
+        usage = resource.getrusage(resource.RUSAGE_SELF)
+        result.update(finished_at=now(), elapsed_seconds=time.monotonic() - started,
+                      cpu_user_seconds=usage.ru_utime - usage_start.ru_utime,
+                      cpu_system_seconds=usage.ru_stime - usage_start.ru_stime,
+                      process_peak_rss_bytes=int(usage.ru_maxrss * 1024),
+                      peak_rss_scope="Linux process lifetime; includes setup, excludes child processes",
+                      gpu_requested=0)
         write_json(out / "result.json", result)
     print(json.dumps(result, ensure_ascii=False, allow_nan=False), flush=True)
     return code

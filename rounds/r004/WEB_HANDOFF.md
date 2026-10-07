@@ -1,3 +1,12 @@
+# r004扩展代码交付补充
+
+先读[当前扩展Local交接](LOCAL_EXTENSION_HANDOFF.md)和[逐臂三任务完整度矩阵](EXTENSION_COVERAGE.json)。
+29新增配置已生成代码，与原43条通过显式--extension-config连接；共72条登记，
+包含所有历史方法/控制。48 primary＋124 secondary contrasts覆盖三个完整原生任务。
+状态generated_unexecuted；Web未运行代码/tests/模型，实际Local/native/G01/资源接受及结果pending。
+skill固定最新a8343ae。旧默认43臂和活动attempt保持原绑定；原18次/累计硬界不重置。
+此当前入口适用于新增接受/执行/修复；下面原交接与历史记录保留。
+
 # r004 Local agent交付：8组审计与25个新增对照
 
 状态：**generated_unexecuted**。Web完成最新源码/数学、控制实现、配置、接受/收集工具与命令，
