@@ -1,3 +1,12 @@
+# 最新入口（2026-10-07）
+
+先读AGENTS.md、LOCAL_AGENT_RUNBOOK.md、rounds/r003/WEB_HANDOFF.md和
+research/AUTOPILOT_UPGRADE_2026-10-07.md。它们覆盖下方历史执行说明中与最新版skill不一致的要求。
+活动任务保持原版本；不要把旧12筛选追认为前15。Web只生成、不执行tests或实验；
+Local接受与执行需满足当前证据和原生harness。
+
+## 以下为保留的历史说明
+
 # 最新流程：GitHub 代码 → 用户的 local agent 执行
 
 用户明确要求网页助手只生成 code 与命令，不代跑实验；由用户的 local agent 运行。

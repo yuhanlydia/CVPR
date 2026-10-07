@@ -1,0 +1,83 @@
+{
+  "workflow_checkpoint": {
+    "policy_version": "1.2.0",
+    "skill_source_revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+    "loaded_module_refs": [
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/SKILL.md"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/references/workflow-harness.md"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/references/method-verification.md"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/references/local-code-handoff.md"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/references/repository-round-trips.md"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/references/local-execution-harness.md"
+      },
+      {
+        "repository": "Yunbo-max/Research_Autopilot",
+        "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+        "path": "skills/research-autopilot/references/local-installation-and-logging.md"
+      }
+    ],
+    "execution_role": "web_supervisor",
+    "role_source": "User: Web prepares GitHub code/commands; local agent runs. Scheduled long goal requested on 2026-10-07.",
+    "web_github_delivery_branch": "main",
+    "delivery_parent_commit": "43c972104a7e022d5356bd73dc1612fd895865c4",
+    "work_phase": "skill-source-maintenance-and-scheduled-continuation",
+    "project_id": "yuhanlydia/CVPR",
+    "route_id": null,
+    "canonical_ledger_ref": "research-backlog.json",
+    "current_goal_ref": "LONG_TERM_TASK.md",
+    "user_message_effect": "Update actual scheduled task to latest full skill and retained long goal",
+    "current_node": null,
+    "requested_action": "Source upgrade, durable continuation and existing scheduled task update",
+    "generated_artifact_refs": [
+      "configs/autopilot-source.json",
+      "tools/check_autopilot_source.py",
+      "AGENTS.md",
+      "LOCAL_AGENT_RUNBOOK.md",
+      "rounds/r003/WEB_HANDOFF.md",
+      "research/AUTOPILOT_UPGRADE_2026-10-07.md"
+    ],
+    "readiness": "pending",
+    "earliest_unclosed_prerequisite": "Current semantic review of full mathematical pool and complete ranking/top-15 selection",
+    "missing_requirements": [
+      "Current math/selection packet",
+      "Natural failure/Parent/Gate0/IPCG evidence",
+      "Complete G01 and all asset acquisition cards",
+      "Actual Local code/native/harness acceptance",
+      "Real model results/E04/independent confirmation"
+    ],
+    "local_acceptance_pending": [
+      "Source installation and node bindings",
+      "New helper software acceptance",
+      "Actual runtime and commands"
+    ],
+    "next_legal_action": "Continue LT_CARD_REVIEW from retained primary sources/real code/native benchmark records; no speculative candidate code or fake acceptance",
+    "continuation_refs": [
+      "rounds/r003/WEB_HANDOFF.md",
+      "research/AUTOPILOT_UPGRADE_2026-10-07.md"
+    ],
+    "scientific_execution_this_turn": "NONE"
+  }
+}

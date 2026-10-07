@@ -1,46 +1,30 @@
 # CVPR：小模型多模态研究
 
-当前批次是 **20 个数学候选 → 筛选 12 项 → 开发原型 → 有界连续队列**。
+最新长期目标：按 [最新版 Research Autopilot](research/AUTOPILOT_UPGRADE_2026-10-07.md)
+完成约20数学候选逐项审查、全池排序选前15，再落实方法代码与完整原生实验设计。
+目前保留20张历史卡、12个开发原型及6个对照；当前前15选择与科学准入尚未完成。
 
-**最新职责：助手将代码和命令更新到 main，用户的 local agent 执行。**
-local agent 使用 main；已有干净 checkout 且无活动任务时运行 git pull --ff-only origin main，
-并记录实际执行的 commit。开发原型的 GPU/科学验证状态仍按实际返回证据报告。
-长期任务继续逐步补代码；不主动连接 SSH/GPU 或运行实验，全程不使用 Docker。
-直接转发 [local agent 运行说明与完整命令](docs/LOCAL_AGENT_HANDOFF.md)。
-见 [长期代码任务](LONG_TERM_TASK.md) 和 [未完成任务清单](research-backlog.json)。
+## Local Codex: start here
 
-- [20 张数学卡与筛选理由](rounds/r003/IDEAS.md)
-- [官方源码读取记录与近作边界](rounds/r003/SOURCES.md)
-- [运行、预算、对照和返回命令](rounds/r003/PLAN.md)
-- [冻结的 12 项及 6 个对照](configs/candidates.json)
+先读 [LOCAL_AGENT_RUNBOOK.md](LOCAL_AGENT_RUNBOOK.md)、
+[当前 Web handoff](rounds/r003/WEB_HANDOFF.md) 和 [AGENTS.md](AGENTS.md)。
+[源码获取与完整skill安装](LOCAL_AGENT_RUNBOOK.md#下载与完整-skill-安装)
+固定到1b4b8029b399d8a1d1607b481ea2d1a22d632233；
+全部模型/数据下载卡与完整新实验handoff仍待补齐。
+新增文件为**generated_unexecuted**，Web未执行新代码、tests或模型。
 
-载体为冻结 Qwen3-VL-Embedding-2B，独立公开训练数据拟合小头，测试保留完整原生候选与
-官方 RankingMetrics。全部候选的自然失败/原创性/科学资格仍待实际证据；
-数学推导、代码完成、CPU 检查、GPU 实验分开报告。
+[scheduled长期目标](LONG_TERM_TASK.md) 与 [续做清单](research-backlog.json)
+每天伦敦时间上午约8点逐轮推进，向**main**交付代码和命令，由用户local agent接受/执行。
+全程不用Docker。活动Local任务保持原版本、原始记录和累计预算。
 
-实际基线与原始训练图像就绪后，从工程根运行：
+- [历史20张数学卡](rounds/r003/IDEAS.md)、[来源](rounds/r003/SOURCES.md)、[原计划](rounds/r003/PLAN.md)
+- [历史12项及6对照配置](configs/candidates.json)
+- [旧运行说明](docs/LOCAL_AGENT_HANDOFF.md)，须同时满足新版接受前提
+- tools/plan_candidate_carryover.py：只读审计，自动续跑未实现
 
-~~~bash
-.venv/bin/python tools/run_candidates.py \
-  --baseline-out "$BASELINE_OUT" \
-  --train-image-root "$MMEB_TRAIN_IMAGES" \
-  --hours 8 --execute
-.venv/bin/python tools/collect_candidates.py
-~~~
-
-每项失败/单项超时后继续其他项，所有结果/错误留下独立记录，零自动重试。
-共享输入缺失则逐项阻塞；累计 8 小时到期、用户取消或未清理进程时停止并保留未完成清单。
-当前没有真实 GPU 结果。CPU CI 状态以对应 GitHub commit 的检查记录为准；
-完整私有 Research Autopilot 未安装的环境会明确跳过原生运行器集成检查。
-
-已有 r003 运行记录时，可先用只读命令核对剩余预算与尚未尝试项：
-
-~~~bash
-.venv/bin/python tools/plan_candidate_carryover.py
-~~~
-
-它保留失败/超时记录，不启动任务；自动续跑仍待实现。缺旧记录、未知进程历史、
-来源版本变化或原始预算到期会返回阻塞原因；不能通过再次启动整批来延长预算。
+载体仍为冻结Qwen3-VL-Embedding-2B，保留ScienceQA、ChartQA、MSCOCO_i2t的
+完整原生候选、标签、分母与官方RankingMetrics。历史小头不等于完善的CVPR实验；
+数学、代码、Local接受、GPU与科学结果分别报告。
 
 ## 前一批基线与 Wan 资格化记录
 

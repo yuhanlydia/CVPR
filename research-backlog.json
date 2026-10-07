@@ -6,7 +6,7 @@
   "user_instruction": "助手只生成代码和命令并准备到 GitHub，由用户的 local agent 跑；不使用 Docker",
   "continuation_branch": "main",
   "pull_request": "https://github.com/yuhanlydia/CVPR/pull/1",
-  "observed_code_commit": "c3f45580a256934e3f2fbbd61006f219a6043159",
+  "observed_code_commit": "43c972104a7e022d5356bd73dc1612fd895865c4",
   "operating_policy": "LONG_TERM_TASK.md",
   "cadence": {
     "frequency": "daily",
@@ -52,7 +52,24 @@
       "C_RBF"
     ],
     "configuration": "configs/candidates.json",
-    "scientific_gate": "NOT_RUN"
+    "scientific_gate": "NOT_RUN",
+    "historical_selected": [
+      "I02",
+      "I09",
+      "I14",
+      "I03",
+      "I17",
+      "I10",
+      "I13",
+      "I12",
+      "I16",
+      "I11",
+      "I05",
+      "I01"
+    ],
+    "current_selection_status": "HISTORICAL_12_NOT_VERIFIED_TOP15",
+    "new_discovery_target": 20,
+    "top_selection_target": 15
   },
   "resources": {
     "hardware_reported": "1 × RTX 2080 Ti, 22 GB VRAM",
@@ -96,6 +113,71 @@
   ],
   "tasks": [
     {
+      "id": "LT_SKILL_SYNC",
+      "priority": 0,
+      "state": "SOURCE_AUDIT_COMPLETE_CODE_GENERATED_LOCAL_ACCEPTANCE_PENDING",
+      "purpose": "核对作者最新完整skill与Local安装身份",
+      "depends_on": [],
+      "next_action": "交付source lock/checker/审查入口，Local核对四个完整目录与node bindings",
+      "limits": "No private-source vendoring, Web tests or model runs; preserve active pinned versions"
+    },
+    {
+      "id": "LT_CARD_REVIEW",
+      "priority": 1,
+      "state": "PENDING_CURRENT_SEMANTIC_REVIEW",
+      "purpose": "逐项审查I01–I20数学、来源、自然问题与可证伪机制",
+      "depends_on": [
+        "LT_SKILL_SYNC"
+      ],
+      "next_action": "按最新math/method/importance/collision contracts复用并核验每卡假设、推导、构造、预测、简单替代及原生任务；记录真实语义reviews",
+      "limits": "No generic pass flags, retrospective proof, padding or handcrafted evaluation"
+    },
+    {
+      "id": "LT_RANK15",
+      "priority": 2,
+      "state": "PENDING_REVIEWED_POOL_AND_COMPLETE_RANKING",
+      "purpose": "全池排序和前15选择",
+      "depends_on": [
+        "LT_CARD_REVIEW"
+      ],
+      "next_action": "建立实际math pool/ranking/selection packet；不足保留缺口；当前verify_methods code boundary做只读证据检查",
+      "limits": "No fake method-batch; Gate0/IPCG/native/scientific obligations remain separate"
+    },
+    {
+      "id": "LT_IMPLEMENT15",
+      "priority": 3,
+      "state": "PENDING_CURRENT_SCIENTIFIC_PREREQUISITES",
+      "purpose": "实现有实质机制且满足当前前提的真实模型方法",
+      "depends_on": [
+        "LT_RANK15"
+      ],
+      "next_action": "落实Parent/Natural Gate0/原创性/IPCG，构造到官方源码与强对照/消融；Web生成完整代码但不执行",
+      "limits": "No toy score, weak controls, fake code_verified or inferred performance"
+    },
+    {
+      "id": "LT_NATIVE_HANDOFF",
+      "priority": 4,
+      "state": "PENDING_COMPLETE_DOWNLOADS_G01_AND_HARNESS_ACCEPTANCE",
+      "purpose": "完整多benchmark设计、全部输入与原生运行命令",
+      "depends_on": [
+        "LT_RANK15"
+      ],
+      "next_action": "补齐每个model/data/baseline/scorer immutable revision、全部文件、获取/抽取/loader/访问/容量/校验卡；完整G01与native Conda/outer harness实用runbook由Local接受",
+      "limits": "No Docker, placeholder plans, guessed SSH paths, missing denominator or reduced coverage"
+    },
+    {
+      "id": "LT_CURRENT_ACCEPTANCE",
+      "priority": 5,
+      "state": "WAITING_FOR_LOCAL_ACCEPTANCE_AT_EXACT_REVISION",
+      "purpose": "Local在实际GPU主机完成软件与原生资格化",
+      "depends_on": [
+        "LT_IMPLEMENT15",
+        "LT_NATIVE_HANDOFF"
+      ],
+      "next_action": "Local恢复host/path/资源并用单一admitted harness执行实际tests/baseline/native qualification，绑定method/code/design；Web读取真实返回包",
+      "limits": "No Web execution, budget reset, invented receipts or scientific PASS from exit0"
+    },
+    {
       "id": "LT01",
       "priority": 1,
       "state": "CODE_DELIVERED_NATIVE_VERIFICATION_FOR_USER",
@@ -103,7 +185,8 @@
       "depends_on": [],
       "next_action": "修复已交付：deadline 状态、manifest producer/code/output 绑定和预测/native result 校验；读取对应 commit CPU CI，真实 native/GPU 验证由用户 local agent 执行",
       "completion_evidence": "Changed-file remote readback and corresponding GitHub CPU CI; generated engineering file fixtures are not actual native execution evidence.",
-      "limits": "No benchmark redesign, no private runner vendoring, no fabricated receipt"
+      "limits": "No benchmark redesign, no private runner vendoring, no fabricated receipt",
+      "legacy_status_note": "Retained prior code/history; latest skill admission and current Local acceptance are separate."
     },
     {
       "id": "LT02",
@@ -120,7 +203,8 @@
         "tools/plan_candidate_carryover.py",
         "tests/test_candidate_carryover.py",
         "docs/LOCAL_AGENT_HANDOFF.md"
-      ]
+      ],
+      "legacy_status_note": "Retained prior code/history; latest skill admission and current Local acceptance are separate."
     },
     {
       "id": "LT03",
@@ -132,7 +216,8 @@
       ],
       "next_action": "local agent 按 docs/LOCAL_AGENT_HANDOFF.md 核对真实主机并执行已准备的 r001 命令；助手不主动连接主机",
       "completion_evidence": "Actual host inventory, pinned original code/model/data revisions, complete baseline/scorer replay, native attempt receipt and measured peak/time",
-      "limits": "No guessed host/credentials, no paid GPU allocation, use FP16/SDPA compatible with measured hardware"
+      "limits": "No guessed host/credentials, no paid GPU allocation, use FP16/SDPA compatible with measured hardware",
+      "legacy_status_note": "Retained prior code/history; latest skill admission and current Local acceptance are separate."
     },
     {
       "id": "LT04",
@@ -145,7 +230,8 @@
       ],
       "next_action": "local agent 提供原始 MMEB-train images 与实际完整基线后，用已准备的有限 preparation 生成 bundle；助手不编码或下载数据",
       "completion_evidence": "Completed native producer receipt, exact code/input/output hashes, real input identities, peak/time",
-      "limits": "Original pinned train split; no invented labels/negative pairs/calibration intervals"
+      "limits": "Original pinned train split; no invented labels/negative pairs/calibration intervals",
+      "legacy_status_note": "Retained prior code/history; latest skill admission and current Local acceptance are separate."
     },
     {
       "id": "LT05",
@@ -158,7 +244,8 @@
       ],
       "next_action": "local agent 运行 run_candidates.py 并收集所有证据；助手持续补代码和运行命令，不启动该批次",
       "completion_evidence": "All statuses/attempts/raw predictions, live official RankingMetrics replay, full candidate lists and denominators, required controls and paired exploratory uncertainty",
-      "limits": "18 finite jobs, zero auto retries; missing interval/multiple positives stay BLOCKED; deadline carryover remains incomplete"
+      "limits": "18 finite jobs, zero auto retries; missing interval/multiple positives stay BLOCKED; deadline carryover remains incomplete",
+      "legacy_status_note": "Retained prior code/history; latest skill admission and current Local acceptance are separate."
     },
     {
       "id": "LT06",
@@ -170,20 +257,31 @@
       ],
       "next_action": "用户返回真实报告/receipt/原始预测后，助手核查并分析，再提出下一步代码方案",
       "completion_evidence": "Evidence-linked consolidated report with missing obligations, negative history and prospective confirmation proposal",
-      "limits": "No new scientific gate claims, automatic new directions, paper readiness or winner-only reporting"
+      "limits": "No new scientific gate claims, automatic new directions, paper readiness or winner-only reporting",
+      "legacy_status_note": "Retained prior code/history; latest skill admission and current Local acceptance are separate."
     }
   ],
-  "assistant_role": "CODE_AND_COMMAND_AUTHOR_ONLY",
+  "assistant_role": "web_supervisor",
   "execution_owner": "USER_LOCAL_AGENT",
-  "user_run_guide": "docs/LOCAL_AGENT_HANDOFF.md",
+  "user_run_guide": "LOCAL_AGENT_RUNBOOK.md",
   "delivery_branch": "main",
   "main_delivery_authorization": "2026-10-06 用户明确要求：就是修改到main",
-  "delivery_policy": "Publish scoped code and commands to main after applicable code checks; preserve scientific NOT_RUN, concurrent changes, previous attempts and user-local execution ownership.",
+  "delivery_policy": "Web publishes generated_unexecuted scoped deliverables to main with conditional current-head update and exact readback; Local tests and accepts the exact revision; preserve dependencies and all history.",
   "code_delivery_checks": {
     "date": "2026-10-07",
-    "command": "python3 -m unittest discover -s tests -p 'test_candidate*.py' -v",
-    "expected_scope": "matrix algebra, queue/file integrity and read-only carryover; no benchmark run",
-    "native_integration": "2 checks remain skipped in ordinary CI without the complete private skill",
-    "runtime_note": "Local Python 3.12.14 / NumPy 2.3.5; GitHub uses Python 3.11 / pinned NumPy 2.2.6. Actual check results are tied to the new delivery commit."
-  }
+    "status": "generated_unexecuted",
+    "web_execution": "NONE",
+    "inspection": "Latest source/current-main/handoff review; all 298 upstream blob identities checked",
+    "local_acceptance": "PENDING",
+    "native_integration": "PENDING; no new test/GPU receipt"
+  },
+  "latest_skill": {
+    "repository": "Yunbo-max/Research_Autopilot",
+    "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+    "lock": "configs/autopilot-source.json",
+    "audit": "research/AUTOPILOT_UPGRADE_2026-10-07.md"
+  },
+  "long_goal": "Reviewed mathematical pool (~20), full ranking/top-15 selection, substantive real-model code and complete native G01, Local acceptance/execution and evidence-based convergence",
+  "current_workflow_checkpoint": "research/workflow-checkpoint-20261007.json",
+  "scheduled_task_ref": "research/scheduled-long-goal.json"
 }

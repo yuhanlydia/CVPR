@@ -1,3 +1,12 @@
+# 新版入口优先（2026-10-07）
+
+先读[Local runbook](../LOCAL_AGENT_RUNBOOK.md)、[当前Web handoff](../rounds/r003/WEB_HANDOFF.md)
+及[升级审查](../research/AUTOPILOT_UPGRADE_2026-10-07.md)。下方保留历史原型命令；
+当前验证池/前15选择、完整G01与Local接受未完成，旧命令本身不能认定新版批次准入。
+已有运行保持原版本与原始预算，不因来源升级重跑或重置。
+
+## 以下为历史r003命令与证据契约
+
 # 给 local agent：r003 代码和用户侧运行命令
 
 最新职责：网页助手只生成/审查代码与命令并交付 GitHub；实际安装、SSH、模型、训练特征、

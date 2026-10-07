@@ -1,5 +1,53 @@
 # 长期任务：只交付研究代码和命令
 
+## 最新长期目标与执行规则（2026-10-07）
+
+用户要求使用作者最新版 Research Autopilot，并以 scheduled 长期任务逐轮推进。
+复用已有 CVPR 定时任务，Europe/London 每天上午约8点；更新目标与续做清单，不重复创建任务。
+这是定时触发的逐轮工作，不声称一个模型/常驻进程连续后台运行。
+
+来源：Yunbo-max/Research_Autopilot @ 1b4b8029b399d8a1d1607b481ea2d1a22d632233。
+每轮先读取作者最新源码与 CVPR 的实际 main，核对适用变更；保留旧版与活动任务的版本。
+见 [升级审查](research/AUTOPILOT_UPGRADE_2026-10-07.md)、
+[来源锁定](configs/autopilot-source.json) 与 [当前 Web handoff](rounds/r003/WEB_HANDOFF.md)。
+
+目标：1–7B 多模态生成/感知、有后果的数学机制、实质原创性、原生 benchmark、
+完整可复现代码与可信比较。约20数学候选 → 逐卡审查 → 全池排序选前15 →
+满足当前科学边界的方法代码与完整G01 → Local接受/执行 → E04/原生评分/独立确认。
+现有20卡、12原型与6对照保留为历史，不能追认为验证后的前15选择。
+不足记录缺口，不能补三个普通小头凑数，不能以32维/128行旧原型冒充完整CVPR实验。
+后续从证据收敛，不每轮重新生成20个方向。
+
+按 research-backlog.json 的最早就绪依赖推进：source/Local接受；
+数学/文献/实际源码/benchmark逐卡审查；完整排序/选择packet；
+构造到代码、Natural Gate0/IPCG/方法边界、全套G01与强对照；
+全部模型/数据/baseline/scorer下载卡；一个原生remote harness的实用命令与Local接受；
+用户返回结果后的E04/确认与收敛。每次保存实际可审查进展与下一动作。
+
+Web角色为web_supervisor，只分析、生成与源码审查、向literal main交付并回读；
+不执行生成代码、软件tests、模型或benchmark，不连接用户SSH/GPU，不下载大型模型/数据。
+新文件为generated_unexecuted；读取历史CI仅限其真实SHA，不能据此认证新代码。
+Local控制会话位于用户电脑，以已有SSH操作GPU主机；所有可执行项目任务由一个
+run_harness owner运行，优先既有原生Conda。旧venv/inner runner是待审查复用的历史资产。
+全程禁止Docker、docker compose、Podman、Singularity、Apptainer和其他容器。
+当前完整实验runbook、模型/数据获取卡、G01与outer harness资格仍待补齐。
+
+保留原生完整ScienceQA、ChartQA、MSCOCO_i2t比较，不缩减候选/标签/分母或改评分器。
+保留所有失败、不利、缺对照与未完成记录；单项失败继续独立就绪项，依赖故障阻塞后代。
+不重置历史累计8小时/attempt/marker，8小时报告窗口与硬截止/总计算界限分开。
+历史18项预算不自动扩张为15个方法的预算；新方案按真实资源和科学依赖准入。
+tools/plan_candidate_carryover.py只读，守卫式跨窗派发尚未实现。
+
+交付始终读取实际main head、保留并发修改、条件更新并精确commit回读；
+不强推、不以别的分支或PR代替main。不公开复制私有skill、不上传权重/图片/大缓存或HF输出。
+代码交付、Local接受、GPU执行与科学结论分开报告；不保证CVPR录用或Google工作。
+
+## 以下为原有长期安排的历史记录
+
+上面的当前规则覆盖下方历史段落中CPU执行、12项选择和临时PR等不一致内容，
+原记录保留用于追溯既定身份、预算、旧代码与失败证据。
+
+
 ## 最新职责（2026-10-06）
 用户明确要求：“你不用跑只用给我生成code和命令”，并由用户的 local agent 执行。
 本要求覆盖此前自动接入 SSH/GPU、资格化、训练特征编码和派发实验的安排。

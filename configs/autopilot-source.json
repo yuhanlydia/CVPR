@@ -1,0 +1,1480 @@
+{
+  "schema": "cvpr-autopilot-source-lock-v1",
+  "status": "source_inspected_local_acceptance_pending",
+  "repository": "Yunbo-max/Research_Autopilot",
+  "url": "https://github.com/Yunbo-max/Research_Autopilot",
+  "revision": "1b4b8029b399d8a1d1607b481ea2d1a22d632233",
+  "tree_sha": "bb86d610beae96497f0b5717586af00e12515d19",
+  "observed_on": "2026-10-07",
+  "execution_role": "web_supervisor",
+  "skills": [
+    "research-autopilot",
+    "writing-top-tier-papers",
+    "designing-pipeline-figures",
+    "designing-experiment-figures"
+  ],
+  "identity_scope": "GitHub Git blob identities of all four complete skill folders; no private source content is vendored.",
+  "files": [
+    {
+      "path": "designing-experiment-figures/SKILL.md",
+      "git_blob_sha": "81a9a05fe28e2244e3286cc5924322396b9127ea",
+      "size": 8540
+    },
+    {
+      "path": "designing-experiment-figures/agents/openai.yaml",
+      "git_blob_sha": "88cf9cd1059c694c5bfb795ef91363d6bb823085",
+      "size": 512
+    },
+    {
+      "path": "designing-experiment-figures/assets/icon.svg",
+      "git_blob_sha": "2468028d1ed0fc8009b1fc45e7bb027adaf0d079",
+      "size": 420
+    },
+    {
+      "path": "designing-experiment-figures/references/drawio-production.md",
+      "git_blob_sha": "bb2f5d2d963c040b72edacc967963749c6a57df9",
+      "size": 6137
+    },
+    {
+      "path": "designing-experiment-figures/references/output-contract.md",
+      "git_blob_sha": "8c3a9e40777615bc8ce17de44dec27cbae38fcbd",
+      "size": 8656
+    },
+    {
+      "path": "designing-experiment-figures/references/publication-production.md",
+      "git_blob_sha": "f0e1d5dc840e3d584083e0c9142270b223fa8725",
+      "size": 6284
+    },
+    {
+      "path": "designing-experiment-figures/references/style-catalog.md",
+      "git_blob_sha": "b71cbf659f8381eb0066e071876c50908f1ae5e0",
+      "size": 9020
+    },
+    {
+      "path": "designing-experiment-figures/references/worked-example.md",
+      "git_blob_sha": "5409ae029e699328a7d507902a315e5df64ebf03",
+      "size": 5349
+    },
+    {
+      "path": "designing-experiment-figures/scripts/publication_plot.py",
+      "git_blob_sha": "8a70f368db666af12bf44e3749578115eba4fe94",
+      "size": 14119
+    },
+    {
+      "path": "designing-experiment-figures/scripts/validate_drawio.py",
+      "git_blob_sha": "32603de0cc3569d0a4c279f7b5fbe4e79f17c583",
+      "size": 5779
+    },
+    {
+      "path": "designing-experiment-figures/tests/test_publication_plot.py",
+      "git_blob_sha": "19c49dadff71ac460fb0f3e258b222ddf2559f25",
+      "size": 6902
+    },
+    {
+      "path": "designing-pipeline-figures/SKILL.md",
+      "git_blob_sha": "7176c51e9f454b4f4807be4f902f4e9b2456cae9",
+      "size": 6782
+    },
+    {
+      "path": "designing-pipeline-figures/agents/openai.yaml",
+      "git_blob_sha": "796c6e3fad21958a7aa40d60bcaf747b00997e25",
+      "size": 526
+    },
+    {
+      "path": "designing-pipeline-figures/assets/icon.svg",
+      "git_blob_sha": "4c3163aa85e15ed80114f93a9a2b140a53012c44",
+      "size": 1210
+    },
+    {
+      "path": "designing-pipeline-figures/references/drawio-production.md",
+      "git_blob_sha": "3c4c1b6fd179febd4d14bf472ebe20fab9395251",
+      "size": 6160
+    },
+    {
+      "path": "designing-pipeline-figures/references/output-contract.md",
+      "git_blob_sha": "46ff54cee19d0ec7b791a5c48b1d2089601a7d7a",
+      "size": 7149
+    },
+    {
+      "path": "designing-pipeline-figures/references/style-catalog.md",
+      "git_blob_sha": "52de35796aae62406914a348ee04880cd55f5727",
+      "size": 8293
+    },
+    {
+      "path": "designing-pipeline-figures/references/worked-example.md",
+      "git_blob_sha": "96716cdb790c50b1c7fa2d870a8d71a78bce01c2",
+      "size": 4271
+    },
+    {
+      "path": "designing-pipeline-figures/scripts/validate_drawio.py",
+      "git_blob_sha": "32603de0cc3569d0a4c279f7b5fbe4e79f17c583",
+      "size": 5779
+    },
+    {
+      "path": "research-autopilot/SKILL.md",
+      "git_blob_sha": "ddf4764117e0ab5ce729b948e32fde5daaeb7e3b",
+      "size": 46469
+    },
+    {
+      "path": "research-autopilot/agents/openai.yaml",
+      "git_blob_sha": "ea31f72090598c77f4e677700baa90f8e81d994d",
+      "size": 2626
+    },
+    {
+      "path": "research-autopilot/assets/icon.svg",
+      "git_blob_sha": "2468028d1ed0fc8009b1fc45e7bb027adaf0d079",
+      "size": 420
+    },
+    {
+      "path": "research-autopilot/assets/licenses/scholar-skill-MIT.txt",
+      "git_blob_sha": "69340225b04ec9a137795f177216c13482697a4b",
+      "size": 1082
+    },
+    {
+      "path": "research-autopilot/assets/research-nodes.json",
+      "git_blob_sha": "1fd9141f8f46a1cf3f08b300b221c68571b0cb95",
+      "size": 1523027
+    },
+    {
+      "path": "research-autopilot/assets/templates/gpu-host-runtime.yaml",
+      "git_blob_sha": "898dbaf9bdcc5c9533cb05220130461312e7cad2",
+      "size": 1034
+    },
+    {
+      "path": "research-autopilot/assets/templates/knowledge-change-card.md",
+      "git_blob_sha": "88357c3a591e0ac9fd398719bc70cc62db41e998",
+      "size": 1917
+    },
+    {
+      "path": "research-autopilot/assets/templates/local-agent-runbook.md",
+      "git_blob_sha": "0dde36423e05a550e486d74a98e172301c84c3ac",
+      "size": 12491
+    },
+    {
+      "path": "research-autopilot/assets/templates/paper-implementation-note.md",
+      "git_blob_sha": "3b41af2527321e3bfbcec5db3373a48cd9a6e539",
+      "size": 1817
+    },
+    {
+      "path": "research-autopilot/assets/templates/workflow-checkpoint.yaml",
+      "git_blob_sha": "7819eae3f285c5031d3659f2cacfc3f92b0484ea",
+      "size": 1334
+    },
+    {
+      "path": "research-autopilot/references/artifact-contracts.md",
+      "git_blob_sha": "abaf08bc8d4ff354dd9b51921288e75a54cb69a6",
+      "size": 14180
+    },
+    {
+      "path": "research-autopilot/references/canonical-literature.md",
+      "git_blob_sha": "d7e24cca2922c424595a9f523ba147ddc0998072",
+      "size": 5723
+    },
+    {
+      "path": "research-autopilot/references/capability-source-catalog.md",
+      "git_blob_sha": "4240f68184063e841abbb95311d1db17d4d13ecf",
+      "size": 8497
+    },
+    {
+      "path": "research-autopilot/references/collision-audit.md",
+      "git_blob_sha": "4f8a4c9902be5861ac616345dcd51e3dbe8759df",
+      "size": 2849
+    },
+    {
+      "path": "research-autopilot/references/contribution-value-gates.md",
+      "git_blob_sha": "30a145bd73bc382d6bbaa66d7fe9c343f275f24e",
+      "size": 12200
+    },
+    {
+      "path": "research-autopilot/references/dependency-resource-scheduling.md",
+      "git_blob_sha": "02a402a2c5d49fb6d2218e9b5381a6f96842eb0c",
+      "size": 9824
+    },
+    {
+      "path": "research-autopilot/references/development-and-execution.md",
+      "git_blob_sha": "9a54d220529c878c3c2790dab02c353e4029098f",
+      "size": 20386
+    },
+    {
+      "path": "research-autopilot/references/editable-writing-artifacts.md",
+      "git_blob_sha": "6c07820eabf72c95de59807e7499284b90b73101",
+      "size": 6840
+    },
+    {
+      "path": "research-autopilot/references/evaluation-and-assets.md",
+      "git_blob_sha": "bea2e605a67b9f25cb7de6e37740edd324e21214",
+      "size": 7312
+    },
+    {
+      "path": "research-autopilot/references/execution-and-handoffs.md",
+      "git_blob_sha": "fccad32effb6b2ec94e74cbd8d6052bffadd0e41",
+      "size": 7380
+    },
+    {
+      "path": "research-autopilot/references/full-validation-and-review.md",
+      "git_blob_sha": "c11017b53703edad7b3bfa996ecb42dd86510fcc",
+      "size": 17504
+    },
+    {
+      "path": "research-autopilot/references/gate-a.md",
+      "git_blob_sha": "fa4044bd9c83fccebebd68c3ccd657e8bc981803",
+      "size": 11124
+    },
+    {
+      "path": "research-autopilot/references/gpu-host-runtime.md",
+      "git_blob_sha": "6ee810ae9054e4d82e4d9d41493cd3400eb98753",
+      "size": 7048
+    },
+    {
+      "path": "research-autopilot/references/host-adapters.md",
+      "git_blob_sha": "4727cf842edb87762d50be187a0997a9fb91e135",
+      "size": 8913
+    },
+    {
+      "path": "research-autopilot/references/human-ai-supervision.md",
+      "git_blob_sha": "8f0b35d8c854203acea64a5d2fd49cffce418a44",
+      "size": 11797
+    },
+    {
+      "path": "research-autopilot/references/human-question-bank.md",
+      "git_blob_sha": "a20a3bba94ab8454d128c88c9a31fc990fd3eccd",
+      "size": 10526
+    },
+    {
+      "path": "research-autopilot/references/idea-generation.md",
+      "git_blob_sha": "95d2c9ce178d93cfb4972d957ffec53810a01909",
+      "size": 12961
+    },
+    {
+      "path": "research-autopilot/references/importance-preserving-gate.md",
+      "git_blob_sha": "f949b289b2f140dc1ae09c3ab7bfbc1578d9bf56",
+      "size": 10053
+    },
+    {
+      "path": "research-autopilot/references/initial-intake.md",
+      "git_blob_sha": "9c8c1c72eba8ed2f5495ee3d4fa1b24eba3d3f5c",
+      "size": 30406
+    },
+    {
+      "path": "research-autopilot/references/literature-evidence.md",
+      "git_blob_sha": "3f2ba43cc4c72185660856ca0cc3ca9e4c28d005",
+      "size": 10725
+    },
+    {
+      "path": "research-autopilot/references/literature-harnesses.md",
+      "git_blob_sha": "cbce7ea0bc51b315f627f3169e2e5f455c2ecd88",
+      "size": 6748
+    },
+    {
+      "path": "research-autopilot/references/local-code-handoff.md",
+      "git_blob_sha": "6bb003901382bb1f26ed203a1ed3d35badd118d6",
+      "size": 18254
+    },
+    {
+      "path": "research-autopilot/references/local-execution-harness.md",
+      "git_blob_sha": "7f096b545c8459ac6e01cd207d01eeedc6985106",
+      "size": 19430
+    },
+    {
+      "path": "research-autopilot/references/local-installation-and-logging.md",
+      "git_blob_sha": "1edf9ae6bfc73180612ff25fd690fdd00aba5387",
+      "size": 17778
+    },
+    {
+      "path": "research-autopilot/references/math-analysis-moves.md",
+      "git_blob_sha": "188a1977efd70491df53745a9469d2964c8878b1",
+      "size": 7696
+    },
+    {
+      "path": "research-autopilot/references/math-analysis.md",
+      "git_blob_sha": "a0f9ef92fc6610d78960195a5dabfe5357412abf",
+      "size": 11180
+    },
+    {
+      "path": "research-autopilot/references/math-derivation-paths.md",
+      "git_blob_sha": "5fd3fef92dfdea18cf890010dbbc73dae456c84b",
+      "size": 13438
+    },
+    {
+      "path": "research-autopilot/references/math-handoff.md",
+      "git_blob_sha": "6468a5d3f71ed2194a0b7453dcf5168dcf57dc76",
+      "size": 5188
+    },
+    {
+      "path": "research-autopilot/references/math-opd-reading-audit.md",
+      "git_blob_sha": "db9f9667e8e7d99e06b84cf7a6c21c28df6613d8",
+      "size": 5994
+    },
+    {
+      "path": "research-autopilot/references/math-operation-graph.md",
+      "git_blob_sha": "2f73400f2060c666a428ec4527f65331747c33ae",
+      "size": 28399
+    },
+    {
+      "path": "research-autopilot/references/math-paper-atlas.md",
+      "git_blob_sha": "c84dd67f8f53e41bba7baa8167bf8726fe9a4708",
+      "size": 16399
+    },
+    {
+      "path": "research-autopilot/references/math-worked-examples.md",
+      "git_blob_sha": "b197983d9ed8f26f6f3f30fca7b1ae646254ad18",
+      "size": 7229
+    },
+    {
+      "path": "research-autopilot/references/mathematical-empirical-inquiry.md",
+      "git_blob_sha": "f9cb38bccc065b2e372a7af77c0e8e8a734db602",
+      "size": 5631
+    },
+    {
+      "path": "research-autopilot/references/method-development-tree.md",
+      "git_blob_sha": "e0f3783d704e3ae54f9eb60ba67354f159d750aa",
+      "size": 18400
+    },
+    {
+      "path": "research-autopilot/references/method-verification.md",
+      "git_blob_sha": "bd97214b4af6b3aa8385aee58accf74e0010fe78",
+      "size": 18797
+    },
+    {
+      "path": "research-autopilot/references/multi-route-supervision.md",
+      "git_blob_sha": "7faa8cba3aaa9b9d078bfffde2dba8da6dfe89e8",
+      "size": 21908
+    },
+    {
+      "path": "research-autopilot/references/native-evaluation.md",
+      "git_blob_sha": "b66d6ab52c9680ecca6d00661747ad0bfb53a958",
+      "size": 7407
+    },
+    {
+      "path": "research-autopilot/references/native-runner.md",
+      "git_blob_sha": "381106945c79c7be71521fcc72e22191dfb9e6e5",
+      "size": 7995
+    },
+    {
+      "path": "research-autopilot/references/node-index.md",
+      "git_blob_sha": "cf61b15e8b598d785e88d623b57959b661f9c5be",
+      "size": 50882
+    },
+    {
+      "path": "research-autopilot/references/nodes/A01.md",
+      "git_blob_sha": "f25cb158e6300befcb02477cf9a8ede439173dae",
+      "size": 3475
+    },
+    {
+      "path": "research-autopilot/references/nodes/A02.md",
+      "git_blob_sha": "c431659f386b30d986113147728d3f86d5fe4151",
+      "size": 2721
+    },
+    {
+      "path": "research-autopilot/references/nodes/A03.md",
+      "git_blob_sha": "5e8f4dc61b027c4d029eaa950b78a4c1e6ca8703",
+      "size": 1698
+    },
+    {
+      "path": "research-autopilot/references/nodes/A04.md",
+      "git_blob_sha": "21e271948a07aa7fe2914c19fcafa0b46c0ad81e",
+      "size": 2666
+    },
+    {
+      "path": "research-autopilot/references/nodes/A05.md",
+      "git_blob_sha": "6203ce209a674efa98cc0a31be8d04e7db30ddd8",
+      "size": 2269
+    },
+    {
+      "path": "research-autopilot/references/nodes/B01.md",
+      "git_blob_sha": "5491d31acde576592e1c4c7d85359c1826b0e29b",
+      "size": 2192
+    },
+    {
+      "path": "research-autopilot/references/nodes/B02.md",
+      "git_blob_sha": "2d5ef1ac825817e5f6f5ea2c3f55893b4bfc65ee",
+      "size": 1935
+    },
+    {
+      "path": "research-autopilot/references/nodes/B03.md",
+      "git_blob_sha": "7d183e5c573fb4a22b0babd70f403e338d33a592",
+      "size": 2254
+    },
+    {
+      "path": "research-autopilot/references/nodes/B04.md",
+      "git_blob_sha": "4164f07b434a0ce1e07e149d860e173f4201b279",
+      "size": 1758
+    },
+    {
+      "path": "research-autopilot/references/nodes/B05.md",
+      "git_blob_sha": "c992acf3cd3a19cdf2c00e2ac73c0602af837903",
+      "size": 2141
+    },
+    {
+      "path": "research-autopilot/references/nodes/C01.md",
+      "git_blob_sha": "ca6661555f0ef654c77dcffb1eb3b16a68c9bb0a",
+      "size": 1892
+    },
+    {
+      "path": "research-autopilot/references/nodes/C02.md",
+      "git_blob_sha": "3aa86404a148ba89b04b32966e377861bd48e4a2",
+      "size": 1978
+    },
+    {
+      "path": "research-autopilot/references/nodes/C03.md",
+      "git_blob_sha": "e865078988562398e2d407d401cc8bb4dec9769d",
+      "size": 1775
+    },
+    {
+      "path": "research-autopilot/references/nodes/C04.md",
+      "git_blob_sha": "c28fb24372a03e932a0041d11f467815401cb575",
+      "size": 1862
+    },
+    {
+      "path": "research-autopilot/references/nodes/C05.md",
+      "git_blob_sha": "48c8d2813f3df65439cb1faa36a0b39af2877da2",
+      "size": 1810
+    },
+    {
+      "path": "research-autopilot/references/nodes/E01.md",
+      "git_blob_sha": "95cdfecd4395af0e97bdb8099aacfe48f35dcc91",
+      "size": 2772
+    },
+    {
+      "path": "research-autopilot/references/nodes/E02.md",
+      "git_blob_sha": "903fdd116c548198cc7cd19584b9bce84bc33e34",
+      "size": 2740
+    },
+    {
+      "path": "research-autopilot/references/nodes/E03.md",
+      "git_blob_sha": "10566997fbcf1a60bf2cb5e93fce14c991bff9cb",
+      "size": 4123
+    },
+    {
+      "path": "research-autopilot/references/nodes/E04.md",
+      "git_blob_sha": "17c0bd9f09610bdd109ca030e7580a374376d3fc",
+      "size": 3677
+    },
+    {
+      "path": "research-autopilot/references/nodes/E05.md",
+      "git_blob_sha": "cb49b9809409485a976e0b0b5b8720a922fcfbc9",
+      "size": 3707
+    },
+    {
+      "path": "research-autopilot/references/nodes/F01.md",
+      "git_blob_sha": "12364d2e2e696843655da21506cfa05d813eb831",
+      "size": 2311
+    },
+    {
+      "path": "research-autopilot/references/nodes/F02.md",
+      "git_blob_sha": "ee1f15b6ccb9d2738807aa42d72064bfd26ab65d",
+      "size": 2545
+    },
+    {
+      "path": "research-autopilot/references/nodes/F03.md",
+      "git_blob_sha": "ea5abf96bb98259272cef9219682739529b43c04",
+      "size": 2364
+    },
+    {
+      "path": "research-autopilot/references/nodes/F04.md",
+      "git_blob_sha": "571b57268be7676df52a5ac4e244e7a240657709",
+      "size": 2284
+    },
+    {
+      "path": "research-autopilot/references/nodes/G01.md",
+      "git_blob_sha": "57894a320d02272a11bb423510688fdb3a2ed637",
+      "size": 3522
+    },
+    {
+      "path": "research-autopilot/references/nodes/G02.md",
+      "git_blob_sha": "9f13690db793c0e35505d3eb39dc5d380af40fe2",
+      "size": 2627
+    },
+    {
+      "path": "research-autopilot/references/nodes/G03.md",
+      "git_blob_sha": "2399fd002f39fa5139f1be6cadaf08261b95a730",
+      "size": 2013
+    },
+    {
+      "path": "research-autopilot/references/nodes/G04.md",
+      "git_blob_sha": "3fc419e858ae7ee055505e1003b86376cdfbceea",
+      "size": 2848
+    },
+    {
+      "path": "research-autopilot/references/nodes/G05.md",
+      "git_blob_sha": "79e4e23f7d1126b67dd8f33b8351ea12ccafec9a",
+      "size": 2963
+    },
+    {
+      "path": "research-autopilot/references/nodes/H01.md",
+      "git_blob_sha": "160b1c47af2755fc37594835be4ed431460b3e48",
+      "size": 3094
+    },
+    {
+      "path": "research-autopilot/references/nodes/H02.md",
+      "git_blob_sha": "120aa444d0c8de9f80c02b599c93aa1cc32411cb",
+      "size": 2091
+    },
+    {
+      "path": "research-autopilot/references/nodes/H03.md",
+      "git_blob_sha": "aad4de55fd003d134d8be89905e5bc1bc88ae944",
+      "size": 3130
+    },
+    {
+      "path": "research-autopilot/references/nodes/H04.md",
+      "git_blob_sha": "28ee2835729d094e0514498f3c758c1f255fe3c6",
+      "size": 1949
+    },
+    {
+      "path": "research-autopilot/references/nodes/H05.md",
+      "git_blob_sha": "520f326ba562caeabc24a53e5c833e872fef1861",
+      "size": 2537
+    },
+    {
+      "path": "research-autopilot/references/nodes/I01.md",
+      "git_blob_sha": "3db88e66505f4bc6ca818606ef1fde34a3be27bc",
+      "size": 3000
+    },
+    {
+      "path": "research-autopilot/references/nodes/I02.md",
+      "git_blob_sha": "9154ada0f07166330c7f40488a3abdabf6135532",
+      "size": 2321
+    },
+    {
+      "path": "research-autopilot/references/nodes/I03.md",
+      "git_blob_sha": "922700cd2c9091052851e7d4f85074f1f90dc5e7",
+      "size": 2034
+    },
+    {
+      "path": "research-autopilot/references/nodes/I04.md",
+      "git_blob_sha": "bc612cc6041c4175f3b6067dd7d4e291b0108ec5",
+      "size": 1783
+    },
+    {
+      "path": "research-autopilot/references/nodes/L01.md",
+      "git_blob_sha": "31f7b2d1c7e1282bd75505b167c9e457eb0636c5",
+      "size": 1759
+    },
+    {
+      "path": "research-autopilot/references/nodes/L02.md",
+      "git_blob_sha": "bfb615475213ecf5153c2ebcd64eafb2f550f3d3",
+      "size": 2189
+    },
+    {
+      "path": "research-autopilot/references/nodes/L03.md",
+      "git_blob_sha": "e90202bef57a14f2aee7f6527e2a9762956fbd3c",
+      "size": 2471
+    },
+    {
+      "path": "research-autopilot/references/nodes/L04.md",
+      "git_blob_sha": "010b31a4ddf9ef8a1ec209af66de95c30610d529",
+      "size": 2420
+    },
+    {
+      "path": "research-autopilot/references/nodes/L05.md",
+      "git_blob_sha": "c4de530ad0ed4fa3947b88f4ee4c32a2c5e2ae68",
+      "size": 2155
+    },
+    {
+      "path": "research-autopilot/references/nodes/M01.md",
+      "git_blob_sha": "53aed58c56661b4110260c6f48d83bcaa1a6ee37",
+      "size": 2164
+    },
+    {
+      "path": "research-autopilot/references/nodes/M02.md",
+      "git_blob_sha": "7c13da3bf0621e779f8afeefd2e44935ed7ece61",
+      "size": 2903
+    },
+    {
+      "path": "research-autopilot/references/nodes/M03.md",
+      "git_blob_sha": "4cf519bcc3d1ba3433b226e145e3480953e9c9d6",
+      "size": 2237
+    },
+    {
+      "path": "research-autopilot/references/nodes/M04.md",
+      "git_blob_sha": "3a2c1c0d87a350c2b4c0756859acb93f3f0efdfa",
+      "size": 2033
+    },
+    {
+      "path": "research-autopilot/references/nodes/M05.md",
+      "git_blob_sha": "9e5ade5dfc5da128018ad3863db5c9fb681664db",
+      "size": 1963
+    },
+    {
+      "path": "research-autopilot/references/nodes/P01.md",
+      "git_blob_sha": "d41d930eaf833af4c837a5c245e7fd4cf993cbe4",
+      "size": 2399
+    },
+    {
+      "path": "research-autopilot/references/nodes/P02.md",
+      "git_blob_sha": "2a5c738cbc8ba795a480ba43d93f79dd74b84314",
+      "size": 3693
+    },
+    {
+      "path": "research-autopilot/references/nodes/P03.md",
+      "git_blob_sha": "93d225cc02acebc79b1a044c54eac5a771afed54",
+      "size": 2624
+    },
+    {
+      "path": "research-autopilot/references/nodes/P04.md",
+      "git_blob_sha": "9e7b7ad845cedf13bf52cae85de3db7f1f5d6b45",
+      "size": 3474
+    },
+    {
+      "path": "research-autopilot/references/nodes/P05.md",
+      "git_blob_sha": "129a05a3be292cc455c3c7c9b9ad7f0ef4b41249",
+      "size": 1595
+    },
+    {
+      "path": "research-autopilot/references/nodes/R01.md",
+      "git_blob_sha": "db6f65e042b4a491c68e5c56f9ae830ea8e4e1b3",
+      "size": 1945
+    },
+    {
+      "path": "research-autopilot/references/nodes/R02.md",
+      "git_blob_sha": "4a67976a994ef6433101161975e32edfead78e33",
+      "size": 1774
+    },
+    {
+      "path": "research-autopilot/references/nodes/R03.md",
+      "git_blob_sha": "0c7d98884c89bdb02d770257922111cb458d04db",
+      "size": 2581
+    },
+    {
+      "path": "research-autopilot/references/nodes/R04.md",
+      "git_blob_sha": "c365b2f1b7b1c77a84dcc906edff7128d919bea4",
+      "size": 2232
+    },
+    {
+      "path": "research-autopilot/references/nodes/R05.md",
+      "git_blob_sha": "112dc07736c459fef31d8122dea776efb950df83",
+      "size": 2113
+    },
+    {
+      "path": "research-autopilot/references/nodes/S01.md",
+      "git_blob_sha": "cc3825111851f1c5e97b46b8d07b72f885a319c5",
+      "size": 2321
+    },
+    {
+      "path": "research-autopilot/references/nodes/S02.md",
+      "git_blob_sha": "679a447e4157a5b2890c7b2bc59fbdc347f7625a",
+      "size": 2452
+    },
+    {
+      "path": "research-autopilot/references/nodes/S03.md",
+      "git_blob_sha": "c1390f6e6a02b35aaa9e9116ebf8a32f2c7ea6e0",
+      "size": 1974
+    },
+    {
+      "path": "research-autopilot/references/nodes/S04.md",
+      "git_blob_sha": "de06b7afbd6441d72599d8eaead73a565d22a70b",
+      "size": 2044
+    },
+    {
+      "path": "research-autopilot/references/nodes/S05.md",
+      "git_blob_sha": "a706780b8f372e740268855df15565ba9f8ec1dc",
+      "size": 2206
+    },
+    {
+      "path": "research-autopilot/references/nodes/V01.md",
+      "git_blob_sha": "018702dc3ac474b2f7bfceea7b2de1f67b5ddb80",
+      "size": 2863
+    },
+    {
+      "path": "research-autopilot/references/nodes/V02.md",
+      "git_blob_sha": "dac86f6d8f25aa691892f31d9814a6d18e13e2ca",
+      "size": 2214
+    },
+    {
+      "path": "research-autopilot/references/nodes/V03.md",
+      "git_blob_sha": "62ad14178e19df36bde942e7e43430c43b5e4d1c",
+      "size": 2061
+    },
+    {
+      "path": "research-autopilot/references/nodes/V04.md",
+      "git_blob_sha": "4a8b9c3f72322e7ee0903c4539aad4fd68378a97",
+      "size": 2167
+    },
+    {
+      "path": "research-autopilot/references/nodes/V05.md",
+      "git_blob_sha": "a927c4d8ae5c7610582d70a1733f43523a817bb6",
+      "size": 2086
+    },
+    {
+      "path": "research-autopilot/references/nodes/V06.md",
+      "git_blob_sha": "053185d0d92afe57fec0eaecb280ef9e8610a293",
+      "size": 3002
+    },
+    {
+      "path": "research-autopilot/references/nodes/W01.md",
+      "git_blob_sha": "eef10bda5ac8333cf95ab4a6bb4a6963636fde92",
+      "size": 2286
+    },
+    {
+      "path": "research-autopilot/references/nodes/W02.md",
+      "git_blob_sha": "a61abc4807d10e849f4c01de59ddffafe071693e",
+      "size": 2363
+    },
+    {
+      "path": "research-autopilot/references/nodes/W03.md",
+      "git_blob_sha": "821b4c3d0a4bc032a27abff740d1005c592d94b0",
+      "size": 2184
+    },
+    {
+      "path": "research-autopilot/references/nodes/W04.md",
+      "git_blob_sha": "dc69617421d40d413732912a44f8e1b3bd4ab201",
+      "size": 2247
+    },
+    {
+      "path": "research-autopilot/references/nodes/W05.md",
+      "git_blob_sha": "9eaeda58bc82684491291dd57237441b3fc226dc",
+      "size": 2768
+    },
+    {
+      "path": "research-autopilot/references/nodes/W06.md",
+      "git_blob_sha": "05b29e15a99d836e057d5eda3c65e10af7954875",
+      "size": 2349
+    },
+    {
+      "path": "research-autopilot/references/nodes/W07.md",
+      "git_blob_sha": "1445c3cc38d181c149cf81c04d67b0156435b92f",
+      "size": 2423
+    },
+    {
+      "path": "research-autopilot/references/nodes/W08.md",
+      "git_blob_sha": "1dd37ce0450b6f65b82802fbea07d7a196c1eb07",
+      "size": 2197
+    },
+    {
+      "path": "research-autopilot/references/nodes/W09.md",
+      "git_blob_sha": "3d8ce5361f654543a4ee05a8fa9ff80d986ab33f",
+      "size": 3118
+    },
+    {
+      "path": "research-autopilot/references/nodes/X01.md",
+      "git_blob_sha": "d1d1b5f688ab77e699aa93b27274ab8a191832d6",
+      "size": 1901
+    },
+    {
+      "path": "research-autopilot/references/nodes/X02.md",
+      "git_blob_sha": "77f034bb37a96e0abc2cea79754af507487693f3",
+      "size": 2010
+    },
+    {
+      "path": "research-autopilot/references/nodes/X03.md",
+      "git_blob_sha": "ee5c800dad8f612f69bea940e40710c6a1616cc1",
+      "size": 2576
+    },
+    {
+      "path": "research-autopilot/references/nodes/X04.md",
+      "git_blob_sha": "11f76fb5a9d055c7b7f7b9612aa58c2c916282f5",
+      "size": 2187
+    },
+    {
+      "path": "research-autopilot/references/nodes/X05.md",
+      "git_blob_sha": "a18f5bda639372e0f207b8fe1f556f7fb8fa99f9",
+      "size": 2104
+    },
+    {
+      "path": "research-autopilot/references/nodes/X06.md",
+      "git_blob_sha": "2b1cb886e651ef83e5f1d6b0090ade2268e8fef3",
+      "size": 2257
+    },
+    {
+      "path": "research-autopilot/references/paper-knowledge-loop.md",
+      "git_blob_sha": "75cda4b6fdac0bead9f3c2f341d671e488e6931f",
+      "size": 5970
+    },
+    {
+      "path": "research-autopilot/references/project-chat-instructions.md",
+      "git_blob_sha": "cb6ac6506df828a5adf9eb460c912aabc5e44543",
+      "size": 21040
+    },
+    {
+      "path": "research-autopilot/references/release-and-promotion.md",
+      "git_blob_sha": "12dd910716c6563b14045d8dbde0510f5fbd9578",
+      "size": 7147
+    },
+    {
+      "path": "research-autopilot/references/repository-round-trips.md",
+      "git_blob_sha": "6d8bd8144ec4a32e982042d5361e063b50c5a4ac",
+      "size": 31338
+    },
+    {
+      "path": "research-autopilot/references/research-quality-bar.md",
+      "git_blob_sha": "69870a68299dfd15c5f276d02bd13400a7e26217",
+      "size": 11545
+    },
+    {
+      "path": "research-autopilot/references/research-websites.md",
+      "git_blob_sha": "3e20cc764b5d9d81e9cb1c279a8e2cda5b7c4d4a",
+      "size": 11409
+    },
+    {
+      "path": "research-autopilot/references/rolling-research-batches.md",
+      "git_blob_sha": "6ef864a1eda603eaf4dfbd85de7f0ac25d859531",
+      "size": 15382
+    },
+    {
+      "path": "research-autopilot/references/state-and-routing.md",
+      "git_blob_sha": "e7e4b973c565be1a161981777ce5b9ec4b5d49c4",
+      "size": 18537
+    },
+    {
+      "path": "research-autopilot/references/statistics-and-claims.md",
+      "git_blob_sha": "a070f1d418d2405f7c3ac11e72e2316fa39c8590",
+      "size": 8501
+    },
+    {
+      "path": "research-autopilot/references/visual-map-maintenance.md",
+      "git_blob_sha": "d6e4e26fb093d35d7b605c62ef3124275cd202f0",
+      "size": 4224
+    },
+    {
+      "path": "research-autopilot/references/workflow-harness.md",
+      "git_blob_sha": "31243752abb7034544ba027f4968fa86a83d3a64",
+      "size": 18486
+    },
+    {
+      "path": "research-autopilot/schemas/approval-event.schema.json",
+      "git_blob_sha": "f62d9e709875a2bc9639f3cc6b16af3ff2bec038",
+      "size": 1193
+    },
+    {
+      "path": "research-autopilot/schemas/authority-grant.schema.json",
+      "git_blob_sha": "db52c0363a9d09379c12d706e0667ba03f81c413",
+      "size": 2237
+    },
+    {
+      "path": "research-autopilot/schemas/authority-request.schema.json",
+      "git_blob_sha": "c76f70d082865831a07c670f3453ee221e3f0436",
+      "size": 1884
+    },
+    {
+      "path": "research-autopilot/schemas/backup-manifest.schema.json",
+      "git_blob_sha": "15ec55005ac2e4f94bd9ff2c5f8da3b647bf7f84",
+      "size": 676
+    },
+    {
+      "path": "research-autopilot/schemas/collision-decision.schema.json",
+      "git_blob_sha": "baa05fce0aace62f62fc94aedab9bbae0626e48e",
+      "size": 3576
+    },
+    {
+      "path": "research-autopilot/schemas/commit-journal.schema.json",
+      "git_blob_sha": "5f8fa052abb507cd23b8dc03b875ceb52971d1bc",
+      "size": 864
+    },
+    {
+      "path": "research-autopilot/schemas/evidence-snapshot.schema.json",
+      "git_blob_sha": "cbd9afda8cfa2f317c2f99baf5a93100efdaae73",
+      "size": 1782
+    },
+    {
+      "path": "research-autopilot/schemas/evidence-unit.schema.json",
+      "git_blob_sha": "670be725e4f92ed528a4ee151a35bd16d0775add",
+      "size": 996
+    },
+    {
+      "path": "research-autopilot/schemas/experiment-run-plan.schema.json",
+      "git_blob_sha": "eada5c43a5809dcb96589ceadc48f38588da186f",
+      "size": 5623
+    },
+    {
+      "path": "research-autopilot/schemas/experiment-run-receipt.schema.json",
+      "git_blob_sha": "3f54efc2ee1b9e4cfc2273e6021dd7e71e4d122a",
+      "size": 2068
+    },
+    {
+      "path": "research-autopilot/schemas/full-validation-decision.schema.json",
+      "git_blob_sha": "cbe6cb9842a4d92835b10525669ab092e2ccd4cc",
+      "size": 1747
+    },
+    {
+      "path": "research-autopilot/schemas/full-validation-protocol.schema.json",
+      "git_blob_sha": "9cba1f89cbae719907eddea7e1b93d25acd43bc7",
+      "size": 7242
+    },
+    {
+      "path": "research-autopilot/schemas/gate-a-decision.schema.json",
+      "git_blob_sha": "3675cdffefb443777f175740bbf09fd9761cd232",
+      "size": 1720
+    },
+    {
+      "path": "research-autopilot/schemas/gate-a-protocol.schema.json",
+      "git_blob_sha": "010a5c9839e3f58158d062f641b224cffdf8f89f",
+      "size": 6196
+    },
+    {
+      "path": "research-autopilot/schemas/gpu-memory-profile.schema.json",
+      "git_blob_sha": "47db551ffaadfa5b146272ace0d56fd65a48abed",
+      "size": 2299
+    },
+    {
+      "path": "research-autopilot/schemas/handoff.schema.json",
+      "git_blob_sha": "12345a64406cbad2bf246e6de46ddb6d91007f74",
+      "size": 2985
+    },
+    {
+      "path": "research-autopilot/schemas/harness-plan.schema.json",
+      "git_blob_sha": "0b398ac35c74cee3518ec5ba91963e04835ba40b",
+      "size": 5621
+    },
+    {
+      "path": "research-autopilot/schemas/idea-atom.schema.json",
+      "git_blob_sha": "406ce20fcd41ac084ff03d58e955b8ea49c9a436",
+      "size": 3870
+    },
+    {
+      "path": "research-autopilot/schemas/importance-decision.schema.json",
+      "git_blob_sha": "d83154b6ba7314ac11bc0a62e3f711b1fc739384",
+      "size": 4091
+    },
+    {
+      "path": "research-autopilot/schemas/ledger-anchor.schema.json",
+      "git_blob_sha": "1bb7a6a0a3f8a35a706386ee8b31e5ef2dcbb211",
+      "size": 661
+    },
+    {
+      "path": "research-autopilot/schemas/ledger-event.schema.json",
+      "git_blob_sha": "3678a20ef851c64de0a4a7aabba461ad84076007",
+      "size": 1969
+    },
+    {
+      "path": "research-autopilot/schemas/native-eval-contract.schema.json",
+      "git_blob_sha": "a038889cae996503e933d232a8abadfc797d406f",
+      "size": 12769
+    },
+    {
+      "path": "research-autopilot/schemas/native-eval-receipt.schema.json",
+      "git_blob_sha": "b21cc81b7995ac04667edd1e6533f6bf370fec1b",
+      "size": 5791
+    },
+    {
+      "path": "research-autopilot/schemas/natural-gate-0.schema.json",
+      "git_blob_sha": "69ce223bbbaaa4224dad6c2370cb9044d737d096",
+      "size": 1746
+    },
+    {
+      "path": "research-autopilot/schemas/parent-problem-card.schema.json",
+      "git_blob_sha": "1d15c172cd08027190497fc88f1ca2b044973be7",
+      "size": 10602
+    },
+    {
+      "path": "research-autopilot/schemas/redaction-event.schema.json",
+      "git_blob_sha": "b1161a7cc1b66877965511110eda3026b2b690c9",
+      "size": 945
+    },
+    {
+      "path": "research-autopilot/schemas/research-intake.schema.json",
+      "git_blob_sha": "2f3b94daebbc76c3328554d634def34a84abbe4e",
+      "size": 12516
+    },
+    {
+      "path": "research-autopilot/schemas/research-state.schema.json",
+      "git_blob_sha": "a5bca406b78e9cbf9ae6132560f33d96c80566b3",
+      "size": 4130
+    },
+    {
+      "path": "research-autopilot/schemas/resource-lease.schema.json",
+      "git_blob_sha": "3688f709bdd481636b92a59bdb9d7f238add7e97",
+      "size": 1901
+    },
+    {
+      "path": "research-autopilot/schemas/route-checkpoint.schema.json",
+      "git_blob_sha": "7f3a961c18560090276a4eeab261398944eac2ac",
+      "size": 3406
+    },
+    {
+      "path": "research-autopilot/schemas/run-manifest.schema.json",
+      "git_blob_sha": "db250956bde379661d64eaa7777825f512d433aa",
+      "size": 2785
+    },
+    {
+      "path": "research-autopilot/schemas/search-run.schema.json",
+      "git_blob_sha": "a0d78ad17ebf0ae23846a06735c531c69bcb7c9d",
+      "size": 2333
+    },
+    {
+      "path": "research-autopilot/schemas/session-record.schema.json",
+      "git_blob_sha": "b7553b83ee2311349a0b263ec06a10b08879dc2a",
+      "size": 1259
+    },
+    {
+      "path": "research-autopilot/schemas/supervisor-event.schema.json",
+      "git_blob_sha": "2b212e61d336fa908195c27edd5e0f4f944f85b3",
+      "size": 1451
+    },
+    {
+      "path": "research-autopilot/schemas/supervisor-registry.schema.json",
+      "git_blob_sha": "bc5a1f6260800c07bd11e8438d915eb16d7cd16a",
+      "size": 2935
+    },
+    {
+      "path": "research-autopilot/schemas/work-record.schema.json",
+      "git_blob_sha": "2c41a8518f336b3e585c68fb99c8fb135f23038d",
+      "size": 3703
+    },
+    {
+      "path": "research-autopilot/scripts/_autoresearch.py",
+      "git_blob_sha": "4958ce1a02214ebf97330bc3203ed9d1f033b372",
+      "size": 83188
+    },
+    {
+      "path": "research-autopilot/scripts/_evidence.py",
+      "git_blob_sha": "533cadd458e5d530a0ff010e355cccf6268a08a6",
+      "size": 18438
+    },
+    {
+      "path": "research-autopilot/scripts/_importance.py",
+      "git_blob_sha": "d27eb3025c3630215e73abb61367fbad1af8b598",
+      "size": 38881
+    },
+    {
+      "path": "research-autopilot/scripts/_literature.py",
+      "git_blob_sha": "b022a3d85f79cfdb8e4663e7a237e693c971a468",
+      "size": 7166
+    },
+    {
+      "path": "research-autopilot/scripts/_native_eval.py",
+      "git_blob_sha": "f51045cf57d18cbd9bdc96d9c1bf6a8b4b391abb",
+      "size": 26550
+    },
+    {
+      "path": "research-autopilot/scripts/_process_guard.py",
+      "git_blob_sha": "20858f03500ebf8b68f141ef133e40fc27dbe393",
+      "size": 3024
+    },
+    {
+      "path": "research-autopilot/scripts/_route_visuals.py",
+      "git_blob_sha": "dade8702f3f6337a8b82d9d406dfad538c713fb4",
+      "size": 11708
+    },
+    {
+      "path": "research-autopilot/scripts/_safety.py",
+      "git_blob_sha": "b80e969fb02d127bc176cee7022f3e21098c4190",
+      "size": 21024
+    },
+    {
+      "path": "research-autopilot/scripts/_statistical.py",
+      "git_blob_sha": "066c10cfad3e6e2b31b5ec273c729eb101f4e5c2",
+      "size": 6374
+    },
+    {
+      "path": "research-autopilot/scripts/_supervisor.py",
+      "git_blob_sha": "76d27d7140eb56b8fe7dc99ec82b926380ceed4e",
+      "size": 38377
+    },
+    {
+      "path": "research-autopilot/scripts/_writing.py",
+      "git_blob_sha": "fb8c845accd3c0346ddc4f8ab9652324dbc5e61c",
+      "size": 5650
+    },
+    {
+      "path": "research-autopilot/scripts/evaluate_gate.py",
+      "git_blob_sha": "27b929e52ff253d78db29fdb26c04e1a1523fdd5",
+      "size": 134
+    },
+    {
+      "path": "research-autopilot/scripts/freeze_gate.py",
+      "git_blob_sha": "78ef89da419175c7af061344c9415d3a8902f3e6",
+      "size": 132
+    },
+    {
+      "path": "research-autopilot/scripts/init_project.py",
+      "git_blob_sha": "df9e250890d0fc506829b28dd696f0acfbdb453e",
+      "size": 133
+    },
+    {
+      "path": "research-autopilot/scripts/migrate_state.py",
+      "git_blob_sha": "73e23d1d55f6d0510d9ebf1933c1356f73b0c386",
+      "size": 134
+    },
+    {
+      "path": "research-autopilot/scripts/redact_artifact.py",
+      "git_blob_sha": "46643124bd298a727f608b0eb4c0e2abace1ff62",
+      "size": 136
+    },
+    {
+      "path": "research-autopilot/scripts/replay_state.py",
+      "git_blob_sha": "83bae36fc2c1c53b87397c4af790836a6d9f4684",
+      "size": 133
+    },
+    {
+      "path": "research-autopilot/scripts/research_nodes.py",
+      "git_blob_sha": "7e65eec7d3b0a1f9719f0167e4f34ee89e503be0",
+      "size": 7040
+    },
+    {
+      "path": "research-autopilot/scripts/run_experiments.py",
+      "git_blob_sha": "293ce523524090da6e951d199af4a657e4ff3398",
+      "size": 19841
+    },
+    {
+      "path": "research-autopilot/scripts/run_harness.py",
+      "git_blob_sha": "3a3a091534a0d2c02075450654e4bb296a0f7cb1",
+      "size": 35776
+    },
+    {
+      "path": "research-autopilot/scripts/session_records.py",
+      "git_blob_sha": "5f26851438e50bf8838aaa5d4e0d51c6fa212dc9",
+      "size": 18926
+    },
+    {
+      "path": "research-autopilot/scripts/supervise_routes.py",
+      "git_blob_sha": "a29d8fab0bcd443c9c29c8ebf0a0b3eaa7393266",
+      "size": 3429
+    },
+    {
+      "path": "research-autopilot/scripts/transition_state.py",
+      "git_blob_sha": "8a1063c03c3fdb0e6991a67da32cf542f29b7dbe",
+      "size": 137
+    },
+    {
+      "path": "research-autopilot/scripts/validate_artifact.py",
+      "git_blob_sha": "35c583172c5906c8fd65fb2c27ccdb80bbb2577e",
+      "size": 138
+    },
+    {
+      "path": "research-autopilot/scripts/verify_methods.py",
+      "git_blob_sha": "f2c452faaf27dd508d5f29c1a94d02558677a8ba",
+      "size": 24459
+    },
+    {
+      "path": "research-autopilot/scripts/writing_assets.py",
+      "git_blob_sha": "983f79143af34cd4d4b877f8dc7854caf10bb77f",
+      "size": 1225
+    },
+    {
+      "path": "research-autopilot/tests/acceptance-results.json",
+      "git_blob_sha": "bb10a0dc1103957e87255ed2eea964bec2b324b4",
+      "size": 22978
+    },
+    {
+      "path": "research-autopilot/tests/agent-fixtures.json",
+      "git_blob_sha": "26d925425fccfc3829df03ff9f1916d466850dc3",
+      "size": 4516
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/benchmark-memory.json",
+      "git_blob_sha": "6ff896b58b63f53248641a1ac7f10b873a655f78",
+      "size": 4085
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/gpt-role-handoff-instructions.json",
+      "git_blob_sha": "9eb9fecfd6818fe4cbd5d26701deb6671b22b74d",
+      "size": 25993
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/i-1.json",
+      "git_blob_sha": "9c3515c197f8ca498062dea628b9fd94a727dfb5",
+      "size": 7439
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/i-2.json",
+      "git_blob_sha": "c634924853afe14d49190534bfc3abbace25f2ab",
+      "size": 9631
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/i-3.json",
+      "git_blob_sha": "f812186f95155852af56d7ed4d86c747518ab697",
+      "size": 7525
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/i-4.json",
+      "git_blob_sha": "9a771cd6a82fb53aaa248c98e09fd4dc32b3432c",
+      "size": 8447
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/i-5.json",
+      "git_blob_sha": "8ea3bb95530c3a3776b0d0bea679f66df29f3329",
+      "size": 8770
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/ipcg-after.json",
+      "git_blob_sha": "1e74fc233caab5b79bf6d1043d4b219e042ad9a3",
+      "size": 3202
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/ipcg-before.json",
+      "git_blob_sha": "e76a0df8692ec5346a976312ddff765729fd0d47",
+      "size": 3282
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/m-1.json",
+      "git_blob_sha": "045a81283af4908a72feece6796bf830568e15de",
+      "size": 8919
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/m-2.json",
+      "git_blob_sha": "e6fb54bebe59edaa302192e5699418ff1c01083d",
+      "size": 8835
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/m-3.json",
+      "git_blob_sha": "ddb19d8fcb8e4e3aad7781bc2186e57c4c414613",
+      "size": 8961
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/m-4.json",
+      "git_blob_sha": "48c22dbbd1aa0d0d3e9f9458665ca321780293ee",
+      "size": 8804
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/m-5.json",
+      "git_blob_sha": "fd3bc78bf8e0cc783c89acddfffaacf33e0f0de5",
+      "size": 9713
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/method-verification-instructions.json",
+      "git_blob_sha": "c085f43be38e7d8e4f74c00fef6bffd94b1a4df2",
+      "size": 7667
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/mixed-1.json",
+      "git_blob_sha": "fc8d824d1eddbe26a538a6925256c561f9b3a31e",
+      "size": 5366
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/mixed-2.json",
+      "git_blob_sha": "f7ddfc9d87f50760e6db16516050a4fa5f67ab15",
+      "size": 5047
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/mixed-3.json",
+      "git_blob_sha": "7e16e4728c50ef6f1864bc6ca5185029faf243ba",
+      "size": 4999
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/mixed-4.json",
+      "git_blob_sha": "2b2c7970f299cafe645c616906d4d69d134bb24b",
+      "size": 4785
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/mixed-5.json",
+      "git_blob_sha": "8efb8959aaddf27d2fcf682c76345150a59c246b",
+      "size": 6719
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/r-1.json",
+      "git_blob_sha": "fc944d1e806b32b78327363da97f101276631b4f",
+      "size": 9769
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/r-2.json",
+      "git_blob_sha": "6cc16e37b1910123d3c2dd50887dd307fad770d3",
+      "size": 8624
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/r-3.json",
+      "git_blob_sha": "58b00bc4d2affc0c330312926d8b89a433cbc649",
+      "size": 7696
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/r-4.json",
+      "git_blob_sha": "ad9a513f775b6dd09b19bcf9d7c26e3fcc13cf31",
+      "size": 9647
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/r-5.json",
+      "git_blob_sha": "82dc1f90ab456562572793972239fe01c5d22950",
+      "size": 8136
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/unknown-1.json",
+      "git_blob_sha": "90e7f1fb02169e8a810b6c8ddc0989093865c011",
+      "size": 3760
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/unknown-2.json",
+      "git_blob_sha": "9d664d046902adf55a030f0c917b3953368f2bbf",
+      "size": 3403
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/unknown-3.json",
+      "git_blob_sha": "aed8a4c03f47cfdde5336981ce25276d8342801c",
+      "size": 3476
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/unknown-4.json",
+      "git_blob_sha": "2c92d502c919dee0c20f39109ad839e51ccf21a5",
+      "size": 3235
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/unknown-5.json",
+      "git_blob_sha": "e8406632009fc3f0e828cd67090b37058809f3ed",
+      "size": 3474
+    },
+    {
+      "path": "research-autopilot/tests/agent-results/workflow-generation-instructions.json",
+      "git_blob_sha": "66204374490ecf21f116c2e6dca369bfbd703d5d",
+      "size": 4997
+    },
+    {
+      "path": "research-autopilot/tests/check_trials.py",
+      "git_blob_sha": "c9bf48dc6591991a85d3c39af2558b25dd3fddf1",
+      "size": 2778
+    },
+    {
+      "path": "research-autopilot/tests/fixtures.py",
+      "git_blob_sha": "c4361038b1f710c93fbe16544b6594c082217d46",
+      "size": 15497
+    },
+    {
+      "path": "research-autopilot/tests/ipcg_fixtures.py",
+      "git_blob_sha": "3231891db2bbdf2edea41e547db9806f4cbe877b",
+      "size": 5016
+    },
+    {
+      "path": "research-autopilot/tests/node-source-results.json",
+      "git_blob_sha": "6f1babaf1fb742c83ab5bc1e583c0bffd2d9fa70",
+      "size": 11288
+    },
+    {
+      "path": "research-autopilot/tests/test_boundaries.py",
+      "git_blob_sha": "149b96aeb587bab84bd256e6b95352bf47be150c",
+      "size": 14918
+    },
+    {
+      "path": "research-autopilot/tests/test_claim_assets.py",
+      "git_blob_sha": "66837e670df8536bd4ce2abcb1ec0e46ea2308d9",
+      "size": 4066
+    },
+    {
+      "path": "research-autopilot/tests/test_contracts.py",
+      "git_blob_sha": "900d9dab3533124b22181f4f381f48c259759d9a",
+      "size": 14018
+    },
+    {
+      "path": "research-autopilot/tests/test_contribution_routes.py",
+      "git_blob_sha": "505b0d2d670f3609c2773d43e6cc37edc1abfb04",
+      "size": 24568
+    },
+    {
+      "path": "research-autopilot/tests/test_evidence_lifecycle.py",
+      "git_blob_sha": "accf0087213ceeaf69bf31ea2f741067db08850b",
+      "size": 4144
+    },
+    {
+      "path": "research-autopilot/tests/test_harness.py",
+      "git_blob_sha": "929818ee7a570dd15bc918da86aebd26a13f6d8b",
+      "size": 18168
+    },
+    {
+      "path": "research-autopilot/tests/test_importance.py",
+      "git_blob_sha": "a86ac3c78c1303f12729a13c597c2d644d5e89bf",
+      "size": 14829
+    },
+    {
+      "path": "research-autopilot/tests/test_integrated_scopes.py",
+      "git_blob_sha": "f288b02c5008e7a3511bacea5cf0c5cb8d84e4dc",
+      "size": 4698
+    },
+    {
+      "path": "research-autopilot/tests/test_literature_versions.py",
+      "git_blob_sha": "ffb0b87fe82966523eb4da9b391201774a76585a",
+      "size": 5350
+    },
+    {
+      "path": "research-autopilot/tests/test_method_verification.py",
+      "git_blob_sha": "75f1b03ab53107d60b3319433cbc65dad4706047",
+      "size": 24166
+    },
+    {
+      "path": "research-autopilot/tests/test_native_eval.py",
+      "git_blob_sha": "bf1280fe3e60c28368470b13616c0fe81addfcd9",
+      "size": 24812
+    },
+    {
+      "path": "research-autopilot/tests/test_node_sources.py",
+      "git_blob_sha": "d8680462325b9ef8b4a89b0caca5a0d1e42a8859",
+      "size": 6017
+    },
+    {
+      "path": "research-autopilot/tests/test_release.py",
+      "git_blob_sha": "310259190e5a54f6e6e65a6c07130954db3f8bd3",
+      "size": 7769
+    },
+    {
+      "path": "research-autopilot/tests/test_runner.py",
+      "git_blob_sha": "b199a5ff68542d3afea1197f3d9ec2289f6ee705",
+      "size": 15638
+    },
+    {
+      "path": "research-autopilot/tests/test_session_records.py",
+      "git_blob_sha": "3d3d36038e9a103d2ecca659d4e758243a91c415",
+      "size": 17979
+    },
+    {
+      "path": "research-autopilot/tests/test_startup_intake.py",
+      "git_blob_sha": "52db53a99bc28c619246cc5cede87f7c21417338",
+      "size": 4677
+    },
+    {
+      "path": "research-autopilot/tests/test_statistical_analysis.py",
+      "git_blob_sha": "fc9b465598fddef8b7c2b304a80d0862f66bfba2",
+      "size": 4091
+    },
+    {
+      "path": "research-autopilot/tests/test_supervisor.py",
+      "git_blob_sha": "529828b77c2587ad6b9f4841f1d7e9fa8b36619c",
+      "size": 32466
+    },
+    {
+      "path": "research-autopilot/tests/test_workflow.py",
+      "git_blob_sha": "52fd18df9278275ca5998e0f036c553f8fbe96e3",
+      "size": 17801
+    },
+    {
+      "path": "research-autopilot/tests/test_workflow_boundaries.py",
+      "git_blob_sha": "2b7767278336255fb0c0ee9e22b9078b85f493d8",
+      "size": 6498
+    },
+    {
+      "path": "writing-top-tier-papers/SKILL.md",
+      "git_blob_sha": "195d37b43fdf37f73e12d4c0cb244be5c5d1d76c",
+      "size": 22490
+    },
+    {
+      "path": "writing-top-tier-papers/agents/openai.yaml",
+      "git_blob_sha": "99eb8be59c3f2258101729ac68639341372586f5",
+      "size": 478
+    },
+    {
+      "path": "writing-top-tier-papers/assets/icon.svg",
+      "git_blob_sha": "4c3163aa85e15ed80114f93a9a2b140a53012c44",
+      "size": 1210
+    },
+    {
+      "path": "writing-top-tier-papers/references/ai-conference-mode.md",
+      "git_blob_sha": "950877935af370faa32045c3aaea7fcd728414f2",
+      "size": 10692
+    },
+    {
+      "path": "writing-top-tier-papers/references/evidence-citations-prose.md",
+      "git_blob_sha": "3488a02c55f9afb99aa6f12bc17500651959e563",
+      "size": 7611
+    },
+    {
+      "path": "writing-top-tier-papers/references/nature-mode.md",
+      "git_blob_sha": "2b298a4e804f9724cce78160e3ddee6d38f1505b",
+      "size": 9005
+    },
+    {
+      "path": "writing-top-tier-papers/references/output-contract.md",
+      "git_blob_sha": "eccfa1806fad5a9f6e24f42ba181cbcafa80b0ff",
+      "size": 8563
+    },
+    {
+      "path": "writing-top-tier-papers/references/presentation-modes.md",
+      "git_blob_sha": "4ffdcd63002985e143ca25947200edc23a4982c9",
+      "size": 6078
+    },
+    {
+      "path": "writing-top-tier-papers/references/source-entrypoints.md",
+      "git_blob_sha": "7afbdf0a2acd0121ff236d3d8ce130b2c3068b0e",
+      "size": 4226
+    },
+    {
+      "path": "writing-top-tier-papers/references/visual-orchestration.md",
+      "git_blob_sha": "c4be4f699fbfea5f3428b16bf9282678e7b4c986",
+      "size": 12348
+    }
+  ]
+}
+

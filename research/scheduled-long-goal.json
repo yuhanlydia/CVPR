@@ -1,0 +1,18 @@
+{
+  "schema": "cvpr-scheduled-goal-record-v1",
+  "automation_id": "6ac52f3f3b9881919334157e3df989d7",
+  "title": "推进 CVPR 长期研究",
+  "is_enabled": true,
+  "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Europe/London:20261007T080000\nRRULE:FREQ=DAILY\nEND:VEVENT",
+  "timing_mode": "flexible_schedule",
+  "timezone": "Europe/London",
+  "provider_updated_at": "2026-10-07T09:03:08.290711+00:00",
+  "provider_next_run_time": null,
+  "goal_ref": "LONG_TERM_TASK.md",
+  "backlog_ref": "research-backlog.json",
+  "skill_source_ref": "configs/autopilot-source.json",
+  "execution_role": "web_supervisor",
+  "execution_owner": "USER_LOCAL_AGENT",
+  "delivery_branch": "main",
+  "note": "Provider confirmed update of existing task; scheduled triggers are distinct from continuous execution and scientific readiness."
+}
