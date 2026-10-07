@@ -94,7 +94,7 @@
     "ScienceQA",
     "A-OKVQA"
   ],
-  "training_rows_per_task": 128,
+  "training_rows_per_task": 256,
   "evaluation_tasks": [
     "ScienceQA",
     "ChartQA",
