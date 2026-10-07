@@ -52,5 +52,22 @@
     "E04 and separately frozen fresh confirmation for future claims"
   ],
   "gate_advanced": false,
-  "scientific_verdict": "NONE"
+  "scientific_verdict": "NONE",
+  "execution_policy": {
+    "version": "2026-10-07-finish-first",
+    "source": "explicit user instruction: 你不要太严格了，每一步只先完成再完美",
+    "observed_local_time": "2026-10-07T23:19:38+01:00",
+    "policy_ref": "rounds/r004/EXECUTION_POLICY.md",
+    "changes": [
+      "staged minimal working loop before exhaustive validation",
+      "full inventory/property checks/G01 paperwork/CI not universal first-batch blockers",
+      "partial native-task developmental run allowed with explicit scope"
+    ],
+    "unchanged": [
+      "real native inputs/scoring and fit-test separation",
+      "preserve old results/receipts and live owner",
+      "no implicit new budget",
+      "Web source-only; Local execution"
+    ]
+  }
 }
