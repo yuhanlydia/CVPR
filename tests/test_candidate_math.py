@@ -69,6 +69,22 @@ class MathematicalOperators(unittest.TestCase):
             transform = head[side+"_map"]
             np.testing.assert_allclose(transform.T@cov@transform, np.eye(transform.shape[1]), atol=1e-11)
 
+    def test_two_view_features_are_unit_normalized(self):
+        for method in ("I10", "I13", "C_WHITEN"):
+            with self.subTest(method=method):
+                head = fit(method, self.t, self.cfg)
+                for side, values in (("q", self.t.q), ("c", self.t.c)):
+                    mapped = features(head, values, side)
+                    np.testing.assert_allclose(np.linalg.norm(mapped, axis=1), 1, atol=1e-12)
+
+    def test_i03_returns_psd_distance_metric(self):
+        head = fit("I03", self.t, self.cfg)
+        self.assertEqual(head["kind"], "distance")
+        metric = head["matrix"]
+        np.testing.assert_allclose(metric, metric.T, atol=1e-12)
+        self.assertGreaterEqual(np.linalg.eigvalsh(metric).min(), -1e-10)
+        self.assertEqual(metric.shape, (self.t.q.shape[1], self.t.q.shape[1]))
+
     def test_every_unblocked_registered_head_has_finite_features(self):
         cfg = json.loads((ROOT/"configs/candidates.json").read_text())
         for method in cfg["selected"]+cfg["controls"]:
@@ -76,9 +92,11 @@ class MathematicalOperators(unittest.TestCase):
                 continue
             with self.subTest(method=method):
                 head = fit(method, self.t, self.cfg)
-                if head["kind"] != "rbf":
+                if head["kind"] not in {"rbf", "distance"}:
                     self.assertTrue(np.isfinite(features(head, self.t.q, "q")).all())
                     self.assertTrue(np.isfinite(features(head, self.t.c, "c")).all())
+                elif head["kind"] == "distance":
+                    self.assertTrue(np.isfinite(head["matrix"]).all())
 
     def test_missing_interval_and_single_positive_do_not_fake_eligibility(self):
         with self.assertRaisesRegex(Blocked, "CALIBRATION"):

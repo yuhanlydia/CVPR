@@ -36,8 +36,26 @@ def evaluate(task, head, bundle_path, manifest, projection, upstream, out):
     if not np.isfinite(fullq).all() or not np.isfinite(fullc).all():
         raise ValueError("Nonfinite actual evaluation features")
     q, c = project(fullq, projection), project(fullc, projection)
-    if head["kind"] != "rbf":
+    if head["kind"] not in {"rbf", "distance"}:
         q, c = features(head, q, "q"), features(head, c, "c")
+        if q.ndim != 2 or c.ndim != 2 or q.shape[1] != c.shape[1]:
+            raise ValueError("Transformed query/candidate dimensions disagree")
+        if not np.isfinite(q).all() or not np.isfinite(c).all():
+            raise ValueError("Nonfinite transformed features")
+        if (np.linalg.norm(q, axis=1) < 1e-12).any() or (np.linalg.norm(c, axis=1) < 1e-12).any():
+            raise ValueError("Zero transformed feature")
+    if head["kind"] == "distance":
+        matrix = np.asarray(head["matrix"], dtype=np.float64)
+        if matrix.shape != (q.shape[1], q.shape[1]) or not np.isfinite(matrix).all():
+            raise ValueError("Invalid distance metric dimensions")
+        if not np.allclose(matrix, matrix.T, atol=1e-10):
+            raise ValueError("Distance metric is not symmetric")
+        if np.linalg.eigvalsh(matrix).min() < -1e-8:
+            raise ValueError("Distance metric is not positive semidefinite")
+    q_norm, c_norm = np.linalg.norm(q, axis=1), np.linalg.norm(c, axis=1)
+    feature_diagnostics = {"query_dim": int(q.shape[1]), "candidate_dim": int(c.shape[1]),
+                           "query_norm_min": float(q_norm.min()), "query_norm_max": float(q_norm.max()),
+                           "candidate_norm_min": float(c_norm.min()), "candidate_norm_max": float(c_norm.max())}
     candidate_ids = task["candidate_ids"]
     if len(set(candidate_ids)) != len(candidate_ids):
         raise ValueError("Duplicate native candidate IDs")
@@ -54,6 +72,10 @@ def evaluate(task, head, bundle_path, manifest, projection, upstream, out):
             candidates = c[[index[name] for name in names]]
             if head["kind"] == "rbf":
                 tensor = torch.as_tensor(rbf(q[i:i+1], candidates, head["bandwidth"])[0], dtype=torch.float64)
+            elif head["kind"] == "distance":
+                delta = candidates-q[i:i+1]
+                scores = -np.einsum("md,de,me->m", delta, matrix, delta)
+                tensor = torch.as_tensor(scores, dtype=torch.float64)
             else:
                 tensor = MMEBEmbeddingModel.compute_similarity(None,
                     torch.as_tensor(q[i:i+1], dtype=torch.float64),
@@ -80,7 +102,8 @@ def evaluate(task, head, bundle_path, manifest, projection, upstream, out):
                "prediction_sha256": sha256(pred_path), "score_sha256": sha256(score_path),
                "replay": "matched", "baseline_replay": "matched", "scores": score,
                "score_device": "cpu", "score_dtype": "float64", "rows_with_exact_ties": tie_rows,
-               "full_candidate_rankings": True}
+               "full_candidate_rankings": True, "score_kind": head["kind"],
+               "feature_diagnostics": feature_diagnostics}
     write_json(out/(task["task"]+"_replay.json"), receipt)
     return receipt
 

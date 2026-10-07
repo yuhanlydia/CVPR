@@ -184,7 +184,13 @@ def fit(method, t, config):
         eigenvalues, vectors = np.linalg.eigh(whitening@b@whitening)
         k = min(config["components"], d)
         transform = whitening@vectors[:, -k:]
-        return linear(transform@transform.T, generalized_eigenvalues=eigenvalues[-k:].tolist())
+        # I03 is a distance metric.  It must not fall through to the
+        # bilinear dot-product scorer used by the other linear heads.
+        metric = transform@transform.T
+        metric = (metric+metric.T)/2
+        return {"kind": "distance", "matrix": metric,
+                "diagnostics": {"generalized_eigenvalues": eigenvalues[-k:].tolist(),
+                                 "metric_rank": int(np.linalg.matrix_rank(metric, tol=1e-10))}}
     if method == "I10":
         q, c = t.q, t.c[np.argmax(t.positive, axis=1)]
         mq, mc = q.mean(0), c.mean(0)
@@ -195,7 +201,8 @@ def fit(method, t, config):
         k = min(config["components"], d)
         return {"kind": "two_view", "q_mean": mq, "c_mean": mc,
                 "q_map": aq@u[:, :k], "c_map": ac@vt[:k].T,
-                "diagnostics": {"canonical_correlations": singular[:k].tolist()}}
+                "diagnostics": {"canonical_correlations": singular[:k].tolist(),
+                                 "output_dim": k}}
     if method in {"I13", "C_WHITEN"}:
         values = np.vstack((t.q, t.c)); mean = values.mean(0); values = values-mean
         cov = values.T@values/len(values)
@@ -239,10 +246,15 @@ def features(head, x, side):
     if kind == "linear":
         return x@head["matrix"] if side == "q" else x
     if kind == "two_view":
-        return (x-head[side+"_mean"])@head[side+"_map"]
+        # Two-view heads represent a shared embedding space.  The native
+        # scorer compares unit embeddings, so transformed norms must not
+        # become an accidental query/candidate prior.
+        return unit((x-head[side+"_mean"])@head[side+"_map"])
     if kind in {"diffusion", "nystrom"}:
         kernel = rbf(x, head["anchors"], head["bandwidth"])
         if kind == "diffusion":
             kernel /= np.maximum(kernel.sum(1, keepdims=True), 1e-12)
         return kernel@head["weights"]
+    if kind == "distance":
+        raise ValueError("Distance heads are scored directly, not embedded with features()")
     raise ValueError(f"No explicit feature map for {kind}")
