@@ -94,7 +94,7 @@
     "ScienceQA",
     "A-OKVQA"
   ],
-  "training_rows_per_task": 256,
+  "training_rows_per_task": 512,
   "evaluation_tasks": [
     "ScienceQA",
     "ChartQA",
@@ -133,4 +133,3 @@
   "novelty": "UNRESOLVED",
   "gate_a": "NOT_RUN"
 }
-
