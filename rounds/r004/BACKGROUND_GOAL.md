@@ -4,6 +4,10 @@
 也没有用户控制电脑或GPU主机SSH执行入口。此文件不是started任务或运行receipt。
 不要用定时提醒替代实验执行，不把source/checkpoint写入当GPU启动。
 
+实际队列与恢复CLI见[RUNTIME_CONTINUATION.md](RUNTIME_CONTINUATION.md)；
+复用原DB/owner/fence，一个外层native_harness调度本批内层DAG。
+worker是一次处理一个外层任务的前台命令；是否处于真实持续后台任务必须从Local宿主验证。
+
 ## 在已有连接的Local任务中使用以下目标
 
 用Research Autopilot作为我的Local执行控制器，持续完成yuhanlydia/CVPR r004的

@@ -1,3 +1,11 @@
+# 本次接续：collector修复与真实runtime命令（2026-10-08）
+
+先读[进展/修复记录](../../research/PROGRESS_2026-10-08.md)和
+[实际runtime接续卡](RUNTIME_CONTINUATION.md)。
+本次仅修收集器无效槽残留及累计72配置/216槽统计，未改方法/config/预测。
+命令按固定a8343ae作者CLI与NativeWorker核对；没有在Web启动Local/GPU任务。
+沿原owner与实际剩余额度继续，小批不缩减全部72目标，不重做未变化的297文件检查。
+
 # r004扩展代码交付补充
 
 先读[当前扩展Local交接](LOCAL_EXTENSION_HANDOFF.md)和[逐臂三任务完整度矩阵](EXTENSION_COVERAGE.json)。

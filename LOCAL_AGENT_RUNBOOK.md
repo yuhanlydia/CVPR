@@ -1,3 +1,10 @@
+# 本次runtime接续与进展（2026-10-08）
+
+先读[r004实际runtime接续卡](rounds/r004/RUNTIME_CONTINUATION.md)和
+[两天进展及collector修复](research/PROGRESS_2026-10-08.md)。
+复用已报告通过的297文件核验；恢复原DB/owner/fence和SSH/pool，单一外层批次接续72项。
+collector仅修正无效成绩残留与累计计数，未执行；实际后台activation和r004成绩仍待Local返回。
+
 # 全72配置的长任务入口
 
 [已填写的Local长任务目标](rounds/r004/BACKGROUND_GOAL.md)可交给已有连接电脑上的持续任务。

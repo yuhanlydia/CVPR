@@ -176,18 +176,34 @@ def main():
                 if any(not np.isfinite(float(score[k])) or not np.isfinite(float(v)) or
                        abs(float(score[k]) - float(v)) > 1e-12 for k, v in official.items()):
                     raise ValueError("Actual live official scorer replay differs")
-                hits[key] = np.array([baseline_metric.hit_at_k(r["prediction"], r["label"], 1) for r in rows])
-                # Keep only top1 and per-row ranking digests; raw full rankings stay in retained files.
-                predictions[key] = {
+                # Stage every derived value before publishing a scored slot. A late
+                # fit-identity failure must not leak a hit vector into comparisons.
+                validated_hits = np.array([
+                    baseline_metric.hit_at_k(r["prediction"], r["label"], 1) for r in rows])
+                # Raw full rankings stay in retained files.
+                validated_predictions = {
                     "top1": [r["prediction"][0] for r in rows],
                     "ranking_sha256": [hashlib.sha256(json.dumps(r["prediction"], ensure_ascii=False,
                         separators=(",", ":")).encode()).hexdigest() for r in rows]}
+                parameter_sha256 = child["parameter_sha256"]
+                if (not isinstance(parameter_sha256, str) or len(parameter_sha256) != 64 or
+                        any(c not in "0123456789abcdef" for c in parameter_sha256)):
+                    raise ValueError("Missing or malformed fitted parameter SHA256")
                 diagnostic = child.get("diagnostics", {})
-                parameter_hashes[key] = (child["parameter_sha256"],
+                if not isinstance(diagnostic, dict):
+                    raise ValueError("Fitted-head diagnostics must be an object")
+                validated_fit = (parameter_sha256,
                     diagnostic.get("training_identity_sha256"), diagnostic.get("pair_selection_sha256"),
                     diagnostic.get("training_selection_sha256"))
+                hash(validated_fit)  # Identity fields must support the later consistency comparison.
+                hits[key] = validated_hits
+                predictions[key] = validated_predictions
+                parameter_hashes[key] = validated_fit
                 record["status"] = "DEVELOPMENTAL_SCORED_LIVE_REPLAYED"
             except Exception as error:
+                hits.pop(key, None)
+                predictions.pop(key, None)
+                parameter_hashes.pop(key, None)
                 record.update(status="INVALID_EVIDENCE", error_type=type(error).__name__, error=str(error))
     # Audit actual unit provenance once per native task, not once per contrast.
     unit_cache = {}
@@ -242,19 +258,59 @@ def main():
     for arm in arms:
         keys = [(arm, name) for name in tasks]
         values = [parameter_hashes[k] for k in keys if k in parameter_hashes]
-        coverage.append({"method": arm, "completed_tasks": sum(k in hits for k in keys),
-                         "required_tasks": list(tasks),
-                         "same_fit_across_tasks": all(k in hits for k in keys) and
-                                                 len(values) == len(tasks) and len(set(values)) == 1,
+        completed = sum(k in hits for k in keys)
+        same_fit = (completed == len(tasks) and len(values) == len(tasks) and
+                    len(set(values)) == 1)
+        task_statuses = {name: expected[(arm, name)]["status"] for name in tasks}
+        statuses = set(task_statuses.values())
+        if arm in inconsistent or (completed == len(tasks) and not same_fit):
+            coverage_status = "INVALID_INCONSISTENT_FIT"
+        elif same_fit:
+            coverage_status = "COMPLETE_DEVELOPMENTAL_SCORES"
+        elif completed:
+            coverage_status = "PARTIAL_DEVELOPMENTAL_SCORES"
+        elif statuses & {"INVALID_EVIDENCE", "AMBIGUOUS_DUPLICATE"}:
+            coverage_status = "INVALID_EVIDENCE"
+        elif statuses - {"PENDING", "BLOCKED"}:
+            coverage_status = "FAILED"
+        elif "BLOCKED" in statuses:
+            coverage_status = "BLOCKED"
+        else:
+            coverage_status = "PENDING"
+        coverage.append({"method": arm, "status": coverage_status,
+                         "completed_tasks": completed, "required_tasks": list(tasks),
+                         "task_statuses": task_statuses, "same_fit_across_tasks": same_fit,
                          "optimizer_convergence": [expected[k].get("result", {}).get("diagnostics", {}).get(
-                             "convergence_qualified") for k in keys]})
+                             "convergence_qualified") if k in hits else None for k in keys]})
+    configuration_states = ("COMPLETE_DEVELOPMENTAL_SCORES", "PARTIAL_DEVELOPMENTAL_SCORES",
+                            "FAILED", "BLOCKED", "PENDING", "INVALID_EVIDENCE",
+                            "INVALID_INCONSISTENT_FIT")
+    configuration_counts = collections.Counter(c["status"] for c in coverage)
+    progress = {
+        "registered_configurations": len(arms),
+        "completed_configurations": configuration_counts["COMPLETE_DEVELOPMENTAL_SCORES"],
+        "configurations_by_status": {s: configuration_counts[s] for s in configuration_states},
+        "scored_task_slots": len(hits), "required_task_slots": len(expected),
+        "task_slots_by_status": dict(collections.Counter(r["status"] for r in expected.values())),
+        "by_native_task": {
+            name: {"scored_slots": sum((arm, name) in hits for arm in arms),
+                   "required_slots": len(arms),
+                   "slots_by_status": dict(collections.Counter(
+                       expected[(arm, name)]["status"] for arm in arms))}
+            for name in tasks},
+        "counting_rule": (
+            "One configuration is complete only with validated official replay on every "
+            "required native task and a consistent fitted head. Partial/invalid/failed/blocked "
+            "records remain visible; scored slots are not a scientific verdict.")}
     optimizer_kinds = {"ce_lbfgs", "erm_lbfgs", "dro_lbfgs", "mp_inside", "mp_outside", "single_clean",
                        "query_balanced_all_pairs", "teacher_hard_negative", "uniform_native_negative", "teacher_label_mixture"}
     optimizer_required = [a["id"] for a in arms.values() if a["kind"] in optimizer_kinds or a.get("parent") == "A_CE_LBFGS"]
     unqualified_optimizer_arms = [a for a in optimizer_required if not all(
-        expected[(a, name)].get("result", {}).get("diagnostics", {}).get("convergence_qualified") is True for name in tasks)]
+        (a, name) in hits and expected[(a, name)].get("result", {}).get("diagnostics", {}).get(
+            "convergence_qualified") is True for name in tasks)]
     report = {"schema": "cvpr.audit-return.v1", "status": "DEVELOPMENTAL_AUDIT_SNAPSHOT",
               "arms": list(expected.values()), "coverage": coverage, "comparisons": comparisons,
+              "cumulative_progress": progress,
               "retained_output_refs": retained, "errors": errors, "config_sha256": config_hash,
               "scientific_verdict": "NONE", "gate_advanced": False,
               "all_failures_retained": True, "all_registered_records_included": True,
@@ -274,7 +330,8 @@ def main():
               "confirmation": "not performed; inspected development outputs cannot confirm chosen winners"}
     write_json(args.out, report)
     print("Audit snapshot:", args.out)
-    print("Completed native group jobs:", len(hits), "; scientific_verdict=NONE")
+    print("Completed configurations:", progress["completed_configurations"], "/", len(arms))
+    print("Completed native group jobs:", len(hits), "/", len(expected), "; scientific_verdict=NONE")
     return 0
 
 

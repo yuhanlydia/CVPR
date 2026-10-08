@@ -17,7 +17,8 @@
     "29 extension constructions and native training identity/remap source",
     "72-arm explicit optional inventory and complete 3-task source coverage",
     "Local extension semantic acceptance, jobcards, result/replay/CI and coverage source",
-    "48 primary and 124 secondary contrasts; 516 developmental task endpoints"
+    "48 primary and 124 secondary contrasts; 516 developmental task endpoints",
+    "collector late-validation failure source repair and cumulative configuration/task-slot status reporting"
   ],
   "execution": {
     "web_project_code": false,
@@ -46,10 +47,10 @@
     "host_budget_unknown": true
   },
   "next": [
-    "publish literal main with expected-parent update and exact readback",
-    "Local exact-source acceptance and compatible native cache/host/budget/protocol qualification",
-    "admitted complete native comparisons with actual receipts",
-    "E04 and separately frozen fresh confirmation for future claims"
+    "Local reuse unchanged 297-file source receipt; recover existing controller/host/harness/pool and actual budget/cache state",
+    "Local accept collector late-failure cleanup using retained native inputs; preserve original execution bindings",
+    "Continue the existing admitted 72-configuration native queue in finite batches, retain failures and return cumulative actual scores",
+    "E04 and separately frozen fresh confirmation for future scientific claims"
   ],
   "gate_advanced": false,
   "scientific_verdict": "NONE",
@@ -84,7 +85,9 @@
     "completion_counter": "only configurations with actual scores on all three tasks; blocked/partial/failed separately",
     "new_results_on_remote_main_at_inspection": false,
     "local_execution_state": "unknown until actual returned receipts",
-    "scope_reduced": false
+    "scope_reduced": false,
+    "remote_verified_new_completed_configurations": 0,
+    "verified_counter_scope": "new r004 results returned to inspected main only; not current remote host telemetry"
   },
   "background_goal": {
     "request": "你要用这个后台长任务跑",
@@ -96,6 +99,22 @@
     "total_configurations": 72,
     "continue_from_existing_work": true,
     "automations_created": false,
-    "scientific_execution_claimed": false
+    "scientific_execution_claimed": false,
+    "runtime_continuation_ref": "rounds/r004/RUNTIME_CONTINUATION.md",
+    "mechanism": "persistent controller queue plus single native_harness outer task and same-owner/fence SSH recovery",
+    "last_observed_at_utc": "2026-10-08T12:03:06.081Z",
+    "executor_connected": false,
+    "actual_local_queue_status": "unknown; no connected launch/status entry"
+  },
+  "latest_source_review": {
+    "observed_at_utc": "2026-10-08T12:03:06.081Z",
+    "project_revision_inspected": "d1bb6fc36dad62ceda0122e176bf8189645a6851",
+    "skill_revision_verified": "a8343aeb4f51303e2eb651081d4fe51c24c5ed3f",
+    "progress_ref": "research/PROGRESS_2026-10-08.md",
+    "runtime_ref": "rounds/r004/RUNTIME_CONTINUATION.md",
+    "collector_status": "generated_unexecuted",
+    "collector_change": "transactional scored-slot publication, invalid-slot optimizer exclusion and cumulative 72-configuration progress",
+    "web_project_tests_run": false,
+    "scientific_results_generated": false
   }
 }
