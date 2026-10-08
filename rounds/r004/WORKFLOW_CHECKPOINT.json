@@ -85,5 +85,17 @@
     "new_results_on_remote_main_at_inspection": false,
     "local_execution_state": "unknown until actual returned receipts",
     "scope_reduced": false
+  },
+  "background_goal": {
+    "request": "你要用这个后台长任务跑",
+    "goal_ref": "rounds/r004/BACKGROUND_GOAL.md",
+    "activation": "UNVERIFIED_NOT_STARTED_BY_THIS_SESSION",
+    "task_id": null,
+    "reason": "No hosted launch/status or user GPU SSH execution tool exposed in this Web session",
+    "execution_surface_required": "existing Local control computer with authorized SSH/Conda/harness",
+    "total_configurations": 72,
+    "continue_from_existing_work": true,
+    "automations_created": false,
+    "scientific_execution_claimed": false
   }
 }
