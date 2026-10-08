@@ -69,5 +69,21 @@
       "no implicit new budget",
       "Web source-only; Local execution"
     ]
+  },
+  "delivery_target": {
+    "user_instruction": "我就等这个72个配置",
+    "observed_local_time": "2026-10-08T10:23:03+01:00",
+    "registered_configurations": 72,
+    "native_tasks": [
+      "ScienceQA",
+      "ChartQA",
+      "MSCOCO_i2t"
+    ],
+    "maximum_group_slots": 216,
+    "small_batches_are_execution_order_only": true,
+    "completion_counter": "only configurations with actual scores on all three tasks; blocked/partial/failed separately",
+    "new_results_on_remote_main_at_inspection": false,
+    "local_execution_state": "unknown until actual returned receipts",
+    "scope_reduced": false
   }
 }
